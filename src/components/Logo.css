@@ -1,0 +1,353 @@
+.logo-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.robot-dragon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 头部 */
+.head {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+  z-index: 10;
+}
+
+/* 龙角 */
+.horn {
+  position: absolute;
+  top: -10px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 25px solid #8b5cf6;
+  animation: hornWiggle 2s ease-in-out infinite;
+}
+
+.horn-left {
+  left: 15px;
+  transform: rotate(-15deg);
+}
+
+.horn-right {
+  right: 15px;
+  transform: rotate(15deg);
+}
+
+@keyframes hornWiggle {
+  0%, 100% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+}
+
+.horn-right {
+  animation-delay: 0.1s;
+}
+
+/* 眼睛 */
+.eyes {
+  position: relative;
+  top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.eye {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  animation: blink 4s infinite;
+}
+
+.pupil {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  animation: lookAround 3s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 48%, 52%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes lookAround {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(3px, 0);
+  }
+  75% {
+    transform: translate(-3px, 0);
+  }
+}
+
+/* 嘴巴 */
+.mouth {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 20px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.8);
+  border-radius: 0 0 50% 50%;
+}
+
+/* 腮红 */
+.blush {
+  position: absolute;
+  bottom: 30px;
+  width: 15px;
+  height: 10px;
+  background: rgba(236, 72, 153, 0.4);
+  border-radius: 50%;
+}
+
+.blush-left {
+  left: 10px;
+}
+
+.blush-right {
+  right: 10px;
+}
+
+/* 躯干 */
+.torso {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 60px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+}
+
+/* 齿轮装饰 */
+.gear {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.gear-1 {
+  top: 15px;
+  left: 15px;
+  animation: spin 3s linear infinite;
+}
+
+.gear-2 {
+  top: 15px;
+  right: 15px;
+  animation: spin 3s linear infinite reverse;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 手臂 */
+.arm {
+  position: absolute;
+  top: 110px;
+  width: 15px;
+  height: 50px;
+  background: linear-gradient(180deg, #8b5cf6 0%, #a78bfa 100%);
+  border-radius: 10px;
+}
+
+.arm-left {
+  left: 30px;
+  transform-origin: top center;
+  animation: waveLeft 2s ease-in-out infinite;
+}
+
+.arm-right {
+  right: 30px;
+  transform-origin: top center;
+  animation: waveRight 2s ease-in-out infinite;
+}
+
+@keyframes waveLeft {
+  0%, 100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+}
+
+@keyframes waveRight {
+  0%, 100% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+}
+
+.hand {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: #ec4899;
+  border-radius: 50%;
+}
+
+/* 尾巴 */
+.tail {
+  position: absolute;
+  bottom: 30px;
+  right: -15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transform-origin: top left;
+  animation: tailWag 2s ease-in-out infinite;
+}
+
+@keyframes tailWag {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+
+.tail-segment {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.tail-segment:nth-child(2) {
+  width: 12px;
+  height: 12px;
+}
+
+.tail-segment:nth-child(3) {
+  width: 8px;
+  height: 8px;
+}
+
+/* 浮动粒子 */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat 3s ease-in-out infinite;
+}
+
+.particle-1 {
+  top: 30px;
+  left: 20px;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  top: 50px;
+  right: 20px;
+  animation-delay: 1s;
+}
+
+.particle-3 {
+  top: 70px;
+  left: 30px;
+  animation-delay: 2s;
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-30px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(0);
+  }
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .logo-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .head {
+    width: 80px;
+    height: 80px;
+  }
+
+  .torso {
+    width: 60px;
+    height: 45px;
+  }
+}

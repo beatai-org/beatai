@@ -1,38 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* OpenClaw-inspired clean design system */
+:root[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #262626;
+  --text-primary: #ffffff;
+  --text-secondary: #a3a3a3;
+  --text-tertiary: #737373;
+  --border-primary: rgba(255, 255, 255, 0.1);
+  --border-secondary: rgba(255, 255, 255, 0.05);
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #ec4899;
+  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-bg-hover: rgba(255, 255, 255, 0.05);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --border-primary: rgba(0, 0, 0, 0.08);
+  --border-secondary: rgba(0, 0, 0, 0.04);
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #ec4899;
+  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  --card-bg: #f9fafb;
+  --card-bg-hover: #f3f4f6;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Roboto',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+[data-theme="dark"] body {
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  position: relative;
+}
+
+/* 酷炫的动态渐变背景 */
+.App::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 60%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: backgroundFlow 20s ease-in-out infinite;
+}
+
+@keyframes backgroundFlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(1.05) rotate(2deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(0deg);
+  }
+  75% {
+    opacity: 0.9;
+    transform: scale(1.05) rotate(-2deg);
+  }
+}
+
+[data-theme="dark"] .App::before {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 60%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.18) 0%, transparent 50%);
+}
+
+.App::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.035) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .App::after {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.056) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.056) 1px, transparent 1px);
+  opacity: 1;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* Utility classes */
+.gradient-text {
+  background: var(--accent-gradient);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Clean button styles inspired by OpenClaw */
+.btn {
+  position: relative;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  outline: none;
+  white-space: nowrap;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-primary {
+  background: var(--accent-gradient);
   color: white;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
 }
 
-.App-link {
-  color: #61dafb;
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.5),
+              0 0 40px rgba(139, 92, 246, 0.3);
+  filter: brightness(1.1);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-primary:active {
+  transform: translateY(0) scale(1.02);
+}
+
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  position: relative;
+}
+
+.btn-secondary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  padding: 1px;
+  background: var(--accent-gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--card-bg-hover);
+  border-color: transparent;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+}
+
+.btn-secondary:hover::after {
+  opacity: 1;
+}
+
+.btn-secondary:active {
+  transform: translateY(0) scale(1.02);
 }

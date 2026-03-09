@@ -1,0 +1,113 @@
+.hero {
+  padding: 50px 0 30px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.theme-toggle-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Logo 区域保持原样，由 Logo.js 控制 */
+
+/* 品牌名称 */
+.brand-name {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 30px 0 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* 标语 */
+.tagline {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+/* 简短描述 */
+.hero-description {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 徽章 */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-primary);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  transition: all 0.2s ease;
+}
+
+.hero-badge:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.badge-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-icon {
+  font-size: 16px;
+  color: var(--accent-primary);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.btn-large {
+  padding: 14px 32px;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 40px 0 25px;
+  }
+
+  .brand-name {
+    font-size: 36px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .btn-large {
+    padding: 12px 28px;
+    font-size: 15px;
+  }
+}

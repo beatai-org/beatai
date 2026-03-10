@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -36,12 +36,15 @@ const slugify = (text) => {
 };
 
 const DocContent = () => {
-  const { category, slug } = useParams();
+  const location = useLocation();
   const [content, setContent] = useState('');
   const [frontmatter, setFrontmatter] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [headings, setHeadings] = useState([]);
+
+  // Extract the path after /docs/
+  const docPath = location.pathname.replace(/^\/docs\//, '');
 
   useEffect(() => {
     const loadDoc = async () => {
@@ -49,7 +52,7 @@ const DocContent = () => {
       setError(null);
 
       try {
-        const response = await fetch(`/docs/${category}/${slug}.md`);
+        const response = await fetch(`/docs/${docPath}.md`);
 
         if (!response.ok) {
           throw new Error('Document not found');
@@ -68,7 +71,7 @@ const DocContent = () => {
     };
 
     loadDoc();
-  }, [category, slug]);
+  }, [docPath]);
 
   // Extract headings from rendered content for TOC
   useEffect(() => {
@@ -159,6 +162,7 @@ const DocContent = () => {
   };
 
   // Prepare page title and description with fallbacks
+  const slug = docPath.split('/').pop() || 'documentation';
   const pageTitle = frontmatter.title || slug.split('-').map(word =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' ');

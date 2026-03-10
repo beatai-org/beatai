@@ -33,7 +33,7 @@ const Docs = () => {
       <DocsLayout meta={docsMeta}>
         <Routes>
           <Route index element={<Navigate to={defaultPath} replace />} />
-          <Route path=":category/:slug" element={<DocContent />} />
+          <Route path="*" element={<DocContent />} />
         </Routes>
       </DocsLayout>
     </>

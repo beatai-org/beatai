@@ -1,10 +1,10 @@
 /*
- * 通用动态背景系统 - 支持多主题渐变
+ * 通用动态背景系统 - 支持多主题渐变和深浅色模式
  * 可在任何页面通过添加 .dynamic-background 类来复用
  */
 
 :root {
-  /* 默认主题：紫粉渐变 */
+  /* 默认主题：紫粉渐变 - 浅色模式 */
   --accent-start: #8b5cf6;
   --accent-end: #ec4899;
   --accent-gradient: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-end) 100%);
@@ -15,7 +15,10 @@
   --bg-radial-3: rgba(59, 130, 246, 0.1);
 }
 
-[data-theme="purple-pink"] {
+/* ==================== Purple-Pink Theme ==================== */
+/* Light Mode (default) */
+[data-theme="purple-pink"]:not([data-theme-mode="dark"]),
+[data-theme="purple-pink"][data-theme-mode="light"] {
   --accent-start: #8b5cf6;
   --accent-end: #ec4899;
   --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
@@ -26,7 +29,22 @@
   --bg-radial-3: rgba(59, 130, 246, 0.1);
 }
 
-[data-theme="blue-green"] {
+/* Dark Mode */
+[data-theme="purple-pink"][data-theme-mode="dark"] {
+  --accent-start: #a78bfa;
+  --accent-end: #f472b6;
+  --accent-gradient: linear-gradient(135deg, #a78bfa 0%, #f472b6 100%);
+  --glow-color: rgba(167, 139, 250, 0.6);
+  --particle-color: #f472b6;
+  --bg-radial-1: rgba(139, 92, 246, 0.25);
+  --bg-radial-2: rgba(236, 72, 153, 0.2);
+  --bg-radial-3: rgba(59, 130, 246, 0.15);
+}
+
+/* ==================== Blue-Green Theme ==================== */
+/* Light Mode (default) */
+[data-theme="blue-green"]:not([data-theme-mode="dark"]),
+[data-theme="blue-green"][data-theme-mode="light"] {
   --accent-start: #3b82f6;
   --accent-end: #10b981;
   --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
@@ -37,7 +55,22 @@
   --bg-radial-3: rgba(6, 182, 212, 0.1);
 }
 
-[data-theme="orange-red"] {
+/* Dark Mode */
+[data-theme="blue-green"][data-theme-mode="dark"] {
+  --accent-start: #60a5fa;
+  --accent-end: #34d399;
+  --accent-gradient: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+  --glow-color: rgba(96, 165, 250, 0.6);
+  --particle-color: #34d399;
+  --bg-radial-1: rgba(59, 130, 246, 0.25);
+  --bg-radial-2: rgba(16, 185, 129, 0.2);
+  --bg-radial-3: rgba(6, 182, 212, 0.15);
+}
+
+/* ==================== Orange-Red Theme ==================== */
+/* Light Mode (default) */
+[data-theme="orange-red"]:not([data-theme-mode="dark"]),
+[data-theme="orange-red"][data-theme-mode="light"] {
   --accent-start: #f97316;
   --accent-end: #ef4444;
   --accent-gradient: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
@@ -48,7 +81,22 @@
   --bg-radial-3: rgba(251, 146, 60, 0.1);
 }
 
-[data-theme="aurora"] {
+/* Dark Mode */
+[data-theme="orange-red"][data-theme-mode="dark"] {
+  --accent-start: #fb923c;
+  --accent-end: #f87171;
+  --accent-gradient: linear-gradient(135deg, #fb923c 0%, #f87171 100%);
+  --glow-color: rgba(251, 146, 60, 0.6);
+  --particle-color: #f87171;
+  --bg-radial-1: rgba(249, 115, 22, 0.25);
+  --bg-radial-2: rgba(239, 68, 68, 0.2);
+  --bg-radial-3: rgba(251, 146, 60, 0.15);
+}
+
+/* ==================== Aurora Theme ==================== */
+/* Light Mode (default) */
+[data-theme="aurora"]:not([data-theme-mode="dark"]),
+[data-theme="aurora"][data-theme-mode="light"] {
   --accent-start: #8b5cf6;
   --accent-mid: #06b6d4;
   --accent-end: #10b981;
@@ -58,6 +106,131 @@
   --bg-radial-1: rgba(139, 92, 246, 0.15);
   --bg-radial-2: rgba(6, 182, 212, 0.12);
   --bg-radial-3: rgba(16, 185, 129, 0.1);
+}
+
+/* Dark Mode */
+[data-theme="aurora"][data-theme-mode="dark"] {
+  --accent-start: #a78bfa;
+  --accent-mid: #22d3ee;
+  --accent-end: #34d399;
+  --accent-gradient: linear-gradient(135deg, #a78bfa 0%, #22d3ee 50%, #34d399 100%);
+  --glow-color: rgba(167, 139, 250, 0.6);
+  --particle-color: #22d3ee;
+  --bg-radial-1: rgba(139, 92, 246, 0.25);
+  --bg-radial-2: rgba(6, 182, 212, 0.2);
+  --bg-radial-3: rgba(16, 185, 129, 0.15);
+}
+
+/* ==================== Northern Lights Theme ==================== */
+/* Light Mode (default) */
+[data-theme="northern-lights"]:not([data-theme-mode="dark"]),
+[data-theme="northern-lights"][data-theme-mode="light"] {
+  --accent-start: #1e3a8a;
+  --accent-mid: #10b981;
+  --accent-end: #7c3aed;
+  --accent-gradient: linear-gradient(135deg, #1e3a8a 0%, #10b981 50%, #7c3aed 100%);
+  --glow-color: rgba(16, 185, 129, 0.5);
+  --particle-color: #10b981;
+  --bg-radial-1: rgba(30, 58, 138, 0.15);
+  --bg-radial-2: rgba(16, 185, 129, 0.12);
+  --bg-radial-3: rgba(124, 58, 237, 0.10);
+}
+
+/* Dark Mode */
+[data-theme="northern-lights"][data-theme-mode="dark"] {
+  --accent-start: #1e40af;
+  --accent-mid: #34d399;
+  --accent-end: #a78bfa;
+  --accent-gradient: linear-gradient(135deg, #1e40af 0%, #34d399 50%, #a78bfa 100%);
+  --glow-color: rgba(52, 211, 153, 0.6);
+  --particle-color: #34d399;
+  --bg-radial-1: rgba(30, 64, 175, 0.25);
+  --bg-radial-2: rgba(52, 211, 153, 0.22);
+  --bg-radial-3: rgba(167, 139, 250, 0.20);
+}
+
+/* ==================== Desert Dune Theme ==================== */
+/* Light Mode (default) */
+[data-theme="desert-dune"]:not([data-theme-mode="dark"]),
+[data-theme="desert-dune"][data-theme-mode="light"] {
+  --accent-start: #92400e;
+  --accent-mid: #f59e0b;
+  --accent-end: #38bdf8;
+  --accent-gradient: linear-gradient(135deg, #92400e 0%, #f59e0b 50%, #38bdf8 100%);
+  --glow-color: rgba(245, 158, 11, 0.5);
+  --particle-color: #f59e0b;
+  --bg-radial-1: rgba(146, 64, 14, 0.15);
+  --bg-radial-2: rgba(245, 158, 11, 0.12);
+  --bg-radial-3: rgba(56, 189, 248, 0.10);
+}
+
+/* Dark Mode */
+[data-theme="desert-dune"][data-theme-mode="dark"] {
+  --accent-start: #a16207;
+  --accent-mid: #fbbf24;
+  --accent-end: #7dd3fc;
+  --accent-gradient: linear-gradient(135deg, #a16207 0%, #fbbf24 50%, #7dd3fc 100%);
+  --glow-color: rgba(251, 191, 36, 0.6);
+  --particle-color: #fbbf24;
+  --bg-radial-1: rgba(161, 98, 7, 0.25);
+  --bg-radial-2: rgba(251, 191, 36, 0.22);
+  --bg-radial-3: rgba(125, 211, 252, 0.20);
+}
+
+/* ==================== Coral Reef Theme ==================== */
+/* Light Mode (default) */
+[data-theme="coral-reef"]:not([data-theme-mode="dark"]),
+[data-theme="coral-reef"][data-theme-mode="light"] {
+  --accent-start: #0e7490;
+  --accent-mid: #fb7185;
+  --accent-end: #2dd4bf;
+  --accent-gradient: linear-gradient(135deg, #0e7490 0%, #fb7185 50%, #2dd4bf 100%);
+  --glow-color: rgba(251, 113, 133, 0.5);
+  --particle-color: #fb7185;
+  --bg-radial-1: rgba(14, 116, 144, 0.15);
+  --bg-radial-2: rgba(251, 113, 133, 0.12);
+  --bg-radial-3: rgba(45, 212, 191, 0.10);
+}
+
+/* Dark Mode */
+[data-theme="coral-reef"][data-theme-mode="dark"] {
+  --accent-start: #0891b2;
+  --accent-mid: #fda4af;
+  --accent-end: #5eead4;
+  --accent-gradient: linear-gradient(135deg, #0891b2 0%, #fda4af 50%, #5eead4 100%);
+  --glow-color: rgba(253, 164, 175, 0.6);
+  --particle-color: #fda4af;
+  --bg-radial-1: rgba(8, 145, 178, 0.25);
+  --bg-radial-2: rgba(253, 164, 175, 0.22);
+  --bg-radial-3: rgba(94, 234, 212, 0.20);
+}
+
+/* ==================== Autumn Forest Theme ==================== */
+/* Light Mode (default) */
+[data-theme="autumn-forest"]:not([data-theme-mode="dark"]),
+[data-theme="autumn-forest"][data-theme-mode="light"] {
+  --accent-start: #065f46;
+  --accent-mid: #f59e0b;
+  --accent-end: #dc2626;
+  --accent-gradient: linear-gradient(135deg, #065f46 0%, #f59e0b 50%, #dc2626 100%);
+  --glow-color: rgba(245, 158, 11, 0.5);
+  --particle-color: #f59e0b;
+  --bg-radial-1: rgba(6, 95, 70, 0.15);
+  --bg-radial-2: rgba(245, 158, 11, 0.12);
+  --bg-radial-3: rgba(220, 38, 38, 0.10);
+}
+
+/* Dark Mode */
+[data-theme="autumn-forest"][data-theme-mode="dark"] {
+  --accent-start: #047857;
+  --accent-mid: #fbbf24;
+  --accent-end: #f87171;
+  --accent-gradient: linear-gradient(135deg, #047857 0%, #fbbf24 50%, #f87171 100%);
+  --glow-color: rgba(251, 191, 36, 0.6);
+  --particle-color: #fbbf24;
+  --bg-radial-1: rgba(4, 120, 87, 0.25);
+  --bg-radial-2: rgba(251, 191, 36, 0.22);
+  --bg-radial-3: rgba(248, 113, 113, 0.20);
 }
 
 .dynamic-background {
@@ -84,12 +257,13 @@
   transition: background 0.5s ease;
 }
 
+/* 深色模式 - 增强渐变效果 */
 [data-theme-mode="dark"] .dynamic-background::before {
   background:
-    radial-gradient(circle at 20% 30%, var(--bg-radial-1) 0%, transparent 40%),
-    radial-gradient(circle at 80% 60%, var(--bg-radial-2) 0%, transparent 40%),
-    radial-gradient(circle at 50% 80%, var(--bg-radial-3) 0%, transparent 40%);
-  opacity: 1.5;
+    radial-gradient(circle at 20% 30%, var(--bg-radial-1) 0%, transparent 45%),
+    radial-gradient(circle at 80% 60%, var(--bg-radial-2) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, var(--bg-radial-3) 0%, transparent 45%);
+  opacity: 1.3;
 }
 
 /* 网格背景层 - 已移除 */

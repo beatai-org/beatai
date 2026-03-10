@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Hero.css';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
+import ThemeSelector from './ThemeSelector';
 import { HiSparkles } from 'react-icons/hi';
 
 const Hero = () => {
   return (
     <section className="hero">
       <div className="theme-toggle-container">
+        <ThemeSelector />
         <ThemeToggle />
       </div>
 
@@ -40,12 +43,12 @@ const Hero = () => {
           </div>
 
           <div className="hero-actions">
-            <button className="btn btn-primary btn-large">
+            <Link to="/docs" className="btn btn-primary btn-large">
               Get Started →
-            </button>
-            <button className="btn btn-secondary btn-large">
+            </Link>
+            <a href="https://github.com/loong-ai" target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-large">
               View on GitHub
-            </button>
+            </a>
           </div>
         </div>
       </div>

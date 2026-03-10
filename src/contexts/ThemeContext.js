@@ -12,13 +12,21 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme || 'dark';
+    const savedTheme = localStorage.getItem('theme-mode');
+    return savedTheme || 'light';  // Default to light mode
   });
 
   useEffect(() => {
-    localStorage.setItem('theme', theme);
-    document.documentElement.setAttribute('data-theme', theme);
+    // Set theme mode
+    localStorage.setItem('theme-mode', theme);
+    document.documentElement.setAttribute('data-theme-mode', theme);
+
+    // Ensure gradient theme is set (don't override if already set)
+    const currentGradientTheme = document.documentElement.getAttribute('data-theme');
+    if (!currentGradientTheme) {
+      const savedGradientTheme = localStorage.getItem('docs-theme') || 'purple-pink';
+      document.documentElement.setAttribute('data-theme', savedGradientTheme);
+    }
   }, [theme]);
 
   const toggleTheme = () => {

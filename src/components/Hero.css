@@ -10,6 +10,9 @@
   top: 20px;
   right: 20px;
   z-index: 100;
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
 .hero-content {
@@ -86,6 +89,14 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 40px;
+}
+
+/* Link button styling */
+.hero-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .btn-large {

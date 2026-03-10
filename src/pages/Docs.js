@@ -20,6 +20,9 @@ const Docs = () => {
     return <div className="docs-loading">Loading documentation...</div>;
   }
 
+  // Get default path from first category's first section's first item
+  const defaultPath = docsMeta.categories?.[0]?.sections?.[0]?.items?.[0]?.path || '/docs/getting-started/introduction';
+
   return (
     <>
       <Helmet>
@@ -29,7 +32,7 @@ const Docs = () => {
 
       <DocsLayout meta={docsMeta}>
         <Routes>
-          <Route index element={<Navigate to="/docs/getting-started/introduction" replace />} />
+          <Route index element={<Navigate to={defaultPath} replace />} />
           <Route path=":category/:slug" element={<DocContent />} />
         </Routes>
       </DocsLayout>

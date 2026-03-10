@@ -1,7 +1,7 @@
 .docs-sidebar {
   position: sticky;
-  top: 80px;
-  height: calc(100vh - 100px);
+  top: 70px;
+  height: calc(100vh - 90px);
   overflow-y: auto;
   overflow-x: visible;
   padding: 20px 0;
@@ -20,7 +20,8 @@
   gap: 8px;
   padding: 20px;
   border-radius: 16px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Smooth transition for hover effects without rotation */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
   will-change: transform;
   position: relative;
@@ -37,18 +38,21 @@
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  /* Increased transition time for smoother fade */
+  transition: opacity 0.5s ease;
   pointer-events: none;
 }
 
 .sidebar-section:hover::before {
-  opacity: 0.5;
+  /* Reduced opacity from 0.5 to 0.3 for subtler border glow */
+  opacity: 0.3;
 }
 
 .sidebar-section:hover {
+  /* Reduced shadow intensity for less dramatic effect */
   box-shadow:
-    0 25px 50px -12px rgba(0, 0, 0, 0.25),
-    0 12px 24px -8px rgba(0, 0, 0, 0.1);
+    0 15px 30px -12px rgba(0, 0, 0, 0.15),
+    0 8px 16px -8px rgba(0, 0, 0, 0.08);
 }
 
 .sidebar-section-header {
@@ -80,6 +84,22 @@
   margin: 0;
 }
 
+/* Nested items styling */
+.sidebar-items-nested {
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.sidebar-item {
+  list-style: none;
+}
+
+.sidebar-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  transition: padding 0.3s ease;
+}
+
 .sidebar-link {
   display: flex;
   align-items: center;
@@ -92,6 +112,57 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+}
+
+/* Expandable link styling - now using NavLink instead of div */
+.sidebar-link-with-children {
+  background: transparent;
+  font-weight: 500;
+  position: relative;
+}
+
+.sidebar-link-with-children:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-link-with-children.expanded {
+  color: var(--text-primary);
+}
+
+.sidebar-link-with-children.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+}
+
+.sidebar-link-with-children.active .sidebar-link-text {
+  color: var(--text-primary);
+}
+
+.sidebar-link-with-children.active::before {
+  transform: scaleY(1);
+  background: var(--accent-gradient);
+}
+
+/* Expand/collapse icon */
+.sidebar-expand-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent-start);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.sidebar-expand-icon:hover {
+  transform: scale(1.2);
 }
 
 .sidebar-link::before {
@@ -100,53 +171,40 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 3px;
+  width: 2px;
   background: var(--accent-gradient);
   transform: scaleY(0);
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
+  border-radius: 0 2px 2px 0;
 }
 
 .sidebar-link:hover {
   color: var(--text-primary);
   background: rgba(255, 255, 255, 0.05);
-  transform: translateX(4px);
+  transform: translateX(2px);
 }
 
 .sidebar-link:hover::before {
-  transform: scaleY(1);
+  transform: scaleY(0.5);
 }
 
 .sidebar-link.active {
-  color: var(--accent-start);
-  background: var(--accent-gradient);
-  background-clip: border-box;
-  -webkit-background-clip: border-box;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
   font-weight: 600;
-  box-shadow: 0 4px 12px var(--glow-color);
 }
 
 .sidebar-link.active .sidebar-link-text {
-  background: white;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
 }
 
 .sidebar-link.active::before {
   transform: scaleY(1);
-  width: 100%;
-  background: transparent;
+  background: var(--accent-gradient);
 }
 
 .sidebar-link-indicator {
-  width: 0;
-  height: 2px;
-  background: var(--accent-gradient);
-  transition: width 0.3s ease;
-}
-
-.sidebar-link.active .sidebar-link-indicator {
-  width: 20px;
+  display: none;
 }
 
 .sidebar-overlay {
@@ -158,11 +216,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 280px;
+    width: 240px;
     height: 100vh;
     background: var(--bg-primary);
     border-right: 1px solid var(--border-primary);
-    padding: 80px 20px 20px;
+    padding: 70px 20px 20px;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     z-index: 90;

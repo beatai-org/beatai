@@ -7,9 +7,10 @@
 .doc-content {
   flex: 1;
   min-width: 0;
-  max-width: 800px;
+  max-width: none;
+  width: 100%;
   line-height: 1.8;
-  padding: 32px 280px 32px 0;
+  padding: 32px 256px 32px 0;
   border-radius: 16px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -130,27 +131,61 @@
   width: 100%;
 }
 
-/* Code */
+/* Code - Modern pill design */
 .doc-code-inline {
-  background: rgba(139, 92, 246, 0.1);
-  color: var(--accent-start);
-  padding: 3px 8px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.08));
+  color: #7c3aed;
+  padding: 3px 10px;
   border-radius: 6px;
   font-size: 14px;
   font-family: 'Fira Code', 'SF Mono', 'Monaco', monospace;
   border: 1px solid rgba(139, 92, 246, 0.2);
-  font-weight: 500;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(139, 92, 246, 0.1);
+  transition: all 0.2s ease;
+}
+
+.doc-code-inline:hover {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.12));
+  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+[data-theme-mode="dark"] .doc-code-inline {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15));
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #a78bfa;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme-mode="dark"] .doc-code-inline:hover {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(236, 72, 153, 0.2));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .doc-pre {
-  background: var(--card-bg);
-  border: 1px solid var(--border-primary);
+  background: linear-gradient(135deg, #f6f8fa 0%, #f3f4f6 100%);
+  border: 1px solid #e1e4e8;
   border-radius: 12px;
   padding: 20px;
-  margin: 20px 0;
+  margin: 24px 0;
   overflow-x: auto;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
+  position: relative;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+[data-theme-mode="dark"] .doc-pre {
+  background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .doc-pre code {

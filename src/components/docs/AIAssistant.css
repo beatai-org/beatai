@@ -5,7 +5,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 50%, #10b981 100%);
+  background: var(--accent-gradient);
   border: 3px solid rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;
@@ -13,7 +13,7 @@
   cursor: pointer;
   font-size: 26px;
   color: white;
-  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 8px 24px var(--glow-color);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 50;
   overflow: visible;
@@ -22,7 +22,9 @@
 .ai-orb:hover {
   left: 16px;
   transform: scale(1.1);
-  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.6);
+  box-shadow:
+    0 12px 32px var(--glow-color),
+    0 0 40px var(--glow-color);
   z-index: 100;
 }
 
@@ -30,7 +32,7 @@
   position: absolute;
   inset: -4px;
   border-radius: 50%;
-  border: 2px solid rgba(139, 92, 246, 0.5);
+  border: 2px solid var(--glow-color);
   animation: pulsate 2s ease-out infinite;
 }
 
@@ -158,7 +160,7 @@
 .ai-search-input:focus {
   outline: none;
   border-color: var(--accent-start);
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 0 0 3px var(--glow-color);
 }
 
 .ai-suggestions {
@@ -195,7 +197,7 @@
 
 .ai-suggestion-chip:hover {
   border-color: var(--accent-start);
-  background: rgba(139, 92, 246, 0.1);
+  background: var(--glow-color);
   transform: translateX(4px);
 }
 
@@ -272,7 +274,7 @@
 .ai-spinner {
   width: 20px;
   height: 20px;
-  border: 3px solid rgba(139, 92, 246, 0.2);
+  border: 3px solid var(--glow-color);
   border-top-color: var(--accent-start);
   border-radius: 50%;
 }

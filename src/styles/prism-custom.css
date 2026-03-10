@@ -1,0 +1,283 @@
+/* Custom Prism Theme - Modern Light & Dark Design */
+
+/* Base code styling */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #24292f;
+  font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 14px;
+  line-height: 1.7;
+  tab-size: 4;
+  hyphens: none;
+}
+
+/* Light mode - Modern clean design */
+pre[class*="language-"] {
+  background: linear-gradient(135deg, #f6f8fa 0%, #f3f4f6 100%) !important;
+  padding: 20px;
+  margin: 1em 0;
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid #e1e4e8;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+/* Dark mode - rich contrast */
+[data-theme-mode="dark"] code[class*="language-"],
+[data-theme-mode="dark"] pre[class*="language-"] {
+  color: #e6edf3;
+}
+
+[data-theme-mode="dark"] pre[class*="language-"] {
+  background: linear-gradient(135deg, #161b22 0%, #0d1117 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Inline code - pill style */
+:not(pre) > code[class*="language-"] {
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  white-space: normal;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: #7c3aed;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+[data-theme-mode="dark"] :not(pre) > code[class*="language-"] {
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #a78bfa;
+}
+
+/* Syntax highlighting colors - Light mode (GitHub inspired) */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #57606a;
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: #24292f;
+}
+
+.token.namespace {
+  opacity: 0.8;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #cf222e;
+  font-weight: 600;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #116329;
+  font-weight: 500;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #953800;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #0550ae;
+  font-weight: 700;
+}
+
+.token.function,
+.token.class-name {
+  color: #8250df;
+  font-weight: 700;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #c4420c;
+  font-weight: 600;
+}
+
+/* Dark mode syntax highlighting (VS Code Night Owl inspired) */
+[data-theme-mode="dark"] .token.comment,
+[data-theme-mode="dark"] .token.prolog,
+[data-theme-mode="dark"] .token.doctype,
+[data-theme-mode="dark"] .token.cdata {
+  color: #7f848e;
+  font-style: italic;
+}
+
+[data-theme-mode="dark"] .token.punctuation {
+  color: #c9d1d9;
+}
+
+[data-theme-mode="dark"] .token.property,
+[data-theme-mode="dark"] .token.tag,
+[data-theme-mode="dark"] .token.boolean,
+[data-theme-mode="dark"] .token.number,
+[data-theme-mode="dark"] .token.constant,
+[data-theme-mode="dark"] .token.symbol,
+[data-theme-mode="dark"] .token.deleted {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+[data-theme-mode="dark"] .token.selector,
+[data-theme-mode="dark"] .token.attr-name,
+[data-theme-mode="dark"] .token.string,
+[data-theme-mode="dark"] .token.char,
+[data-theme-mode="dark"] .token.builtin,
+[data-theme-mode="dark"] .token.inserted {
+  color: #7ee787;
+  font-weight: 500;
+}
+
+[data-theme-mode="dark"] .token.operator,
+[data-theme-mode="dark"] .token.entity,
+[data-theme-mode="dark"] .token.url,
+[data-theme-mode="dark"] .language-css .token.string,
+[data-theme-mode="dark"] .style .token.string {
+  color: #79c0ff;
+}
+
+[data-theme-mode="dark"] .token.atrule,
+[data-theme-mode="dark"] .token.attr-value,
+[data-theme-mode="dark"] .token.keyword {
+  color: #79c0ff;
+  font-weight: 700;
+}
+
+[data-theme-mode="dark"] .token.function,
+[data-theme-mode="dark"] .token.class-name {
+  color: #d2a8ff;
+  font-weight: 700;
+}
+
+[data-theme-mode="dark"] .token.regex,
+[data-theme-mode="dark"] .token.important,
+[data-theme-mode="dark"] .token.variable {
+  color: #ffa657;
+  font-weight: 600;
+}
+
+/* Enhanced visibility */
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+/* Line numbers styling */
+.line-numbers .line-numbers-rows {
+  border-right: 1px solid #e1e4e8;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme-mode="dark"] .line-numbers .line-numbers-rows {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.line-numbers-rows > span:before {
+  color: #57606a;
+}
+
+[data-theme-mode="dark"] .line-numbers-rows > span:before {
+  color: #7f848e;
+}
+
+/* Highlighted line */
+.line-highlight {
+  background: rgba(139, 92, 246, 0.08);
+  border-left: 3px solid #8b5cf6;
+}
+
+[data-theme-mode="dark"] .line-highlight {
+  background: rgba(139, 92, 246, 0.15);
+  border-left: 3px solid #a78bfa;
+}
+
+/* Selection */
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection {
+  background: rgba(139, 92, 246, 0.2);
+}
+
+[data-theme-mode="dark"] code[class*="language-"]::selection,
+[data-theme-mode="dark"] code[class*="language-"] ::selection,
+[data-theme-mode="dark"] pre[class*="language-"]::selection,
+[data-theme-mode="dark"] pre[class*="language-"] ::selection {
+  background: rgba(139, 92, 246, 0.3);
+}
+
+/* Scrollbar styling for code blocks */
+pre[class*="language-"]::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 4px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+[data-theme-mode="dark"] pre[class*="language-"]::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme-mode="dark"] pre[class*="language-"]::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.4);
+}
+
+[data-theme-mode="dark"] pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.6);
+}

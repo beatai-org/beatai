@@ -5,7 +5,9 @@
 }
 
 /* OpenClaw-inspired clean design system */
-:root[data-theme="dark"] {
+
+/* Default values (dark mode) */
+:root {
   --bg-primary: #0a0a0a;
   --bg-secondary: #1a1a1a;
   --bg-tertiary: #262626;
@@ -24,7 +26,28 @@
   --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-:root[data-theme="light"] {
+/* Dark mode explicit */
+:root[data-theme-mode="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #262626;
+  --text-primary: #ffffff;
+  --text-secondary: #a3a3a3;
+  --text-tertiary: #737373;
+  --border-primary: rgba(255, 255, 255, 0.1);
+  --border-secondary: rgba(255, 255, 255, 0.05);
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #ec4899;
+  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-bg-hover: rgba(255, 255, 255, 0.05);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Light mode */
+:root[data-theme-mode="light"] {
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
   --bg-tertiary: #f3f4f6;
@@ -56,7 +79,7 @@ body {
   line-height: 1.6;
 }
 
-[data-theme="dark"] body {
+[data-theme-mode="dark"] body {
   background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
 }
 

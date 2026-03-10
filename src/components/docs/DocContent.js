@@ -12,7 +12,8 @@ import 'prismjs/components/prism-tsx';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-bash';
-import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/components/prism-rust';
+import '../../styles/prism-custom.css';
 import TableOfContents from './TableOfContents';
 import CodePlayground from './CodePlayground';
 import './DocContent.css';
@@ -20,13 +21,18 @@ import '../../styles/3d-effects.css';
 import '../../styles/animations.css';
 
 // Utility function to convert heading text to URL-friendly ID
+// Uses encodeURIComponent to properly handle Unicode characters (Chinese, special chars, etc.)
 const slugify = (text) => {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+  return encodeURIComponent(
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[\s_]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+  )
+  .replace(/%20/g, '-')           // Space → hyphen
+  .replace(/[!'()*]/g, c => c)    // Decode safe characters for readability
+  .replace(/%2D/g, '-');          // Decode hyphen
 };
 
 const DocContent = () => {
@@ -152,13 +158,19 @@ const DocContent = () => {
     );
   };
 
+  // Prepare page title and description with fallbacks
+  const pageTitle = frontmatter.title || slug.split('-').map(word =>
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ');
+  const pageDescription = frontmatter.description || `Documentation for ${pageTitle}`;
+
   return (
     <>
       <Helmet>
-        <title>{frontmatter.title} | LoongBot Docs</title>
-        <meta name="description" content={frontmatter.description} />
-        <meta property="og:title" content={frontmatter.title} />
-        <meta property="og:description" content={frontmatter.description} />
+        <title>{pageTitle} | LoongBot Docs</title>
+        <meta name="description" content={pageDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
       </Helmet>
 
       <>

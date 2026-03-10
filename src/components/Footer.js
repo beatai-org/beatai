@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import { FaGithub, FaTwitter, FaDiscord } from 'react-icons/fa';
 
@@ -14,14 +15,14 @@ const Footer = () => {
           </div>
 
           <div className="footer-links">
-            <a href="#docs">Docs</a>
+            <Link to="/docs">Docs</Link>
             <a href="#api">API</a>
-            <a href="#github">GitHub</a>
+            <a href="https://github.com/loong-ai" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="#blog">Blog</a>
           </div>
 
           <div className="footer-social">
-            <a href="#github" aria-label="GitHub">
+            <a href="https://github.com/loong-ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <FaGithub />
             </a>
             <a href="#twitter" aria-label="Twitter">

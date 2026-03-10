@@ -2,14 +2,16 @@
 
 .toc {
   position: fixed !important;
-  top: 100px !important;
+  top: 85px !important;
   right: 0 !important;
   width: 240px !important;
-  max-height: calc(100vh - 120px) !important;
-  overflow-y: auto;
-  padding: 18px 24px;
+  max-height: calc(100vh - 100px) !important;
+  padding: 12px 16px;
   z-index: 90;
   background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 [data-theme-mode="dark"] .toc {
@@ -21,8 +23,8 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 55px;
-  bottom: 18px;
+  top: 45px;
+  bottom: 12px;
   width: 2px;
   background: linear-gradient(to bottom,
     transparent 0%,
@@ -34,8 +36,9 @@
 }
 
 .toc-header {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   position: relative;
+  flex-shrink: 0;
 }
 
 .toc-title {
@@ -67,6 +70,9 @@
   flex-direction: column;
   gap: 0;
   position: relative;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 
 .toc-item {
@@ -119,7 +125,7 @@
     var(--accent-start) 0%,
     transparent 100%
   );
-  opacity: 0.1;
+  opacity: 0.05;
   transition: width 0.4s ease;
 }
 
@@ -129,13 +135,13 @@
 
 .toc-link:hover {
   color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(0, 0, 0, 0.01);
   border-left-color: var(--accent-start);
   padding-left: 16px;
 }
 
 [data-theme-mode="dark"] .toc-link:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 /* Active state - 当前章节 */
@@ -143,11 +149,7 @@
   color: var(--accent-start);
   font-weight: 600;
   border-left-color: var(--accent-start);
-  background: linear-gradient(90deg,
-    rgba(139, 92, 246, 0.08) 0%,
-    rgba(236, 72, 153, 0.03) 50%,
-    transparent 100%
-  );
+  background: rgba(139, 92, 246, 0.03);
   border-left-width: 3px;
   padding-left: 15px;
 }
@@ -207,26 +209,14 @@
   padding-left: 40px;
 }
 
-/* 创意滚动条 */
-.toc::-webkit-scrollbar {
-  width: 4px;
+/* 隐藏滚动条 */
+.toc-list::-webkit-scrollbar {
+  display: none;
 }
 
-.toc::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.toc::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom,
-    var(--accent-start),
-    var(--accent-end)
-  );
-  border-radius: 10px;
-  opacity: 0.3;
-}
-
-.toc::-webkit-scrollbar-thumb:hover {
-  opacity: 0.6;
+.toc-list {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* 滚动时淡入效果 */

@@ -10,7 +10,7 @@
   transition: all 0.2s ease;
 }
 
-[data-theme="dark"] .header {
+[data-theme-mode="dark"] .header {
   background: rgba(10, 10, 10, 0.9);
 }
 
@@ -64,6 +64,10 @@
 .header-actions .btn {
   padding: 6px 16px;
   font-size: 13px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu-toggle {
@@ -148,7 +152,7 @@
     border-bottom: 1px solid rgba(139, 92, 246, 0.2);
   }
 
-  [data-theme="light"] .nav {
+  [data-theme-mode="light"] .nav {
     background: rgba(248, 249, 250, 0.98);
   }
 

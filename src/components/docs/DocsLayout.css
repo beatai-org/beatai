@@ -20,10 +20,11 @@
 .docs-header-content {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 12px 24px;
+  padding: 8px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
   position: relative;
   z-index: 1;
 }
@@ -31,9 +32,9 @@
 .docs-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   transition: transform 0.3s ease;
 }
@@ -43,8 +44,8 @@
 }
 
 .logo-image {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
   object-fit: cover;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -66,6 +67,41 @@
   padding: 4px 10px;
   border-radius: 6px;
   box-shadow: 0 2px 8px var(--glow-color);
+}
+
+/* Category Navigation */
+.category-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+  max-width: 800px;
+}
+
+.category-tab {
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+}
+
+.category-tab:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.category-tab.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
 }
 
 .docs-header-actions {
@@ -101,8 +137,8 @@
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 48px;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
   padding: 0 0 0 24px;
   position: relative;
   z-index: 1;
@@ -118,8 +154,8 @@
 
 @media (max-width: 1200px) {
   .docs-container {
-    grid-template-columns: 260px 1fr;
-    gap: 32px;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
   }
 }
 
@@ -132,6 +168,10 @@
   .mobile-menu-toggle {
     display: flex;
   }
+
+  .category-nav {
+    display: none; /* Hide on mobile, or implement a dropdown */
+  }
 }
 
 @media (max-width: 640px) {
@@ -141,5 +181,9 @@
 
   .docs-container {
     padding: 0 16px;
+  }
+
+  .category-nav {
+    display: none;
   }
 }

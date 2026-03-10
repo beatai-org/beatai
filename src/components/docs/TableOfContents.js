@@ -4,6 +4,7 @@ import './TableOfContents.css';
 const TableOfContents = ({ headings }) => {
   const [activeId, setActiveId] = useState('');
   const observer = useRef(null);
+  const tocListRef = useRef(null);
 
   useEffect(() => {
     // Return early if no headings
@@ -81,6 +82,19 @@ const TableOfContents = ({ headings }) => {
     };
   }, [headings]);
 
+  // Auto-scroll active item into view
+  useEffect(() => {
+    if (activeId && tocListRef.current) {
+      const activeElement = tocListRef.current.querySelector(`[href="#${activeId}"]`);
+      if (activeElement) {
+        activeElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      }
+    }
+  }, [activeId]);
+
   // Handle click on TOC link - smooth scroll to target
   const handleClick = (e, id) => {
     e.preventDefault();
@@ -106,7 +120,7 @@ const TableOfContents = ({ headings }) => {
       <div className="toc-header">
         <h4 className="toc-title">On This Page</h4>
       </div>
-      <ul className="toc-list">
+      <ul className="toc-list" ref={tocListRef}>
         {headings.map(({ id, text, level }) => (
           <li
             key={id}

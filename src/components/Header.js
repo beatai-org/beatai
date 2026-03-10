@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import ThemeToggle from './ThemeToggle';
+import ThemeSelector from './ThemeSelector';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,14 +19,15 @@ const Header = () => {
           <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
             <a href="#features">Features</a>
             <a href="#demo">Demo</a>
-            <a href="#docs">Documentation</a>
+            <Link to="/docs">Documentation</Link>
             <a href="#community">Community</a>
           </nav>
 
           <div className="header-actions">
+            <ThemeSelector />
             <ThemeToggle />
-            <button className="btn btn-secondary">GitHub</button>
-            <button className="btn btn-primary">Get Started</button>
+            <a href="https://github.com/loong-ai" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">GitHub</a>
+            <Link to="/docs" className="btn btn-primary">Get Started</Link>
           </div>
 
           <button

@@ -217,8 +217,8 @@
   backdrop-filter: blur(10px);
 }
 
-[data-theme="light"] .demo-editor,
-[data-theme="light"] .demo-output {
+[data-theme-mode="light"] .demo-editor,
+[data-theme-mode="light"] .demo-output {
   background: rgba(255, 255, 255, 0.9);
 }
 

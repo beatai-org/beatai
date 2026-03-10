@@ -145,7 +145,7 @@ const DocContent = () => {
 
     return (
       <code
-        className={`doc-code-block hover-lift ${className || ''}`}
+        className={`doc-code-block ${className || ''}`}
         dangerouslySetInnerHTML={{ __html: highlightedCode }}
         {...props}
       />

@@ -1,6 +1,6 @@
 {
   "name": "test1",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.1",

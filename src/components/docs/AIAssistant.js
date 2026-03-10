@@ -18,19 +18,36 @@ const AIAssistant = () => {
       .then(res => res.json())
       .then(data => {
         const searchableContent = [];
-        data.sections.forEach(section => {
-          section.items.forEach(item => {
-            searchableContent.push({
-              title: item.title,
-              path: item.path,
-              section: section.title,
-              description: item.description || ''
-            });
+
+        // Handle new categories structure
+        const categories = data.categories || [];
+        categories.forEach(category => {
+          const sections = category.sections || [];
+          sections.forEach(section => {
+            const items = section.items || [];
+
+            // Helper function to recursively add items and their children
+            const addItem = (item, parentSection) => {
+              searchableContent.push({
+                title: item.title,
+                path: item.path,
+                section: parentSection,
+                category: category.title,
+                description: item.description || ''
+              });
+
+              // Add children recursively
+              if (item.children && item.children.length > 0) {
+                item.children.forEach(child => addItem(child, parentSection));
+              }
+            };
+
+            items.forEach(item => addItem(item, section.title));
           });
         });
 
         const fuse = new Fuse(searchableContent, {
-          keys: ['title', 'description', 'section'],
+          keys: ['title', 'description', 'section', 'category'],
           threshold: 0.4,
           includeScore: true
         });

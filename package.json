@@ -1,6 +1,6 @@
 {
   "name": "beatai-website",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.1",

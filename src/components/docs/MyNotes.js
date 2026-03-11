@@ -59,7 +59,7 @@ const MyNotes = () => {
             >
               <div className="my-notes-item-header">
                 <span className="my-notes-item-page">
-                  {annotation.path.split('/').pop() || 'Home'}
+                  {annotation.pageTitle || annotation.path.split('/').pop() || 'Untitled'}
                 </span>
                 <span className="my-notes-item-date">
                   {new Date(annotation.createdAt).toLocaleDateString('en-US', {

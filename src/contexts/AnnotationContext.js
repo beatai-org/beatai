@@ -240,12 +240,13 @@ export function AnnotationProvider({ children }) {
   }, [isAuthenticated, githubToken, gistId, allAnnotations]);
 
   // Add annotation
-  const addAnnotation = useCallback((text, note, path) => {
+  const addAnnotation = useCallback((text, note, path, pageTitle = null) => {
     const newAnnotation = {
       id: Date.now(),
       text,
       note,
       path,
+      pageTitle: pageTitle || path.split('/').pop() || 'Untitled',
       createdAt: new Date().toISOString()
     };
 

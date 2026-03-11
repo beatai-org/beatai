@@ -71,6 +71,7 @@ export function formatAnnotationsForGist(annotations, path) {
       id: annotation.id,
       text: annotation.text,
       note: annotation.note,
+      pageTitle: annotation.pageTitle,
       createdAt: annotation.createdAt,
       updatedAt: annotation.updatedAt || annotation.createdAt
     })),

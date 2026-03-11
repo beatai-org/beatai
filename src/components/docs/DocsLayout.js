@@ -9,6 +9,7 @@ import Sidebar from './Sidebar';
 import AIAssistant from './AIAssistant';
 import AnnotationSystem from './AnnotationSystem';
 import { AnnotationProvider } from '../../contexts/AnnotationContext';
+import { PageTitleProvider } from '../../contexts/PageTitleContext';
 
 // Inner component that uses the context
 const DocsLayoutInner = ({ meta, children }) => {
@@ -108,9 +109,11 @@ const DocsLayoutInner = ({ meta, children }) => {
 const DocsLayout = ({ meta, children }) => {
   return (
     <AnnotationProvider>
-      <DocsLayoutInner meta={meta}>
-        {children}
-      </DocsLayoutInner>
+      <PageTitleProvider meta={meta}>
+        <DocsLayoutInner meta={meta}>
+          {children}
+        </DocsLayoutInner>
+      </PageTitleProvider>
     </AnnotationProvider>
   );
 };

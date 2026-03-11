@@ -16,6 +16,7 @@ import 'prismjs/components/prism-rust';
 import '../../styles/prism-custom.css';
 import TableOfContents from './TableOfContents';
 import CodePlayground from './CodePlayground';
+import { usePageTitle } from '../../contexts/PageTitleContext';
 import './DocContent.css';
 import '../../styles/3d-effects.css';
 import '../../styles/animations.css';
@@ -37,6 +38,7 @@ const slugify = (text) => {
 
 const DocContent = () => {
   const location = useLocation();
+  const { setPageTitle, findTitleByPath } = usePageTitle();
   const [content, setContent] = useState('');
   const [frontmatter, setFrontmatter] = useState({});
   const [loading, setLoading] = useState(true);
@@ -63,6 +65,17 @@ const DocContent = () => {
 
         setFrontmatter(data);
         setContent(markdownContent);
+
+        // Get title from _meta.json using current path
+        const currentPath = location.pathname;
+        const titleFromMeta = findTitleByPath(currentPath);
+
+        // Use title from _meta.json, fallback to frontmatter, or generate from path
+        const title = titleFromMeta || data.title || docPath.split('/').pop()?.split('-').map(word =>
+          word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(' ') || 'Untitled';
+
+        setPageTitle(title);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -71,7 +84,7 @@ const DocContent = () => {
     };
 
     loadDoc();
-  }, [docPath]);
+  }, [docPath, location.pathname, setPageTitle, findTitleByPath]);
 
   // Extract headings from rendered content for TOC
   useEffect(() => {

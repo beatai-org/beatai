@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { HiAnnotation, HiX, HiPencil } from 'react-icons/hi';
 import { useAnnotationContext } from '../../contexts/AnnotationContext';
+import { usePageTitle } from '../../contexts/PageTitleContext';
 import './AnnotationSystem.css';
 
 const AnnotationSystem = () => {
   const location = useLocation();
+  const { pageTitle } = usePageTitle();
   const {
     annotations,
     addAnnotation,
@@ -166,7 +168,7 @@ const AnnotationSystem = () => {
     if (!noteContent.trim() || !selectedRange) return;
 
     const currentPath = window.location.pathname;
-    const newAnnotation = addAnnotation(selectedText, noteContent, currentPath);
+    const newAnnotation = addAnnotation(selectedText, noteContent, currentPath, pageTitle);
 
     // Apply highlight to the selected text
     const docContent = document.querySelector('.doc-content');

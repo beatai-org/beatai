@@ -61,9 +61,99 @@ const THEMES = [
   }
 ];
 
+const FONTS = [
+  // 系统字体（3 个）
+  {
+    id: 'system',
+    name: '系统默认',
+    family: '-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif'
+  },
+  {
+    id: 'pingfang',
+    name: '苹方',
+    family: '"PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif'
+  },
+  {
+    id: 'microsoft-yahei',
+    name: '微软雅黑',
+    family: '"Microsoft YaHei", "Microsoft YaHei UI", "PingFang SC", sans-serif'
+  },
+
+  // 现代科技感（2 个）
+  {
+    id: 'noto-sans',
+    name: '思源黑体',
+    family: '"Noto Sans SC", sans-serif'
+  },
+  {
+    id: 'noto-serif',
+    name: '思源宋体',
+    family: '"Noto Serif SC", serif'
+  },
+
+  // 优雅书卷气（3 个）
+  {
+    id: 'lxgw-wenkai',
+    name: '霞鹜文楷',
+    family: '"LXGW WenKai", "KaiTi", serif'
+  },
+  {
+    id: 'ma-shan-zheng',
+    name: '马善政楷书',
+    family: '"Ma Shan Zheng", cursive'
+  },
+  {
+    id: 'liu-jian-mao-cao',
+    name: '刘兼毛草',
+    family: '"Liu Jian Mao Cao", cursive'
+  },
+
+  // 粗犷有力量（2 个）
+  {
+    id: 'zcool-qingke',
+    name: '站酷高端黑',
+    family: '"ZCOOL QingKe HuangYou", sans-serif'
+  },
+  {
+    id: 'zhi-mang-xing',
+    name: '志忙星手写',
+    family: '"Zhi Mang Xing", cursive'
+  },
+
+  // 圆润可爱（2 个）
+  {
+    id: 'zcool-kuaile',
+    name: '站酷快乐体',
+    family: '"ZCOOL KuaiLe", sans-serif'
+  },
+  {
+    id: 'zcool-xiaowei',
+    name: '站酷小薇',
+    family: '"ZCOOL XiaoWei", serif'
+  }
+];
+
+const FONT_WEIGHTS = [
+  { id: 'light', name: '细体', value: '300' },
+  { id: 'normal', name: '常规', value: '400' },
+  { id: 'medium', name: '中等', value: '500' },
+  { id: 'semibold', name: '半粗', value: '600' },
+  { id: 'bold', name: '粗体', value: '700' },
+];
+
+const FONT_SIZES = [
+  { id: 'small', name: '小', value: '14px' },
+  { id: 'normal', name: '标准', value: '16px' },
+  { id: 'large', name: '大', value: '18px' },
+  { id: 'xlarge', name: '超大', value: '20px' },
+];
+
 const ThemeSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState('purple-pink');
+  const [currentFont, setCurrentFont] = useState('system');
+  const [currentFontWeight, setCurrentFontWeight] = useState('normal');
+  const [currentFontSize, setCurrentFontSize] = useState('normal');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -79,6 +169,27 @@ const ThemeSelector = () => {
       if (!currentTheme) {
         document.documentElement.setAttribute('data-theme', 'purple-pink');
       }
+    }
+
+    // Load saved font from localStorage
+    const savedFont = localStorage.getItem('docs-font');
+    if (savedFont && FONTS.some(f => f.id === savedFont)) {
+      setCurrentFont(savedFont);
+      applyFont(savedFont);
+    }
+
+    // Load saved font weight from localStorage
+    const savedFontWeight = localStorage.getItem('docs-font-weight');
+    if (savedFontWeight && FONT_WEIGHTS.some(w => w.id === savedFontWeight)) {
+      setCurrentFontWeight(savedFontWeight);
+      applyFontWeight(savedFontWeight);
+    }
+
+    // Load saved font size from localStorage
+    const savedFontSize = localStorage.getItem('docs-font-size');
+    if (savedFontSize && FONT_SIZES.some(s => s.id === savedFontSize)) {
+      setCurrentFontSize(savedFontSize);
+      applyFontSize(savedFontSize);
     }
 
     // Check initial dark mode
@@ -105,9 +216,29 @@ const ThemeSelector = () => {
     return () => observer.disconnect();
   }, []);
 
+  const applyFont = (fontId) => {
+    const font = FONTS.find(f => f.id === fontId);
+    if (font) {
+      document.documentElement.style.setProperty('--font-family', font.family);
+    }
+  };
+
+  const applyFontWeight = (weightId) => {
+    const weight = FONT_WEIGHTS.find(w => w.id === weightId);
+    if (weight) {
+      document.documentElement.style.setProperty('--font-weight', weight.value);
+    }
+  };
+
+  const applyFontSize = (sizeId) => {
+    const size = FONT_SIZES.find(s => s.id === sizeId);
+    if (size) {
+      document.documentElement.style.setProperty('--font-size', size.value);
+    }
+  };
+
   const handleThemeChange = (themeId) => {
     if (themeId === currentTheme) {
-      setIsOpen(false);
       return;
     }
 
@@ -124,8 +255,25 @@ const ThemeSelector = () => {
     // Hide overlay
     setTimeout(() => {
       setIsTransitioning(false);
-      setIsOpen(false);
     }, 500);
+  };
+
+  const handleFontChange = (fontId) => {
+    setCurrentFont(fontId);
+    applyFont(fontId);
+    localStorage.setItem('docs-font', fontId);
+  };
+
+  const handleFontWeightChange = (weightId) => {
+    setCurrentFontWeight(weightId);
+    applyFontWeight(weightId);
+    localStorage.setItem('docs-font-weight', weightId);
+  };
+
+  const handleFontSizeChange = (sizeId) => {
+    setCurrentFontSize(sizeId);
+    applyFontSize(sizeId);
+    localStorage.setItem('docs-font-size', sizeId);
   };
 
   const currentThemeData = THEMES.find(t => t.id === currentTheme);
@@ -153,29 +301,91 @@ const ThemeSelector = () => {
               onClick={() => setIsOpen(false)}
             />
             <div className="theme-panel slide-in-bottom">
-              <h3 className="theme-panel-title">Choose Theme</h3>
-              <div className="theme-grid">
-                {THEMES.map((theme) => {
-                  const themeGradient = isDarkMode ? theme.gradientDark : theme.gradient;
-                  return (
-                    <button
-                      key={theme.id}
-                      className={`theme-card ${currentTheme === theme.id ? 'active' : ''}`}
-                      onClick={() => handleThemeChange(theme.id)}
-                      aria-label={`Switch to ${theme.name} theme`}
-                    >
-                      <div
-                        className="theme-card-gradient"
-                        style={{ background: themeGradient }}
+              {/* Color Themes Section */}
+              <div className="theme-section">
+                <h3 className="theme-panel-title">Color Theme</h3>
+                <div className="theme-grid">
+                  {THEMES.map((theme) => {
+                    const themeGradient = isDarkMode ? theme.gradientDark : theme.gradient;
+                    return (
+                      <button
+                        key={theme.id}
+                        className={`theme-card ${currentTheme === theme.id ? 'active' : ''}`}
+                        onClick={() => handleThemeChange(theme.id)}
+                        aria-label={`Switch to ${theme.name} theme`}
                       >
-                        {currentTheme === theme.id && (
-                          <div className="theme-card-check">✓</div>
-                        )}
-                      </div>
-                      <span className="theme-card-name">{theme.name}</span>
+                        <div
+                          className="theme-card-gradient"
+                          style={{ background: themeGradient }}
+                        >
+                          {currentTheme === theme.id && (
+                            <div className="theme-card-check">✓</div>
+                          )}
+                        </div>
+                        <span className="theme-card-name">{theme.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Font Selection Section */}
+              <div className="theme-section">
+                <h3 className="theme-panel-title">Font Family</h3>
+                <div className="font-list">
+                  {FONTS.map((font) => (
+                    <button
+                      key={font.id}
+                      className={`font-option ${currentFont === font.id ? 'active' : ''}`}
+                      onClick={() => handleFontChange(font.id)}
+                      style={{ fontFamily: font.family }}
+                    >
+                      <span className="font-option-name">{font.name}</span>
+                      {currentFont === font.id && (
+                        <span className="font-option-check">✓</span>
+                      )}
                     </button>
-                  );
-                })}
+                  ))}
+                </div>
+              </div>
+
+              {/* Font Weight Selection Section */}
+              <div className="theme-section">
+                <h3 className="theme-panel-title">Font Weight</h3>
+                <div className="font-weight-list">
+                  {FONT_WEIGHTS.map((weight) => (
+                    <button
+                      key={weight.id}
+                      className={`font-weight-option ${currentFontWeight === weight.id ? 'active' : ''}`}
+                      onClick={() => handleFontWeightChange(weight.id)}
+                      style={{ fontWeight: weight.value }}
+                    >
+                      <span className="font-weight-name">{weight.name}</span>
+                      {currentFontWeight === weight.id && (
+                        <span className="font-weight-check">✓</span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Font Size Selection Section */}
+              <div className="theme-section">
+                <h3 className="theme-panel-title">Font Size</h3>
+                <div className="font-size-list">
+                  {FONT_SIZES.map((size) => (
+                    <button
+                      key={size.id}
+                      className={`font-size-option ${currentFontSize === size.id ? 'active' : ''}`}
+                      onClick={() => handleFontSizeChange(size.id)}
+                    >
+                      <span className="font-size-name">{size.name}</span>
+                      {currentFontSize === size.id && (
+                        <span className="font-size-check">✓</span>
+                      )}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </>

@@ -1,11 +1,11 @@
 ---
 title: Configuration
-description: Complete guide to configuring LoongBot for different environments and use cases.
+description: Complete guide to configuring BeatAI for different environments and use cases.
 ---
 
 # Configuration
 
-Learn how to configure LoongBot for optimal performance and functionality.
+Learn how to configure BeatAI for optimal performance and functionality.
 
 ## Configuration File
 

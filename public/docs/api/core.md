@@ -1,20 +1,20 @@
 ---
 title: Core API
-description: Complete reference for LoongBot's core API including classes, methods, and properties.
+description: Complete reference for BeatAI's core API including classes, methods, and properties.
 ---
 
 # Core API Reference
 
-Complete API documentation for LoongBot core functionality.
+Complete API documentation for BeatAI core functionality.
 
-## LoongBot Class
+## BeatAI Class
 
 The main bot class that orchestrates all functionality.
 
 ### Constructor
 
 ```javascript
-new LoongBot(config)
+new BeatAI(config)
 ```
 
 **Parameters:**
@@ -29,7 +29,7 @@ new LoongBot(config)
 **Example:**
 
 ```javascript
-const bot = new LoongBot({
+const bot = new BeatAI({
   name: 'MyBot',
   ai: {
     provider: 'openai',
@@ -116,7 +116,7 @@ bot.use(plugin)
 |------|------|-------------|
 | plugin | `Plugin` | Plugin instance |
 
-**Returns:** `LoongBot` (chainable)
+**Returns:** `BeatAI` (chainable)
 
 **Example:**
 

@@ -9,7 +9,7 @@ const FeaturedIn = () => {
     {
       logo: <HiNewspaper />,
       company: 'TechStories',
-      quote: '"LoongBot Showed Me What the Future of Personal AI Assistants Looks Like"',
+      quote: '"BeatAI Showed Me What the Future of Personal AI Assistants Looks Like"',
       author: 'Sarah Chen',
       bgGradient: 'linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(236, 72, 153, 0.02) 100%)'
     },

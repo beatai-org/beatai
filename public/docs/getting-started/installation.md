@@ -1,11 +1,11 @@
 ---
 title: Installation
-description: Complete installation guide for LoongBot across different platforms and environments.
+description: Complete installation guide for BeatAI across different platforms and environments.
 ---
 
 # Installation
 
-This guide covers installing LoongBot in various environments and platforms.
+This guide covers installing BeatAI in various environments and platforms.
 
 ## System Requirements
 
@@ -27,7 +27,7 @@ This guide covers installing LoongBot in various environments and platforms.
 
 ### Using npm
 
-The simplest way to install LoongBot:
+The simplest way to install BeatAI:
 
 ```bash
 npm install loongbot
@@ -71,7 +71,7 @@ npm link
 
 ## Docker Installation
 
-Run LoongBot in a container:
+Run BeatAI in a container:
 
 ```bash
 docker pull loongbot/loongbot:latest
@@ -156,7 +156,7 @@ sudo apt-get install build-essential
 sudo yum groupinstall "Development Tools"
 ```
 
-## Updating LoongBot
+## Updating BeatAI
 
 ### npm
 
@@ -198,7 +198,7 @@ npm cache clean --force
 
 ## Next Steps
 
-Now that you have LoongBot installed:
+Now that you have BeatAI installed:
 
 1. Follow the [Quick Start Guide](/docs/getting-started/quick-start)
 2. Explore [Configuration Options](/docs/guides/configuration)

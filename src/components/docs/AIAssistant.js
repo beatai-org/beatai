@@ -74,7 +74,7 @@ const AIAssistant = () => {
   };
 
   const quickQuestions = [
-    'How to install LoongBot?',
+    'How to install BeatAI?',
     'Getting started guide',
     'API documentation',
     'Configuration options'

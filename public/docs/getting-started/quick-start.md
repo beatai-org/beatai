@@ -1,11 +1,11 @@
 ---
 title: Quick Start Guide
-description: Get up and running with LoongBot in less than 5 minutes.
+description: Get up and running with BeatAI in less than 5 minutes.
 ---
 
 # Quick Start Guide
 
-This guide will help you create and run your first LoongBot in minutes.
+This guide will help you create and run your first BeatAI in minutes.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Before you begin, make sure you have:
 
 ## Installation
 
-Install LoongBot using npm:
+Install BeatAI using npm:
 
 ```bash
 npm install -g loongbot-cli
@@ -74,9 +74,9 @@ BOT_DESCRIPTION=My awesome AI bot
 Edit `src/index.js`:
 
 ```javascript
-import { LoongBot } from 'loongbot';
+import { BeatAI } from 'loongbot';
 
-const bot = new LoongBot({
+const bot = new BeatAI({
   name: process.env.BOT_NAME,
   ai: {
     provider: process.env.AI_PROVIDER,
@@ -125,7 +125,7 @@ This opens an interactive console where you can chat with your bot.
 
 ## Next Steps
 
-Congratulations! You've created your first LoongBot. Here's what to explore next:
+Congratulations! You've created your first BeatAI. Here's what to explore next:
 
 - [Building Your First Bot](/docs/guides/first-bot) - Deep dive into bot development
 - [Plugin Development](/docs/guides/plugin-development) - Extend your bot's capabilities

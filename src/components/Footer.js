@@ -10,12 +10,12 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-left">
             <p className="footer-copyright">
-              © 2026 LoongBot. Open Source under MIT License.
+              © 2026 BeatAI. Open Source under MIT License.
             </p>
           </div>
 
           <div className="footer-links">
-            <Link to="/docs">Docs</Link>
+            <Link to="/">Docs</Link>
             <a href="#api">API</a>
             <a href="https://github.com/loong-ai" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="#blog">Blog</a>

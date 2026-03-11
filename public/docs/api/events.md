@@ -1,11 +1,11 @@
 ---
 title: Events API
-description: Complete reference for LoongBot's event system and event-driven architecture.
+description: Complete reference for BeatAI's event system and event-driven architecture.
 ---
 
 # Events API Reference
 
-LoongBot uses an event-driven architecture. This guide documents all built-in events and how to create custom events.
+BeatAI uses an event-driven architecture. This guide documents all built-in events and how to create custom events.
 
 ## Built-in Events
 
@@ -213,7 +213,7 @@ bot.on('message', async (message) => {
 | event | `string` | Event name |
 | handler | `Function` | Event handler |
 
-**Returns:** `LoongBot` (chainable)
+**Returns:** `BeatAI` (chainable)
 
 ### once(event, handler)
 
@@ -447,7 +447,7 @@ bot.on('*', (event) => {
 Or use the built-in debug mode:
 
 ```javascript
-const bot = new LoongBot({
+const bot = new BeatAI({
   debug: {
     events: true
   }

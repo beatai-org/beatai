@@ -1,15 +1,15 @@
 ---
-title: Introduction to LoongBot
-description: Learn about LoongBot, the open-source AI bot framework that makes building intelligent agents simple and powerful.
+title: Introduction to BeatAI
+description: Learn about BeatAI, the open-source AI bot framework that makes building intelligent agents simple and powerful.
 ---
 
-# Introduction to LoongBot
+# Introduction to BeatAI
 
-Welcome to **LoongBot**, the modern open-source framework for building intelligent AI agents. LoongBot combines simplicity with power, allowing developers to create sophisticated bots without the complexity.
+Welcome to **BeatAI**, the modern open-source framework for building intelligent AI agents. BeatAI combines simplicity with power, allowing developers to create sophisticated bots without the complexity.
 
-## What is LoongBot?
+## What is BeatAI?
 
-LoongBot is a flexible, plugin-based framework designed for building AI-powered bots that can:
+BeatAI is a flexible, plugin-based framework designed for building AI-powered bots that can:
 
 - 🤖 Integrate with multiple AI models (GPT-4, Claude, Gemini, etc.)
 - 🔌 Extend functionality through a rich plugin ecosystem
@@ -21,7 +21,7 @@ LoongBot is a flexible, plugin-based framework designed for building AI-powered 
 
 ### Plugin Architecture
 
-LoongBot's plugin system allows you to extend functionality without modifying core code. Write once, use everywhere.
+BeatAI's plugin system allows you to extend functionality without modifying core code. Write once, use everywhere.
 
 ```javascript
 import { Plugin } from 'loongbot';
@@ -40,7 +40,7 @@ export class MyPlugin extends Plugin {
 Seamlessly switch between different AI providers:
 
 ```javascript
-const bot = new LoongBot({
+const bot = new BeatAI({
   ai: {
     provider: 'openai',
     model: 'gpt-4',
@@ -59,13 +59,13 @@ Deploy your bot across multiple platforms simultaneously:
 - Slack
 - Custom webhooks
 
-## Why Choose LoongBot?
+## Why Choose BeatAI?
 
 1. **Developer-First**: Intuitive API designed for productivity
 2. **Production-Ready**: Battle-tested in real-world applications
 3. **Open Source**: MIT licensed, community-driven
 4. **TypeScript Support**: Full type safety out of the box
-5. **Active Community**: Join thousands of developers building with LoongBot
+5. **Active Community**: Join thousands of developers building with BeatAI
 
 ## Getting Started
 

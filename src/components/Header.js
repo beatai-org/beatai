@@ -13,13 +13,13 @@ const Header = () => {
         <div className="header-content">
           <div className="logo">
             <span className="logo-icon">🤖</span>
-            <span className="logo-text">LoongBot</span>
+            <span className="logo-text">BeatAI</span>
           </div>
 
           <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
             <a href="#features">Features</a>
             <a href="#demo">Demo</a>
-            <Link to="/docs">Documentation</Link>
+            <Link to="/">Documentation</Link>
             <a href="#community">Community</a>
           </nav>
 
@@ -27,7 +27,7 @@ const Header = () => {
             <ThemeSelector />
             <ThemeToggle />
             <a href="https://github.com/loong-ai" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">GitHub</a>
-            <Link to="/docs" className="btn btn-primary">Get Started</Link>
+            <Link to="/" className="btn btn-primary">Get Started</Link>
           </div>
 
           <button

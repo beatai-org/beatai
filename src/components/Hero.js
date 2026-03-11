@@ -21,7 +21,7 @@ const Hero = () => {
 
           {/* 品牌名称 */}
           <h1 className="brand-name">
-            <span className="gradient-text">LoongBot</span>
+            <span className="gradient-text">BeatAI</span>
           </h1>
 
           <p className="tagline">
@@ -43,7 +43,7 @@ const Hero = () => {
           </div>
 
           <div className="hero-actions">
-            <Link to="/docs" className="btn btn-primary btn-large">
+            <Link to="/" className="btn btn-primary btn-large">
               Get Started →
             </Link>
             <a href="https://github.com/loong-ai" target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-large">

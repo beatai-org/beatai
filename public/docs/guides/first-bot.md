@@ -1,6 +1,6 @@
 ---
 title: Building Your First Bot
-description: A comprehensive guide to building your first production-ready bot with LoongBot.
+description: A comprehensive guide to building your first production-ready bot with BeatAI.
 ---
 
 # Building Your First Bot
@@ -73,11 +73,11 @@ export class FAQHandler {
 Edit `src/index.js`:
 
 ```javascript
-import { LoongBot } from 'loongbot';
+import { BeatAI } from 'loongbot';
 import { FAQHandler } from './handlers/faq.js';
 import { personality } from './config/personality.js';
 
-const bot = new LoongBot({
+const bot = new BeatAI({
   name: personality.name,
   ai: {
     provider: 'openai',
@@ -192,14 +192,14 @@ export class HumanHandoff {
 Create tests in `test/bot.test.js`:
 
 ```javascript
-import { LoongBot } from 'loongbot';
+import { BeatAI } from 'loongbot';
 import { FAQHandler } from '../src/handlers/faq.js';
 
 describe('Customer Support Bot', () => {
   let bot;
 
   beforeEach(() => {
-    bot = new LoongBot({ test: true });
+    bot = new BeatAI({ test: true });
   });
 
   test('should answer FAQ questions', async () => {
@@ -249,9 +249,9 @@ docker push your-registry/customer-support-bot
 Here's the full bot in action:
 
 ```javascript
-import { LoongBot, Plugin } from 'loongbot';
+import { BeatAI, Plugin } from 'loongbot';
 
-class CustomerSupportBot extends LoongBot {
+class CustomerSupportBot extends BeatAI {
   constructor(config) {
     super(config);
     this.setupHandlers();

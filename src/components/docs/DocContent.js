@@ -43,8 +43,8 @@ const DocContent = () => {
   const [error, setError] = useState(null);
   const [headings, setHeadings] = useState([]);
 
-  // Extract the path after /docs/
-  const docPath = location.pathname.replace(/^\/docs\//, '');
+  // Extract the path from URL (now starts from root)
+  const docPath = location.pathname.replace(/^\//, '');
 
   useEffect(() => {
     const loadDoc = async () => {
@@ -171,7 +171,7 @@ const DocContent = () => {
   return (
     <>
       <Helmet>
-        <title>{pageTitle} | LoongBot Docs</title>
+        <title>{pageTitle} | BeatAI Docs</title>
         <meta name="description" content={pageDescription} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />

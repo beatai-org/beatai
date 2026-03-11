@@ -39,9 +39,9 @@ export class MyPlugin extends Plugin {
     },
     ai: {
       title: 'AI Integration',
-      code: `import { LoongBot, AIPlugin } from 'loongbot';
+      code: `import { BeatAI, AIPlugin } from 'loongbot';
 
-const bot = new LoongBot({
+const bot = new BeatAI({
   plugins: [
     new AIPlugin({
       model: 'gpt-4',
@@ -98,7 +98,7 @@ bot.start();`
               <div className="output-content">
                 <div className="output-line success">
                   <span className="output-icon">✓</span>
-                  <span>LoongBot initialized successfully</span>
+                  <span>BeatAI initialized successfully</span>
                 </div>
                 <div className="output-line">
                   <span className="output-icon">→</span>

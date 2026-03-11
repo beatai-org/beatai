@@ -21,13 +21,13 @@ const Docs = () => {
   }
 
   // Get default path from first category's first section's first item
-  const defaultPath = docsMeta.categories?.[0]?.sections?.[0]?.items?.[0]?.path || '/docs/getting-started/introduction';
+  const defaultPath = docsMeta.categories?.[0]?.sections?.[0]?.items?.[0]?.path || '/getting-started/introduction';
 
   return (
     <>
       <Helmet>
-        <title>Documentation | LoongBot</title>
-        <meta name="description" content="Complete documentation for LoongBot - the open-source AI bot framework" />
+        <title>Documentation | BeatAI</title>
+        <meta name="description" content="Complete documentation for BeatAI - the open-source AI bot framework" />
       </Helmet>
 
       <DocsLayout meta={docsMeta}>

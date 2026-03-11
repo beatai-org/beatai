@@ -1,11 +1,11 @@
 ---
 title: Plugin Development
-description: Learn how to create powerful plugins to extend LoongBot's functionality.
+description: Learn how to create powerful plugins to extend BeatAI's functionality.
 ---
 
 # Plugin Development
 
-Plugins are the core extensibility mechanism in LoongBot. This guide teaches you how to create your own plugins.
+Plugins are the core extensibility mechanism in BeatAI. This guide teaches you how to create your own plugins.
 
 ## Plugin Architecture
 
@@ -83,10 +83,10 @@ export class WeatherPlugin extends Plugin {
 ### 3. Use the Plugin
 
 ```javascript
-import { LoongBot } from 'loongbot';
+import { BeatAI } from 'loongbot';
 import { WeatherPlugin } from './my-plugin/index.js';
 
-const bot = new LoongBot();
+const bot = new BeatAI();
 
 bot.use(new WeatherPlugin({
   apiKey: process.env.WEATHER_API_KEY
@@ -208,7 +208,7 @@ export class MiddlewarePlugin extends Plugin {
 {
   "name": "loongbot-plugin-weather",
   "version": "1.0.0",
-  "description": "Weather plugin for LoongBot",
+  "description": "Weather plugin for BeatAI",
   "main": "index.js",
   "keywords": ["loongbot", "plugin", "weather"],
   "peerDependencies": {

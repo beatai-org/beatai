@@ -1,11 +1,11 @@
 ---
 title: Plugin API
-description: API reference for creating and managing LoongBot plugins.
+description: API reference for creating and managing BeatAI plugins.
 ---
 
 # Plugin API Reference
 
-Complete reference for developing LoongBot plugins.
+Complete reference for developing BeatAI plugins.
 
 ## Plugin Base Class
 
@@ -158,7 +158,7 @@ Access bot functionality through `this`:
 
 ### this.bot
 
-Reference to the LoongBot instance.
+Reference to the BeatAI instance.
 
 ```javascript
 async onLoad() {
@@ -397,11 +397,11 @@ test('plugin handles messages', async () => {
 ### Integration Testing
 
 ```javascript
-import { LoongBot } from 'loongbot';
+import { BeatAI } from 'loongbot';
 import { MyPlugin } from './my-plugin.js';
 
 test('plugin integrates with bot', async () => {
-  const bot = new LoongBot({ test: true });
+  const bot = new BeatAI({ test: true });
   bot.use(new MyPlugin());
 
   await bot.start();
@@ -421,7 +421,7 @@ test('plugin integrates with bot', async () => {
 {
   "name": "loongbot-plugin-weather",
   "version": "1.0.0",
-  "description": "Weather plugin for LoongBot",
+  "description": "Weather plugin for BeatAI",
   "main": "index.js",
   "keywords": ["loongbot", "plugin", "weather"],
   "peerDependencies": {
@@ -436,7 +436,7 @@ test('plugin integrates with bot', async () => {
 ```markdown
 # loongbot-plugin-weather
 
-Weather information plugin for LoongBot.
+Weather information plugin for BeatAI.
 
 ## Installation
 

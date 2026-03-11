@@ -17,8 +17,8 @@ function App() {
           <div className="App dynamic-background">
             <Suspense fallback={<div className="loading">Loading...</div>}>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/docs/*" element={<Docs />} />
+                <Route path="/genesis-lab" element={<Home />} />
+                <Route path="/*" element={<Docs />} />
               </Routes>
             </Suspense>
           </div>

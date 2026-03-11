@@ -75,9 +75,8 @@ const DocsLayout = ({ meta, children }) => {
       <header className="docs-header glass-morphism">
         <div className="docs-header-content">
           <Link to="/" className="docs-logo">
-            <img src={logo} alt="LoongBot" className="logo-image" />
-            <span className="logo-text">LoongBot</span>
-            <span className="docs-badge">Docs</span>
+            <img src={logo} alt="BeatAI" className="logo-image" />
+            <span className="logo-text">BeatAI</span>
           </Link>
 
           {/* Category Navigation */}

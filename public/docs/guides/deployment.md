@@ -1,11 +1,11 @@
 ---
 title: Deployment
-description: Deploy LoongBot to production environments including cloud platforms, containers, and serverless.
+description: Deploy BeatAI to production environments including cloud platforms, containers, and serverless.
 ---
 
 # Deployment
 
-This guide covers deploying LoongBot to various production environments.
+This guide covers deploying BeatAI to various production environments.
 
 ## Pre-Deployment Checklist
 

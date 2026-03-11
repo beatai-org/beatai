@@ -92,10 +92,6 @@ const DocContent = () => {
     return () => clearTimeout(timer);
   }, [content]);
 
-  if (loading) {
-    return <div className="doc-loading">Loading...</div>;
-  }
-
   if (error) {
     return (
       <div className="doc-error">
@@ -112,7 +108,7 @@ const DocContent = () => {
       const id = slugify(text);
       const Tag = `h${level}`;
       return (
-        <Tag id={id} className={`doc-h${level} float-up`} {...props}>
+        <Tag id={id} className={`doc-h${level}`} {...props}>
           {children}
         </Tag>
       );
@@ -179,7 +175,7 @@ const DocContent = () => {
 
       <>
         <div className="doc-wrapper">
-          <article className="doc-content">
+          <article className="doc-content" key={docPath}>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
@@ -187,7 +183,7 @@ const DocContent = () => {
                 h2: createHeading(2),
                 h3: createHeading(3),
                 h4: createHeading(4),
-                p: ({ node, ...props }) => <p className="doc-p float-up" {...props} />,
+                p: ({ node, ...props }) => <p className="doc-p" {...props} />,
                 // eslint-disable-next-line jsx-a11y/anchor-has-content
                 a: ({ node, ...props }) => <a className="doc-link" {...props} />,
                 code: CodeComponent,
@@ -198,7 +194,7 @@ const DocContent = () => {
                   </div>
                 ),
                 blockquote: ({ node, ...props }) => (
-                  <blockquote className="doc-blockquote float-up" {...props} />
+                  <blockquote className="doc-blockquote" {...props} />
                 ),
                 ul: ({ node, ...props }) => <ul className="doc-ul" {...props} />,
                 ol: ({ node, ...props }) => <ol className="doc-ol" {...props} />,

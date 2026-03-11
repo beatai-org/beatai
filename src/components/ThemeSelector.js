@@ -1,8 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { HiColorSwatch } from 'react-icons/hi';
+import ReactDOM from 'react-dom';
 import './ThemeSelector.css';
 
 const THEMES = [
+  {
+    id: 'classic-mono',
+    name: 'Classic Mono',
+    gradient: '#1a1a1a',
+    gradientDark: '#d4d4d4',
+    colors: ['#1a1a1a'],
+    isSolid: true
+  },
+  {
+    id: 'classic-blue',
+    name: 'Classic Blue',
+    gradient: '#3b82f6',
+    gradientDark: '#60a5fa',
+    colors: ['#3b82f6'],
+    isSolid: true
+  },
   {
     id: 'purple-pink',
     name: 'Purple Pink',
@@ -150,12 +166,14 @@ const FONT_SIZES = [
 
 const ThemeSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState('purple-pink');
+  const [currentTheme, setCurrentTheme] = useState('classic-mono');
   const [currentFont, setCurrentFont] = useState('system');
   const [currentFontWeight, setCurrentFontWeight] = useState('normal');
   const [currentFontSize, setCurrentFontSize] = useState('normal');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [panelPosition, setPanelPosition] = useState({ top: 0, right: 0 });
+  const buttonRef = React.useRef(null);
 
   useEffect(() => {
     // Load saved gradient theme from localStorage
@@ -167,7 +185,7 @@ const ThemeSelector = () => {
       // Set default gradient theme only if not already set
       const currentTheme = document.documentElement.getAttribute('data-theme');
       if (!currentTheme) {
-        document.documentElement.setAttribute('data-theme', 'purple-pink');
+        document.documentElement.setAttribute('data-theme', 'classic-mono');
       }
     }
 
@@ -276,6 +294,17 @@ const ThemeSelector = () => {
     localStorage.setItem('docs-font-size', sizeId);
   };
 
+  const handleTogglePanel = () => {
+    if (!isOpen && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setPanelPosition({
+        top: rect.bottom + 12,
+        right: window.innerWidth - rect.right
+      });
+    }
+    setIsOpen(!isOpen);
+  };
+
   const currentThemeData = THEMES.find(t => t.id === currentTheme);
   const currentGradient = isDarkMode ? currentThemeData.gradientDark : currentThemeData.gradient;
 
@@ -286,21 +315,27 @@ const ThemeSelector = () => {
 
       <div className="theme-selector">
         <button
+          ref={buttonRef}
           className="theme-button"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={handleTogglePanel}
           aria-label="Select theme"
-          style={{ background: currentGradient }}
         >
-          <HiColorSwatch />
         </button>
 
-        {isOpen && (
-          <>
+        {isOpen && ReactDOM.createPortal(
+          <div
+            className="theme-overlay"
+            onClick={() => setIsOpen(false)}
+          >
             <div
-              className="theme-overlay"
-              onClick={() => setIsOpen(false)}
-            />
-            <div className="theme-panel slide-in-bottom">
+              className="theme-panel slide-in-bottom"
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                position: 'fixed',
+                top: `${panelPosition.top}px`,
+                right: `${panelPosition.right}px`
+              }}
+            >
               {/* Color Themes Section */}
               <div className="theme-section">
                 <h3 className="theme-panel-title">Color Theme</h3>
@@ -388,7 +423,8 @@ const ThemeSelector = () => {
                 </div>
               </div>
             </div>
-          </>
+          </div>,
+          document.body
         )}
       </div>
     </>

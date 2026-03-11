@@ -83,20 +83,9 @@
     },
     {
       "id": "rust-course",
-      "title": "Rust Course",
+      "title": "Rust语言圣经",
       "description": "Rust 编程语言完整学习指南",
       "sections": [
-        {
-          "title": "📖 学习指南",
-          "path": "/rust-course/readme",
-          "items": [
-            {
-              "title": "开始学习",
-              "path": "/rust-course/readme",
-              "file": "/docs/rust-course/readme.md"
-            }
-          ]
-        },
         {
           "title": "🔧 第一部分：寻找牛刀",
           "path": "/rust-course/first-try-intro",

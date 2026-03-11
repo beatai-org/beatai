@@ -7,6 +7,67 @@
   padding: 20px 0;
 }
 
+/* GitHub Repository Link */
+.sidebar-repo-link {
+  margin: 0 0 20px 0;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.sidebar-repo-link:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.sidebar-repo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+  color: var(--accent-start);
+  flex-shrink: 0;
+}
+
+.sidebar-repo-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-repo-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+}
+
+.sidebar-repo-url {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-start);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  word-break: break-all;
+}
+
+.sidebar-repo-url:hover {
+  color: var(--accent-end);
+  text-decoration: underline;
+}
+
+
 /* Custom scrollbar for sidebar */
 .docs-sidebar::-webkit-scrollbar {
   width: 6px;

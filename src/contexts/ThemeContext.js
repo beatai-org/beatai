@@ -24,7 +24,7 @@ export const ThemeProvider = ({ children }) => {
     // Ensure gradient theme is set (don't override if already set)
     const currentGradientTheme = document.documentElement.getAttribute('data-theme');
     if (!currentGradientTheme) {
-      const savedGradientTheme = localStorage.getItem('docs-theme') || 'purple-pink';
+      const savedGradientTheme = localStorage.getItem('docs-theme') || 'classic-mono';
       document.documentElement.setAttribute('data-theme', savedGradientTheme);
     }
   }, [theme]);

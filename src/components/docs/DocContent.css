@@ -12,7 +12,7 @@
   line-height: 1.8;
   padding: 32px 256px 32px 0;
   border-radius: 16px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); */
 }
 
 @media (max-width: 1200px) {
@@ -23,7 +23,7 @@
 }
 
 .doc-content:hover {
-  transform: translateY(-4px);
+  /* transform: translateY(-4px); */
 }
 
 .doc-loading,
@@ -44,8 +44,6 @@
 .doc-h3,
 .doc-h4 {
   scroll-margin-top: 100px;
-  opacity: 0;
-  animation: floatUp 0.6s ease-out forwards;
 }
 
 .doc-h1 {
@@ -117,7 +115,6 @@
   margin: 0 0 20px 0;
   font-size: var(--font-size);
   font-weight: var(--font-weight);
-  opacity: 0;
 }
 
 [data-theme-mode="dark"] .doc-p {

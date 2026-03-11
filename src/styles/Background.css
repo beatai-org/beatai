@@ -4,15 +4,15 @@
  */
 
 :root {
-  /* 默认主题：紫粉渐变 - 浅色模式 */
-  --accent-start: #8b5cf6;
-  --accent-end: #ec4899;
-  --accent-gradient: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-end) 100%);
-  --glow-color: rgba(139, 92, 246, 0.5);
-  --particle-color: #ec4899;
-  --bg-radial-1: rgba(139, 92, 246, 0.15);
-  --bg-radial-2: rgba(236, 72, 153, 0.12);
-  --bg-radial-3: rgba(59, 130, 246, 0.1);
+  /* 默认主题：黑白经典 - 浅色模式 */
+  --accent-start: #1a1a1a;
+  --accent-end: #1a1a1a;
+  --accent-gradient: #1a1a1a;
+  --glow-color: rgba(26, 26, 26, 0.3);
+  --particle-color: #525252;
+  --bg-radial-1: rgba(0, 0, 0, 0.08);
+  --bg-radial-2: rgba(0, 0, 0, 0.05);
+  --bg-radial-3: rgba(0, 0, 0, 0.03);
 }
 
 /* ==================== Purple-Pink Theme ==================== */
@@ -39,6 +39,58 @@
   --bg-radial-1: rgba(139, 92, 246, 0.25);
   --bg-radial-2: rgba(236, 72, 153, 0.2);
   --bg-radial-3: rgba(59, 130, 246, 0.15);
+}
+
+/* ==================== Classic Blue Theme (Solid Color) ==================== */
+/* Light Mode (default) */
+[data-theme="classic-blue"]:not([data-theme-mode="dark"]),
+[data-theme="classic-blue"][data-theme-mode="light"] {
+  --accent-start: #3b82f6;
+  --accent-end: #3b82f6;
+  --accent-gradient: #3b82f6;
+  --glow-color: rgba(59, 130, 246, 0.5);
+  --particle-color: #3b82f6;
+  --bg-radial-1: rgba(59, 130, 246, 0.12);
+  --bg-radial-2: rgba(59, 130, 246, 0.08);
+  --bg-radial-3: rgba(59, 130, 246, 0.05);
+}
+
+/* Dark Mode */
+[data-theme="classic-blue"][data-theme-mode="dark"] {
+  --accent-start: #60a5fa;
+  --accent-end: #60a5fa;
+  --accent-gradient: #60a5fa;
+  --glow-color: rgba(96, 165, 250, 0.6);
+  --particle-color: #60a5fa;
+  --bg-radial-1: rgba(59, 130, 246, 0.2);
+  --bg-radial-2: rgba(59, 130, 246, 0.15);
+  --bg-radial-3: rgba(59, 130, 246, 0.1);
+}
+
+/* ==================== Classic Mono Theme (Black & White) ==================== */
+/* Light Mode - Dark accents on light background */
+[data-theme="classic-mono"]:not([data-theme-mode="dark"]),
+[data-theme="classic-mono"][data-theme-mode="light"] {
+  --accent-start: #1a1a1a;
+  --accent-end: #1a1a1a;
+  --accent-gradient: #1a1a1a;
+  --glow-color: rgba(26, 26, 26, 0.3);
+  --particle-color: #525252;
+  --bg-radial-1: rgba(0, 0, 0, 0.08);
+  --bg-radial-2: rgba(0, 0, 0, 0.05);
+  --bg-radial-3: rgba(0, 0, 0, 0.03);
+}
+
+/* Dark Mode - Light accents on dark background */
+[data-theme="classic-mono"][data-theme-mode="dark"] {
+  --accent-start: #d4d4d4;
+  --accent-end: #d4d4d4;
+  --accent-gradient: #d4d4d4;
+  --glow-color: rgba(212, 212, 212, 0.4);
+  --particle-color: #a3a3a3;
+  --bg-radial-1: rgba(255, 255, 255, 0.12);
+  --bg-radial-2: rgba(255, 255, 255, 0.08);
+  --bg-radial-3: rgba(255, 255, 255, 0.05);
 }
 
 /* ==================== Blue-Green Theme ==================== */

@@ -1,28 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import { HiAnnotation, HiX } from 'react-icons/hi';
+import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import { HiAnnotation, HiX, HiPencil } from 'react-icons/hi';
+import { useAnnotationContext } from '../../contexts/AnnotationContext';
 import './AnnotationSystem.css';
 
 const AnnotationSystem = () => {
-  const [annotations, setAnnotations] = useState([]);
+  const location = useLocation();
+  const {
+    annotations,
+    addAnnotation,
+    updateAnnotation,
+    deleteAnnotation,
+    isViewingShared,
+    loadAnnotationsForPage
+  } = useAnnotationContext();
   const [showToolbar, setShowToolbar] = useState(false);
   const [toolbarPosition, setToolbarPosition] = useState({ x: 0, y: 0 });
   const [selectedText, setSelectedText] = useState('');
+  const [selectedRange, setSelectedRange] = useState(null);
   const [isCreatingNote, setIsCreatingNote] = useState(false);
   const [noteContent, setNoteContent] = useState('');
+  const [activeAnnotation, setActiveAnnotation] = useState(null);
+  const [annotationPopupPosition, setAnnotationPopupPosition] = useState({ x: 0, y: 0 });
+  const [isEditingNote, setIsEditingNote] = useState(false);
+  const [editingAnnotationId, setEditingAnnotationId] = useState(null);
+  const annotationsRef = useRef(annotations);
+
+  // Keep ref in sync with annotations
+  useEffect(() => {
+    annotationsRef.current = annotations;
+  }, [annotations]);
+
+  // Load annotations for current page when route changes
+  useEffect(() => {
+    loadAnnotationsForPage(location.pathname);
+  }, [location.pathname, loadAnnotationsForPage]);
+
+  // Apply highlights when annotations change OR when route changes
+  // This handles both: initial load and page navigation
+  useEffect(() => {
+    if (annotations.length > 0) {
+      // Wait longer for DocContent to finish rendering
+      const timer = setTimeout(() => {
+        applyAllHighlights(annotations);
+      }, 200);
+
+      return () => clearTimeout(timer);
+    }
+  }, [annotations, location.pathname]);
 
   useEffect(() => {
-    // Load annotations from localStorage
-    const savedAnnotations = localStorage.getItem('doc-annotations');
-    if (savedAnnotations) {
-      try {
-        setAnnotations(JSON.parse(savedAnnotations));
-      } catch (e) {
-        console.error('Failed to load annotations:', e);
-      }
-    }
-
     // Handle text selection
-    const handleMouseUp = () => {
+    const handleMouseUp = (e) => {
+      // Don't show toolbar if clicking on highlighted text
+      if (e.target.classList.contains('highlighted-text')) {
+        return;
+      }
+
       const selection = window.getSelection();
       const text = selection.toString().trim();
 
@@ -31,57 +65,169 @@ const AnnotationSystem = () => {
         const rect = range.getBoundingClientRect();
 
         setSelectedText(text);
+        setSelectedRange(range.cloneRange());
         setToolbarPosition({
           x: rect.left + rect.width / 2,
-          y: rect.top - 40
+          y: rect.top + window.scrollY - 40
         });
         setShowToolbar(true);
+        setActiveAnnotation(null); // Close any open annotation popup
       } else {
         setShowToolbar(false);
       }
     };
 
+    // Handle clicks on highlighted text
+    const handleClick = (e) => {
+      if (e.target.classList.contains('highlighted-text')) {
+        const annotationId = parseInt(e.target.dataset.annotationId);
+        const annotation = annotationsRef.current.find(a => a.id === annotationId);
+
+        if (annotation) {
+          const rect = e.target.getBoundingClientRect();
+          setAnnotationPopupPosition({
+            x: rect.left + rect.width / 2,
+            y: rect.bottom + window.scrollY + 10
+          });
+          setActiveAnnotation(annotation);
+          setShowToolbar(false);
+        }
+      }
+    };
+
     document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('click', handleClick);
 
     return () => {
       document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('click', handleClick);
     };
   }, []);
 
-  const saveAnnotations = (newAnnotations) => {
-    setAnnotations(newAnnotations);
-    localStorage.setItem('doc-annotations', JSON.stringify(newAnnotations));
+  // Apply highlights to all annotations on the current page
+  const applyAllHighlights = (annotationsToApply) => {
+    const docContent = document.querySelector('.doc-content');
+    if (!docContent) return;
+
+    // First, remove all existing highlights to avoid duplicates
+    const existingHighlights = docContent.querySelectorAll('.highlighted-text');
+    existingHighlights.forEach(highlight => {
+      const textNode = document.createTextNode(highlight.textContent);
+      highlight.parentNode.replaceChild(textNode, highlight);
+    });
+
+    // Then apply new highlights
+    annotationsToApply.forEach(annotation => {
+      highlightTextInDOM(docContent, annotation);
+    });
+  };
+
+  // Highlight text in the DOM
+  const highlightTextInDOM = (container, annotation) => {
+    const walker = document.createTreeWalker(
+      container,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    );
+
+    const textNodes = [];
+    let node;
+    // eslint-disable-next-line no-cond-assign
+    while (node = walker.nextNode()) {
+      textNodes.push(node);
+    }
+
+    for (const textNode of textNodes) {
+      const text = textNode.textContent;
+      const index = text.indexOf(annotation.text);
+
+      if (index !== -1 && !textNode.parentElement.classList.contains('highlighted-text')) {
+        const range = document.createRange();
+        range.setStart(textNode, index);
+        range.setEnd(textNode, index + annotation.text.length);
+
+        const span = document.createElement('span');
+        span.className = 'highlighted-text';
+        span.dataset.annotationId = annotation.id;
+        span.textContent = annotation.text;
+
+        range.deleteContents();
+        range.insertNode(span);
+        break; // Only highlight first occurrence
+      }
+    }
   };
 
   const handleCreateAnnotation = () => {
-    if (!noteContent.trim()) return;
+    if (!noteContent.trim() || !selectedRange) return;
 
-    const newAnnotation = {
-      id: Date.now(),
-      text: selectedText,
-      note: noteContent,
-      path: window.location.pathname,
-      createdAt: new Date().toISOString()
-    };
+    const currentPath = window.location.pathname;
+    const newAnnotation = addAnnotation(selectedText, noteContent, currentPath);
 
-    saveAnnotations([...annotations, newAnnotation]);
+    // Apply highlight to the selected text
+    const docContent = document.querySelector('.doc-content');
+    if (docContent) {
+      highlightTextInDOM(docContent, newAnnotation);
+    }
+
     setNoteContent('');
     setIsCreatingNote(false);
     setShowToolbar(false);
+    setSelectedRange(null);
+
+    // Clear selection
+    window.getSelection().removeAllRanges();
   };
 
   const handleDeleteAnnotation = (id) => {
-    saveAnnotations(annotations.filter(a => a.id !== id));
+    // Remove highlight from DOM
+    const highlightedElements = document.querySelectorAll(`.highlighted-text[data-annotation-id="${id}"]`);
+    highlightedElements.forEach(element => {
+      const textNode = document.createTextNode(element.textContent);
+      element.parentNode.replaceChild(textNode, element);
+    });
+
+    const currentPath = window.location.pathname;
+    deleteAnnotation(id, currentPath);
+    setActiveAnnotation(null);
+    setIsEditingNote(false);
   };
 
-  const currentPageAnnotations = annotations.filter(
-    a => a.path === window.location.pathname
-  );
+  const handleEditAnnotation = () => {
+    if (!activeAnnotation) return;
+    setIsEditingNote(true);
+    setEditingAnnotationId(activeAnnotation.id);
+    setNoteContent(activeAnnotation.note);
+  };
+
+  const handleSaveEdit = () => {
+    if (!noteContent.trim() || !editingAnnotationId) return;
+
+    const currentPath = window.location.pathname;
+    updateAnnotation(editingAnnotationId, noteContent, currentPath);
+
+    // Update active annotation
+    const updatedAnnotation = annotations.find(a => a.id === editingAnnotationId);
+    if (updatedAnnotation) {
+      setActiveAnnotation({ ...updatedAnnotation, note: noteContent });
+    }
+
+    setNoteContent('');
+    setIsEditingNote(false);
+    setEditingAnnotationId(null);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditingNote(false);
+    setEditingAnnotationId(null);
+    setNoteContent('');
+  };
 
   return (
     <>
       {/* Selection Toolbar */}
-      {showToolbar && !isCreatingNote && (
+      {showToolbar && !isCreatingNote && !isViewingShared && (
         <div
           className="annotation-toolbar"
           style={{
@@ -158,29 +304,94 @@ const AnnotationSystem = () => {
         </>
       )}
 
-      {/* Annotations List (Floating Panel) */}
-      {currentPageAnnotations.length > 0 && (
-        <div className="annotations-list">
-          <div className="annotations-list-header">
-            <HiAnnotation /> My Notes ({currentPageAnnotations.length})
-          </div>
-          {currentPageAnnotations.map(annotation => (
-            <div key={annotation.id} className="annotation-item">
-              <div className="annotation-quote">"{annotation.text.substring(0, 80)}..."</div>
-              <div className="annotation-note">{annotation.note}</div>
-              <div className="annotation-actions">
-                <button
-                  className="annotation-delete"
-                  onClick={() => handleDeleteAnnotation(annotation.id)}
-                  title="Delete note"
-                >
-                  <HiX />
-                </button>
-              </div>
+      {/* Annotation Popup (shown when clicking highlighted text) */}
+      {activeAnnotation && (
+        <>
+          <div
+            className="annotation-backdrop"
+            onClick={() => {
+              setActiveAnnotation(null);
+              setIsEditingNote(false);
+              setNoteContent('');
+            }}
+          />
+          <div
+            className="annotation-popup"
+            style={{
+              left: `${annotationPopupPosition.x}px`,
+              top: `${annotationPopupPosition.y}px`
+            }}
+          >
+            <div className="annotation-popup-header">
+              <HiAnnotation /> {isEditingNote ? 'Edit Note' : 'Note'}
+              <button
+                className="annotation-popup-close"
+                onClick={() => {
+                  setActiveAnnotation(null);
+                  setIsEditingNote(false);
+                  setNoteContent('');
+                }}
+              >
+                <HiX />
+              </button>
             </div>
-          ))}
-        </div>
+            <div className="annotation-popup-quote">
+              "{activeAnnotation.text.substring(0, 100)}{activeAnnotation.text.length > 100 ? '...' : ''}"
+            </div>
+
+            {isEditingNote ? (
+              // Edit mode
+              <>
+                <textarea
+                  className="annotation-dialog-input"
+                  placeholder="Write your note here..."
+                  value={noteContent}
+                  onChange={(e) => setNoteContent(e.target.value)}
+                  autoFocus
+                />
+                <div className="annotation-popup-actions">
+                  <button
+                    className="annotation-btn annotation-btn-cancel"
+                    onClick={handleCancelEdit}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="annotation-btn annotation-btn-primary"
+                    onClick={handleSaveEdit}
+                  >
+                    Save
+                  </button>
+                </div>
+              </>
+            ) : (
+              // View mode
+              <>
+                <div className="annotation-popup-content">
+                  {activeAnnotation.note}
+                </div>
+                {!isViewingShared && (
+                  <div className="annotation-popup-actions">
+                    <button
+                      className="annotation-btn annotation-btn-edit"
+                      onClick={handleEditAnnotation}
+                    >
+                      <HiPencil /> Edit
+                    </button>
+                    <button
+                      className="annotation-btn annotation-btn-delete"
+                      onClick={() => handleDeleteAnnotation(activeAnnotation.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </>
       )}
+
     </>
   );
 };

@@ -1,0 +1,225 @@
+.auth-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* User Info */
+.auth-status-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-status-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #e5e7eb;
+}
+
+.auth-status-username {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Sync Status */
+.auth-status-sync {
+  display: flex;
+  align-items: center;
+}
+
+.auth-status-sync-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.auth-status-sync-icon {
+  font-size: 14px;
+}
+
+.auth-status-syncing {
+  color: #3b82f6;
+  background: #eff6ff;
+}
+
+.auth-status-synced {
+  color: #10b981;
+  background: #f0fdf4;
+}
+
+.auth-status-error {
+  color: #ef4444;
+  background: #fef2f2;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.auth-status-retry-btn {
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.auth-status-retry-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Buttons */
+.auth-status-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  white-space: nowrap;
+}
+
+.auth-status-btn svg {
+  font-size: 16px;
+}
+
+.auth-status-btn-github {
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--border-primary);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth-status-btn-github:hover {
+  background: var(--card-bg-hover);
+  border-color: var(--accent-start);
+  color: var(--accent-start);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.auth-status-btn-github svg {
+  font-size: 20px;
+}
+
+.auth-status-btn-login {
+  background: #3b82f6;
+  color: white;
+}
+
+.auth-status-btn-login:hover {
+  background: #2563eb;
+}
+
+.auth-status-btn-share {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.auth-status-btn-share:hover {
+  background: #e5e7eb;
+}
+
+.auth-status-btn-logout {
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  padding: 6px 10px;
+}
+
+.auth-status-btn-logout:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.auth-status-btn-small {
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+/* Shared Mode */
+.auth-status-shared {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 6px;
+}
+
+.auth-status-shared-icon {
+  font-size: 18px;
+  color: #f59e0b;
+}
+
+.auth-status-shared-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #92400e;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .auth-status {
+    gap: 8px;
+    padding: 6px;
+  }
+
+  .auth-status-username {
+    display: none;
+  }
+
+  .auth-status-btn span {
+    display: none;
+  }
+
+  .auth-status-btn {
+    padding: 6px 8px;
+  }
+
+  .auth-status-sync-indicator {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-status-sync {
+    display: none;
+  }
+}

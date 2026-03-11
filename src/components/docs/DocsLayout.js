@@ -9,19 +9,30 @@ import ThemeSelector from '../ThemeSelector';
 import Sidebar from './Sidebar';
 import AIAssistant from './AIAssistant';
 import AnnotationSystem from './AnnotationSystem';
+import AuthStatus from './AuthStatus';
+import { AnnotationProvider, useAnnotationContext } from '../../contexts/AnnotationContext';
 import { HiMenu, HiX } from 'react-icons/hi';
 import logo from '../../assets/logo.jpg';
 
-const DocsLayout = ({ meta, children }) => {
+// Inner component that uses the context
+const DocsLayoutInner = ({ meta, children, sharedGistId }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { loadSharedAnnotations } = useAnnotationContext();
 
   // Extract categories from meta with useMemo to prevent recreation
   const categories = useMemo(() => meta?.categories || [], [meta]);
 
   // Determine active category based on current path
   const [activeCategory, setActiveCategory] = useState(null);
+
+  // Handle shared annotations parameter
+  useEffect(() => {
+    if (sharedGistId) {
+      loadSharedAnnotations(sharedGistId);
+    }
+  }, [sharedGistId, loadSharedAnnotations]);
 
   useEffect(() => {
     if (!categories.length) return;
@@ -93,6 +104,7 @@ const DocsLayout = ({ meta, children }) => {
           </nav>
 
           <div className="docs-header-actions">
+            <AuthStatus />
             <ThemeToggle />
             <ThemeSelector />
             <button
@@ -128,6 +140,17 @@ const DocsLayout = ({ meta, children }) => {
       {/* Annotation System */}
       <AnnotationSystem />
     </div>
+  );
+};
+
+// Main component with provider
+const DocsLayout = ({ meta, children, sharedGistId }) => {
+  return (
+    <AnnotationProvider>
+      <DocsLayoutInner meta={meta} sharedGistId={sharedGistId}>
+        {children}
+      </DocsLayoutInner>
+    </AnnotationProvider>
   );
 };
 

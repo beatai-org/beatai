@@ -6,22 +6,40 @@
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-primary);
+  background: var(--card-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 20px;
-  color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--text-secondary);
   padding: 0;
   outline: none;
+  position: relative;
+}
+
+/* Color preview indicator */
+.theme-button::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: var(--accent-gradient);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .theme-button:hover {
+  background: var(--card-bg-hover);
+  border-color: var(--accent-start);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.theme-button:hover::before {
+  transform: scale(1.1);
 }
 
 .theme-button:active {
@@ -41,9 +59,6 @@
 }
 
 .theme-panel {
-  position: absolute;
-  top: calc(100% + 12px);
-  right: 0;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px) saturate(180%);
   border-radius: 16px;

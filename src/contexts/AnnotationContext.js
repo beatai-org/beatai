@@ -4,7 +4,6 @@ import {
   findAnnotationGist,
   createAnnotationGist,
   updateGistFiles,
-  getPublicGist,
   getGist
 } from '../services/githubService';
 import {
@@ -42,14 +41,12 @@ export function AnnotationProvider({ children }) {
   const [annotations, setAnnotations] = useState([]);
   const [allAnnotations, setAllAnnotations] = useState({});
 
-  // Shared mode state
-  const [isViewingShared, setIsViewingShared] = useState(false);
-  const [sharedGistId, setSharedGistId] = useState(null);
-  const [sharedUsername, setSharedUsername] = useState(null);
-
   // Sync state
+  // eslint-disable-next-line no-unused-vars
   const [isSyncing, setIsSyncing] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [lastSyncTime, setLastSyncTime] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [syncError, setSyncError] = useState(null);
 
   // Track last load time to avoid frequent reloading
@@ -315,7 +312,7 @@ export function AnnotationProvider({ children }) {
   // Load annotations for a specific page
   const loadAnnotationsForPage = useCallback(async (path) => {
     // If authenticated, reload latest data from Gist first
-    if (isAuthenticated && githubToken && gistId && !isViewingShared) {
+    if (isAuthenticated && githubToken && gistId) {
       // Avoid reloading within 5 seconds
       const now = Date.now();
       if (!lastLoadTimeRef.current || now - lastLoadTimeRef.current > 5000) {
@@ -327,50 +324,7 @@ export function AnnotationProvider({ children }) {
     } else {
       setAnnotations(allAnnotations[path] || []);
     }
-  }, [isAuthenticated, githubToken, gistId, isViewingShared, allAnnotations, loadAnnotationsFromGist]);
-
-  // Load shared annotations
-  const loadSharedAnnotations = useCallback(async (sharedGistIdToLoad) => {
-    try {
-      setIsSyncing(true);
-      const gist = await getPublicGist(sharedGistIdToLoad);
-
-      const allAnnots = parseAllGistFiles(gist.files);
-      const grouped = groupAnnotationsByPath(allAnnots);
-
-      setAllAnnotations(grouped);
-      setSharedGistId(sharedGistIdToLoad);
-      setSharedUsername(gist.owner?.login || 'Unknown');
-      setIsViewingShared(true);
-
-      // Set annotations for current path
-      const currentPath = window.location.pathname;
-      setAnnotations(grouped[currentPath] || []);
-
-      setSyncError(null);
-    } catch (error) {
-      console.error('Failed to load shared annotations:', error);
-      setSyncError(error.message);
-    } finally {
-      setIsSyncing(false);
-    }
-  }, []);
-
-  // Exit shared mode
-  const exitSharedMode = useCallback(() => {
-    setIsViewingShared(false);
-    setSharedGistId(null);
-    setSharedUsername(null);
-
-    // Reload user's own annotations
-    if (isAuthenticated && githubToken && gistId) {
-      loadAnnotationsFromGist(githubToken, gistId);
-    } else {
-      // Not authenticated, clear annotations
-      setAllAnnotations({});
-      setAnnotations([]);
-    }
-  }, [isAuthenticated, githubToken, gistId, loadAnnotationsFromGist]);
+  }, [isAuthenticated, githubToken, gistId, allAnnotations, loadAnnotationsFromGist]);
 
   const value = {
     // Auth state
@@ -384,20 +338,13 @@ export function AnnotationProvider({ children }) {
     annotations,
     allAnnotations,
 
-    // Shared mode
-    isViewingShared,
-    sharedGistId,
-    sharedUsername,
-
     // Methods
     login,
     logout,
     addAnnotation,
     updateAnnotation,
     deleteAnnotation,
-    loadAnnotationsForPage,
-    loadSharedAnnotations,
-    exitSharedMode
+    loadAnnotationsForPage
   };
 
   return (

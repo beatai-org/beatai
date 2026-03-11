@@ -11,7 +11,6 @@ const AnnotationSystem = () => {
     addAnnotation,
     updateAnnotation,
     deleteAnnotation,
-    isViewingShared,
     isAuthenticated,
     loadAnnotationsForPage
   } = useAnnotationContext();
@@ -231,7 +230,7 @@ const AnnotationSystem = () => {
   return (
     <>
       {/* Selection Toolbar */}
-      {showToolbar && !isCreatingNote && !isViewingShared && isAuthenticated && (
+      {showToolbar && !isCreatingNote && isAuthenticated && (
         <div
           className="annotation-toolbar"
           style={{
@@ -250,7 +249,7 @@ const AnnotationSystem = () => {
       )}
 
       {/* Unauthenticated Tooltip */}
-      {showToolbar && !isCreatingNote && !isViewingShared && !isAuthenticated && (
+      {showToolbar && !isCreatingNote && !isAuthenticated && (
         <div
           className="annotation-toolbar annotation-toolbar-disabled"
           style={{
@@ -389,22 +388,20 @@ const AnnotationSystem = () => {
                 <div className="annotation-popup-content">
                   {activeAnnotation.note}
                 </div>
-                {!isViewingShared && (
-                  <div className="annotation-popup-actions">
-                    <button
-                      className="annotation-btn annotation-btn-edit"
-                      onClick={handleEditAnnotation}
-                    >
-                      <HiPencil /> Edit
-                    </button>
-                    <button
-                      className="annotation-btn annotation-btn-delete"
-                      onClick={() => handleDeleteAnnotation(activeAnnotation.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                )}
+                <div className="annotation-popup-actions">
+                  <button
+                    className="annotation-btn annotation-btn-edit"
+                    onClick={handleEditAnnotation}
+                  >
+                    <HiPencil /> Edit
+                  </button>
+                  <button
+                    className="annotation-btn annotation-btn-delete"
+                    onClick={() => handleDeleteAnnotation(activeAnnotation.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </>
             )}
           </div>

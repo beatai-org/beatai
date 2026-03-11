@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { HiLogout, HiShare, HiEye } from 'react-icons/hi';
+import { HiLogout } from 'react-icons/hi';
 import { useAnnotationContext } from '../../contexts/AnnotationContext';
 import AuthModal from './AuthModal';
-import ShareAnnotationsDialog from './ShareAnnotationsDialog';
 import './AuthStatus.css';
 
 const AuthStatus = () => {
@@ -10,34 +9,10 @@ const AuthStatus = () => {
     isAuthenticated,
     username,
     avatarUrl,
-    isViewingShared,
-    sharedUsername,
-    logout,
-    exitSharedMode
+    logout
   } = useAnnotationContext();
 
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [showShareDialog, setShowShareDialog] = useState(false);
-
-  // Viewing shared annotations mode
-  if (isViewingShared) {
-    return (
-      <div className="auth-status">
-        <div className="auth-status-shared">
-          <HiEye className="auth-status-shared-icon" />
-          <span className="auth-status-shared-text">
-            Viewing {sharedUsername}'s annotations
-          </span>
-          <button
-            className="auth-status-btn auth-status-btn-small"
-            onClick={exitSharedMode}
-          >
-            Exit
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   // Not authenticated - show login button
   if (!isAuthenticated) {
@@ -78,15 +53,6 @@ const AuthStatus = () => {
         </div>
 
         <button
-          className="auth-status-btn auth-status-btn-share"
-          onClick={() => setShowShareDialog(true)}
-          title="Share annotations"
-        >
-          <HiShare />
-          <span>Share</span>
-        </button>
-
-        <button
           className="auth-status-btn auth-status-btn-logout"
           onClick={logout}
           title="Logout"
@@ -94,11 +60,6 @@ const AuthStatus = () => {
           <HiLogout />
         </button>
       </div>
-
-      <ShareAnnotationsDialog
-        isOpen={showShareDialog}
-        onClose={() => setShowShareDialog(false)}
-      />
     </>
   );
 };

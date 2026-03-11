@@ -66,9 +66,12 @@ const AnnotationSystem = () => {
 
         setSelectedText(text);
         setSelectedRange(range.cloneRange());
+
+        // Position toolbar above the selected text
+        // Use fixed positioning relative to viewport
         setToolbarPosition({
           x: rect.left + rect.width / 2,
-          y: rect.top + window.scrollY - 40
+          y: rect.top - 10  // 10px above the selection
         });
         setShowToolbar(true);
         setActiveAnnotation(null); // Close any open annotation popup
@@ -259,7 +262,7 @@ const AnnotationSystem = () => {
             className="annotation-dialog"
             style={{
               left: `${toolbarPosition.x}px`,
-              top: `${toolbarPosition.y + 50}px`
+              top: `${toolbarPosition.y + 20}px`
             }}
           >
             <div className="annotation-dialog-header">

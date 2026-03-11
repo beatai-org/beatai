@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "version": "node scripts/version.js"
+    "version": "node scripts/version.js",
+    "release": "bash scripts/release.sh"
   },
   "eslintConfig": {
     "extends": [

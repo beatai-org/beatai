@@ -1,6 +1,6 @@
 {
   "name": "beatai-website",
-  "version": "v0.6.0",
+  "version": "v0.6.1",
   "private": true,
   "homepage": "https://beatai.org",
   "dependencies": {
@@ -30,11 +30,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "version": "v0.6.0",
+    "version": "v0.6.1",
     "release": "bash scripts/release.sh",
     "sync-docs": "node scripts/sync-docs.mjs",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build -r https://github.com/beatai-org/beatai.git",
+    "deploy:gh": "bash scripts/deploy-gh-pages.sh",
+    "deploy:gh:skip-build": "bash scripts/deploy-gh-pages.sh -s",
+    "deploy:gh:test": "bash scripts/deploy-gh-pages.sh -t",
     "serve:prod": "serve -s build -l 3000"
   },
   "eslintConfig": {

@@ -16,7 +16,10 @@ import 'prismjs/components/prism-rust';
 import '../../styles/prism-custom.css';
 import TableOfContents from './TableOfContents';
 import CodePlayground from './CodePlayground';
+import PaginationNav from './PaginationNav';
 import { usePageTitle } from '../../contexts/PageTitleContext';
+import { useMeta } from '../../contexts/MetaContext';
+import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
 import './DocContent.css';
 import '../../styles/3d-effects.css';
 import '../../styles/animations.css';
@@ -39,11 +42,13 @@ const slugify = (text) => {
 const DocContent = () => {
   const location = useLocation();
   const { setPageTitle, findTitleByPath } = usePageTitle();
+  const { meta } = useMeta();
   const [content, setContent] = useState('');
   const [frontmatter, setFrontmatter] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [headings, setHeadings] = useState([]);
+  const [adjacentChapters, setAdjacentChapters] = useState({ prev: null, next: null });
 
   // Extract the path from URL (now starts from root)
   const docPath = location.pathname.replace(/^\//, '');
@@ -76,6 +81,9 @@ const DocContent = () => {
         ).join(' ') || 'Untitled';
 
         setPageTitle(title);
+
+        // Scroll to top when content changes
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } catch (err) {
         setError(err.message);
       } finally {
@@ -106,6 +114,15 @@ const DocContent = () => {
 
     return () => clearTimeout(timer);
   }, [content]);
+
+  // Calculate adjacent chapters for pagination
+  useEffect(() => {
+    if (!meta) return;
+
+    const chapters = flattenChapters(meta);
+    const adjacent = getAdjacentChapters(chapters, location.pathname);
+    setAdjacentChapters(adjacent);
+  }, [meta, location.pathname]);
 
   if (error) {
     return (
@@ -218,6 +235,9 @@ const DocContent = () => {
               {content}
             </ReactMarkdown>
           </article>
+
+          {/* Pagination Navigation */}
+          <PaginationNav prev={adjacentChapters.prev} next={adjacentChapters.next} />
         </div>
 
         <TableOfContents headings={headings} />

@@ -340,20 +340,19 @@
 }
 
 /* Responsive */
+@media (max-width: 968px) {
+  .ai-orb {
+    display: none;
+  }
+}
+
 @media (max-width: 480px) {
   .ai-panel {
     width: 100%;
   }
 
   .ai-orb {
-    left: -22px;
-    width: 48px;
-    height: 48px;
-    font-size: 22px;
-  }
-
-  .ai-orb:hover {
-    left: 12px;
+    display: none;
   }
 }
 

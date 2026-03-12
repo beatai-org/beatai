@@ -11,6 +11,7 @@ import AnnotationSystem from './AnnotationSystem';
 import Footer from '../Footer/Footer';
 import { AnnotationProvider } from '../../contexts/AnnotationContext';
 import { PageTitleProvider } from '../../contexts/PageTitleContext';
+import { MetaProvider } from '../../contexts/MetaContext';
 
 // Inner component that uses the context
 const DocsLayoutInner = ({ meta, children }) => {
@@ -130,9 +131,11 @@ const DocsLayout = ({ meta, children }) => {
   return (
     <AnnotationProvider>
       <PageTitleProvider meta={meta}>
-        <DocsLayoutInner meta={meta}>
-          {children}
-        </DocsLayoutInner>
+        <MetaProvider meta={meta}>
+          <DocsLayoutInner meta={meta}>
+            {children}
+          </DocsLayoutInner>
+        </MetaProvider>
       </PageTitleProvider>
     </AnnotationProvider>
   );

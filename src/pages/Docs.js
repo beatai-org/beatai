@@ -19,7 +19,9 @@ const Docs = () => {
         }
         return res.json();
       })
-      .then(data => setDocsMeta(data))
+      .then(data => {
+        setDocsMeta(data);
+      })
       .catch(err => console.error('Failed to load docs meta:', err));
   }, []);
 

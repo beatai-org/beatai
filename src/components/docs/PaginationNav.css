@@ -1,0 +1,114 @@
+.pagination-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 64px;
+  padding-top: 48px;
+  /* border-top: 2px solid transparent; */
+  border-image: var(--accent-gradient) 1;
+}
+
+.pagination-item {
+  flex: 1;
+  min-width: 0;
+}
+
+.pagination-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  /* background: var(--card-bg); */
+  border: 1px solid var(--border-primary);
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+}
+
+.pagination-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent-primary);
+}
+
+.pagination-link.prev {
+  justify-content: flex-start;
+}
+
+.pagination-link.next {
+  justify-content: flex-end;
+}
+
+.pagination-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.pagination-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.pagination-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pagination-section {
+  font-size: 13px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pagination-icon {
+  font-size: 24px;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.pagination-placeholder {
+  visibility: hidden;
+}
+
+/* 深色模式支持 */
+[data-theme-mode="dark"] .pagination-link {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme-mode="dark"] .pagination-link:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* 响应式 - 移动端 */
+@media (max-width: 768px) {
+  .pagination-nav {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 48px;
+    padding-top: 32px;
+  }
+
+  .pagination-link {
+    padding: 20px;
+  }
+
+  .pagination-title {
+    font-size: 15px;
+  }
+
+  .pagination-icon {
+    font-size: 20px;
+  }
+}

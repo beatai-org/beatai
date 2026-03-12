@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
 import matter from 'gray-matter';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-javascript';
@@ -210,6 +212,7 @@ const DocContent = () => {
           <article className="doc-content" key={docPath}>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw, rehypeSanitize]}
               components={{
                 h1: createHeading(1),
                 h2: createHeading(2),

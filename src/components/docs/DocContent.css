@@ -338,3 +338,37 @@
     font-size: 13px;
   }
 }
+
+/* HTML element styles for markdown content */
+.doc-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 24px auto;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme-mode="dark"] .doc-content img {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.doc-content div[align="center"] {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.doc-content span.caption {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 8px 0 16px;
+  font-style: italic;
+}
+
+.doc-content br {
+  display: block;
+  content: "";
+  margin: 8px 0;
+}

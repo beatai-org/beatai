@@ -2,80 +2,19 @@
   "title": "BeatAI Documentation",
   "categories": [
     {
-      "id": "usage-docs",
-      "title": "使用文档",
-      "description": "BeatAI 框架使用指南和 API 文档",
+      "id": "ai-insights",
+      "title": "AI前沿分享",
+      "description": "AI 领域最新动态、技术分享与深度解析",
       "sections": [
         {
-          "title": "Getting Started",
-          "path": "/getting-started",
+          "title": "AI视点",
+          "path": "/ai-insights/viewpoint/intro",
+          "file": "/docs/ai-insights/viewpoint/intro.md",
           "items": [
             {
-              "title": "Introduction",
-              "path": "/getting-started/introduction",
-              "file": "/docs/getting-started/introduction.md"
-            },
-            {
-              "title": "Quick Start",
-              "path": "/getting-started/quick-start",
-              "file": "/docs/getting-started/quick-start.md"
-            },
-            {
-              "title": "Installation",
-              "path": "/getting-started/installation",
-              "file": "/docs/getting-started/installation.md"
-            },
-            {
-              "title": "Theme Preview",
-              "path": "/getting-started/theme-preview",
-              "file": "/docs/getting-started/theme-preview.md"
-            }
-          ]
-        },
-        {
-          "title": "Guides",
-          "path": "/guides",
-          "items": [
-            {
-              "title": "Building Your First Bot",
-              "path": "/guides/first-bot",
-              "file": "/docs/guides/first-bot.md"
-            },
-            {
-              "title": "Plugin Development",
-              "path": "/guides/plugin-development",
-              "file": "/docs/guides/plugin-development.md"
-            },
-            {
-              "title": "Configuration",
-              "path": "/guides/configuration",
-              "file": "/docs/guides/configuration.md"
-            },
-            {
-              "title": "Deployment",
-              "path": "/guides/deployment",
-              "file": "/docs/guides/deployment.md"
-            }
-          ]
-        },
-        {
-          "title": "API Reference",
-          "path": "/api",
-          "items": [
-            {
-              "title": "Core API",
-              "path": "/api/core",
-              "file": "/docs/api/core.md"
-            },
-            {
-              "title": "Plugin API",
-              "path": "/api/plugin",
-              "file": "/docs/api/plugin.md"
-            },
-            {
-              "title": "Events",
-              "path": "/api/events",
-              "file": "/docs/api/events.md"
+              "title": "2026",
+              "path": "/ai-insights/viewpoint/2026",
+              "file": "/docs/ai-insights/viewpoint/2026.md"
             }
           ]
         }

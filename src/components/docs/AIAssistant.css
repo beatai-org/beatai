@@ -1,6 +1,6 @@
 .ai-orb {
   position: fixed;
-  bottom: 32px;
+  bottom: 0px;
   left: -28px;
   width: 56px;
   height: 56px;
@@ -41,6 +41,7 @@
     transform: scale(1);
     opacity: 1;
   }
+
   100% {
     transform: scale(1.5);
     opacity: 0;

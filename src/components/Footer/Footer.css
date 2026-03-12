@@ -1,191 +1,140 @@
 .site-footer {
   width: 100%;
   background: var(--bg-secondary);
-  border-top: 1px solid var(--border-primary);
-  margin-top: 80px;
-  padding: 48px 0 24px;
+  padding: 12px 0;
+  position: relative;
+  z-index: 95;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
 
-/* Footer Content Grid */
-.footer-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid var(--border-primary);
-}
-
-/* Brand Section */
+/* BeatAI 品牌简介 */
 .footer-brand {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 12px;
+  flex: 1;
 }
 
 .footer-logo {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin: 0;
+  white-space: nowrap;
+}
+
+.footer-separator {
+  color: var(--text-tertiary);
+  font-size: 16px;
 }
 
 .footer-description {
   color: var(--text-secondary);
   font-size: 14px;
-  line-height: 1.6;
-  margin: 0;
-  max-width: 320px;
+  line-height: 1.5;
 }
 
-/* Links Section */
-.footer-section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.footer-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.footer-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-link {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 14px;
-  transition: all 0.2s ease;
-  display: inline-block;
-}
-
-.footer-link:hover {
-  color: var(--text-primary);
-  transform: translateX(4px);
-}
-
-/* GitHub Link */
+/* GitHub 链接 */
 .footer-github-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 16px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-primary);
-  border-radius: 8px;
+  padding: 8px 16px;
+  /* background: var(--card-bg); */
+  /* border: 1px solid var(--border-primary); */
+  border-radius: 6px;
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s ease;
-  width: fit-content;
+  white-space: nowrap;
 }
 
 .footer-github-link:hover {
   background: var(--card-bg-hover);
   border-color: var(--accent-primary);
   color: var(--text-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+  transform: translateY(-1px);
 }
 
 .footer-github-icon {
-  font-size: 18px;
+  font-size: 16px;
 }
 
-/* Bottom Section */
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 24px;
-}
-
-.footer-copyright {
-  color: var(--text-tertiary);
-  font-size: 13px;
-}
-
+/* Made with ❤️ */
 .footer-made-with {
   display: flex;
   align-items: center;
   gap: 6px;
   color: var(--text-tertiary);
   font-size: 13px;
+  white-space: nowrap;
 }
 
 .footer-heart-icon {
   color: #ef4444;
-  font-size: 14px;
+  font-size: 13px;
   animation: heartbeat 1.5s ease-in-out infinite;
 }
 
 @keyframes heartbeat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
-  10%, 30% {
+
+  10%,
+  30% {
     transform: scale(1.1);
   }
-  20%, 40% {
+
+  20%,
+  40% {
     transform: scale(1);
   }
 }
 
-/* Responsive Design */
+/* 响应式设计 */
 @media (max-width: 768px) {
   .site-footer {
-    margin-top: 60px;
-    padding: 32px 0 20px;
+    padding: 24px 0;
   }
 
   .footer-container {
-    padding: 0 20px;
-  }
-
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding-bottom: 32px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
   }
 
   .footer-brand {
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border-primary);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .footer-separator {
+    display: none;
   }
 
   .footer-description {
-    max-width: 100%;
+    font-size: 13px;
   }
 
-  .footer-bottom {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
-    padding-top: 20px;
-  }
-
-  .footer-github-link {
+  .footer-github-link,
+  .footer-made-with {
     width: 100%;
     justify-content: center;
   }
@@ -193,15 +142,19 @@
 
 @media (max-width: 480px) {
   .footer-logo {
-    font-size: 20px;
+    font-size: 16px;
   }
 
-  .footer-title {
-    font-size: 13px;
+  .footer-description {
+    font-size: 12px;
   }
 
-  .footer-link,
   .footer-github-link {
     font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .footer-made-with {
+    font-size: 12px;
   }
 }

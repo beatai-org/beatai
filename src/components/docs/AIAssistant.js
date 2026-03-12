@@ -100,7 +100,7 @@ const AIAssistant = () => {
           <div className="ai-panel slide-in-left">
             <div className="ai-header">
               <div className="ai-header-title">
-                <HiSparkles /> AI Assistant
+                <HiSparkles /> AI 小助手
               </div>
               <button
                 className="ai-close"
@@ -183,11 +183,11 @@ const AIAssistant = () => {
               )}
             </div>
 
-            <div className="ai-footer">
+            {/* <div className="ai-footer">
               <div className="ai-footer-text">
                 💡 Powered by fuzzy search
               </div>
-            </div>
+            </div> */}
           </div>
         </>
       )}

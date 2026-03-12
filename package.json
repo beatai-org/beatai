@@ -1,12 +1,14 @@
 {
   "name": "beatai-website",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "private": true,
   "dependencies": {
+    "@docsearch/react": "^4.6.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
+    "algoliasearch": "^5.49.2",
     "buffer": "^6.0.3",
     "fuse.js": "^7.1.0",
     "gray-matter": "^4.0.3",
@@ -27,8 +29,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "version": "0.5.7",
-    "release": "bash scripts/release.sh"
+    "version": "0.5.8",
+    "release": "bash scripts/release.sh",
+    "sync-docs": "node scripts/sync-docs.mjs"
   },
   "eslintConfig": {
     "extends": [
@@ -47,5 +50,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "axios": "^1.13.6",
+    "chalk": "^5.6.2",
+    "ora": "^8.2.0"
   }
 }

@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-brand">
           <span className="footer-logo">BeatAI</span>
           <span className="footer-separator">·</span>
-          <span className="footer-description">Build better AI applications with modern tools</span>
+          <span className="footer-description">让 AI 更简单</span>
         </div>
 
         {/* GitHub 链接 */}
@@ -26,7 +26,7 @@ const Footer = () => {
 
         {/* Made with ❤️ */}
         <div className="footer-made-with">
-          Made with <FaHeart className="footer-heart-icon" /> by BeatAI Team
+          Made with <FaHeart className="footer-heart-icon" /> by BeatAI 社区
         </div>
       </div>
     </footer>

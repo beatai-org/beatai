@@ -262,6 +262,34 @@
   line-height: 1.5;
 }
 
+/* Algolia snippet styles (with highlighting) */
+.ai-result-snippet {
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+[data-theme-mode="dark"] .ai-result-snippet {
+  color: #9ca3af;
+}
+
+/* Algolia highlight styles (using <mark> tags) */
+.ai-result-title mark,
+.ai-result-snippet mark {
+  background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+  color: #92400e;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+[data-theme-mode="dark"] .ai-result-title mark,
+[data-theme-mode="dark"] .ai-result-snippet mark {
+  background: linear-gradient(120deg, #78350f 0%, #92400e 100%);
+  color: #fef3c7;
+}
+
 .ai-searching {
   display: flex;
   align-items: center;

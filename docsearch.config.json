@@ -1,0 +1,62 @@
+{
+  "index_name": "YOUR_INDEX_NAME",
+  "start_urls": [
+    "https://your-site.com/docs"
+  ],
+  "sitemap_urls": [
+    "https://your-site.com/sitemap.xml"
+  ],
+  "selectors": {
+    "lvl0": {
+      "selector": ".docs-layout h1, .docs-content h1",
+      "global": true,
+      "default_value": "Documentation"
+    },
+    "lvl1": ".docs-content h2",
+    "lvl2": ".docs-content h3",
+    "lvl3": ".docs-content h4",
+    "lvl4": ".docs-content h5",
+    "text": ".docs-content p, .docs-content li, .docs-content code"
+  },
+  "selectors_exclude": [
+    ".sidebar",
+    ".header",
+    ".footer",
+    ".ai-panel",
+    ".ai-orb",
+    "nav",
+    ".breadcrumb"
+  ],
+  "stop_urls": [
+    "/404"
+  ],
+  "custom_settings": {
+    "attributesForFaceting": [
+      "language",
+      "version"
+    ],
+    "attributesToRetrieve": [
+      "hierarchy",
+      "content",
+      "anchor",
+      "url",
+      "url_without_anchor"
+    ],
+    "attributesToSnippet": [
+      "content:50"
+    ],
+    "attributesToHighlight": [
+      "hierarchy.lvl0",
+      "hierarchy.lvl1",
+      "hierarchy.lvl2",
+      "hierarchy.lvl3",
+      "hierarchy.lvl4",
+      "content"
+    ],
+    "minWordSizefor1Typo": 4,
+    "minWordSizefor2Typos": 8,
+    "highlightPreTag": "<mark>",
+    "highlightPostTag": "</mark>",
+    "snippetEllipsisText": "…"
+  }
+}

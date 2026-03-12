@@ -46,7 +46,7 @@
 }
 
 .sidebar-repo-title {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -54,7 +54,7 @@
 }
 
 .sidebar-repo-url {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--accent-start);
   text-decoration: none;
@@ -192,7 +192,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-secondary);
   text-decoration: none;
   border-radius: 10px;

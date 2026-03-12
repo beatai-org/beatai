@@ -31,11 +31,10 @@
   bottom: 12px;
   width: 2px;
   background: linear-gradient(to bottom,
-    transparent 0%,
-    var(--accent-start) 20%,
-    var(--accent-end) 80%,
-    transparent 100%
-  );
+      transparent 0%,
+      var(--accent-start) 20%,
+      var(--accent-end) 80%,
+      transparent 100%);
   opacity: 0.3;
 }
 
@@ -126,9 +125,8 @@
   bottom: 0;
   width: 0;
   background: linear-gradient(90deg,
-    var(--accent-start) 0%,
-    transparent 100%
-  );
+      var(--accent-start) 0%,
+      transparent 100%);
   opacity: 0.05;
   transition: width 0.4s ease;
 }
@@ -171,9 +169,12 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 0 0 var(--glow-color);
   }
+
   50% {
     box-shadow: 0 0 8px 2px var(--glow-color);
   }
@@ -184,14 +185,14 @@
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 12px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .toc-level-3 .toc-link {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 24px;
-  font-size: 12px;
+  font-size: 13px;
   opacity: 0.85;
 }
 
@@ -204,7 +205,7 @@
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 36px;
-  font-size: 11px;
+  font-size: 12px;
   opacity: 0.7;
 }
 
@@ -219,8 +220,10 @@
 }
 
 .toc-list {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* 滚动时淡入效果 */
@@ -228,17 +231,32 @@
   animation: fadeInUp 0.5s ease backwards;
 }
 
-.toc-item:nth-child(1) { animation-delay: 0.05s; }
-.toc-item:nth-child(2) { animation-delay: 0.1s; }
-.toc-item:nth-child(3) { animation-delay: 0.15s; }
-.toc-item:nth-child(4) { animation-delay: 0.2s; }
-.toc-item:nth-child(5) { animation-delay: 0.25s; }
+.toc-item:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.toc-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.toc-item:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.toc-item:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.toc-item:nth-child(5) {
+  animation-delay: 0.25s;
+}
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -246,7 +264,7 @@
 }
 
 /* 分组分隔线 */
-.toc-level-2 + .toc-level-2 {
+.toc-level-2+.toc-level-2 {
   margin-top: 6px;
 }
 
@@ -275,6 +293,7 @@
 
 /* 减少动画 - 无障碍支持 */
 @media (prefers-reduced-motion: reduce) {
+
   .toc-item,
   .toc-link,
   .toc-link::after {
@@ -282,5 +301,3 @@
     transition: none !important;
   }
 }
-
-

@@ -172,7 +172,7 @@ const Sidebar = ({ meta, isOpen, onClose }) => {
               </svg>
             </div>
             <div className="sidebar-repo-content">
-              <div className="sidebar-repo-title">GitHub Repository</div>
+              <div className="sidebar-repo-title">繁星点点，只因有你</div>
               <a
                 href="https://github.com/sunface/rust-course"
                 target="_blank"

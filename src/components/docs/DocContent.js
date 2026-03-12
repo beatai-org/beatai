@@ -54,7 +54,7 @@ const DocContent = () => {
       setError(null);
 
       try {
-        const response = await fetch(`/docs/${docPath}.md`);
+        const response = await fetch(`${process.env.PUBLIC_URL}/docs/${docPath}.md`);
 
         if (!response.ok) {
           throw new Error('Document not found');

@@ -10,8 +10,15 @@ const Docs = () => {
 
   useEffect(() => {
     // Load docs metadata
-    fetch('/docs/_meta.json')
-      .then(res => res.json())
+    // Use process.env.PUBLIC_URL to handle both dev and production environments
+    const metaPath = `${process.env.PUBLIC_URL}/docs/_meta.json`;
+    fetch(metaPath)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then(data => setDocsMeta(data))
       .catch(err => console.error('Failed to load docs meta:', err));
   }, []);

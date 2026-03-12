@@ -1,6 +1,6 @@
 {
   "name": "beatai-website",
-  "version": "v0.6.6",
+  "version": "v0.6.8",
   "private": true,
   "homepage": "https://beatai.org",
   "dependencies": {

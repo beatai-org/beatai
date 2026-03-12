@@ -48,6 +48,20 @@
     <script src="%PUBLIC_URL%/clear-old-theme.js"></script>
   </head>
   <body>
+    <!-- Single Page Apps for GitHub Pages - Redirect restoration -->
+    <!-- https://github.com/rafgraph/spa-github-pages -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.getItem('githubPagesRedirect');
+        sessionStorage.removeItem('githubPagesRedirect');
+
+        if (redirect && redirect !== window.location.pathname) {
+          // Use replaceState to update the URL without triggering a page load
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

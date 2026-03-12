@@ -1,6 +1,6 @@
 {
   "name": "beatai-website",
-  "version": "v0.6.1",
+  "version": "v0.6.2",
   "private": true,
   "homepage": "https://beatai.org",
   "dependencies": {
@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "version": "v0.6.1",
+    "version": "v0.6.2",
     "release": "bash scripts/release.sh",
     "sync-docs": "node scripts/sync-docs.mjs",
     "predeploy": "npm run build",

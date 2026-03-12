@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { HiMenu, HiX } from 'react-icons/hi';
+import { HiMenu, HiX, HiChevronDown } from 'react-icons/hi';
 import ThemeToggle from '../ThemeToggle';
 import ThemeSelector from '../ThemeSelector';
 import AuthStatus from '../docs/AuthStatus';
@@ -24,20 +24,52 @@ const AppHeader = ({
   sidebarOpen = false,
   onMenuToggle = null
 }) => {
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const showCategoryNav = categories.length > 0 && onCategoryClick;
+
+  const handleMobileCategoryClick = (category) => {
+    onCategoryClick(category);
+    setMobileDropdownOpen(false);
+  };
 
   return (
     <header className="app-header glass-morphism">
       <div className="app-header-content">
-        {/* Logo */}
-        <Link to="/" className="app-logo">
+        {/* Desktop Logo */}
+        <Link to="/" className="app-logo desktop-only">
           <img src={logo} alt="BeatAI" className="logo-image" />
           <span className="logo-text">BeatAI</span>
         </Link>
 
-        {/* Category Navigation (可选) */}
+        {/* Mobile Category Dropdown */}
         {showCategoryNav && (
-          <nav className="category-nav">
+          <div className="mobile-category-dropdown mobile-only">
+            <button
+              className="mobile-category-toggle"
+              onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+            >
+              <span>{activeCategory?.title || '选择书籍'}</span>
+              <HiChevronDown className={`dropdown-icon ${mobileDropdownOpen ? 'open' : ''}`} />
+            </button>
+            {mobileDropdownOpen && (
+              <div className="mobile-category-menu">
+                {categories.map(category => (
+                  <button
+                    key={category.id}
+                    className={`mobile-category-item ${activeCategory?.id === category.id ? 'active' : ''}`}
+                    onClick={() => handleMobileCategoryClick(category)}
+                  >
+                    {category.title}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Desktop Category Navigation */}
+        {showCategoryNav && (
+          <nav className="category-nav desktop-only">
             {categories.map(category => (
               <button
                 key={category.id}

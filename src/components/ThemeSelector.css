@@ -46,6 +46,34 @@
   transform: translateY(0);
 }
 
+/* Mobile responsive */
+@media (max-width: 968px) {
+  .theme-button {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .theme-button::before {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .theme-button {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+  .theme-button::before {
+    width: 12px;
+    height: 12px;
+  }
+}
+
 .theme-overlay {
   position: fixed;
   top: 0;

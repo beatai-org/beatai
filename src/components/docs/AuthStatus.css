@@ -28,27 +28,12 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 2px solid #e5e7eb;
-  transition: border-color 0.2s;
-  display: block;
-}
-
-[data-theme-mode="dark"] .auth-status-avatar {
-  border-color: #374151;
-}
-
-.auth-status-avatar-placeholder {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--card-bg);
+  cursor: pointer;
+  object-fit: cover;
   border: 2px solid var(--border-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  font-size: 20px;
+  transition: all 0.3s ease;
 }
+
 
 /* User Panel */
 .auth-status-user-panel {
@@ -210,13 +195,61 @@
 }
 
 /* Mobile Responsive */
-@media (max-width: 768px) {
+@media (max-width: 968px) {
   .auth-status {
-    gap: 8px;
-    padding: 6px;
+    gap: 6px;
   }
 
+  .auth-status-btn-github {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .auth-status-btn-github svg {
+    font-size: 18px !important;
+  }
+
+  .auth-status-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .auth-status-avatar-placeholder {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
   .auth-status-user-panel {
     right: -8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .auth-status {
+    gap: 4px;
+  }
+
+  .auth-status-btn-github {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 8px !important;
+  }
+
+  .auth-status-btn-github svg {
+    font-size: 16px !important;
+  }
+
+  .auth-status-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .auth-status-avatar-placeholder {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
   }
 }

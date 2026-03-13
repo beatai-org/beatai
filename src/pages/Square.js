@@ -5,6 +5,7 @@ import AppHeader from '../components/AppHeader/AppHeader';
 import Footer from '../components/Footer/Footer';
 import AIInsightsIcon from '../components/icons/AIInsightsIcon';
 import RustBookIcon from '../components/icons/RustBookIcon';
+import BeatAILogoWave from '../components/BeatAILogoWave';
 import './Square.css';
 
 const Square = () => {
@@ -59,6 +60,9 @@ const Square = () => {
 
         <div className="square-container">
           <div className="square-hero">
+            <div className="square-hero-logo">
+              <BeatAILogoWave size={64} />
+            </div>
             <h1 className="square-title">BeatAI</h1>
             <p className="square-subtitle">
               让 AI 更简单 - 创世实验室

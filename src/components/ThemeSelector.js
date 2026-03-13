@@ -178,12 +178,12 @@ const FONT_SIZES = [
 const ThemeSelector = () => {
   const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState('sailor-moon');
+  const [currentTheme, setCurrentTheme] = useState('classic-mono');
   const [currentFont, setCurrentFont] = useState('zcool-kuaile');
   const [currentFontWeight, setCurrentFontWeight] = useState('medium');
   const [currentFontSize, setCurrentFontSize] = useState('large');
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [panelPosition, setPanelPosition] = useState({ top: 0, right: 0 });
   const buttonRef = React.useRef(null);
 
@@ -195,8 +195,8 @@ const ThemeSelector = () => {
       document.documentElement.setAttribute('data-theme', savedTheme);
     } else {
       // Set default gradient theme
-      setCurrentTheme('sailor-moon');
-      document.documentElement.setAttribute('data-theme', 'sailor-moon');
+      setCurrentTheme('classic-mono');
+      document.documentElement.setAttribute('data-theme', 'classic-mono');
     }
 
     // Load saved font from localStorage

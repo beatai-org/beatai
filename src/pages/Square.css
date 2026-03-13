@@ -20,6 +20,29 @@
   margin-bottom: 2rem;
 }
 
+.square-hero-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.square-hero-logo:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-start);
+  box-shadow:
+    0 8px 24px var(--glow-color),
+    0 4px 48px var(--glow-color);
+  transform: translateY(-4px);
+}
+
 .square-title {
   font-size: 2.8rem;
   font-weight: 800;
@@ -262,8 +285,12 @@
   }
 
   .square-hero {
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem 1.5rem;
     margin-bottom: 2rem;
+  }
+
+  .square-hero-logo {
+    margin-bottom: 1rem;
   }
 
   .square-title {
@@ -291,8 +318,13 @@
   }
 
   .square-hero {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem 1rem;
     margin-bottom: 1.5rem;
+  }
+
+  .square-hero-logo {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
   }
 
   .square-title {
@@ -343,6 +375,15 @@
 
 /* Dark mode adjustments */
 /* Light mode adjustments */
+[data-theme-mode="light"] .square-hero-logo {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme-mode="light"] .square-hero-logo:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
 [data-theme-mode="light"] .square-card {
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.08);

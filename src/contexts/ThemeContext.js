@@ -13,7 +13,7 @@ export const useTheme = () => {
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme-mode');
-    return savedTheme || 'light';  // Default to light mode
+    return savedTheme || 'dark';  // Default to dark mode
   });
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export const ThemeProvider = ({ children }) => {
     // Ensure gradient theme is set (don't override if already set)
     const currentGradientTheme = document.documentElement.getAttribute('data-theme');
     if (!currentGradientTheme) {
-      const savedGradientTheme = localStorage.getItem('docs-theme') || 'sailor-moon';
+      const savedGradientTheme = localStorage.getItem('docs-theme') || 'classic-mono';
       document.documentElement.setAttribute('data-theme', savedGradientTheme);
     }
   }, [theme]);

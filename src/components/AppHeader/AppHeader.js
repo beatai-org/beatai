@@ -4,6 +4,7 @@ import { HiMenu, HiX, HiChevronDown } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 import ThemeSelector from '../ThemeSelector';
 import AuthStatus from '../docs/AuthStatus';
+import BeatAILogoWave from '../BeatAILogoWave';
 import './AppHeader.css';
 
 // GitHub repository mapping for each book
@@ -41,12 +42,18 @@ const AppHeader = ({
     <header className="app-header glass-morphism">
       <div className="app-header-content">
         {/* Desktop Logo */}
-        <Link to="/" className="app-logo desktop-only">
+        <Link to="/square" className="app-logo desktop-only">
+          <BeatAILogoWave size={32} />
           <span className="logo-text">BeatAI</span>
         </Link>
 
+        {/* Mobile Logo - 始终显示 */}
+        <Link to="/square" className="app-logo-mobile mobile-only">
+          <BeatAILogoWave size={28} />
+        </Link>
+
         {/* Mobile Category Dropdown */}
-        {showCategoryNav && (
+        {showCategoryNav ? (
           <div className="mobile-category-wrapper mobile-only">
             <div className="mobile-category-dropdown">
               <button
@@ -83,6 +90,9 @@ const AppHeader = ({
               </a>
             )}
           </div>
+        ) : (
+          /* 在没有分类导航的页面，添加占位空间 */
+          <div className="mobile-spacer mobile-only"></div>
         )}
 
         {/* Desktop Category Navigation */}
@@ -112,11 +122,6 @@ const AppHeader = ({
             ))}
           </nav>
         )}
-
-        {/* Square Link - Independent Navigation */}
-        <Link to="/square" className="square-link">
-          <span>广场</span>
-        </Link>
 
         {/* Actions */}
         <div className="app-header-actions">

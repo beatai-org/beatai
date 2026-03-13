@@ -33,8 +33,44 @@
   transition: transform 0.3s ease;
 }
 
+.app-logo svg {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .app-logo:hover {
   transform: translateX(4px);
+}
+
+.app-logo:hover svg {
+  transform: rotate(5deg) scale(1.1);
+}
+
+/* Mobile Logo */
+.app-logo-mobile {
+  display: none;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  padding: 4px;
+  min-width: 36px;
+  min-height: 36px;
+  justify-content: center;
+}
+
+.app-logo-mobile svg {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.app-logo-mobile:hover svg {
+  transform: rotate(5deg) scale(1.1);
+}
+
+/* Mobile spacer - 在没有分类导航时占位 */
+.mobile-spacer {
+  display: none;
+  flex: 1;
 }
 
 .logo-image {
@@ -247,71 +283,6 @@
   opacity: 1;
 }
 
-/* Square Link */
-.square-link {
-  padding: 8px 20px;
-  font-size: 15px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
-  border-radius: 10px;
-  background: rgba(139, 92, 246, 0.15);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.square-link:hover {
-  background: rgba(139, 92, 246, 0.25);
-  border-color: rgba(139, 92, 246, 0.5);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
-}
-
-.square-link:active {
-  transform: translateY(0);
-}
-
-/* Mobile - Hide square link text on small screens */
-@media (max-width: 768px) {
-  .square-link {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .square-link span {
-    display: none;
-  }
-
-  .square-link::before {
-    content: '🏠';
-    font-size: 18px;
-  }
-
-  .square-link {
-    padding: 8px 12px;
-  }
-}
-
-/* Dark mode adjustments */
-[data-theme-mode="light"] .square-link {
-  background: rgba(139, 92, 246, 0.1);
-  color: rgba(139, 92, 246, 0.9);
-}
-
-[data-theme-mode="light"] .square-link:hover {
-  background: rgba(139, 92, 246, 0.2);
-  color: rgba(139, 92, 246, 1);
-}
-
 
 .mobile-category-toggle:hover {
   background: linear-gradient(135deg, rgba(103, 80, 164, 0.15), rgba(103, 58, 183, 0.1));
@@ -453,6 +424,11 @@
   }
 
   .mobile-only {
+    display: flex;
+  }
+
+  /* 显示移动端 Logo */
+  .app-logo-mobile {
     display: flex;
   }
 

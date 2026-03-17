@@ -5,8 +5,6 @@
       "id": "ai-insights",
       "title": "AI前沿分享",
       "description": "AI 领域最新动态、技术分享与深度解析",
-      "githubRepo": "https://github.com/beatai-org/beatai",
-      "repoTitle": "繁星点点，只因有你",
       "sections": [
         {
           "title": "AI视点",
@@ -17,11 +15,7 @@
               "title": "2026",
               "path": "/ai-insights/viewpoint/2026",
               "file": "/docs/ai-insights/viewpoint/2026.md",
-              "tags": [
-                "AI",
-                "技术趋势",
-                "前沿"
-              ]
+              "tags": ["AI", "技术趋势", "前沿"]
             }
           ]
         }
@@ -31,8 +25,6 @@
       "id": "rust-course",
       "title": "Rust语言圣经",
       "description": "Rust 编程语言完整学习指南",
-      "githubRepo": "https://github.com/sunface/rust-course",
-      "repoTitle": "繁星点点，只因有你",
       "sections": [
         {
           "title": "📖 序言",
@@ -43,30 +35,19 @@
               "title": "关于本书",
               "path": "/rust-course/about-book",
               "file": "/docs/rust-course/about-book.md",
-              "tags": [
-                "Rust",
-                "入门"
-              ]
+              "tags": ["Rust", "入门"]
             },
             {
               "title": "进入Rust编程世界",
               "path": "/rust-course/into-rust",
               "file": "/docs/rust-course/into-rust.md",
-              "tags": [
-                "Rust",
-                "入门",
-                "编程语言"
-              ]
+              "tags": ["Rust", "入门", "编程语言"]
             },
             {
               "title": "避免从入门到放弃",
               "path": "/rust-course/first-try/sth-you-should-not-do",
               "file": "/docs/rust-course/first-try/sth-you-should-not-do.md",
-              "tags": [
-                "Rust",
-                "入门",
-                "学习建议"
-              ]
+              "tags": ["Rust", "入门", "学习建议"]
             }
           ]
         },
@@ -79,51 +60,31 @@
               "title": "安装 Rust 环境",
               "path": "/rust-course/first-try/installation",
               "file": "/docs/rust-course/first-try/installation.md",
-              "tags": [
-                "Rust",
-                "环境配置",
-                "入门"
-              ]
+              "tags": ["Rust", "环境配置", "入门"]
             },
             {
               "title": "墙推 VSCode!",
               "path": "/rust-course/first-try/editor",
               "file": "/docs/rust-course/first-try/editor.md",
-              "tags": [
-                "Rust",
-                "开发工具",
-                "VSCode"
-              ]
+              "tags": ["Rust", "开发工具", "VSCode"]
             },
             {
               "title": "认识 Cargo",
               "path": "/rust-course/first-try/cargo",
               "file": "/docs/rust-course/first-try/cargo.md",
-              "tags": [
-                "Rust",
-                "Cargo",
-                "包管理"
-              ]
+              "tags": ["Rust", "Cargo", "包管理"]
             },
             {
               "title": "不仅仅是 Hello world",
               "path": "/rust-course/first-try/hello-world",
               "file": "/docs/rust-course/first-try/hello-world.md",
-              "tags": [
-                "Rust",
-                "入门",
-                "实践"
-              ]
+              "tags": ["Rust", "入门", "实践"]
             },
             {
               "title": "下载依赖太慢了？",
               "path": "/rust-course/first-try/slowly-downloading",
               "file": "/docs/rust-course/first-try/slowly-downloading.md",
-              "tags": [
-                "Rust",
-                "Cargo",
-                "配置优化"
-              ]
+              "tags": ["Rust", "Cargo", "配置优化"]
             }
           ]
         },
@@ -136,12 +97,7 @@
               "title": "变量绑定与解构",
               "path": "/rust-course/basic/variable",
               "file": "/docs/rust-course/basic/variable.md",
-              "tags": [
-                "Rust",
-                "基础",
-                "变量",
-                "语法"
-              ]
+              "tags": ["Rust", "基础", "变量", "语法"]
             },
             {
               "title": "基本类型",
@@ -152,41 +108,25 @@
                   "title": "数值类型",
                   "path": "/rust-course/basic/base-type/numbers",
                   "file": "/docs/rust-course/basic/base-type/numbers.md",
-                  "tags": [
-                    "Rust",
-                    "基础",
-                    "数据类型"
-                  ]
+                  "tags": ["Rust", "基础", "数据类型"]
                 },
                 {
                   "title": "字符、布尔、单元类型",
                   "path": "/rust-course/basic/base-type/char-bool",
                   "file": "/docs/rust-course/basic/base-type/char-bool.md",
-                  "tags": [
-                    "Rust",
-                    "基础",
-                    "数据类型"
-                  ]
+                  "tags": ["Rust", "基础", "数据类型"]
                 },
                 {
                   "title": "语句与表达式",
                   "path": "/rust-course/basic/base-type/statement-expression",
                   "file": "/docs/rust-course/basic/base-type/statement-expression.md",
-                  "tags": [
-                    "Rust",
-                    "基础",
-                    "语法"
-                  ]
+                  "tags": ["Rust", "基础", "语法"]
                 },
                 {
                   "title": "函数",
                   "path": "/rust-course/basic/base-type/function",
                   "file": "/docs/rust-course/basic/base-type/function.md",
-                  "tags": [
-                    "Rust",
-                    "基础",
-                    "函数"
-                  ]
+                  "tags": ["Rust", "基础", "函数"]
                 }
               ]
             },
@@ -199,23 +139,13 @@
                   "title": "所有权",
                   "path": "/rust-course/basic/ownership/ownership",
                   "file": "/docs/rust-course/basic/ownership/ownership.md",
-                  "tags": [
-                    "Rust",
-                    "所有权",
-                    "进阶",
-                    "内存管理"
-                  ]
+                  "tags": ["Rust", "所有权", "进阶", "内存管理"]
                 },
                 {
                   "title": "引用与借用",
                   "path": "/rust-course/basic/ownership/borrowing",
                   "file": "/docs/rust-course/basic/ownership/borrowing.md",
-                  "tags": [
-                    "Rust",
-                    "所有权",
-                    "进阶",
-                    "借用"
-                  ]
+                  "tags": ["Rust", "所有权", "进阶", "借用"]
                 }
               ]
             },
@@ -228,55 +158,31 @@
                   "title": "字符串与切片",
                   "path": "/rust-course/basic/compound-type/string-slice",
                   "file": "/docs/rust-course/basic/compound-type/string-slice.md",
-                  "tags": [
-                    "Rust",
-                    "基础",
-                    "数据类型",
-                    "字符串"
-                  ]
+                  "tags": ["Rust", "基础", "数据类型", "字符串"]
                 },
                 {
                   "title": "元组",
                   "path": "/rust-course/basic/compound-type/tuple",
                   "file": "/docs/rust-course/basic/compound-type/tuple.md",
-                  "tags": [
-                    "Rust",
-                    "基础",
-                    "数据类型"
-                  ]
+                  "tags": ["Rust", "基础", "数据类型"]
                 },
                 {
                   "title": "结构体",
                   "path": "/rust-course/basic/compound-type/struct",
                   "file": "/docs/rust-course/basic/compound-type/struct.md",
-                  "tags": [
-                    "Rust",
-                    "基础",
-                    "数据类型",
-                    "结构体"
-                  ]
+                  "tags": ["Rust", "基础", "数据类型", "结构体"]
                 },
                 {
                   "title": "枚举",
                   "path": "/rust-course/basic/compound-type/enum",
                   "file": "/docs/rust-course/basic/compound-type/enum.md",
-                  "tags": [
-                    "Rust",
-                    "基础",
-                    "数据类型",
-                    "枚举"
-                  ]
+                  "tags": ["Rust", "基础", "数据类型", "枚举"]
                 },
                 {
                   "title": "数组",
                   "path": "/rust-course/basic/compound-type/array",
                   "file": "/docs/rust-course/basic/compound-type/array.md",
-                  "tags": [
-                    "Rust",
-                    "基础",
-                    "数据类型",
-                    "集合"
-                  ]
+                  "tags": ["Rust", "基础", "数据类型", "集合"]
                 }
               ]
             },
@@ -284,11 +190,7 @@
               "title": "流程控制",
               "path": "/rust-course/basic/flow-control",
               "file": "/docs/rust-course/basic/flow-control.md",
-              "tags": [
-                "Rust",
-                "基础",
-                "流程控制"
-              ]
+              "tags": ["Rust", "基础", "流程控制"]
             },
             {
               "title": "模式匹配",

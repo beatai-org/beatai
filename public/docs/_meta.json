@@ -9,6 +9,24 @@
       "repoTitle": "繁星点点，只因有你",
       "sections": [
         {
+          "title": "2026 年 2 月",
+          "path": "/ai-insights/viewpoint/2026-02",
+          "items": [
+            {
+              "title": "AI Agent 正在吃掉软件世界",
+              "path": "/ai-insights/viewpoint/ai-agent-revolution",
+              "file": "/docs/ai-insights/viewpoint/ai-agent-revolution.md",
+              "tags": [
+                "AI",
+                "Agent",
+                "软件革命",
+                "自动化",
+                "未来趋势"
+              ]
+            }
+          ]
+        },
+        {
           "title": "2026 年 3 月",
           "path": "/ai-insights/viewpoint/2026-03",
           "items": [
@@ -37,6 +55,11 @@
               ]
             }
           ]
+        },
+        {
+          "title": "2026 年 4 月",
+          "path": "/ai-insights/viewpoint/2026-04",
+          "items": []
         }
       ]
     },

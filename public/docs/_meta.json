@@ -14,16 +14,6 @@
           "file": "/docs/ai-insights/viewpoint/intro.md",
           "items": [
             {
-              "title": "2026",
-              "path": "/ai-insights/viewpoint/2026",
-              "file": "/docs/ai-insights/viewpoint/2026.md",
-              "tags": [
-                "AI",
-                "技术趋势",
-                "前沿"
-              ]
-            },
-            {
               "title": "Vibe Coding，是怎么「玩废」程序员的？",
               "path": "/ai-insights/viewpoint/vibe-coding",
               "file": "/docs/ai-insights/viewpoint/vibe-coding.md",

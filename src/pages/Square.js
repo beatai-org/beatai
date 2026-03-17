@@ -38,6 +38,14 @@ const Square = () => {
     }
   };
 
+  // Get first item path for a category
+  const getFirstItemPath = (categoryId) => {
+    const category = meta?.categories?.find(cat => cat.id === categoryId);
+    const firstSection = category?.sections?.[0];
+    const firstItem = firstSection?.items?.[0];
+    return firstItem?.path || '#';
+  };
+
   const categories = meta?.categories || [];
 
   return (
@@ -79,7 +87,7 @@ const Square = () => {
                   </div>
                   <h3>AI 前沿分享</h3>
                   <p>AI 领域最新动态、技术分享与深度解析</p>
-                  <a href="/ai-insights/viewpoint/intro" className="card-link">了解更多 →</a>
+                  <a href={getFirstItemPath('ai-insights')} className="card-link">了解更多 →</a>
                 </div>
 
                 <div className="square-card glass-card">
@@ -88,7 +96,7 @@ const Square = () => {
                   </div>
                   <h3>Rust 语言圣经</h3>
                   <p>Rust 编程语言完整学习指南</p>
-                  <a href="/rust-course/about-book" className="card-link">开始学习 →</a>
+                  <a href={getFirstItemPath('rust-course')} className="card-link">开始学习 →</a>
                 </div>
               </div>
             </div>

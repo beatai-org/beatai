@@ -2,6 +2,7 @@
 
 ---
 #### 2026年3月
+- [Vibe Coding，是怎么「玩废」程序员的？](https://mp.weixin.qq.com/s/5LP9E6A__gsJvuNS1QGonw)Anthropic发现一个残酷的真相：如果你在学习新东西时过度依赖 AI，你不仅不会变快，你的核心能力还会出现显著退化
 - [百万级代码背后的零人工奇迹](https://openai.com/zh-Hans-CN/index/harness-engineering/) OpenAI过去五个月做了一项真实的实验：构建一个百万代码的生产级项目，其中没有一行使用人工编写，非常推荐！
 
 

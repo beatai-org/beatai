@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
+import { defaultSchema } from 'rehype-sanitize';
 import matter from 'gray-matter';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-javascript';
@@ -41,6 +42,19 @@ const slugify = (text) => {
   .replace(/%20/g, '-')           // Space → hyphen
   .replace(/[!'()*]/g, c => c)    // Decode safe characters for readability
   .replace(/%2D/g, '-');          // Decode hyphen
+};
+
+// Custom sanitize schema to allow target and rel attributes on links
+const sanitizeSchema = {
+  ...defaultSchema,
+  attributes: {
+    ...defaultSchema.attributes,
+    a: [
+      ...(defaultSchema.attributes?.a || []),
+      'target',
+      'rel'
+    ]
+  }
 };
 
 const DocContent = () => {
@@ -220,7 +234,7 @@ const DocContent = () => {
           <article className="doc-content" key={docPath}>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw, rehypeSanitize]}
+              rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
               components={{
                 h1: createHeading(1),
                 h2: createHeading(2),

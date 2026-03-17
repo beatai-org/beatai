@@ -84,7 +84,9 @@ const DocsLayoutInner = ({ meta, children }) => {
   // Prepare meta object for Sidebar (using only active category's sections)
   const sidebarMeta = activeCategory ? {
     title: activeCategory.title,
-    sections: activeCategory.sections
+    sections: activeCategory.sections,
+    githubRepo: activeCategory.githubRepo,
+    repoTitle: activeCategory.repoTitle
   } : null;
 
   return (

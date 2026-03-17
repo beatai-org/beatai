@@ -1,0 +1,137 @@
+/* TabGroup - 通用标签页组件样式 */
+
+.tab-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border-primary);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 滚动条样式 */
+.tab-group::-webkit-scrollbar {
+  height: 4px;
+}
+
+.tab-group::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tab-group::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 4px;
+}
+
+/* Tab 按钮 */
+.tab-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.tab-button:hover:not(:disabled) {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tab-button.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+/* Tab 标签文字 */
+.tab-label {
+  line-height: 1;
+}
+
+/* Tab 计数徽章 */
+.tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tab-button.active .tab-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.tab-button:not(.active) .tab-count {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+}
+
+/* Dark 模式特殊处理 */
+[data-theme-mode="dark"] .tab-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme-mode="dark"] .tab-button.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Light 模式 */
+[data-theme-mode="light"] .tab-button:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme-mode="light"] .tab-button.active {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme-mode="light"] .tab-count {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme-mode="light"] .tab-button.active .tab-count {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme-mode="light"] .tab-button:not(.active) .tab-count {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .tab-group {
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+  }
+
+  .tab-button {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  .tab-count {
+    font-size: 11px;
+    min-width: 18px;
+    padding: 2px 5px;
+  }
+}

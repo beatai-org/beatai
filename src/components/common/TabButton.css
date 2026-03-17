@@ -1,0 +1,82 @@
+/* TabButton - 单个标签按钮样式 */
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.tab-btn:hover:not(:disabled) {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tab-btn.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+.tab-btn-label {
+  line-height: 1;
+}
+
+.tab-btn-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tab-btn.active .tab-btn-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.tab-btn:not(.active) .tab-btn-count {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+}
+
+/* Light 模式 */
+[data-theme-mode="light"] .tab-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme-mode="light"] .tab-btn.active {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme-mode="light"] .tab-btn-count {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme-mode="light"] .tab-btn.active .tab-btn-count {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme-mode="light"] .tab-btn:not(.active) .tab-btn-count {
+  background: rgba(0, 0, 0, 0.05);
+}

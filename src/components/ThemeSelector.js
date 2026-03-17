@@ -179,7 +179,7 @@ const ThemeSelector = () => {
   const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState('classic-mono');
-  const [currentFont, setCurrentFont] = useState('zcool-kuaile');
+  const [currentFont, setCurrentFont] = useState('system');
   const [currentFontWeight, setCurrentFontWeight] = useState('medium');
   const [currentFontSize, setCurrentFontSize] = useState('large');
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -205,9 +205,9 @@ const ThemeSelector = () => {
       setCurrentFont(savedFont);
       applyFont(savedFont);
     } else {
-      // Set default font
-      setCurrentFont('zcool-kuaile');
-      applyFont('zcool-kuaile');
+      // Set default font to system
+      setCurrentFont('system');
+      applyFont('system');
     }
 
     // Load saved font weight from localStorage

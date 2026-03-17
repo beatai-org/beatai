@@ -1,6 +1,6 @@
 {
   "name": "beatai-website",
-  "version": "0.8.5",
+  "version": "0.8.7",
   "private": true,
   "homepage": "https://beatai.org",
   "dependencies": {
@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "version": "0.8.5",
+    "version": "0.8.7",
     "release": "bash scripts/release.sh",
     "sync-rust-course": "node scripts/sync-rust-course.mjs",
     "sync-beat-ai": "node scripts/sync-beat-ai.mjs",

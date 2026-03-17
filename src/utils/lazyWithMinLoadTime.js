@@ -3,7 +3,7 @@
  * 确保Loading动画至少显示指定时长后再加载组件
  *
  * @param {Function} importFunc - 动态导入函数
- * @param {number} minLoadTime - 最小加载时间（毫秒），默认1200ms
+ * @param {number} minLoadTime - 最小加载时间（毫秒），默认1000ms
  * @returns {Promise} 延迟后的组件导入Promise
  */
 export const lazyWithMinLoadTime = (importFunc, minLoadTime = 1200) => {

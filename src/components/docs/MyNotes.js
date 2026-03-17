@@ -4,6 +4,7 @@ import { HiAnnotation, HiArrowLeft } from 'react-icons/hi';
 import { useAnnotationContext } from '../../contexts/AnnotationContext';
 import AppHeader from '../AppHeader/AppHeader';
 import Footer from '../Footer/Footer';
+import { TabGroup } from '../common';
 import { loadBookTitles, getBookTitle } from '../../utils/bookTitles';
 import './MyNotes.css';
 
@@ -185,25 +186,22 @@ const MyNotes = () => {
 
       {/* Book Tabs */}
       {bookGroups.length > 0 && (
-        <div className="my-notes-tabs">
-          <button
-            className={`my-notes-tab ${activeBook === 'all' ? 'active' : ''}`}
-            onClick={() => setActiveBook('all')}
-          >
-            All Books
-            <span className="my-notes-tab-count">{totalCount}</span>
-          </button>
-          {bookGroups.map((book) => (
-            <button
-              key={book.bookName}
-              className={`my-notes-tab ${activeBook === book.bookName ? 'active' : ''}`}
-              onClick={() => setActiveBook(book.bookName)}
-            >
-              {getBookTitle(book.bookName)}
-              <span className="my-notes-tab-count">{book.totalCount}</span>
-            </button>
-          ))}
-        </div>
+        <TabGroup
+          tabs={[
+            {
+              id: 'all',
+              label: 'All Books',
+              count: totalCount
+            },
+            ...bookGroups.map((book) => ({
+              id: book.bookName,
+              label: getBookTitle(book.bookName),
+              count: book.totalCount
+            }))
+          ]}
+          activeTab={activeBook}
+          onChange={setActiveBook}
+        />
       )}
 
       {filteredPageGroups.length > 0 ? (

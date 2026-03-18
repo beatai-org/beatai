@@ -240,23 +240,65 @@
 
 /* Blockquotes */
 .doc-blockquote {
+  position: relative;
+  margin: 12px 0;
+  padding: 22px 24px 22px 28px;
   border-left: 4px solid var(--accent-primary);
-  background: rgba(139, 92, 246, 0.05);
-  padding: 16px 20px;
-  margin: 20px 0;
-  border-radius: 0 8px 8px 0;
+  border: 1px solid color-mix(in srgb, var(--accent-start) 18%, transparent);
+  border-left-width: 4px;
+  border-radius: 0 16px 16px 0;
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--accent-start) 14%, transparent),
+      color-mix(in srgb, var(--accent-end) 10%, transparent)),
+    rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 10px 28px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+}
+
+.doc-blockquote::before {
+  content: '"';
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-size: 46px;
+  line-height: 1;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: color-mix(in srgb, var(--accent-start) 26%, transparent);
+  pointer-events: none;
 }
 
 .doc-blockquote p {
   margin: 0;
   font-style: italic;
-  color: #4b5563;
+  color: #374151;
   font-size: var(--font-size);
   font-weight: var(--font-weight);
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme-mode="dark"] .doc-blockquote {
+  border-color: color-mix(in srgb, var(--accent-start) 22%, transparent);
+  border-left-color: var(--accent-primary);
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--accent-start) 28%, transparent),
+      color-mix(in srgb, var(--accent-end) 18%, transparent)),
+    rgba(17, 24, 39, 0.82);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+[data-theme-mode="dark"] .doc-blockquote::before {
+  color: color-mix(in srgb, var(--accent-start) 20%, transparent);
 }
 
 [data-theme-mode="dark"] .doc-blockquote p {
-  color: #d1d5db;
+  color: #e5e7eb;
 }
 
 /* Lists */

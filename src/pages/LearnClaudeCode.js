@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
-  Link,
   Navigate,
   Route,
   Routes,
@@ -26,6 +25,7 @@ import 'prismjs/components/prism-rust';
 import AppHeader from '../components/AppHeader/AppHeader';
 import Sidebar from '../components/docs/Sidebar';
 import TableOfContents from '../components/docs/TableOfContents';
+import PaginationNav from '../components/docs/PaginationNav';
 import Footer from '../components/Footer/Footer';
 import './LearnClaudeCode.css';
 import '../components/docs/DocContent.css';
@@ -93,6 +93,11 @@ function safeSessionLabel(version) {
   return normalizeSessionTitle(
     zhMessages.sessions?.[version] || VERSION_META[version]?.title || version
   );
+}
+
+function getLayerLabelForVersion(version) {
+  const layer = LAYERS.find((item) => item.versions.includes(version));
+  return layer ? (zhMessages.layer_labels?.[layer.id] || layer.label) : 'Learn Claude Code';
 }
 
 function LearnClaudeCode() {
@@ -199,6 +204,16 @@ function VersionPage() {
   const pathIndex = LEARNING_PATH.indexOf(version);
   const prevVersion = pathIndex > 0 ? LEARNING_PATH[pathIndex - 1] : null;
   const nextVersion = pathIndex < LEARNING_PATH.length - 1 ? LEARNING_PATH[pathIndex + 1] : null;
+  const prevNav = prevVersion ? {
+    path: `/learn-claude-code/${prevVersion}`,
+    title: `${formatVersionCode(prevVersion)} ${safeSessionLabel(prevVersion)}`,
+    section: getLayerLabelForVersion(prevVersion)
+  } : null;
+  const nextNav = nextVersion ? {
+    path: `/learn-claude-code/${nextVersion}`,
+    title: `${formatVersionCode(nextVersion)} ${safeSessionLabel(nextVersion)}`,
+    section: getLayerLabelForVersion(nextVersion)
+  } : null;
   const tabs = [
     { id: 'learn', label: zhMessages.version.tab_learn },
     { id: 'simulate', label: zhMessages.version.tab_simulate },
@@ -211,7 +226,7 @@ function VersionPage() {
       <header className="lcc-version-header">
         <h2>{safeSessionLabel(version)}</h2>
         <p>{meta.subtitle}</p>
-        <blockquote className="lcc-version-quote">{meta.keyInsight}</blockquote>
+        <blockquote className="doc-blockquote">{meta.keyInsight}</blockquote>
       </header>
 
       <section className="lcc-hero-shell">
@@ -250,25 +265,7 @@ function VersionPage() {
         </div>
       </section>
 
-      <nav className="lcc-version-nav">
-        {prevVersion ? (
-          <Link to={`/learn-claude-code/${prevVersion}`}>
-            <span>{zhMessages.version.prev}</span>
-            <strong>{formatVersionCode(prevVersion)} - {safeSessionLabel(prevVersion)}</strong>
-          </Link>
-        ) : (
-          <div></div>
-        )}
-
-        {nextVersion ? (
-          <Link to={`/learn-claude-code/${nextVersion}`} className="align-right">
-            <span>{zhMessages.version.next}</span>
-            <strong>{safeSessionLabel(nextVersion)} - {formatVersionCode(nextVersion)}</strong>
-          </Link>
-        ) : (
-          <div></div>
-        )}
-      </nav>
+      <PaginationNav prev={prevNav} next={nextNav} />
     </section>
   );
 }
@@ -397,6 +394,20 @@ function DocRenderer({ version }) {
         >
           {content}
         </ReactMarkdown>
+        <section className="lcc-copyright-card" aria-label="版权声明">
+          <div className="lcc-copyright-card-title">版权声明</div>
+          <p>
+            本章节内容版权归属于原版 LCC：
+            <a
+              className="doc-link"
+              href="https://github.com/shareAI-lab/learn-claude-code"
+              target="_blank"
+              rel="noreferrer"
+            >
+              shareAI-lab/learn-claude-code
+            </a>
+          </p>
+        </section>
       </article>
       <TableOfContents headings={headings} />
     </div>

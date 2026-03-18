@@ -246,6 +246,31 @@
   background: transparent;
 }
 
+.lcc-copyright-card {
+  margin-top: 40px;
+  padding: 20px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.lcc-copyright-card-title {
+  margin: 0 0 10px;
+  color: #f8fafc;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.lcc-copyright-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.lcc-copyright-card .doc-link {
+  margin-left: 6px;
+}
+
 @media (max-width: 1200px) {
   .lcc-hero-shell {
     width: 100%;
@@ -697,36 +722,6 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.lcc-version-nav {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  align-items: stretch;
-}
-
-.lcc-version-nav a {
-  min-height: 86px;
-  padding: 14px 16px;
-  text-decoration: none;
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  color: #f8fafc;
-}
-
-.lcc-version-nav a span {
-  color: rgba(255, 255, 255, 0.54);
-  font-size: 0.86rem;
-}
-
-.lcc-version-nav a.align-right {
-  text-align: right;
-}
-
 .lcc-session-viz {
   display: flex;
   flex-direction: column;
@@ -1107,8 +1102,7 @@
 
   .lcc-grid-2,
   .lcc-grid-3,
-  .lcc-concept-columns,
-  .lcc-version-nav {
+  .lcc-concept-columns {
     grid-template-columns: 1fr;
     display: grid;
   }
@@ -1142,6 +1136,7 @@
 :root[data-theme-mode='light'] .lcc-timeline-card h3,
 :root[data-theme-mode='light'] .lcc-card h3,
 :root[data-theme-mode='light'] .lcc-card h4,
+:root[data-theme-mode='light'] .lcc-copyright-card-title,
 :root[data-theme-mode='light'] .lcc-card strong {
   color: #0f172a;
 }
@@ -1154,9 +1149,9 @@
 :root[data-theme-mode='light'] .lcc-card li,
 :root[data-theme-mode='light'] .lcc-card em,
 :root[data-theme-mode='light'] .lcc-card small,
+:root[data-theme-mode='light'] .lcc-copyright-card p,
 :root[data-theme-mode='light'] .lcc-growth-row>span,
-:root[data-theme-mode='light'] .lcc-mono-small,
-:root[data-theme-mode='light'] .lcc-version-nav a span {
+:root[data-theme-mode='light'] .lcc-mono-small {
   color: rgba(15, 23, 42, 0.66);
 }
 
@@ -1166,6 +1161,7 @@
 :root[data-theme-mode='light'] .lcc-empty-inline,
 :root[data-theme-mode='light'] .lcc-hero-shell,
 :root[data-theme-mode='light'] .lcc-body-shell,
+:root[data-theme-mode='light'] .lcc-copyright-card,
 :root[data-theme-mode='light'] .lcc-concept-node,
 :root[data-theme-mode='light'] .lcc-concept-panel {
   background: rgba(255, 255, 255, 0.78);

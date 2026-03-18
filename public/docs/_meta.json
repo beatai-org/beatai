@@ -101,6 +101,18 @@
                 "Agent",
                 "开发效率"
               ]
+            },
+            {
+              "title": "从 Google ADK 到 OpenFang，我试了七个 Agent 框架，最后被一个教程点醒了",
+              "path": "/ai-insights/viewpoint/agent-framework-illusion",
+              "file": "/docs/ai-insights/viewpoint/agent-framework-illusion.md",
+              "tags": [
+                "AI",
+                "Agent",
+                "框架选择",
+                "Context Engineering",
+                "LLM"
+              ]
             }
           ]
         }

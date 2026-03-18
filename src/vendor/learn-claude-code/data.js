@@ -30,7 +30,7 @@ import s11Scenario from './data/scenarios/s11.json';
 import s12Scenario from './data/scenarios/s12.json';
 
 export const LEARNING_PATH = [
-  'preface', 's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12'
+  'preface', 's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12', 'bp01'
 ];
 
 export const VERSION_META = {
@@ -46,7 +46,8 @@ export const VERSION_META = {
   s09: { title: 'Agent Teams', subtitle: 'Teammates + Mailboxes', coreAddition: 'TeammateManager + file-based mailbox', keyInsight: "When one agent can't finish, delegate to persistent teammates via async mailboxes", layer: 'collaboration', prevVersion: 's08' },
   s10: { title: 'Team Protocols', subtitle: 'Shared Communication Rules', coreAddition: 'request_id correlation for two protocols', keyInsight: 'One request-response pattern drives all team negotiation', layer: 'collaboration', prevVersion: 's09' },
   s11: { title: 'Autonomous Agents', subtitle: 'Scan Board, Claim Tasks', coreAddition: 'Task board polling + timeout-based self-governance', keyInsight: 'Teammates scan the board and claim tasks themselves; no need for the lead to assign each one', layer: 'collaboration', prevVersion: 's10' },
-  s12: { title: 'Worktree + Task Isolation', subtitle: 'Isolate by Directory', coreAddition: 'Composable worktree lifecycle + event stream over a shared task board', keyInsight: 'Each works in its own directory; tasks manage goals, worktrees manage directories, bound by ID', layer: 'collaboration', prevVersion: 's11' }
+  s12: { title: 'Worktree + Task Isolation', subtitle: 'Isolate by Directory', coreAddition: 'Composable worktree lifecycle + event stream over a shared task board', keyInsight: 'Each works in its own directory; tasks manage goals, worktrees manage directories, bound by ID', layer: 'collaboration', prevVersion: 's11' },
+  bp01: { title: 'Claude Code 最佳实践指南', subtitle: 'Best Practices Guide', coreAddition: 'Complete guide to using Claude Code effectively', keyInsight: '上下文窗口是最重要的资源，几乎所有最佳实践都围绕这个约束展开', layer: 'best-practices', prevVersion: null }
 };
 
 export const LAYERS = [
@@ -55,7 +56,8 @@ export const LAYERS = [
   { id: 'planning', label: 'Planning & Coordination', color: '#10B981', versions: ['s03', 's04', 's05', 's07'] },
   { id: 'memory', label: 'Memory Management', color: '#8B5CF6', versions: ['s06'] },
   { id: 'concurrency', label: 'Concurrency', color: '#F59E0B', versions: ['s08'] },
-  { id: 'collaboration', label: 'Collaboration', color: '#EF4444', versions: ['s09', 's10', 's11', 's12'] }
+  { id: 'collaboration', label: 'Collaboration', color: '#EF4444', versions: ['s09', 's10', 's11', 's12'] },
+  { id: 'best-practices', label: 'Best Practices', color: '#06B6D4', versions: ['bp01'] }
 ];
 
 export const ANNOTATIONS = {

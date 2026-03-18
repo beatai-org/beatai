@@ -37,6 +37,18 @@
               ]
             },
             {
+              "title": "2028全球智能危机",
+              "path": "/ai-insights/viewpoint/2028-global-intelligence-crisis",
+              "file": "/docs/ai-insights/viewpoint/2028-global-intelligence-crisis.md",
+              "tags": [
+                "AI",
+                "宏观经济",
+                "白领替代",
+                "系统性风险",
+                "按揭市场"
+              ]
+            },
+            {
               "title": "微软中国 CTO 韦青：警惕朋友圈 AI 神话，重视苦活、脏活、累活",
               "path": "/ai-insights/viewpoint/weiching-ai-reform",
               "file": "/docs/ai-insights/viewpoint/weiching-ai-reform.md",
@@ -46,6 +58,18 @@
                 "微软",
                 "组织变革",
                 "数字化"
+              ]
+            },
+            {
+              "title": "用 AI 反向工程 1986 年的游戏",
+              "path": "/ai-insights/viewpoint/ai-reverse-engineered-bubble-bobble",
+              "file": "/docs/ai-insights/viewpoint/ai-reverse-engineered-bubble-bobble.md",
+              "tags": [
+                "AI",
+                "逆向工程",
+                "二进制分析",
+                "游戏",
+                "软件安全"
               ]
             }
           ]

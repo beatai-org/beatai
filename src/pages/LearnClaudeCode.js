@@ -114,6 +114,21 @@ function renameBookTitle(content) {
   );
 }
 
+function resolveDocContentUrl(contentPath) {
+  if (!contentPath) {
+    return '';
+  }
+
+  if (/^https?:\/\//.test(contentPath)) {
+    return contentPath;
+  }
+
+  const publicBase = process.env.PUBLIC_URL || '';
+  const normalizedPath = contentPath.startsWith('/') ? contentPath : `/${contentPath}`;
+
+  return `${publicBase}${normalizedPath}`;
+}
+
 function safeSessionLabel(version) {
   return normalizeSessionTitle(
     zhMessages.sessions?.[version] || VERSION_META[version]?.title || version
@@ -355,10 +370,53 @@ function DocRenderer({ version }) {
   const doc = useMemo(() => getVersionDoc(version), [version]);
   const articleRef = useRef(null);
   const [headings, setHeadings] = useState([]);
+  const [rawContent, setRawContent] = useState('');
+  const [contentLoading, setContentLoading] = useState(false);
   const content = useMemo(
-    () => renameBookTitle(trimPrefaceContent(version, stripLearningPathCode(doc?.content))),
-    [doc, version]
+    () => renameBookTitle(trimPrefaceContent(version, stripLearningPathCode(rawContent))),
+    [rawContent, version]
   );
+
+  useEffect(() => {
+    if (!doc) {
+      setRawContent('');
+      setContentLoading(false);
+      return undefined;
+    }
+
+    if (doc.contentPath) {
+      const controller = new AbortController();
+      const url = resolveDocContentUrl(doc.contentPath);
+
+      setRawContent('');
+      setContentLoading(true);
+
+      fetch(url, { signal: controller.signal })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.text();
+        })
+        .then((text) => {
+          setRawContent(text);
+          setContentLoading(false);
+        })
+        .catch((err) => {
+          if (err.name !== 'AbortError') {
+            console.error('Failed to load LLC markdown:', err);
+            setRawContent('');
+            setContentLoading(false);
+          }
+        });
+
+      return () => controller.abort();
+    }
+
+    setRawContent(doc.content || '');
+    setContentLoading(false);
+    return undefined;
+  }, [doc]);
 
   useEffect(() => {
     if (!doc) {
@@ -383,6 +441,10 @@ function DocRenderer({ version }) {
   }, [content, doc, version]);
 
   if (!doc) {
+    return null;
+  }
+
+  if (contentLoading && !rawContent) {
     return null;
   }
 

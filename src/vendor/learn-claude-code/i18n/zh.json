@@ -39,6 +39,7 @@
     "loc_delta": "代码量差异"
   },
   "sessions": {
+    "preface": "序言",
     "s01": "Agent 循环",
     "s02": "工具",
     "s03": "TodoWrite",
@@ -53,6 +54,7 @@
     "s12": "Worktree + 任务隔离"
   },
   "layer_labels": {
+    "introduction": "序言",
     "tools": "工具与执行",
     "planning": "规划与协调",
     "memory": "内存管理",

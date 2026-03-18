@@ -76,6 +76,12 @@ function formatVersionCode(version) {
   return version.toUpperCase();
 }
 
+function getVersionNavTitle(version) {
+  return version === 'preface'
+    ? safeSessionLabel(version)
+    : `${formatVersionCode(version)} ${safeSessionLabel(version)}`;
+}
+
 function normalizeSessionTitle(title) {
   return String(title || '').replace(/^(s\d{2})(:|\b)/, (match, code, suffix) => (
     `${code.toUpperCase()}${suffix}`
@@ -87,6 +93,18 @@ function stripLearningPathCode(content) {
     /\n\n`(?=[^`\n]*(?:s01|s02|s03|s04|s05|s06|s07|s08|s09|s10|s11|s12))[^`\n]*`\n\n/i,
     '\n\n'
   );
+}
+
+function trimPrefaceContent(version, content) {
+  if (version !== 'preface') {
+    return String(content || '');
+  }
+
+  const marker = '\n## 快速开始';
+  const normalized = String(content || '');
+  const markerIndex = normalized.indexOf(marker);
+
+  return markerIndex >= 0 ? normalized.slice(0, markerIndex).trimEnd() : normalized;
 }
 
 function safeSessionLabel(version) {
@@ -141,7 +159,7 @@ function LearnClaudeCode() {
     sections: LAYERS.map((layer) => ({
       title: zhMessages.layer_labels?.[layer.id] || layer.label,
       items: layer.versions.map((versionId) => ({
-        title: `${formatVersionCode(versionId)} ${safeSessionLabel(versionId)}`,
+        title: getVersionNavTitle(versionId),
         path: `/learn-claude-code/${versionId}`
       }))
     }))
@@ -195,31 +213,46 @@ function VersionPage() {
   const { version } = useParams();
   const [activeTab, setActiveTab] = useState('learn');
 
+  useEffect(() => {
+    setActiveTab('learn');
+  }, [version]);
+
   if (!LEARNING_PATH.includes(version)) {
     return <NotFoundState label={version} />;
   }
 
   const versionData = getVersionData(version);
   const meta = VERSION_META[version];
+  const hasVisualization = Boolean(zhMessages.viz?.[version]);
+  const hasSimulateTab = Boolean(SCENARIOS[version]);
+  const hasCodeTab = Boolean(versionData?.source);
+  const hasDeepDiveTab = Boolean(getFlowForVersion(version) || ANNOTATIONS[version]?.decisions?.length);
   const pathIndex = LEARNING_PATH.indexOf(version);
   const prevVersion = pathIndex > 0 ? LEARNING_PATH[pathIndex - 1] : null;
   const nextVersion = pathIndex < LEARNING_PATH.length - 1 ? LEARNING_PATH[pathIndex + 1] : null;
   const prevNav = prevVersion ? {
     path: `/learn-claude-code/${prevVersion}`,
-    title: `${formatVersionCode(prevVersion)} ${safeSessionLabel(prevVersion)}`,
+    title: getVersionNavTitle(prevVersion),
     section: getLayerLabelForVersion(prevVersion)
   } : null;
   const nextNav = nextVersion ? {
     path: `/learn-claude-code/${nextVersion}`,
-    title: `${formatVersionCode(nextVersion)} ${safeSessionLabel(nextVersion)}`,
+    title: getVersionNavTitle(nextVersion),
     section: getLayerLabelForVersion(nextVersion)
   } : null;
-  const tabs = [
-    { id: 'learn', label: zhMessages.version.tab_learn },
-    { id: 'simulate', label: zhMessages.version.tab_simulate },
-    { id: 'code', label: zhMessages.version.tab_code },
-    { id: 'deep-dive', label: zhMessages.version.tab_deep_dive }
-  ];
+  const tabs = [{ id: 'learn', label: zhMessages.version.tab_learn }];
+
+  if (hasSimulateTab) {
+    tabs.push({ id: 'simulate', label: zhMessages.version.tab_simulate });
+  }
+
+  if (hasCodeTab) {
+    tabs.push({ id: 'code', label: zhMessages.version.tab_code });
+  }
+
+  if (hasDeepDiveTab) {
+    tabs.push({ id: 'deep-dive', label: zhMessages.version.tab_deep_dive });
+  }
 
   return (
     <section className="lcc-section">
@@ -229,23 +262,27 @@ function VersionPage() {
         <blockquote className="doc-blockquote">{meta.keyInsight}</blockquote>
       </header>
 
-      <section className="lcc-hero-shell">
-        <SessionVisualization version={version} />
-      </section>
+      {hasVisualization ? (
+        <section className="lcc-hero-shell">
+          <SessionVisualization version={version} />
+        </section>
+      ) : null}
 
       <section className={cn('lcc-body-shell', activeTab === 'learn' && 'lcc-body-shell-doc')}>
-        <div className="lcc-tabs">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              className={cn(activeTab === tab.id && 'active')}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        {tabs.length > 1 ? (
+          <div className="lcc-tabs">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                className={cn(activeTab === tab.id && 'active')}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        ) : null}
 
         <div className="lcc-tab-panel">
           {activeTab === 'learn' && <DocRenderer version={version} />}
@@ -274,7 +311,10 @@ function DocRenderer({ version }) {
   const doc = useMemo(() => getVersionDoc(version), [version]);
   const articleRef = useRef(null);
   const [headings, setHeadings] = useState([]);
-  const content = useMemo(() => stripLearningPathCode(doc?.content), [doc]);
+  const content = useMemo(
+    () => trimPrefaceContent(version, stripLearningPathCode(doc?.content)),
+    [doc, version]
+  );
 
   useEffect(() => {
     if (!doc) {

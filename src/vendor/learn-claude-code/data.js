@@ -1,6 +1,7 @@
 import zhMessages from './i18n/zh.json';
-import docsData from './data/generated/docs.json';
-import versionsData from './data/generated/versions.json';
+import baseDocsData from './data/generated/docs.json';
+import baseVersionsData from './data/generated/versions.json';
+import PREFACE_DOC from './data/preface';
 
 import s01Annotations from './data/annotations/s01.json';
 import s02Annotations from './data/annotations/s02.json';
@@ -29,10 +30,11 @@ import s11Scenario from './data/scenarios/s11.json';
 import s12Scenario from './data/scenarios/s12.json';
 
 export const LEARNING_PATH = [
-  's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12'
+  'preface', 's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12'
 ];
 
 export const VERSION_META = {
+  preface: { title: 'Preface',  coreAddition: 'Course overview and framing', keyInsight: '从 0 到 1 构建 nano Claude Code-like agent，每次只加一个机制', layer: 'introduction', prevVersion: null },
   s01: { title: 'The Agent Loop', subtitle: 'Bash is All You Need', coreAddition: 'Single-tool agent loop', keyInsight: 'The minimal agent kernel is a while loop + one tool', layer: 'tools', prevVersion: null },
   s02: { title: 'Tools', subtitle: 'One Handler Per Tool', coreAddition: 'Tool dispatch map', keyInsight: 'The loop stays the same; new tools register into the dispatch map', layer: 'tools', prevVersion: 's01' },
   s03: { title: 'TodoWrite', subtitle: 'Plan Before You Act', coreAddition: 'TodoManager + nag reminder', keyInsight: 'An agent without a plan drifts; list the steps first, then execute', layer: 'planning', prevVersion: 's02' },
@@ -48,6 +50,7 @@ export const VERSION_META = {
 };
 
 export const LAYERS = [
+  { id: 'introduction', label: 'Preface', color: '#64748B', versions: ['preface'] },
   { id: 'tools', label: 'Tools & Execution', color: '#3B82F6', versions: ['s01', 's02'] },
   { id: 'planning', label: 'Planning & Coordination', color: '#10B981', versions: ['s03', 's04', 's05', 's07'] },
   { id: 'memory', label: 'Memory Management', color: '#8B5CF6', versions: ['s06'] },
@@ -84,6 +87,9 @@ export const SCENARIOS = {
   s11: s11Scenario,
   s12: s12Scenario
 };
+
+export const docsData = [PREFACE_DOC, ...baseDocsData];
+export const versionsData = baseVersionsData;
 
 const FLOW_WIDTH = 600;
 const COL_CENTER = FLOW_WIDTH / 2;
@@ -394,4 +400,4 @@ export function getFlowForVersion(version) {
   return EXECUTION_FLOWS[version] || null;
 }
 
-export { zhMessages, docsData, versionsData };
+export { zhMessages };

@@ -42,7 +42,7 @@ const AppHeader = ({
   };
 
   const handleMobileLearnClaudeCodeClick = () => {
-    navigate('/learn-claude-code/s01');
+    navigate('/learn-claude-code/preface');
     setMobileDropdownOpen(false);
   };
 
@@ -134,7 +134,7 @@ const AppHeader = ({
           ))}
 
           <Link
-            to="/learn-claude-code/s01"
+            to="/learn-claude-code/preface"
             className={`category-tab category-link ${isLearnClaudeCodeActive ? 'active' : ''}`}
           >
             <span className="category-title">Learn Claude Code</span>

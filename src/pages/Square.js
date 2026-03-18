@@ -5,8 +5,8 @@ import AppHeader from '../components/AppHeader/AppHeader';
 import Footer from '../components/Footer/Footer';
 import AIInsightsIcon from '../components/icons/AIInsightsIcon';
 import RustBookIcon from '../components/icons/RustBookIcon';
+import LearnClaudeCodeIcon from '../components/icons/LearnClaudeCodeIcon';
 import BeatAILogoWave from '../components/BeatAILogoWave';
-import { FaCodeBranch } from 'react-icons/fa';
 import './Square.css';
 
 const Square = () => {
@@ -98,9 +98,9 @@ const Square = () => {
                   <p>学习 AI 时代最安全的语言</p>
                 </a>
 
-                <a href="/learn-claude-code/s01" className="square-card glass-card">
+                <a href="/learn-claude-code/preface" className="square-card glass-card">
                   <div className="card-icon">
-                    <FaCodeBranch size={72} />
+                    <LearnClaudeCodeIcon size={80} />
                   </div>
                   <h3>Learn Claude Code</h3>
                   <p>从 0 到 1 构建 nano Claude Code-like agent，每次只加一个机制</p>

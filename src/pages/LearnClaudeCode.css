@@ -241,7 +241,7 @@
 .doc-content.lcc-doc-content {
   width: 100%;
   max-width: none;
-  padding: 32px 0 !important;
+  padding: 0px 0 !important;
   border-radius: 0;
   background: transparent;
 }
@@ -283,7 +283,7 @@
   }
 
   .doc-content.lcc-doc-content {
-    padding: 32px 0 !important;
+    padding: 0px 0 !important;
   }
 }
 

@@ -1,0 +1,76 @@
+.lcc-step-controls-buttons {
+  gap: 10px;
+}
+
+.lcc-step-control-btn {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(228, 228, 231, 0.9);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #52525b;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 18px rgba(15, 23, 42, 0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+}
+
+.lcc-step-control-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(96, 165, 250, 0.55);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.14);
+  color: #1d4ed8;
+  background: #ffffff;
+}
+
+.lcc-step-control-btn:disabled {
+  opacity: 0.35;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.lcc-step-control-btn svg {
+  width: 17px;
+  height: 17px;
+  stroke-width: 2.1;
+}
+
+.lcc-step-control-btn-primary {
+  border-color: rgba(59, 130, 246, 0.65);
+  background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+  color: #1d4ed8;
+}
+
+.lcc-step-control-btn-primary:hover:not(:disabled) {
+  border-color: rgba(37, 99, 235, 0.7);
+  background: linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
+}
+
+:root[data-theme-mode='dark'] .lcc-step-control-btn {
+  border-color: rgba(63, 63, 70, 0.95);
+  background: linear-gradient(180deg, rgba(39, 39, 42, 0.95) 0%, rgba(24, 24, 27, 0.98) 100%);
+  color: #d4d4d8;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme-mode='dark'] .lcc-step-control-btn:hover:not(:disabled) {
+  border-color: rgba(96, 165, 250, 0.6);
+  background: linear-gradient(180deg, rgba(39, 39, 42, 1) 0%, rgba(9, 9, 11, 1) 100%);
+  color: #f8fafc;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
+}
+
+:root[data-theme-mode='dark'] .lcc-step-control-btn-primary {
+  border-color: rgba(59, 130, 246, 0.65);
+  background: linear-gradient(180deg, rgba(30, 64, 175, 0.88) 0%, rgba(29, 78, 216, 0.72) 100%);
+  color: #eff6ff;
+}
+
+:root[data-theme-mode='dark'] .lcc-step-control-btn-primary:hover:not(:disabled) {
+  border-color: rgba(147, 197, 253, 0.85);
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.96) 0%, rgba(30, 64, 175, 0.88) 100%);
+  color: #ffffff;
+}

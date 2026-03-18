@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { HiMenu, HiX, HiChevronDown } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 import ThemeSelector from '../ThemeSelector';
@@ -31,10 +31,18 @@ const AppHeader = ({
   onMenuToggle = null
 }) => {
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   const showCategoryNav = categories.length > 0 && onCategoryClick;
+  const isLearnClaudeCodeActive = location.pathname.startsWith('/learn-claude-code');
 
   const handleMobileCategoryClick = (category) => {
     onCategoryClick(category);
+    setMobileDropdownOpen(false);
+  };
+
+  const handleMobileLearnClaudeCodeClick = () => {
+    navigate('/learn-claude-code/s01');
     setMobileDropdownOpen(false);
   };
 
@@ -60,7 +68,7 @@ const AppHeader = ({
                 className="mobile-category-toggle"
                 onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
               >
-                <span>{activeCategory?.title || '选择书籍'}</span>
+                <span>{isLearnClaudeCodeActive ? 'Learn Claude Code' : (activeCategory?.title || '选择书籍')}</span>
                 <HiChevronDown className={`dropdown-icon ${mobileDropdownOpen ? 'open' : ''}`} />
               </button>
               {mobileDropdownOpen && (
@@ -74,6 +82,12 @@ const AppHeader = ({
                       {category.title}
                     </button>
                   ))}
+                  <button
+                    className={`mobile-category-item ${isLearnClaudeCodeActive ? 'active' : ''}`}
+                    onClick={handleMobileLearnClaudeCodeClick}
+                  >
+                    Learn Claude Code
+                  </button>
                 </div>
               )}
             </div>
@@ -96,32 +110,36 @@ const AppHeader = ({
         )}
 
         {/* Desktop Category Navigation */}
-        {showCategoryNav && (
-          <nav className="category-nav desktop-only">
-            {categories.map(category => (
-              <button
-                key={category.id}
-                className={`category-tab ${activeCategory?.id === category.id ? 'active' : ''}`}
-                onClick={() => onCategoryClick(category)}
-              >
-                <span className="category-title">{category.title}</span>
-                {/* GitHub icon appears only for the active category */}
-                {activeCategory?.id === category.id && GITHUB_REPOS[category.id] && (
-                  <a
-                    href={GITHUB_REPOS[category.id]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="github-link-inline"
-                    title={`访问 ${category.title} 的 GitHub 仓库`}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <FaGithub />
-                  </a>
-                )}
-              </button>
-            ))}
-          </nav>
-        )}
+        <nav className="category-nav desktop-only">
+          {showCategoryNav && categories.map(category => (
+            <button
+              key={category.id}
+              className={`category-tab ${activeCategory?.id === category.id ? 'active' : ''}`}
+              onClick={() => onCategoryClick(category)}
+            >
+              <span className="category-title">{category.title}</span>
+              {activeCategory?.id === category.id && GITHUB_REPOS[category.id] && (
+                <a
+                  href={GITHUB_REPOS[category.id]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="github-link-inline"
+                  title={`访问 ${category.title} 的 GitHub 仓库`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <FaGithub />
+                </a>
+              )}
+            </button>
+          ))}
+
+          <Link
+            to="/learn-claude-code/s01"
+            className={`category-tab category-link ${isLearnClaudeCodeActive ? 'active' : ''}`}
+          >
+            <span className="category-title">Learn Claude Code</span>
+          </Link>
+        </nav>
 
         {/* Actions */}
         <div className="app-header-actions">

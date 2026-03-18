@@ -5,7 +5,6 @@ import './App.css';
 import './styles/Background.css';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AnnotationProvider } from './contexts/AnnotationContext';
-import { TagProvider } from './contexts/TagContext';
 import PageTransitionLoader from './components/PageTransitionLoader';
 import { lazyWithMinLoadTime } from './utils/lazyWithMinLoadTime';
 
@@ -16,6 +15,7 @@ const MyNotes = lazy(() => lazyWithMinLoadTime(() => import('./components/docs/M
 const TagPage = lazy(() => lazyWithMinLoadTime(() => import('./pages/TagPage')));
 const Square = lazy(() => lazyWithMinLoadTime(() => import('./pages/Square')));
 const LogoShowcase = lazy(() => lazyWithMinLoadTime(() => import('./pages/LogoShowcase')));
+const LearnClaudeCode = lazy(() => lazyWithMinLoadTime(() => import('./pages/LearnClaudeCode')));
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
                   <Route path="/my-notes" element={<MyNotes />} />
                   <Route path="/square" element={<Square />} />
                   <Route path="/logo-showcase" element={<LogoShowcase />} />
+                  <Route path="/learn-claude-code/*" element={<LearnClaudeCode />} />
                   <Route path="/tags/:tagName" element={<TagPage />} />
                   <Route path="/*" element={<Docs />} />
                 </Routes>

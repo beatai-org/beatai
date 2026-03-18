@@ -6,6 +6,7 @@ import Footer from '../components/Footer/Footer';
 import AIInsightsIcon from '../components/icons/AIInsightsIcon';
 import RustBookIcon from '../components/icons/RustBookIcon';
 import BeatAILogoWave from '../components/BeatAILogoWave';
+import { FaCodeBranch } from 'react-icons/fa';
 import './Square.css';
 
 const Square = () => {
@@ -97,6 +98,15 @@ const Square = () => {
                   <h3>Rust 语言圣经</h3>
                   <p>学习 AI 时代最安全的语言</p>
                   <span className="card-link">开始学习 →</span>
+                </a>
+
+                <a href="/learn-claude-code/s01" className="square-card glass-card">
+                  <div className="card-icon">
+                    <FaCodeBranch size={72} />
+                  </div>
+                  <h3>Learn Claude Code</h3>
+                  <p>已迁移 Learn Claude Code 学习路径，直接进入版本目录与详情页</p>
+                  <span className="card-link">进入学习路径 →</span>
                 </a>
               </div>
             </div>

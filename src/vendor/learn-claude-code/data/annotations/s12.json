@@ -1,0 +1,89 @@
+{
+  "version": "s12",
+  "decisions": [
+    {
+      "id": "shared-board-isolated-lanes",
+      "title": "Shared Task Board + Isolated Execution Lanes",
+      "description": "The task board remains shared and centralized in `.tasks/`, while file edits happen in per-task worktree directories. This separation preserves global visibility (who owns what, what is done) without forcing everyone to edit inside one mutable directory. Coordination stays simple because there is one board, and execution stays safe because each lane is isolated.",
+      "alternatives": "A single shared workspace is simpler but causes edit collisions and mixed git state. Fully independent task stores per lane avoid collisions but lose team-level visibility and make planning harder.",
+      "zh": {
+        "title": "共享任务板 + 隔离执行通道",
+        "description": "任务板继续集中在 `.tasks/`，而文件改动发生在按任务划分的 worktree 目录中。这样既保留了全局可见性（谁在做什么、完成到哪），又避免所有人同时写同一目录导致冲突。协调层简单（一个任务板），执行层安全（多条隔离通道）。"
+      },
+      "ja": {
+        "title": "共有タスクボード + 分離実行レーン",
+        "description": "タスクボードは `.tasks/` に集約しつつ、実際の編集はタスクごとの worktree ディレクトリで行う。これにより全体の可視性（担当と進捗）を維持しながら、単一ディレクトリでの衝突を回避できる。調整は1つのボードで単純化され、実行はレーン分離で安全になる。"
+      }
+    },
+    {
+      "id": "index-file-lifecycle",
+      "title": "Explicit Worktree Lifecycle Index",
+      "description": "`.worktrees/index.json` records each worktree's name, path, branch, task_id, and status. This makes lifecycle state inspectable and recoverable even after context compression or process restarts. The index also provides a deterministic source for list/status/remove operations.",
+      "alternatives": "Relying only on `git worktree list` removes local bookkeeping but loses task binding metadata and custom lifecycle states. Keeping all state only in memory is simpler in code but breaks recoverability.",
+      "zh": {
+        "title": "显式 worktree 生命周期索引",
+        "description": "`.worktrees/index.json` 记录每个 worktree 的名称、路径、分支、task_id 与状态。即使上下文压缩或进程重启，这些生命周期状态仍可检查和恢复。它也为 list/status/remove 提供了确定性的本地数据源。"
+      },
+      "ja": {
+        "title": "明示的な worktree ライフサイクル索引",
+        "description": "`.worktrees/index.json` に name/path/branch/task_id/status を記録することで、コンテキスト圧縮やプロセス再起動後も状態を追跡できる。list/status/remove の挙動もこの索引を基準に決定できる。"
+      }
+    },
+    {
+      "id": "lane-cwd-routing-and-reentry-guard",
+      "title": "Lane-Scoped CWD Routing + Re-entry Guard",
+      "description": "Commands are routed to a worktree's directory via `worktree_run(name, command)` using the `cwd` parameter. A re-entry guard prevents accidentally running inside an already-active worktree context, keeping lifecycle ownership unambiguous.",
+      "alternatives": "Global cwd mutation is easy to implement but can leak context across parallel work. Allowing silent re-entry makes lifecycle ownership ambiguous and complicates teardown behavior.",
+      "zh": {
+        "title": "按通道 cwd 路由 + 禁止重入",
+        "description": "命令通过 `worktree_run(name, command)` 使用 `cwd` 参数路由到 worktree 目录。重入保护避免了在已激活的 worktree 上下文中意外二次进入，保持生命周期归属清晰。"
+      },
+      "ja": {
+        "title": "レーン単位 cwd ルーティング + 再入防止",
+        "description": "`worktree_run(name, command)` で `cwd` パラメータを使いコマンドを worktree ディレクトリへ転送する。再入ガードにより active な worktree への二重入場を防ぎ、ライフサイクルの帰属を明確に保つ。"
+      }
+    },
+    {
+      "id": "event-stream-observability",
+      "title": "Append-Only Lifecycle Event Stream",
+      "description": "Lifecycle events are appended to `.worktrees/events.jsonl` (`worktree.create.*`, `worktree.remove.*`, `task.completed`). This turns hidden transitions into queryable records and makes failures explicit (`*.failed`) instead of silent.",
+      "alternatives": "Relying only on console logs is lighter but fragile during long sessions and hard to audit. A full event bus infrastructure is powerful but heavier than needed for this teaching baseline.",
+      "zh": {
+        "title": "追加式生命周期事件流",
+        "description": "生命周期事件写入 `.worktrees/events.jsonl`（如 `worktree.create.*`、`worktree.remove.*`、`task.completed`）。这样状态迁移可查询、可追踪，失败也会以 `*.failed` 显式暴露，而不是静默丢失。"
+      },
+      "ja": {
+        "title": "追記型ライフサイクルイベント",
+        "description": "ライフサイクルイベントを `.worktrees/events.jsonl` に追記する（`worktree.create.*`、`worktree.remove.*`、`task.completed` など）。遷移が可観測になり、失敗も `*.failed` として明示できる。"
+      }
+    },
+    {
+      "id": "task-worktree-closeout",
+      "title": "Close Task and Workspace Together",
+      "description": "`worktree_remove(..., complete_task=true)` allows a single closeout step: remove the isolated directory and mark the bound task completed. Closeout remains an explicit tool-driven transition (`worktree_keep` / `worktree_remove`) rather than hidden automatic cleanup. This reduces dangling state where a task says done but its temporary lane remains active (or the reverse).",
+      "alternatives": "Keeping closeout fully manual gives flexibility but increases operational drift. Fully automatic removal on every completion risks deleting a workspace before final review.",
+      "zh": {
+        "title": "任务与工作区一起收尾",
+        "description": "`worktree_remove(..., complete_task=true)` 允许在一个动作里完成收尾：删除隔离目录并把绑定任务标记为 completed。收尾保持为显式工具驱动迁移（`worktree_keep` / `worktree_remove`），而不是隐藏的自动清理。这样可减少状态悬挂（任务已完成但临时工作区仍活跃，或反过来）。"
+      },
+      "ja": {
+        "title": "タスクとワークスペースを同時にクローズ",
+        "description": "`worktree_remove(..., complete_task=true)` により、分離ディレクトリ削除とタスク完了更新を1ステップで実行できる。クローズ処理は `worktree_keep` / `worktree_remove` の明示ツール遷移として扱い、暗黙の自動清掃にはしない。"
+      }
+    },
+    {
+      "id": "event-stream-side-channel",
+      "title": "Event Stream Is Observability Side-Channel",
+      "description": "Lifecycle events improve auditability, but the source of truth remains task/worktree state files. Events should be read as transition traces, not as a replacement state machine.",
+      "alternatives": "Using logs alone hides structured transitions; using events as the only state source risks drift when replay/repair semantics are undefined.",
+      "zh": {
+        "title": "事件流是观测旁路，不是状态机替身",
+        "description": "生命周期事件提升可审计性，但真实状态源仍是任务/工作区状态文件。事件更适合做迁移轨迹，而不是替代主状态机。"
+      },
+      "ja": {
+        "title": "イベントは観測サイドチャネルであり状態機械の代替ではない",
+        "description": "ライフサイクルイベントは監査性を高めるが、真の状態源は task/worktree 状態ファイルのまま。イベントは遷移トレースとして扱い、主状態機械の代替にしない。"
+      }
+    }
+  ]
+}

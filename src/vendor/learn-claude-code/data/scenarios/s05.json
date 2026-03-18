@@ -1,0 +1,44 @@
+{
+  "version": "s05",
+  "title": "Skills",
+  "description": "Agent loads external knowledge from SKILL.md files",
+  "steps": [
+    {
+      "type": "user_message",
+      "content": "Set up a new Next.js project with TypeScript",
+      "annotation": "Task requires framework-specific knowledge"
+    },
+    {
+      "type": "system_event",
+      "content": "[SkillLoader] Scanning for SKILL.md files... Found: nextjs.SKILL.md",
+      "annotation": "SkillLoader finds a matching skill file before the loop runs"
+    },
+    {
+      "type": "system_event",
+      "content": "[Skill injected] nextjs.SKILL.md -> tool_result message appended",
+      "annotation": "Skill content is injected as a tool_result, not bloating the system prompt"
+    },
+    {
+      "type": "assistant_text",
+      "content": "I have knowledge about Next.js setup. Let me create the project structure.",
+      "annotation": "Model now has framework-specific knowledge from the skill file"
+    },
+    {
+      "type": "tool_call",
+      "content": "npx create-next-app@latest my-app --typescript --tailwind --eslint --app --src-dir",
+      "toolName": "bash",
+      "annotation": "Using skill-provided knowledge for correct flags"
+    },
+    {
+      "type": "tool_result",
+      "content": "Success! Created my-app at /workspace/my-app",
+      "toolName": "bash",
+      "annotation": "Project created with correct configuration"
+    },
+    {
+      "type": "assistant_text",
+      "content": "Next.js project created with TypeScript, Tailwind CSS, ESLint, App Router, and src/ directory.",
+      "annotation": "Skills inject via tool_result, not system prompt -- keeping context lean"
+    }
+  ]
+}

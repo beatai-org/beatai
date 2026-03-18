@@ -1,0 +1,47 @@
+{
+  "version": "s01",
+  "decisions": [
+    {
+      "id": "one-tool-sufficiency",
+      "title": "Why Bash Alone Is Enough",
+      "description": "Bash can read files, write files, run arbitrary programs, pipe data between processes, and manage the filesystem. Any additional tool (read_file, write_file, etc.) would be a strict subset of what bash already provides. Adding more tools doesn't unlock new capabilities -- it just adds surface area for confusion. The model has to learn fewer tool schemas, and the implementation stays under 100 lines. This is the minimal viable agent: one tool, one loop.",
+      "alternatives": "We could have started with a richer toolset (file I/O, HTTP, database), but that would obscure the core insight: an LLM with a shell is already a general-purpose agent. Starting minimal also makes it obvious what each subsequent version actually adds.",
+      "zh": {
+        "title": "为什么仅靠 Bash 就够了",
+        "description": "Bash 能读写文件、运行任意程序、在进程间传递数据、管理文件系统。任何额外的工具（read_file、write_file 等）都只是 bash 已有能力的子集。增加工具并不会解锁新能力，只会增加模型需要理解的接口。模型只需学习一个工具的 schema，实现代码不超过 100 行。这就是最小可行 agent：一个工具，一个循环。"
+      },
+      "ja": {
+        "title": "Bash だけで十分な理由",
+        "description": "Bash はファイルの読み書き、任意のプログラムの実行、プロセス間のデータパイプ、ファイルシステムの管理が可能です。追加のツール（read_file、write_file など）は bash が既に提供している機能の部分集合に過ぎません。ツールを増やしても新しい能力は得られず、モデルが理解すべきインターフェースが増えるだけです。モデルが学習するスキーマは1つだけで、実装は100行以内に収まります。これが最小限の実用的エージェント：1つのツール、1つのループです。"
+      }
+    },
+    {
+      "id": "process-as-subagent",
+      "title": "Recursive Process Spawning as Subagent Mechanism",
+      "description": "When the agent runs `python v0.py \"subtask\"`, it spawns a completely new process with a fresh LLM context. This child process is effectively a subagent: it has its own system prompt, its own conversation history, and its own task focus. When it finishes, the parent gets the stdout result. This is subagent delegation without any framework -- just Unix process semantics. Each child process naturally isolates concerns because it literally cannot see the parent's context.",
+      "alternatives": "A framework-level subagent system (like v3's Task tool) gives more control over what tools the subagent can access and how results are returned. But at v0, the point is to show that process spawning is the most primitive form of agent delegation -- no shared memory, no message passing, just stdin/stdout.",
+      "zh": {
+        "title": "用递归进程创建实现子代理机制",
+        "description": "当 agent 执行 `python v0.py \"subtask\"` 时，它会创建一个全新的进程，拥有全新的 LLM 上下文。这个子进程实际上就是一个子代理：有自己的系统提示词、对话历史和任务焦点。子进程完成后，父进程通过 stdout 获取结果。这就是不依赖任何框架的子代理委派——纯粹的 Unix 进程语义。每个子进程天然隔离关注点，因为它根本看不到父进程的上下文。"
+      },
+      "ja": {
+        "title": "再帰プロセス生成によるサブエージェント機構",
+        "description": "エージェントが `python v0.py \"subtask\"` を実行すると、新しい LLM コンテキストを持つ完全に新しいプロセスが生成されます。この子プロセスは事実上サブエージェントです：独自のシステムプロンプト、会話履歴、タスクフォーカスを持ちます。完了すると、親プロセスは stdout で結果を受け取ります。これはフレームワークなしのサブエージェント委任です——共有メモリもメッセージパッシングもなく、stdin/stdout だけです。各子プロセスは親のコンテキストを参照できないため、関心の分離が自然に実現されます。"
+      }
+    },
+    {
+      "id": "model-drives-everything",
+      "title": "No Planning Framework -- The Model Decides",
+      "description": "There is no planner, no task queue, no state machine. The system prompt tells the model how to approach problems, and the model decides what bash command to run next based on the conversation so far. This is intentional: at this level, adding a planning layer would be premature abstraction. The model's chain-of-thought IS the plan. The agent loop just keeps asking the model what to do until it stops requesting tools.",
+      "alternatives": "Later versions (v2) add explicit planning via TodoWrite. But v0 proves that implicit planning through the model's reasoning is sufficient for many tasks. The planning framework only becomes necessary when you need external visibility into the agent's intentions.",
+      "zh": {
+        "title": "没有规划框架——由模型自行决策",
+        "description": "没有规划器，没有任务队列，没有状态机。系统提示词告诉模型如何处理问题，模型根据对话历史决定下一步执行什么 bash 命令。这是有意为之的：在这个层级，添加规划层属于过早抽象。模型的思维链本身就是计划。agent 循环只是不断询问模型下一步做什么，直到模型不再请求工具为止。"
+      },
+      "ja": {
+        "title": "計画フレームワークなし——モデルが全てを決定",
+        "description": "プランナーもタスクキューも状態マシンもありません。システムプロンプトがモデルに問題の取り組み方を伝え、モデルがこれまでの会話に基づいて次に実行する bash コマンドを決定します。これは意図的な設計です：このレベルでは計画レイヤーの追加は時期尚早な抽象化です。モデルの思考の連鎖そのものが計画です。エージェントループはモデルがツールの呼び出しを止めるまで、次の行動を問い続けるだけです。"
+      }
+    }
+  ]
+}

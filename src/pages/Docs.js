@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import DocsLayout from '../components/docs/DocsLayout';
 import DocContent from '../components/docs/DocContent';
 import { TagProvider } from '../contexts/TagContext';
+import NotFound from './NotFound';
 import './Docs.css';
 
 // Component to handle category-level redirects
@@ -32,6 +33,7 @@ const CategoryRedirect = ({ meta }) => {
 
 const Docs = () => {
   const [docsMeta, setDocsMeta] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     // Load docs metadata
@@ -58,8 +60,41 @@ const Docs = () => {
       .catch(err => console.error('Failed to load docs meta:', err));
   }, []);
 
+  const validPaths = useMemo(() => {
+    const paths = new Set();
+
+    const collectItems = (items = []) => {
+      items.forEach((item) => {
+        if (item.path) {
+          paths.add(item.path);
+        }
+        if (item.children?.length) {
+          collectItems(item.children);
+        }
+      });
+    };
+
+    docsMeta?.categories?.forEach((category) => {
+      paths.add(`/${category.id}`);
+      category.sections?.forEach((section) => {
+        if (section.path) {
+          paths.add(section.path);
+        }
+        collectItems(section.items || []);
+      });
+    });
+
+    return paths;
+  }, [docsMeta]);
+
   if (!docsMeta) {
     return <div className="docs-loading">Loading documentation...</div>;
+  }
+
+  const isValidDocsPath = validPaths.has(location.pathname);
+
+  if (location.pathname !== '/' && !isValidDocsPath) {
+    return <NotFound requestedPath={location.pathname} />;
   }
 
   // Get default path - dynamically get the first chapter of the first book

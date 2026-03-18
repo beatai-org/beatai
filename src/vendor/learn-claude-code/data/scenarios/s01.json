@@ -1,0 +1,51 @@
+{
+  "version": "s01",
+  "title": "The Agent Loop",
+  "description": "A minimal agent that uses only bash to accomplish tasks",
+  "steps": [
+    {
+      "type": "user_message",
+      "content": "Create a file called hello.py that prints 'Hello, World!'",
+      "annotation": "User sends a task to the agent"
+    },
+    {
+      "type": "assistant_text",
+      "content": "I'll create that file for you using bash.",
+      "annotation": "The model decides to use its only tool: bash"
+    },
+    {
+      "type": "tool_call",
+      "content": "echo 'print(\"Hello, World!\")' > hello.py",
+      "toolName": "bash",
+      "annotation": "Tool call: the model generates a bash command"
+    },
+    {
+      "type": "tool_result",
+      "content": "",
+      "toolName": "bash",
+      "annotation": "Bash returns empty output (success)"
+    },
+    {
+      "type": "assistant_text",
+      "content": "Let me verify the file was created correctly.",
+      "annotation": "The loop continues: model sees the result and decides next action"
+    },
+    {
+      "type": "tool_call",
+      "content": "cat hello.py",
+      "toolName": "bash",
+      "annotation": "Another bash call to verify"
+    },
+    {
+      "type": "tool_result",
+      "content": "print(\"Hello, World!\")",
+      "toolName": "bash",
+      "annotation": "File contents confirmed"
+    },
+    {
+      "type": "assistant_text",
+      "content": "Done! I've created hello.py with the print statement. You can run it with `python hello.py`.",
+      "annotation": "stop_reason != 'tool_use' -> loop breaks, agent responds to user"
+    }
+  ]
+}

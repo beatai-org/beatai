@@ -1,6 +1,6 @@
 {
   "name": "beatai-website",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "private": true,
   "homepage": "https://beatai.org",
   "dependencies": {
@@ -9,10 +9,17 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^30.0.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "algoliasearch": "^5.49.2",
+    "autoprefixer": "^10.4.27",
     "buffer": "^6.0.3",
+    "framer-motion": "^12.38.0",
     "fuse.js": "^7.1.0",
     "gray-matter": "^4.0.3",
+    "lucide-react": "^0.577.0",
+    "postcss": "^8.5.8",
     "prismjs": "^1.30.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
@@ -25,6 +32,8 @@
     "rehype-raw": "^7.0.0",
     "rehype-sanitize": "^6.0.0",
     "remark-gfm": "^4.0.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -32,7 +41,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "version": "0.9.3",
+    "version": "0.10.0",
     "release": "bash scripts/release.sh",
     "sync-rust-course": "node scripts/sync-rust-course.mjs",
     "sync-beat-ai": "node scripts/sync-beat-ai.mjs",

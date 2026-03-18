@@ -1,0 +1,46 @@
+{
+  "version": "s02",
+  "title": "Tools",
+  "description": "Agent with read, write, edit, and bash tools",
+  "steps": [
+    {
+      "type": "user_message",
+      "content": "Add a function called greet(name) to hello.py",
+      "annotation": "User requests a code modification"
+    },
+    {
+      "type": "assistant_text",
+      "content": "Let me read the current file first.",
+      "annotation": "Model chooses read_file instead of bash cat"
+    },
+    {
+      "type": "tool_call",
+      "content": "hello.py",
+      "toolName": "read_file",
+      "annotation": "Dedicated read tool provides cleaner file access"
+    },
+    {
+      "type": "tool_result",
+      "content": "print(\"Hello, World!\")",
+      "toolName": "read_file",
+      "annotation": "File contents returned to the model"
+    },
+    {
+      "type": "tool_call",
+      "content": "hello.py\n---\ndef greet(name):\n    print(f\"Hello, {name}!\")\n\ngreet(\"World\")",
+      "toolName": "write_file",
+      "annotation": "write_file replaces the entire file content"
+    },
+    {
+      "type": "tool_result",
+      "content": "File written successfully",
+      "toolName": "write_file",
+      "annotation": "Write confirmed"
+    },
+    {
+      "type": "assistant_text",
+      "content": "I've updated hello.py with a greet(name) function that takes a name parameter.",
+      "annotation": "4 tools beat 1: each tool has a clear, focused purpose"
+    }
+  ]
+}

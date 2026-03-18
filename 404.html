@@ -569,9 +569,7 @@
         sessionStorage.setItem('githubPagesRedirect', payload);
         window.__BEATAI_404__ = { payload: payload };
 
-        window.setTimeout(function () {
-          window.location.replace(shellEntry);
-        }, 1200);
+        window.location.replace(shellEntry);
       })();
     </script>
   </head>

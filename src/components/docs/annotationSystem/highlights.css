@@ -1,0 +1,104 @@
+.highlighted-text {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-start) 20%, transparent),
+    color-mix(in srgb, var(--accent-end) 15%, transparent)
+  );
+  border-bottom: 2px solid color-mix(in srgb, var(--accent-start) 60%, transparent);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 2px 0;
+  border-radius: 2px;
+}
+
+.highlighted-text:hover {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-start) 30%, transparent),
+    color-mix(in srgb, var(--accent-end) 25%, transparent)
+  );
+  border-bottom-color: color-mix(in srgb, var(--accent-start) 90%, transparent);
+}
+
+[data-theme-mode="dark"] .highlighted-text {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-start) 25%, transparent),
+    color-mix(in srgb, var(--accent-end) 20%, transparent)
+  );
+  border-bottom: 2px solid color-mix(in srgb, var(--accent-start) 60%, transparent);
+}
+
+[data-theme-mode="dark"] .highlighted-text:hover {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-start) 35%, transparent),
+    color-mix(in srgb, var(--accent-end) 30%, transparent)
+  );
+  border-bottom-color: color-mix(in srgb, var(--accent-start) 90%, transparent);
+}
+
+.highlighted-text.shared-annotation {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.15));
+  border-bottom: 2px solid rgba(251, 191, 36, 0.6);
+}
+
+.highlighted-text.shared-annotation:hover {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(245, 158, 11, 0.25));
+  border-bottom-color: rgba(251, 191, 36, 0.9);
+}
+
+.annotation-pulse {
+  animation: annotationPulse 0.6s ease-in-out 3;
+}
+
+[data-theme-mode="dark"] .annotation-pulse {
+  animation: annotationPulseDark 0.6s ease-in-out 3;
+}
+
+.highlight-pulse {
+  animation: highlightPulse 0.6s ease-in-out 2;
+}
+
+@keyframes annotationPulse {
+  0%, 100% {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15));
+    border-bottom-color: rgba(139, 92, 246, 0.6);
+  }
+
+  50% {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.5), rgba(236, 72, 153, 0.4));
+    border-bottom-color: rgba(139, 92, 246, 1);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  }
+}
+
+@keyframes annotationPulseDark {
+  0%, 100% {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+    border-bottom-color: rgba(139, 92, 246, 0.5);
+  }
+
+  50% {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.3));
+    border-bottom-color: rgba(139, 92, 246, 0.9);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+}
+
+@keyframes highlightPulse {
+  0%, 100% {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15));
+  }
+
+  50% {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.35));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .annotation-pulse {
+    animation: none;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.3));
+  }
+}

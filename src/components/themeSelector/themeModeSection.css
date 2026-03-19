@@ -1,0 +1,70 @@
+.theme-mode-section {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 20px;
+}
+
+[data-theme-mode="dark"] .theme-mode-section {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.theme-mode-toggle {
+  display: flex;
+  gap: 12px;
+}
+
+.theme-mode-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+[data-theme-mode="dark"] .theme-mode-option {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.theme-mode-option:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+[data-theme-mode="dark"] .theme-mode-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-mode-option.active {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+  border-color: rgba(139, 92, 246, 0.3);
+  color: var(--text-primary);
+}
+
+[data-theme-mode="dark"] .theme-mode-option.active {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15));
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.theme-mode-icon {
+  font-size: 18px;
+}
+
+.theme-mode-name {
+  font-weight: 600;
+}
+
+.theme-mode-check {
+  margin-left: 4px;
+  font-size: 16px;
+  color: var(--accent-primary);
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}

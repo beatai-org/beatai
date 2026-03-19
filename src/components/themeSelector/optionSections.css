@@ -1,0 +1,126 @@
+.font-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.font-option,
+.font-weight-option,
+.font-size-option {
+  background: rgba(0, 0, 0, 0.03);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1f2937;
+  position: relative;
+}
+
+.font-option:hover,
+.font-weight-option:hover,
+.font-size-option:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.font-option.active,
+.font-weight-option.active,
+.font-size-option.active {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: var(--accent-primary);
+}
+
+[data-theme-mode="dark"] .font-option,
+[data-theme-mode="dark"] .font-weight-option,
+[data-theme-mode="dark"] .font-size-option {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f3f4f6;
+}
+
+[data-theme-mode="dark"] .font-option:hover,
+[data-theme-mode="dark"] .font-weight-option:hover,
+[data-theme-mode="dark"] .font-size-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme-mode="dark"] .font-option.active,
+[data-theme-mode="dark"] .font-weight-option.active,
+[data-theme-mode="dark"] .font-size-option.active {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--accent-primary);
+}
+
+.font-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.font-option-name {
+  flex: 1;
+}
+
+.font-option-check,
+.font-weight-check,
+.font-size-check {
+  font-weight: bold;
+  color: var(--accent-primary);
+}
+
+.font-option-check {
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.font-weight-list,
+.font-size-list {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.font-weight-option,
+.font-size-option {
+  flex: 1;
+  min-width: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 6px;
+  font-size: 14px;
+}
+
+.font-weight-name,
+.font-size-name {
+  font-size: 13px;
+}
+
+.font-weight-check,
+.font-size-check {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .font-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .font-list {
+    grid-template-columns: 1fr;
+  }
+
+  .font-weight-option {
+    min-width: 50px;
+    font-size: 13px;
+  }
+}

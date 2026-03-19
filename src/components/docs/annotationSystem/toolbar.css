@@ -1,0 +1,57 @@
+.annotation-toolbar {
+  position: fixed;
+  transform: translate(-50%, -100%);
+  background: var(--accent-gradient);
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+  pointer-events: auto;
+}
+
+.annotation-toolbar::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--accent-start);
+}
+
+.annotation-toolbar-disabled {
+  background: rgba(107, 114, 128, 0.95);
+  cursor: not-allowed;
+}
+
+.annotation-toolbar-disabled::after {
+  border-top-color: rgba(107, 114, 128, 0.95);
+}
+
+.annotation-toolbar-message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.annotation-toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}

@@ -4,6 +4,30 @@ import { RepoCard } from '../common';
 import './Sidebar.css';
 import '../../styles/3d-effects.css';
 
+function getTodayDateString() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function isPublishedToday(publishedAt) {
+  return Boolean(publishedAt) && publishedAt === getTodayDateString();
+}
+
+function TitleWithNewBadge({ title, publishedAt }) {
+  const showNewBadge = isPublishedToday(publishedAt);
+
+  return (
+    <span className="sidebar-title-with-badge">
+      <span className="sidebar-title-text" data-is-new={showNewBadge ? 'true' : undefined}>
+        {title}
+      </span>
+    </span>
+  );
+}
+
 const Sidebar = ({ meta, isOpen, onClose }) => {
   const sectionRefs = useRef({});
   const navRef = useRef(null);
@@ -136,7 +160,7 @@ const Sidebar = ({ meta, isOpen, onClose }) => {
                 }
                 onClick={() => handleParentItemClick(item.path)}
               >
-                <span className="sidebar-link-text">{item.title}</span>
+                <TitleWithNewBadge title={item.title} publishedAt={item.publishedAt} />
                 <span
                   className="sidebar-expand-icon"
                   onClick={(e) => {
@@ -162,7 +186,7 @@ const Sidebar = ({ meta, isOpen, onClose }) => {
               }
               onClick={onClose}
             >
-              <span className="sidebar-link-text">{item.title}</span>
+              <TitleWithNewBadge title={item.title} publishedAt={item.publishedAt} />
               <span className="sidebar-link-indicator"></span>
             </NavLink>
           )}
@@ -207,7 +231,9 @@ const Sidebar = ({ meta, isOpen, onClose }) => {
               onMouseLeave={() => handleMouseLeave(idx)}
             >
               <div className="sidebar-section-header">
-                <h3 className="sidebar-section-title">{section.title}</h3>
+                <h3 className="sidebar-section-title">
+                  <TitleWithNewBadge title={section.title} publishedAt={section.publishedAt} />
+                </h3>
               </div>
               <ul className="sidebar-items">
                 {section.items.map((item) => renderMenuItem(item))}

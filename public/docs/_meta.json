@@ -113,6 +113,30 @@
                 "Context Engineering",
                 "LLM"
               ]
+            },
+            {
+              "title": "为什么大模型越用越上头？",
+              "path": "/ai-insights/viewpoint/why-llms-are-so-addictive",
+              "file": "/docs/ai-insights/viewpoint/why-llms-are-so-addictive.md",
+              "tags": [
+                "AI",
+                "大模型",
+                "认知偏差",
+                "情绪价值",
+                "人机协同"
+              ]
+            },
+            {
+              "title": "Claude code团队内部skill构建踩坑经验大全",
+              "path": "/ai-insights/viewpoint/claude-code-skills-pitfalls",
+              "file": "/docs/ai-insights/viewpoint/claude-code-skills-pitfalls.md",
+              "tags": [
+                "ClaudeCode",
+                "Skills",
+                "Agent",
+                "工程实践",
+                "工作流"
+              ]
             }
           ]
         }

@@ -4,12 +4,14 @@ import { useTheme } from '../../contexts/ThemeContext';
 import './GiscusComments.css';
 
 const GISCUS_ORIGIN = 'https://giscus.app';
-const DEFAULT_REPO = process.env.REACT_APP_GISCUS_REPO || 'beatai-org/BeatAI';
-const DEFAULT_REPO_ID = process.env.REACT_APP_GISCUS_REPO_ID || 'R_kgDOGmKA_Q';
-const DEFAULT_CATEGORY = process.env.REACT_APP_GISCUS_CATEGORY || 'giscus';
-const DEFAULT_CATEGORY_ID = process.env.REACT_APP_GISCUS_CATEGORY_ID || 'DIC_kwDOGmKA_c4COcYR';
+const DEFAULT_REPO = process.env.REACT_APP_GISCUS_REPO || 'sunface/rust-course';
+const DEFAULT_REPO_ID = process.env.REACT_APP_GISCUS_REPO_ID || 'MDEwOlJlcG9zaXRvcnkxNDM4MjIwNjk=';
+// 'R_kgDOGmKA_Q'
+const DEFAULT_CATEGORY = process.env.REACT_APP_GISCUS_CATEGORY || '章节评论区';
+const DEFAULT_CATEGORY_ID = process.env.REACT_APP_GISCUS_CATEGORY_ID || 'DIC_kwDOCJKM9c4COQcP';
+// 'DIC_kwDOGmKA_c4COcYR'
 const DEFAULT_DISCUSSIONS_URL = process.env.REACT_APP_GISCUS_DISCUSSIONS_URL ||
-  'https://github.com/beatai-org/BeatAI/discussions/categories/giscus';
+  'https://github.com/sunface/rust-course/discussions/categories/giscus';
 const DEFAULT_GISCUS_THEME_ID = 'classic-mono';
 
 function normalizeColor(value, fallback) {

@@ -4,6 +4,10 @@ All notable releases for this project are recorded in this file.
 
 ## [Unreleased]
 
+## [0.12.2] - 2026-03-19
+
+- Switch giscus defaults to rust-course discussions
+
 ## [0.12.1] - 2026-03-19
 
 - Refine giscus theming and docs pagination

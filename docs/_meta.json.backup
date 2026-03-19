@@ -7,7 +7,7 @@
       "description": "AI 领域最新动态、技术分享与深度解析",
       "sections": [
         {
-          "title": "AI视点",
+          "title": "AI每日视点",
           "path": "/ai-insights/viewpoint/intro",
           "file": "/docs/ai-insights/viewpoint/intro.md",
           "items": [

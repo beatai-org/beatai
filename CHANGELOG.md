@@ -4,6 +4,10 @@ All notable releases for this project are recorded in this file.
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-03-19
+
+- Add article comments to doc pages
+
 ## [0.11.3] - 2026-03-19
 
 - Move LCC copyright notice to preface header

@@ -1,0 +1,109 @@
+.doc-comments {
+  margin-top: 32px;
+  margin-right: 256px;
+  padding: 24px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(90, 181, 255, 0.12), transparent 38%),
+    linear-gradient(180deg, rgba(18, 21, 29, 0.94), rgba(11, 13, 18, 0.96));
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.doc-comments-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(90, 181, 255, 0.28);
+  background: linear-gradient(135deg, rgba(90, 181, 255, 0.18), rgba(72, 125, 255, 0.12));
+  color: #eaf5ff;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.doc-comments-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(90, 181, 255, 0.45);
+  background: linear-gradient(135deg, rgba(90, 181, 255, 0.24), rgba(72, 125, 255, 0.18));
+}
+
+.doc-comments-embed {
+  min-height: 140px;
+}
+
+.doc-comments-fallback {
+  padding: 18px 20px;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.doc-comments-fallback-copy,
+.doc-comments-fallback-note {
+  margin: 0;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.doc-comments-fallback-note {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.92rem;
+}
+
+[data-theme-mode="light"] .doc-comments {
+  border-color: rgba(15, 23, 42, 0.08);
+  background:
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 255, 0.96));
+  box-shadow:
+    0 18px 42px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+[data-theme-mode="light"] .doc-comments-link {
+  border-color: rgba(37, 99, 235, 0.2);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(99, 102, 241, 0.08));
+  color: #1d4ed8;
+}
+
+[data-theme-mode="light"] .doc-comments-link:hover {
+  border-color: rgba(37, 99, 235, 0.32);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(99, 102, 241, 0.12));
+}
+
+[data-theme-mode="light"] .doc-comments-fallback {
+  border-color: rgba(37, 99, 235, 0.16);
+  background: rgba(59, 130, 246, 0.035);
+}
+
+[data-theme-mode="light"] .doc-comments-fallback-copy {
+  color: rgba(15, 23, 42, 0.72);
+}
+
+[data-theme-mode="light"] .doc-comments-fallback-note {
+  color: rgba(15, 23, 42, 0.54);
+}
+
+@media (max-width: 720px) {
+  .doc-comments {
+    padding: 20px 18px;
+  }
+
+  .doc-comments-link {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .doc-comments {
+    margin-right: 0;
+  }
+}

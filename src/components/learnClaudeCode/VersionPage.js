@@ -16,6 +16,7 @@ import DocRenderer from './DocRenderer';
 import ExecutionFlow from './ExecutionFlow';
 import { NotFoundState } from './NotFoundState';
 import SourceViewer from './SourceViewer';
+import GiscusComments from '../comments/GiscusComments';
 import { getVersionData, getVersionPagination, getVersionTabs, safeSessionLabel } from './versionUtils';
 
 function VersionPage() {
@@ -101,6 +102,7 @@ function VersionPage() {
       </section>
 
       <PaginationNav prev={prevNav} next={nextNav} />
+      {activeTab === 'learn' ? <GiscusComments pageTitle={safeSessionLabel(version)} /> : null}
     </section>
   );
 }

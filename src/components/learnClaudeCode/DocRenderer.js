@@ -13,7 +13,7 @@ import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
 import { resolvePublicContentUrl } from '../../utils/markdown';
 import { getVersionDoc, transformVersionDocContent } from './docUtils';
 
-function DocRenderer({ version }) {
+function DocRenderer({ version, afterArticle = null }) {
   const doc = useMemo(() => getVersionDoc(version), [version]);
   const articleRef = useRef(null);
   const { text: rawContent, loading: contentLoading, error } = useMarkdownSource({
@@ -56,6 +56,7 @@ function DocRenderer({ version }) {
       articleRef={articleRef}
       articleClassName="doc-content lcc-doc-content"
       headings={headings}
+      afterArticle={afterArticle}
     >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}

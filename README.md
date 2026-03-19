@@ -72,6 +72,25 @@ npm run build
 
 The production build will be in the `build/` folder, ready to deploy to any static hosting service.
 
+## 💬 Article Comments
+
+This site is wired for GitHub-based article comments.
+
+- Inline embed: `giscus`
+- Fallback: open a prefilled GitHub Discussions thread for the current page
+- Shared repo target: `beatai-org/BeatAI`
+
+To enable the inline embed in CRA builds, set:
+
+```bash
+REACT_APP_GISCUS_REPO=beatai-org/BeatAI
+REACT_APP_GISCUS_REPO_ID=your_repo_id
+REACT_APP_GISCUS_CATEGORY=giscus
+REACT_APP_GISCUS_CATEGORY_ID=your_category_id
+```
+
+If the two internal IDs are not set, pages will still show a Discussions entry button, but the embedded widget will stay in fallback mode.
+
 ## 📄 License
 
 MIT License - see LICENSE file for details

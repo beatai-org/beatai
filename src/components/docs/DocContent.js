@@ -12,6 +12,7 @@ import DocArticleHeader from './DocArticleHeader';
 import PaginationNav from './PaginationNav';
 import ArticleTags from './ArticleTags';
 import DocArticleLayout from './DocArticleLayout';
+import GiscusComments from '../comments/GiscusComments';
 import {
   buildDocPageDescription,
   buildDocPageTitle,
@@ -137,6 +138,7 @@ const DocContent = () => {
           <>
             <ArticleTags tags={articleTags} />
             <PaginationNav prev={adjacentChapters.prev} next={adjacentChapters.next} />
+            <GiscusComments pageTitle={pageTitle} />
           </>
         )}
       >

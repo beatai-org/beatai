@@ -4,14 +4,15 @@ import { HiAnnotation, HiArrowLeft } from 'react-icons/hi';
 import { useAnnotationContext } from '../../contexts/AnnotationContext';
 import { TabGroup } from '../common';
 import PageShell from '../layout/PageShell';
+import { useCategoryNavigation } from '../../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../../hooks/useDocsMeta';
 import { loadBookTitles, getBookTitle } from '../../utils/bookTitles';
-import { getFirstNavigablePathForCategory } from '../../utils/docsMeta';
 import './MyNotes.css';
 
 const MyNotes = () => {
   const { allAnnotations, isAuthenticated } = useAnnotationContext();
   const navigate = useNavigate();
+  const handleCategoryClick = useCategoryNavigation();
   const [activeBook, setActiveBook] = useState('all');
   const { meta } = useDocsMeta();
 
@@ -19,13 +20,6 @@ const MyNotes = () => {
   useEffect(() => {
     loadBookTitles();
   }, []);
-
-  const handleCategoryClick = (category) => {
-    const path = getFirstNavigablePathForCategory(category);
-    if (path) {
-      navigate(path);
-    }
-  };
 
   const categories = meta?.categories || [];
 

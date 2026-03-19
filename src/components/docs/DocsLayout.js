@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './DocsLayout.css';
 import '../../styles/Background.css';
 import '../../styles/3d-effects.css';
@@ -11,16 +11,14 @@ import PageShell from '../layout/PageShell';
 import { AnnotationProvider } from '../../contexts/AnnotationContext';
 import { PageTitleProvider } from '../../contexts/PageTitleContext';
 import { MetaProvider } from '../../contexts/MetaContext';
-import {
-  findActiveCategoryByPath,
-  getFirstNavigablePathForCategory
-} from '../../utils/docsMeta';
+import { useCategoryNavigation } from '../../hooks/useCategoryNavigation';
+import { findActiveCategoryByPath } from '../../utils/docsMeta';
 
 // Inner component that uses the context
 const DocsLayoutInner = ({ meta, children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
+  const handleCategoryClick = useCategoryNavigation();
 
   // Extract categories from meta with useMemo to prevent recreation
   const categories = useMemo(() => meta?.categories || [], [meta]);
@@ -28,13 +26,6 @@ const DocsLayoutInner = ({ meta, children }) => {
   const activeCategory = useMemo(() => {
     return findActiveCategoryByPath(meta, location.pathname);
   }, [meta, location.pathname]);
-
-  const handleCategoryClick = (category) => {
-    const path = getFirstNavigablePathForCategory(category);
-    if (path) {
-      navigate(path);
-    }
-  };
 
   // Prepare meta object for Sidebar (using only active category's sections)
   const sidebarMeta = activeCategory ? {

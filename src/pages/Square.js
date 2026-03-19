@@ -1,25 +1,18 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import AIInsightsIcon from '../components/icons/AIInsightsIcon';
 import RustBookIcon from '../components/icons/RustBookIcon';
 import LearnClaudeCodeIcon from '../components/icons/LearnClaudeCodeIcon';
 import BeatAILogoWave from '../components/BeatAILogoWave';
 import PageShell from '../components/layout/PageShell';
+import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
 import './Square.css';
 
 const Square = () => {
   const { meta } = useDocsMeta();
-  const navigate = useNavigate();
-
-  const handleCategoryClick = (category) => {
-    const path = getFirstNavigablePathForCategory(category);
-    if (path) {
-      navigate(path);
-    }
-  };
+  const handleCategoryClick = useCategoryNavigation();
 
   // Get first item path for a category
   const getFirstItemPath = (categoryId) => {

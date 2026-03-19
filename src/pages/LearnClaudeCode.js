@@ -4,15 +4,14 @@ import {
   Navigate,
   Route,
   Routes,
-  useLocation,
-  useNavigate
+  useLocation
 } from 'react-router-dom';
 import Sidebar from '../components/docs/Sidebar';
 import { LearnRouteNotFound } from '../components/learnClaudeCode/NotFoundState';
 import VersionPage from '../components/learnClaudeCode/VersionPage';
 import PageShell from '../components/layout/PageShell';
+import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
 import './LearnClaudeCode.css';
 import '../components/docs/DocContent.css';
 import '../styles/prism-custom.css';
@@ -23,16 +22,9 @@ function LearnClaudeCode() {
   const { meta } = useDocsMeta();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
+  const handleCategoryClick = useCategoryNavigation();
 
   const categories = meta?.categories || [];
-
-  const handleCategoryClick = (category) => {
-    const path = getFirstNavigablePathForCategory(category);
-    if (path) {
-      navigate(path);
-    }
-  };
 
   useEffect(() => {
     setSidebarOpen(false);

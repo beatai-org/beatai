@@ -2,22 +2,15 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import PageShell from '../components/layout/PageShell';
+import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
 import './NotFound.css';
 
 const NotFound = ({ requestedPath = '' }) => {
   const { meta } = useDocsMeta();
+  const handleCategoryClick = useCategoryNavigation({ mode: 'reload' });
 
   const categories = meta?.categories || [];
-
-  const handleCategoryClick = (category) => {
-    const targetPath = getFirstNavigablePathForCategory(category);
-
-    if (targetPath) {
-      window.location.href = targetPath;
-    }
-  };
 
   return (
     <>

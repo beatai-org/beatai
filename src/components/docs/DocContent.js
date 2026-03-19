@@ -20,8 +20,10 @@ import {
 import { usePageTitle } from '../../contexts/PageTitleContext';
 import { useMeta } from '../../contexts/MetaContext';
 import { useTag } from '../../contexts/TagContext';
+import { useMarkdownSource } from '../../hooks/useMarkdownSource';
 import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
 import { findMetaEntryByPath } from '../../utils/docsMeta';
+import { resolvePublicContentUrl } from '../../utils/markdown';
 import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
 import './DocContent.css';
 import '../../styles/3d-effects.css';
@@ -40,16 +42,20 @@ const formatPublishedDate = (publishedAt) => {
   return `${year}年${month}月${day}日`;
 };
 
+const formatDocErrorMessage = (error) => {
+  if (!error?.message) {
+    return 'Document not found';
+  }
+
+  return error.message === 'HTTP error! status: 404' ? 'Document not found' : error.message;
+};
+
 const DocContent = () => {
   const location = useLocation();
   const { setPageTitle, findTitleByPath } = usePageTitle();
   const { meta } = useMeta();
   const { findArticleTags } = useTag();
   const articleRef = React.useRef(null);
-  const [content, setContent] = useState('');
-  const [frontmatter, setFrontmatter] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [adjacentChapters, setAdjacentChapters] = useState({ prev: null, next: null });
   const [articleTags, setArticleTags] = useState([]);
 
@@ -59,44 +65,30 @@ const DocContent = () => {
   const isAiInsightsArticle = docMetaEntry?.category?.id === 'ai-insights';
   const formattedPublishedDate = formatPublishedDate(docMetaEntry?.item?.publishedAt);
   const titleFromMeta = docMetaEntry?.item?.title || findTitleByPath(location.pathname);
+  const { text: rawDoc, error } = useMarkdownSource({
+    url: resolvePublicContentUrl(`/docs/${docPath}.md`),
+    enabled: Boolean(docPath)
+  });
+  const { data: frontmatter, content } = useMemo(() => {
+    if (!rawDoc) {
+      return { data: {}, content: '' };
+    }
+
+    return matter(rawDoc);
+  }, [rawDoc]);
 
   useEffect(() => {
-    const loadDoc = async () => {
-      setLoading(true);
-      setError(null);
+    if (error || !rawDoc) {
+      return;
+    }
 
-      try {
-        const response = await fetch(`${process.env.PUBLIC_URL}/docs/${docPath}.md`);
+    const title = titleFromMeta || frontmatter.title || docPath.split('/').pop()?.split('-').map(word =>
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ') || 'Untitled';
 
-        if (!response.ok) {
-          throw new Error('Document not found');
-        }
-
-        const text = await response.text();
-        const { data, content: markdownContent } = matter(text);
-
-        setFrontmatter(data);
-        setContent(markdownContent);
-
-        // Get title from _meta.json using current path
-        // Use title from _meta.json, fallback to frontmatter, or generate from path
-        const title = titleFromMeta || data.title || docPath.split('/').pop()?.split('-').map(word =>
-          word.charAt(0).toUpperCase() + word.slice(1)
-        ).join(' ') || 'Untitled';
-
-        setPageTitle(title);
-
-        // Scroll to top when content changes
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadDoc();
-  }, [docPath, location.pathname, setPageTitle, titleFromMeta]);
+    setPageTitle(title);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [docPath, error, frontmatter.title, rawDoc, setPageTitle, titleFromMeta]);
 
   const headings = useRenderedHeadings(articleRef, content, {
     enabled: Boolean(content)
@@ -127,7 +119,7 @@ const DocContent = () => {
     return (
       <div className="doc-error">
         <h1>Document Not Found</h1>
-        <p>{error}</p>
+        <p>{formatDocErrorMessage(error)}</p>
       </div>
     );
   }

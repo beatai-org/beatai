@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -8,6 +8,7 @@ import {
   createDocMarkdownComponents,
   createMarkdownPreComponent
 } from '../docs/markdownRenderers';
+import { useMarkdownSource } from '../../hooks/useMarkdownSource';
 import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
 import { resolvePublicContentUrl } from '../../utils/markdown';
 import { docsData } from '../../vendor/learn-claude-code/data';
@@ -49,8 +50,11 @@ function renameBookTitle(content) {
 function DocRenderer({ version }) {
   const doc = useMemo(() => getVersionDoc(version), [version]);
   const articleRef = useRef(null);
-  const [rawContent, setRawContent] = useState('');
-  const [contentLoading, setContentLoading] = useState(false);
+  const { text: rawContent, loading: contentLoading, error } = useMarkdownSource({
+    url: doc?.contentPath ? resolvePublicContentUrl(doc.contentPath) : '',
+    inlineContent: doc?.content || '',
+    enabled: Boolean(doc)
+  });
   const content = useMemo(
     () => renameBookTitle(trimPrefaceContent(version, stripLearningPathCode(rawContent))),
     [rawContent, version]
@@ -60,45 +64,10 @@ function DocRenderer({ version }) {
   });
 
   useEffect(() => {
-    if (!doc) {
-      setRawContent('');
-      setContentLoading(false);
-      return undefined;
+    if (error) {
+      console.error('Failed to load LLC markdown:', error);
     }
-
-    if (doc.contentPath) {
-      const controller = new AbortController();
-      const url = resolvePublicContentUrl(doc.contentPath);
-
-      setRawContent('');
-      setContentLoading(true);
-
-      fetch(url, { signal: controller.signal })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          return res.text();
-        })
-        .then((text) => {
-          setRawContent(text);
-          setContentLoading(false);
-        })
-        .catch((err) => {
-          if (err.name !== 'AbortError') {
-            console.error('Failed to load LLC markdown:', err);
-            setRawContent('');
-            setContentLoading(false);
-          }
-        });
-
-      return () => controller.abort();
-    }
-
-    setRawContent(doc.content || '');
-    setContentLoading(false);
-    return undefined;
-  }, [doc]);
+  }, [error]);
 
   if (!doc) {
     return null;

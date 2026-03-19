@@ -1,10 +1,10 @@
 import React from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { TagProvider, useTag } from '../contexts/TagContext';
 import PageShell from '../components/layout/PageShell';
+import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
 import './TagPage.css';
 
 // Inner component that uses TagContext
@@ -12,14 +12,7 @@ const TagPageContent = ({ categories }) => {
   const { tagName } = useParams();
   const decodedTagName = decodeURIComponent(tagName);
   const { getArticlesByTag, groupByCategory } = useTag();
-  const navigate = useNavigate();
-
-  const handleCategoryClick = (category) => {
-    const path = getFirstNavigablePathForCategory(category);
-    if (path) {
-      navigate(path);
-    }
-  };
+  const handleCategoryClick = useCategoryNavigation();
 
   // Get all articles with this tag
   const articles = getArticlesByTag(decodedTagName);

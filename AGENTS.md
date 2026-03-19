@@ -28,4 +28,14 @@ JS、JSX、CSS 和 JSON 统一使用 2 空格缩进。优先使用函数式 Reac
 ## Agent 备注
 未经明确要求，不要覆盖用户手写的文档内容或本地化 markdown。编辑生成内容或同步内容时，保持 `public/docs` 和 `src/vendor/learn-claude-code` 下现有目录约定不变。
 
+新增或修改 docs、`learnClaudeCode`、`PageShell` 相关页面前，先检查现有共享实现，优先复用而不是重写。当前明确的复用入口包括：
+- 文档页面外壳与头部：`src/components/docs/DocArticleLayout.js`、`src/components/docs/DocArticleHeader.js`
+- Markdown 渲染：`src/components/docs/markdownRenderers.js`
+- Markdown 内容加载：`src/hooks/useMarkdownSource.js`
+- 分类跳转与 sidebar 状态：`src/hooks/useCategoryNavigation.js`、`src/hooks/useSidebarState.js`
+- 通用类名拼接：`src/utils/classNames.js`
+- `learnClaudeCode` 派生逻辑：`src/components/learnClaudeCode/versionUtils.js`、`src/components/learnClaudeCode/docUtils.js`
+
+如果新需求与上述能力只有轻微差异，优先扩展现有实现；只有在职责明显不同、扩展会导致边界变坏时，才允许新增一套实现，并且需要在说明中写清楚不复用现有实现的原因。
+
 调用 SKILL 时，严格确保所有步骤都被执行，不要遗漏。

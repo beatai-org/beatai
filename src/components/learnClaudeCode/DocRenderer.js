@@ -11,41 +11,7 @@ import {
 import { useMarkdownSource } from '../../hooks/useMarkdownSource';
 import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
 import { resolvePublicContentUrl } from '../../utils/markdown';
-import { docsData } from '../../vendor/learn-claude-code/data';
-
-function getVersionDoc(version, locale = 'zh') {
-  return (
-    docsData.find((item) => item.version === version && item.locale === locale) ||
-    docsData.find((item) => item.version === version && item.locale === 'en') ||
-    null
-  );
-}
-
-function stripLearningPathCode(content) {
-  return String(content || '').replace(
-    /\n\n`(?=[^`\n]*(?:s01|s02|s03|s04|s05|s06|s07|s08|s09|s10|s11|s12))[^`\n]*`\n\n/i,
-    '\n\n'
-  );
-}
-
-function trimPrefaceContent(version, content) {
-  if (version !== 'preface') {
-    return String(content || '');
-  }
-
-  const marker = '\n## 快速开始';
-  const normalized = String(content || '');
-  const markerIndex = normalized.indexOf(marker);
-
-  return markerIndex >= 0 ? normalized.slice(0, markerIndex).trimEnd() : normalized;
-}
-
-function renameBookTitle(content) {
-  return String(content || '').replace(
-    /^# Learn Claude Code\b/m,
-    '# CC宝典'
-  );
-}
+import { getVersionDoc, transformVersionDocContent } from './docUtils';
 
 function DocRenderer({ version }) {
   const doc = useMemo(() => getVersionDoc(version), [version]);
@@ -56,7 +22,7 @@ function DocRenderer({ version }) {
     enabled: Boolean(doc)
   });
   const content = useMemo(
-    () => renameBookTitle(trimPrefaceContent(version, stripLearningPathCode(rawContent))),
+    () => transformVersionDocContent(version, rawContent),
     [rawContent, version]
   );
   const headings = useRenderedHeadings(articleRef, content, {

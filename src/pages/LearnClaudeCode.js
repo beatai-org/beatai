@@ -16,8 +16,8 @@ import { useDocsMeta } from '../hooks/useDocsMeta';
 import './LearnClaudeCode.css';
 import '../components/docs/DocContent.css';
 import '../styles/prism-custom.css';
-import { LAYERS, LEARNING_PATH, zhMessages } from '../vendor/learn-claude-code/data';
-import { getVersionNavTitle } from '../components/learnClaudeCode/versionUtils';
+import { LEARNING_PATH } from '../vendor/learn-claude-code/data';
+import { buildLearnClaudeCodeSidebarMeta } from '../components/learnClaudeCode/sidebarMeta';
 
 function LearnClaudeCode() {
   const { meta } = useDocsMeta();
@@ -28,54 +28,7 @@ function LearnClaudeCode() {
   });
 
   const categories = meta?.categories || [];
-
-  const sidebarMeta = useMemo(() => {
-    const courseLayers = LAYERS.filter((l) => l.id !== 'best-practices');
-    const bpLayers = LAYERS.filter((l) => l.id === 'best-practices');
-
-    const mapLayer = (layer) => {
-      const versions = layer.versions || [];
-      const firstVersion = versions[0];
-
-      if (layer.id === 'introduction') {
-        return {
-          title: zhMessages.layer_labels?.[layer.id] || layer.label,
-          path: firstVersion ? `/learn-claude-code/${firstVersion}` : '/learn-claude-code'
-        };
-      }
-
-      return {
-        title: zhMessages.layer_labels?.[layer.id] || layer.label,
-        path: firstVersion ? `/learn-claude-code/${firstVersion}` : '/learn-claude-code',
-        highlightable: false,
-        children: versions.map((versionId) => ({
-          title: getVersionNavTitle(versionId),
-          path: `/learn-claude-code/${versionId}`
-        }))
-      };
-    };
-
-    const sections = [
-      {
-        title: '从零手搓 Claude Code',
-        items: courseLayers.map(mapLayer)
-      }
-    ];
-
-    if (bpLayers.length > 0) {
-      sections.push({
-        title: '最佳实践',
-        items: bpLayers.flatMap((layer) =>
-          (layer.versions || []).map((versionId) => ({
-            title: getVersionNavTitle(versionId),
-            path: `/learn-claude-code/${versionId}`
-          }))
-        )
-      });
-    }
-
-    return { title: 'CC宝典', sections };
-  }, []);
+  const sidebarMeta = useMemo(() => buildLearnClaudeCodeSidebarMeta(), []);
 
   return (
     <>
@@ -89,13 +42,13 @@ function LearnClaudeCode() {
 
       <PageShell
         rootClassName="lcc-page"
-      categories={categories}
-      activeCategory={null}
-      onCategoryClick={handleCategoryClick}
-      sidebarOpen={sidebarOpen}
-      onMenuToggle={toggleSidebar}
-    >
-      <div className="lcc-shell">
+        categories={categories}
+        activeCategory={null}
+        onCategoryClick={handleCategoryClick}
+        sidebarOpen={sidebarOpen}
+        onMenuToggle={toggleSidebar}
+      >
+        <div className="lcc-shell">
           <div className="lcc-workspace">
             <Sidebar
               meta={sidebarMeta}

@@ -8,9 +8,17 @@ import rehypeSanitize from 'rehype-sanitize';
 import matter from 'gray-matter';
 import '../../styles/prism-custom.css';
 import CodePlayground from './CodePlayground';
+import DocArticleHeader from './DocArticleHeader';
 import PaginationNav from './PaginationNav';
 import ArticleTags from './ArticleTags';
 import DocArticleLayout from './DocArticleLayout';
+import {
+  buildDocPageDescription,
+  buildDocPageTitle,
+  formatDocErrorMessage,
+  formatPublishedDate,
+  stripAiInsightsTitle
+} from './docContentUtils';
 import {
   createMarkdownCodeComponent,
   createDocMarkdownComponents,
@@ -28,27 +36,6 @@ import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelp
 import './DocContent.css';
 import '../../styles/3d-effects.css';
 import '../../styles/animations.css';
-
-const formatPublishedDate = (publishedAt) => {
-  if (!publishedAt) {
-    return '';
-  }
-
-  const [year, month, day] = publishedAt.split('-').map(Number);
-  if (!year || !month || !day) {
-    return publishedAt;
-  }
-
-  return `${year}年${month}月${day}日`;
-};
-
-const formatDocErrorMessage = (error) => {
-  if (!error?.message) {
-    return 'Document not found';
-  }
-
-  return error.message === 'HTTP error! status: 404' ? 'Document not found' : error.message;
-};
 
 const DocContent = () => {
   const location = useLocation();
@@ -82,10 +69,7 @@ const DocContent = () => {
       return;
     }
 
-    const title = titleFromMeta || frontmatter.title || docPath.split('/').pop()?.split('-').map(word =>
-      word.charAt(0).toUpperCase() + word.slice(1)
-    ).join(' ') || 'Untitled';
-
+    const title = buildDocPageTitle(docPath, titleFromMeta, frontmatter.title);
     setPageTitle(title);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [docPath, error, frontmatter.title, rawDoc, setPageTitle, titleFromMeta]);
@@ -96,23 +80,20 @@ const DocContent = () => {
 
   // Calculate adjacent chapters for pagination
   useEffect(() => {
-    if (!meta) return;
+    if (!meta) {
+      return;
+    }
 
     const chapters = flattenChapters(meta);
     const adjacent = getAdjacentChapters(chapters, location.pathname);
     setAdjacentChapters(adjacent);
 
-    // Find tags for current article
-        const tags = docMetaEntry?.item?.tags || findArticleTags(location.pathname);
-        setArticleTags(tags);
+    const tags = docMetaEntry?.item?.tags || findArticleTags(location.pathname);
+    setArticleTags(tags);
   }, [meta, location.pathname, findArticleTags, docMetaEntry]);
 
   const markdownContent = useMemo(() => {
-    if (!isAiInsightsArticle) {
-      return content;
-    }
-
-    return content.replace(/^\s*#\s+.+?(?:\r?\n){1,2}/, '');
+    return stripAiInsightsTitle(content, isAiInsightsArticle);
   }, [content, isAiInsightsArticle]);
 
   if (error) {
@@ -135,12 +116,8 @@ const DocContent = () => {
     preComponent: PreComponent
   });
 
-  // Prepare page title and description with fallbacks
-  const slug = docPath.split('/').pop() || 'documentation';
-  const pageTitle = titleFromMeta || frontmatter.title || slug.split('-').map(word =>
-    word.charAt(0).toUpperCase() + word.slice(1)
-  ).join(' ');
-  const pageDescription = frontmatter.description || `Documentation for ${pageTitle}`;
+  const pageTitle = buildDocPageTitle(docPath, titleFromMeta, frontmatter.title);
+  const pageDescription = buildDocPageDescription(frontmatter.description, pageTitle);
 
   return (
     <>
@@ -164,16 +141,16 @@ const DocContent = () => {
         )}
       >
         {isAiInsightsArticle && (
-          <header className="doc-article-header">
-            <h1 className="doc-h1">{pageTitle}</h1>
-            {formattedPublishedDate && (
+          <DocArticleHeader
+            title={pageTitle}
+            meta={formattedPublishedDate ? (
               <div className="doc-article-meta" aria-label="文章发布时间">
                 <time className="doc-article-meta-value" dateTime={docMetaEntry?.item?.publishedAt}>
                   {formattedPublishedDate}
                 </time>
               </div>
-            )}
-          </header>
+            ) : null}
+          />
         )}
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}

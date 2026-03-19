@@ -7,13 +7,13 @@ import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import matter from 'gray-matter';
 import '../../styles/prism-custom.css';
-import TableOfContents from './TableOfContents';
 import CodePlayground from './CodePlayground';
 import PaginationNav from './PaginationNav';
 import ArticleTags from './ArticleTags';
+import DocArticleLayout from './DocArticleLayout';
 import {
   createMarkdownCodeComponent,
-  createMarkdownHeading,
+  createDocMarkdownComponents,
   createMarkdownPreComponent,
   sanitizeSchema
 } from './markdownRenderers';
@@ -138,6 +138,10 @@ const DocContent = () => {
     )
   });
   const PreComponent = createMarkdownPreComponent();
+  const markdownComponents = createDocMarkdownComponents({
+    codeComponent: CodeComponent,
+    preComponent: PreComponent
+  });
 
   // Prepare page title and description with fallbacks
   const slug = docPath.split('/').pop() || 'documentation';
@@ -155,59 +159,38 @@ const DocContent = () => {
         <meta property="og:description" content={pageDescription} />
       </Helmet>
 
-      <>
-        <div className="doc-wrapper">
-          <article ref={articleRef} className="doc-content" key={docPath}>
-            {isAiInsightsArticle && (
-              <header className="doc-article-header">
-                <h1 className="doc-h1">{pageTitle}</h1>
-                {formattedPublishedDate && (
-                  <div className="doc-article-meta" aria-label="文章发布时间">
-                    <time className="doc-article-meta-value" dateTime={docMetaEntry?.item?.publishedAt}>
-                      {formattedPublishedDate}
-                    </time>
-                  </div>
-                )}
-              </header>
+      <DocArticleLayout
+        articleRef={articleRef}
+        articleClassName="doc-content"
+        articleKey={docPath}
+        headings={headings}
+        afterArticle={(
+          <>
+            <ArticleTags tags={articleTags} />
+            <PaginationNav prev={adjacentChapters.prev} next={adjacentChapters.next} />
+          </>
+        )}
+      >
+        {isAiInsightsArticle && (
+          <header className="doc-article-header">
+            <h1 className="doc-h1">{pageTitle}</h1>
+            {formattedPublishedDate && (
+              <div className="doc-article-meta" aria-label="文章发布时间">
+                <time className="doc-article-meta-value" dateTime={docMetaEntry?.item?.publishedAt}>
+                  {formattedPublishedDate}
+                </time>
+              </div>
             )}
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
-              components={{
-                h1: createMarkdownHeading(1),
-                h2: createMarkdownHeading(2),
-                h3: createMarkdownHeading(3),
-                h4: createMarkdownHeading(4),
-                p: ({ node, ...props }) => <p className="doc-p" {...props} />,
-                // eslint-disable-next-line jsx-a11y/anchor-has-content
-                a: ({ node, ...props }) => <a className="doc-link" {...props} />,
-                code: CodeComponent,
-                pre: PreComponent,
-                table: ({ node, ...props }) => (
-                  <div className="doc-table-wrapper">
-                    <table className="doc-table" {...props} />
-                  </div>
-                ),
-                blockquote: ({ node, ...props }) => (
-                  <blockquote className="doc-blockquote" {...props} />
-                ),
-                ul: ({ node, ...props }) => <ul className="doc-ul" {...props} />,
-                ol: ({ node, ...props }) => <ol className="doc-ol" {...props} />,
-              }}
-            >
-              {markdownContent}
-            </ReactMarkdown>
-          </article>
-
-          {/* Article Tags */}
-          <ArticleTags tags={articleTags} />
-
-          {/* Pagination Navigation */}
-          <PaginationNav prev={adjacentChapters.prev} next={adjacentChapters.next} />
-        </div>
-
-        <TableOfContents headings={headings} />
-      </>
+          </header>
+        )}
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
+          components={markdownComponents}
+        >
+          {markdownContent}
+        </ReactMarkdown>
+      </DocArticleLayout>
     </>
   );
 };

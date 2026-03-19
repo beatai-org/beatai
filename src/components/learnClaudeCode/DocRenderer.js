@@ -2,10 +2,10 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import TableOfContents from '../docs/TableOfContents';
+import DocArticleLayout from '../docs/DocArticleLayout';
 import {
   createMarkdownCodeComponent,
-  createMarkdownHeading,
+  createDocMarkdownComponents,
   createMarkdownPreComponent
 } from '../docs/markdownRenderers';
 import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
@@ -110,65 +110,40 @@ function DocRenderer({ version }) {
 
   const CodeComponent = createMarkdownCodeComponent();
   const PreComponent = createMarkdownPreComponent();
+  const markdownComponents = createDocMarkdownComponents({
+    codeComponent: CodeComponent,
+    preComponent: PreComponent,
+    includeH1: false
+  });
 
   return (
-    <div className="doc-wrapper">
-      <article ref={articleRef} className="doc-content lcc-doc-content">
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeRaw]}
-          components={{
-            h1() {
-              return null;
-            },
-            h2: createMarkdownHeading(2),
-            h3: createMarkdownHeading(3),
-            h4: createMarkdownHeading(4),
-            p({ node, ...props }) {
-              return <p className="doc-p" {...props} />;
-            },
-            a({ node, children, ...props }) {
-              return <a className="doc-link" {...props}>{children}</a>;
-            },
-            blockquote({ node, ...props }) {
-              return <blockquote className="doc-blockquote" {...props} />;
-            },
-            code: CodeComponent,
-            pre: PreComponent,
-            table({ node, ...props }) {
-              return (
-                <div className="doc-table-wrapper">
-                  <table className="doc-table" {...props} />
-                </div>
-              );
-            },
-            ul({ node, ...props }) {
-              return <ul className="doc-ul" {...props} />;
-            },
-            ol({ node, ...props }) {
-              return <ol className="doc-ol" {...props} />;
-            }
-          }}
-        >
-          {content}
-        </ReactMarkdown>
-        <section className="lcc-copyright-card" aria-label="版权声明">
-          <div className="lcc-copyright-card-title">版权声明</div>
-          <p>
-            本章节内容版权归属于原版 LCC：
-            <a
-              className="doc-link"
-              href="https://github.com/shareAI-lab/learn-claude-code"
-              target="_blank"
-              rel="noreferrer"
-            >
-              shareAI-lab/learn-claude-code
-            </a>
-          </p>
-        </section>
-      </article>
-      <TableOfContents headings={headings} />
-    </div>
+    <DocArticleLayout
+      articleRef={articleRef}
+      articleClassName="doc-content lcc-doc-content"
+      headings={headings}
+    >
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        components={markdownComponents}
+      >
+        {content}
+      </ReactMarkdown>
+      <section className="lcc-copyright-card" aria-label="版权声明">
+        <div className="lcc-copyright-card-title">版权声明</div>
+        <p>
+          本章节内容版权归属于原版 LCC：
+          <a
+            className="doc-link"
+            href="https://github.com/shareAI-lab/learn-claude-code"
+            target="_blank"
+            rel="noreferrer"
+          >
+            shareAI-lab/learn-claude-code
+          </a>
+        </p>
+      </section>
+    </DocArticleLayout>
   );
 }
 

@@ -76,3 +76,40 @@ export function createMarkdownPreComponent() {
     );
   };
 }
+
+export function createDocMarkdownComponents({
+  codeComponent,
+  preComponent,
+  includeH1 = true
+} = {}) {
+  return {
+    h1: includeH1 ? createMarkdownHeading(1) : () => null,
+    h2: createMarkdownHeading(2),
+    h3: createMarkdownHeading(3),
+    h4: createMarkdownHeading(4),
+    p({ node, ...props }) {
+      return <p className="doc-p" {...props} />;
+    },
+    a({ node, children, ...props }) {
+      return <a className="doc-link" {...props}>{children}</a>;
+    },
+    blockquote({ node, ...props }) {
+      return <blockquote className="doc-blockquote" {...props} />;
+    },
+    code: codeComponent,
+    pre: preComponent,
+    table({ node, ...props }) {
+      return (
+        <div className="doc-table-wrapper">
+          <table className="doc-table" {...props} />
+        </div>
+      );
+    },
+    ul({ node, ...props }) {
+      return <ul className="doc-ul" {...props} />;
+    },
+    ol({ node, ...props }) {
+      return <ol className="doc-ol" {...props} />;
+    }
+  };
+}

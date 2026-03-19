@@ -1,8 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import AppHeader from '../components/AppHeader/AppHeader';
-import Footer from '../components/Footer/Footer';
+import PageShell from '../components/layout/PageShell';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
 import './NotFound.css';
@@ -27,15 +26,12 @@ const NotFound = ({ requestedPath = '' }) => {
         <meta name="description" content="BeatAI 404 页面 - 当前访问路径不存在" />
       </Helmet>
 
-      <div className="notfound-page dynamic-background">
-        <div className="sailor-moon-bg-layer"></div>
-
-        <AppHeader
-          categories={categories}
-          activeCategory={null}
-          onCategoryClick={handleCategoryClick}
-        />
-
+      <PageShell
+        rootClassName="notfound-page"
+        categories={categories}
+        activeCategory={null}
+        onCategoryClick={handleCategoryClick}
+      >
         <main className="notfound-shell">
           <div className="notfound-gridlines" aria-hidden="true"></div>
           <section className="notfound-frame">
@@ -128,9 +124,7 @@ const NotFound = ({ requestedPath = '' }) => {
             </div>
           </section>
         </main>
-
-        <Footer />
-      </div>
+      </PageShell>
     </>
   );
 };

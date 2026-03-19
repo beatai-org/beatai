@@ -2,8 +2,7 @@ import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { TagProvider, useTag } from '../contexts/TagContext';
-import AppHeader from '../components/AppHeader/AppHeader';
-import Footer from '../components/Footer/Footer';
+import PageShell from '../components/layout/PageShell';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
 import './TagPage.css';
@@ -39,17 +38,12 @@ const TagPageContent = ({ categories }) => {
         />
       </Helmet>
 
-      <div className="tag-page dynamic-background">
-        {/* Background Layer */}
-        <div className="sailor-moon-bg-layer"></div>
-
-        {/* 复用统一的 AppHeader - 标签页面不激活任何书籍标签 */}
-        <AppHeader
-          categories={categories}
-          activeCategory={null}
-          onCategoryClick={handleCategoryClick}
-        />
-
+      <PageShell
+        rootClassName="tag-page"
+        categories={categories}
+        activeCategory={null}
+        onCategoryClick={handleCategoryClick}
+      >
         <div className="tag-page-container">
           <div className="tag-page-header">
             <h1 className="tag-page-title">#{decodedTagName}</h1>
@@ -91,10 +85,7 @@ const TagPageContent = ({ categories }) => {
             </div>
           )}
         </div>
-
-        {/* 复用统一的 Footer */}
-        <Footer />
-      </div>
+      </PageShell>
     </>
   );
 };

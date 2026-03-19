@@ -4,11 +4,10 @@ import './DocsLayout.css';
 import '../../styles/Background.css';
 import '../../styles/3d-effects.css';
 import '../../styles/animations.css';
-import AppHeader from '../AppHeader/AppHeader';
 import Sidebar from './Sidebar';
 import AIAssistant from './AIAssistant';
 import AnnotationSystem from './AnnotationSystem';
-import Footer from '../Footer/Footer';
+import PageShell from '../layout/PageShell';
 import { AnnotationProvider } from '../../contexts/AnnotationContext';
 import { PageTitleProvider } from '../../contexts/PageTitleContext';
 import { MetaProvider } from '../../contexts/MetaContext';
@@ -46,19 +45,14 @@ const DocsLayoutInner = ({ meta, children }) => {
   } : null;
 
   return (
-    <div className="docs-layout dynamic-background">
-      {/* Sailor Moon Background Layer */}
-      <div className="sailor-moon-bg-layer"></div>
-
-      {/* Header with glassmorphism */}
-      <AppHeader
-        categories={categories}
-        activeCategory={activeCategory}
-        onCategoryClick={handleCategoryClick}
-        sidebarOpen={sidebarOpen}
-        onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
-      />
-
+    <PageShell
+      rootClassName="docs-layout"
+      categories={categories}
+      activeCategory={activeCategory}
+      onCategoryClick={handleCategoryClick}
+      sidebarOpen={sidebarOpen}
+      onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
+    >
       <div className="docs-container">
         {/* Sidebar - shows only current category's sections */}
         {sidebarMeta && (
@@ -75,15 +69,12 @@ const DocsLayoutInner = ({ meta, children }) => {
         </main>
       </div>
 
-      {/* Footer */}
-      <Footer />
-
       {/* AI Assistant */}
       <AIAssistant />
 
       {/* Annotation System */}
       <AnnotationSystem />
-    </div>
+    </PageShell>
   );
 };
 

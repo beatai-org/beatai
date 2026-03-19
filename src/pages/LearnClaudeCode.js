@@ -22,11 +22,10 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-rust';
-import AppHeader from '../components/AppHeader/AppHeader';
 import Sidebar from '../components/docs/Sidebar';
 import TableOfContents from '../components/docs/TableOfContents';
 import PaginationNav from '../components/docs/PaginationNav';
-import Footer from '../components/Footer/Footer';
+import PageShell from '../components/layout/PageShell';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
 import './LearnClaudeCode.css';
@@ -219,16 +218,14 @@ function LearnClaudeCode() {
         />
       </Helmet>
 
-      <div className="lcc-page dynamic-background">
-        <div className="sailor-moon-bg-layer"></div>
-        <AppHeader
-          categories={categories}
-          activeCategory={null}
-          onCategoryClick={handleCategoryClick}
-          sidebarOpen={sidebarOpen}
-          onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
-        />
-
+      <PageShell
+        rootClassName="lcc-page"
+        categories={categories}
+        activeCategory={null}
+        onCategoryClick={handleCategoryClick}
+        sidebarOpen={sidebarOpen}
+        onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
+      >
         <div className="lcc-shell">
           <div className="lcc-workspace">
             <Sidebar
@@ -246,9 +243,7 @@ function LearnClaudeCode() {
             </div>
           </div>
         </div>
-
-        <Footer />
-      </div>
+      </PageShell>
     </>
   );
 }

@@ -2,9 +2,8 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiAnnotation, HiArrowLeft } from 'react-icons/hi';
 import { useAnnotationContext } from '../../contexts/AnnotationContext';
-import AppHeader from '../AppHeader/AppHeader';
-import Footer from '../Footer/Footer';
 import { TabGroup } from '../common';
+import PageShell from '../layout/PageShell';
 import { useDocsMeta } from '../../hooks/useDocsMeta';
 import { loadBookTitles, getBookTitle } from '../../utils/bookTitles';
 import { getFirstNavigablePathForCategory } from '../../utils/docsMeta';
@@ -121,15 +120,12 @@ const MyNotes = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="my-notes-page dynamic-background">
-        {/* Background Layer */}
-        <div className="sailor-moon-bg-layer"></div>
-
-        <AppHeader
-          categories={categories}
-          activeCategory={null}
-          onCategoryClick={handleCategoryClick}
-        />
+      <PageShell
+        rootClassName="my-notes-page"
+        categories={categories}
+        activeCategory={null}
+        onCategoryClick={handleCategoryClick}
+      >
         <div className="my-notes-container">
           <div className="my-notes-empty">
             <HiAnnotation />
@@ -137,106 +133,101 @@ const MyNotes = () => {
             <p>You need to connect your GitHub account to view your notes.</p>
           </div>
         </div>
-        <Footer />
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="my-notes-page dynamic-background">
-      {/* Background Layer */}
-      <div className="sailor-moon-bg-layer"></div>
-
-      <AppHeader
-        categories={categories}
-        activeCategory={null}
-        onCategoryClick={handleCategoryClick}
-      />
+    <PageShell
+      rootClassName="my-notes-page"
+      categories={categories}
+      activeCategory={null}
+      onCategoryClick={handleCategoryClick}
+    >
       <div className="my-notes-container">
-      <div className="my-notes-header">
-        <button className="my-notes-back-btn" onClick={() => navigate(-1)}>
-          <HiArrowLeft />
-        </button>
-        <div className="my-notes-title">
-          <HiAnnotation />
-          <h1>My Notes</h1>
-          <span className="my-notes-count">{totalCount}</span>
+        <div className="my-notes-header">
+          <button className="my-notes-back-btn" onClick={() => navigate(-1)}>
+            <HiArrowLeft />
+          </button>
+          <div className="my-notes-title">
+            <HiAnnotation />
+            <h1>My Notes</h1>
+            <span className="my-notes-count">{totalCount}</span>
+          </div>
         </div>
+
+        {/* Book Tabs */}
+        {bookGroups.length > 0 && (
+          <TabGroup
+            tabs={[
+              {
+                id: 'all',
+                label: 'All Books',
+                count: totalCount
+              },
+              ...bookGroups.map((book) => ({
+                id: book.bookName,
+                label: getBookTitle(book.bookName),
+                count: book.totalCount
+              }))
+            ]}
+            activeTab={activeBook}
+            onChange={setActiveBook}
+          />
+        )}
+
+        {filteredPageGroups.length > 0 ? (
+          <div className="my-notes-groups">
+            {filteredPageGroups.map((group) => (
+              <div key={`${group.bookName}-${group.title}`} className="my-notes-group">
+                <div className="my-notes-group-header">
+                  <h2 className="my-notes-group-title">
+                    {activeBook === 'all' && group.bookName && (
+                      <span className="my-notes-group-book">{getBookTitle(group.bookName)}</span>
+                    )}
+                    {group.title}
+                  </h2>
+                  <span className="my-notes-group-count">{group.annotations.length}</span>
+                </div>
+                <div className="my-notes-list">
+                  {group.annotations.map((annotation) => (
+                    <div
+                      key={annotation.id}
+                      className="my-notes-item"
+                      onClick={() => navigate(`${annotation.path}#annotation-${annotation.id}`)}
+                    >
+                      <div className="my-notes-item-header">
+                        <span className="my-notes-item-date">
+                          {new Date(annotation.createdAt).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          })}
+                        </span>
+                      </div>
+                      <div className="my-notes-item-quote">
+                        "{annotation.text}"
+                      </div>
+                      <div className="my-notes-item-content">
+                        {annotation.note}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="my-notes-empty">
+            <HiAnnotation />
+            <h2>No Notes Yet</h2>
+            <p>Start highlighting text and adding notes to build your collection.</p>
+          </div>
+        )}
       </div>
-
-      {/* Book Tabs */}
-      {bookGroups.length > 0 && (
-        <TabGroup
-          tabs={[
-            {
-              id: 'all',
-              label: 'All Books',
-              count: totalCount
-            },
-            ...bookGroups.map((book) => ({
-              id: book.bookName,
-              label: getBookTitle(book.bookName),
-              count: book.totalCount
-            }))
-          ]}
-          activeTab={activeBook}
-          onChange={setActiveBook}
-        />
-      )}
-
-      {filteredPageGroups.length > 0 ? (
-        <div className="my-notes-groups">
-          {filteredPageGroups.map((group) => (
-            <div key={`${group.bookName}-${group.title}`} className="my-notes-group">
-              <div className="my-notes-group-header">
-                <h2 className="my-notes-group-title">
-                  {activeBook === 'all' && group.bookName && (
-                    <span className="my-notes-group-book">{getBookTitle(group.bookName)}</span>
-                  )}
-                  {group.title}
-                </h2>
-                <span className="my-notes-group-count">{group.annotations.length}</span>
-              </div>
-              <div className="my-notes-list">
-                {group.annotations.map((annotation) => (
-                  <div
-                    key={annotation.id}
-                    className="my-notes-item"
-                    onClick={() => navigate(`${annotation.path}#annotation-${annotation.id}`)}
-                  >
-                    <div className="my-notes-item-header">
-                      <span className="my-notes-item-date">
-                        {new Date(annotation.createdAt).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}
-                      </span>
-                    </div>
-                    <div className="my-notes-item-quote">
-                      "{annotation.text}"
-                    </div>
-                    <div className="my-notes-item-content">
-                      {annotation.note}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="my-notes-empty">
-          <HiAnnotation />
-          <h2>No Notes Yet</h2>
-          <p>Start highlighting text and adding notes to build your collection.</p>
-        </div>
-      )}
-    </div>
-    <Footer />
-  </div>
+    </PageShell>
   );
 };
 

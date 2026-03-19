@@ -1,12 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import AppHeader from '../components/AppHeader/AppHeader';
-import Footer from '../components/Footer/Footer';
 import AIInsightsIcon from '../components/icons/AIInsightsIcon';
 import RustBookIcon from '../components/icons/RustBookIcon';
 import LearnClaudeCodeIcon from '../components/icons/LearnClaudeCodeIcon';
 import BeatAILogoWave from '../components/BeatAILogoWave';
+import PageShell from '../components/layout/PageShell';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
 import './Square.css';
@@ -37,17 +36,12 @@ const Square = () => {
         <meta name="description" content="BeatAI 社区广场 - 分享、交流与探索" />
       </Helmet>
 
-      <div className="square-page dynamic-background">
-        {/* Background Layer */}
-        <div className="sailor-moon-bg-layer"></div>
-
-        {/* 复用统一的 AppHeader - 广场页面不激活任何书籍标签 */}
-        <AppHeader
-          categories={categories}
-          activeCategory={null}
-          onCategoryClick={handleCategoryClick}
-        />
-
+      <PageShell
+        rootClassName="square-page"
+        categories={categories}
+        activeCategory={null}
+        onCategoryClick={handleCategoryClick}
+      >
         <div className="square-container">
           <div className="square-hero">
             <div className="square-hero-logo">
@@ -120,10 +114,7 @@ const Square = () => {
             </div>
           </div>
         </div>
-
-        {/* 复用统一的 Footer */}
-        <Footer />
-      </div>
+      </PageShell>
     </>
   );
 };

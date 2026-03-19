@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
@@ -58,6 +58,53 @@ const sanitizeSchema = {
   }
 };
 
+const findDocMetaByPath = (meta, path) => {
+  if (!meta?.categories) {
+    return null;
+  }
+
+  const searchItems = (items = [], category, section) => {
+    for (const item of items) {
+      if (item.path === path) {
+        return { item, category, section };
+      }
+
+      if (item.children?.length) {
+        const found = searchItems(item.children, category, section);
+        if (found) {
+          return found;
+        }
+      }
+    }
+
+    return null;
+  };
+
+  for (const category of meta.categories) {
+    for (const section of category.sections || []) {
+      const found = searchItems(section.items || [], category, section);
+      if (found) {
+        return found;
+      }
+    }
+  }
+
+  return null;
+};
+
+const formatPublishedDate = (publishedAt) => {
+  if (!publishedAt) {
+    return '';
+  }
+
+  const [year, month, day] = publishedAt.split('-').map(Number);
+  if (!year || !month || !day) {
+    return publishedAt;
+  }
+
+  return `${year}年${month}月${day}日`;
+};
+
 const DocContent = () => {
   const location = useLocation();
   const { setPageTitle, findTitleByPath } = usePageTitle();
@@ -73,6 +120,9 @@ const DocContent = () => {
 
   // Extract the path from URL (now starts from root)
   const docPath = location.pathname.replace(/^\//, '');
+  const docMetaEntry = useMemo(() => findDocMetaByPath(meta, location.pathname), [meta, location.pathname]);
+  const isAiInsightsArticle = docMetaEntry?.category?.id === 'ai-insights';
+  const formattedPublishedDate = formatPublishedDate(docMetaEntry?.item?.publishedAt);
 
   useEffect(() => {
     const loadDoc = async () => {
@@ -145,9 +195,17 @@ const DocContent = () => {
     setAdjacentChapters(adjacent);
 
     // Find tags for current article
-    const tags = findArticleTags(location.pathname);
-    setArticleTags(tags);
-  }, [meta, location.pathname, findArticleTags]);
+        const tags = docMetaEntry?.item?.tags || findArticleTags(location.pathname);
+        setArticleTags(tags);
+  }, [meta, location.pathname, findArticleTags, docMetaEntry]);
+
+  const markdownContent = useMemo(() => {
+    if (!isAiInsightsArticle) {
+      return content;
+    }
+
+    return content.replace(/^\s*#\s+.+?(?:\r?\n){1,2}/, '');
+  }, [content, isAiInsightsArticle]);
 
   if (error) {
     return (
@@ -242,6 +300,18 @@ const DocContent = () => {
       <>
         <div className="doc-wrapper">
           <article className="doc-content" key={docPath}>
+            {isAiInsightsArticle && (
+              <header className="doc-article-header">
+                <h1 className="doc-h1">{pageTitle}</h1>
+                {formattedPublishedDate && (
+                  <div className="doc-article-meta" aria-label="文章发布时间">
+                    <time className="doc-article-meta-value" dateTime={docMetaEntry?.item?.publishedAt}>
+                      {formattedPublishedDate}
+                    </time>
+                  </div>
+                )}
+              </header>
+            )}
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
@@ -267,7 +337,7 @@ const DocContent = () => {
                 ol: ({ node, ...props }) => <ol className="doc-ol" {...props} />,
               }}
             >
-              {content}
+              {markdownContent}
             </ReactMarkdown>
           </article>
 

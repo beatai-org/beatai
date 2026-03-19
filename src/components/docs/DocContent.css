@@ -63,6 +63,23 @@
   letter-spacing: -0.02em;
 }
 
+.doc-article-meta {
+  display: flex;
+  align-items: center;
+  margin: -8px 0 28px;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+[data-theme-mode="dark"] .doc-article-meta {
+  color: #9ca3af;
+}
+
+.doc-article-meta-value {
+  font-weight: 500;
+}
+
 .doc-h2 {
   font-size: 32px;
   font-weight: 700;

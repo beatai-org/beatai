@@ -3,6 +3,101 @@ import { defaultSchema } from 'rehype-sanitize';
 import { slugifyHeading, getTextContent } from '../../utils/markdown';
 import Prism from '../../utils/prism';
 
+function fallbackCopyText(text) {
+  if (typeof document === 'undefined') {
+    return false;
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+
+  try {
+    return document.execCommand('copy');
+  } finally {
+    document.body.removeChild(textarea);
+  }
+}
+
+async function copyText(text) {
+  if (!text) {
+    return false;
+  }
+
+  if (navigator?.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (error) {
+      return fallbackCopyText(text);
+    }
+  }
+
+  return fallbackCopyText(text);
+}
+
+function MarkdownPreBlock({ children, className, language = '', rawCode = '', ...props }) {
+  const [copied, setCopied] = React.useState(false);
+  const preRef = React.useRef(null);
+  const resetTimerRef = React.useRef(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) {
+        window.clearTimeout(resetTimerRef.current);
+      }
+    };
+  }, []);
+
+  const handleCopy = async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const codeElement = preRef.current?.querySelector('code');
+    const textToCopy = rawCode || codeElement?.textContent || '';
+    const didCopy = await copyText(textToCopy);
+
+    if (!didCopy) {
+      return;
+    }
+
+    if (resetTimerRef.current) {
+      window.clearTimeout(resetTimerRef.current);
+    }
+
+    setCopied(true);
+    resetTimerRef.current = window.setTimeout(() => {
+      setCopied(false);
+      resetTimerRef.current = null;
+    }, 1800);
+  };
+
+  return (
+    <div className="doc-code-block-shell">
+      <pre
+        {...props}
+        ref={preRef}
+        className={className}
+        data-language={language || undefined}
+      >
+        <button
+          type="button"
+          className={`doc-code-copy-btn ${copied ? 'copied' : ''}`}
+          onClick={handleCopy}
+          aria-label={copied ? '代码已复制' : '复制代码'}
+        >
+          {copied ? 'Copied' : 'Copy'}
+        </button>
+        {children}
+      </pre>
+    </div>
+  );
+}
+
 export const sanitizeSchema = {
   ...defaultSchema,
   attributes: {
@@ -51,6 +146,7 @@ export function createMarkdownCodeComponent({ playgroundRenderer = null } = {}) 
     return (
       <code
         className={`doc-code-block ${className || ''}`}
+        data-raw-code={code}
         dangerouslySetInnerHTML={{ __html: highlightedCode }}
         {...props}
       />
@@ -61,18 +157,20 @@ export function createMarkdownCodeComponent({ playgroundRenderer = null } = {}) 
 export function createMarkdownPreComponent() {
   return ({ children, ...props }) => {
     const codeClassName = children?.props?.className || '';
+    const rawCode = children?.props?.['data-raw-code'] || '';
     const languageMatch = /language-(\w+)/.exec(codeClassName);
     const language = languageMatch ? languageMatch[1] : '';
     const preClassName = ['doc-pre', codeClassName, props.className].filter(Boolean).join(' ');
 
     return (
-      <pre
+      <MarkdownPreBlock
         {...props}
         className={preClassName}
-        data-language={language || undefined}
+        language={language}
+        rawCode={rawCode}
       >
         {children}
-      </pre>
+      </MarkdownPreBlock>
     );
   };
 }

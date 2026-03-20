@@ -217,7 +217,7 @@
   background: #2d2d2d !important;
   border: 1px solid #e1e4e8 !important;
   border-radius: 12px;
-  padding: 20px;
+  padding: 52px 20px 20px;
   margin: 24px 0;
   overflow-x: auto;
   color: #e6edf3 !important;
@@ -245,6 +245,63 @@
   background: none;
   border: none;
   padding: 0;
+}
+
+.doc-code-block-shell {
+  position: relative;
+}
+
+.doc-code-copy-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 68px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid color-mix(in srgb, var(--accent-start) 22%, rgba(255, 255, 255, 0.12));
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #dbe6f3;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
+  backdrop-filter: blur(8px);
+}
+
+.doc-code-copy-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: color-mix(in srgb, var(--accent-start) 34%, rgba(255, 255, 255, 0.2));
+}
+
+.doc-code-copy-btn.copied {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-start) 72%, rgba(255, 255, 255, 0.16)),
+    color-mix(in srgb, var(--accent-end) 68%, rgba(255, 255, 255, 0.16))
+  );
+  border-color: transparent;
+  color: #ffffff;
+}
+
+[data-theme-mode="light"] .doc-code-copy-btn {
+  background: rgba(255, 255, 255, 0.88);
+  color: #1f2937;
+  border-color: color-mix(in srgb, var(--accent-start) 18%, rgba(17, 24, 39, 0.12));
+  box-shadow:
+    0 6px 18px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+[data-theme-mode="light"] .doc-code-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: color-mix(in srgb, var(--accent-start) 28%, rgba(17, 24, 39, 0.16));
 }
 
 /* Tables */
@@ -385,12 +442,13 @@
   content: attr(data-language);
   position: absolute;
   top: 12px;
-  right: 12px;
+  right: 92px;
   font-size: 11px;
   color: var(--text-tertiary);
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.05em;
+  line-height: 30px;
 }
 
 /* Mobile */
@@ -422,8 +480,22 @@
   }
 
   .doc-pre {
-    padding: 16px;
+    padding: 48px 16px 16px;
     font-size: 13px;
+  }
+
+  .doc-code-copy-btn {
+    top: 10px;
+    right: 10px;
+    min-width: 62px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .doc-pre:has(code[class*="language-"])::before {
+    top: 10px;
+    right: 80px;
+    line-height: 28px;
   }
 
   .doc-table-wrapper {

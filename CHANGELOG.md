@@ -4,6 +4,10 @@ All notable releases for this project are recorded in this file.
 
 ## [Unreleased]
 
+## [0.12.4] - 2026-03-20
+
+- Refine docs and LCC reading layout
+
 ## [0.12.2] - 2026-03-19
 
 - Switch giscus defaults to rust-course discussions

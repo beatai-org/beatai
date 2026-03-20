@@ -204,6 +204,9 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: calc(100% - 256px);
+  max-width: calc(100% - 256px);
+  margin-right: auto;
 }
 
 .lcc-hero-shell,
@@ -298,6 +301,11 @@
 }
 
 @media (max-width: 1200px) {
+  .lcc-version-header {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .lcc-hero-shell {
     width: 100%;
     max-width: 100%;

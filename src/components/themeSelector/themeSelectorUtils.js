@@ -19,6 +19,13 @@ const STORAGE_KEYS = {
   backgroundDepth: 'docs-background-depth'
 };
 
+const LEGACY_FONT_SIZE_IDS = {
+  small: '16',
+  normal: '18',
+  large: '20',
+  xlarge: '22'
+};
+
 function getStoredValue(key, options, fallback) {
   const savedValue = localStorage.getItem(key);
   return options.some((option) => option.id === savedValue) ? savedValue : fallback;
@@ -53,6 +60,15 @@ export function applyFontSize(sizeId) {
   }
 }
 
+function getStoredFontSizeValue() {
+  const savedValue = localStorage.getItem(STORAGE_KEYS.fontSize);
+  const normalizedValue = LEGACY_FONT_SIZE_IDS[savedValue] || savedValue;
+
+  return FONT_SIZES.some((option) => option.id === normalizedValue)
+    ? normalizedValue
+    : DEFAULT_FONT_SIZE_ID;
+}
+
 export function applyBackgroundDepth(depthId) {
   const depth = BACKGROUND_DEPTHS.find((item) => item.id === depthId);
   if (depth) {
@@ -68,7 +84,7 @@ export function getSavedThemeSelectorState() {
     themeId: getStoredValue(STORAGE_KEYS.theme, THEMES, DEFAULT_THEME_ID),
     fontId: getStoredValue(STORAGE_KEYS.font, FONTS, DEFAULT_FONT_ID),
     fontWeightId: getStoredValue(STORAGE_KEYS.fontWeight, FONT_WEIGHTS, DEFAULT_FONT_WEIGHT_ID),
-    fontSizeId: getStoredValue(STORAGE_KEYS.fontSize, FONT_SIZES, DEFAULT_FONT_SIZE_ID),
+    fontSizeId: getStoredFontSizeValue(),
     backgroundDepthId: getStoredValue(STORAGE_KEYS.backgroundDepth, BACKGROUND_DEPTHS, DEFAULT_BACKGROUND_DEPTH_ID)
   };
 }

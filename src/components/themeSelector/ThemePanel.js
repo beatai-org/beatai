@@ -1,6 +1,7 @@
 import React from 'react';
-import { BACKGROUND_DEPTHS, FONTS, FONT_SIZES, FONT_WEIGHTS } from './config';
+import { BACKGROUND_DEPTHS, FONTS, FONT_WEIGHTS } from './config';
 import BackgroundDepthControl from './BackgroundDepthControl';
+import FontSizeControl from './FontSizeControl';
 import ThemeGridSection from './ThemeGridSection';
 import ThemeModeSection from './ThemeModeSection';
 import ThemeOptionSection from './ThemeOptionSection';
@@ -70,14 +71,9 @@ export default function ThemePanel({
         title="Font Weight"
       />
 
-      <ThemeOptionSection
-        buttonClassName="font-size-option"
-        checkClassName="font-size-check"
+      <FontSizeControl
         currentValue={currentFontSize}
-        labelClassName="font-size-name"
-        listClassName="font-size-list"
         onChange={onFontSizeChange}
-        options={FONT_SIZES}
         title="Font Size"
       />
     </div>

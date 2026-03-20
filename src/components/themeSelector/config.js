@@ -1,7 +1,7 @@
 export const DEFAULT_THEME_ID = 'classic-mono';
 export const DEFAULT_FONT_ID = 'pingfang';
 export const DEFAULT_FONT_WEIGHT_ID = 'normal';
-export const DEFAULT_FONT_SIZE_ID = 'large';
+export const DEFAULT_FONT_SIZE_ID = '18';
 export const DEFAULT_BACKGROUND_DEPTH_ID = 'soft';
 
 export const THEMES = [
@@ -159,12 +159,15 @@ export const FONT_WEIGHTS = [
   { id: 'bold', name: '粗体', value: '700' }
 ];
 
-export const FONT_SIZES = [
-  { id: 'small', name: '小', value: '14px' },
-  { id: 'normal', name: '标准', value: '16px' },
-  { id: 'large', name: '大', value: '18px' },
-  { id: 'xlarge', name: '超大', value: '20px' }
-];
+export const FONT_SIZES = Array.from({ length: 9 }, (_, index) => {
+  const size = 14 + index;
+
+  return {
+    id: String(size),
+    name: `${size}px`,
+    value: `${size}px`
+  };
+});
 
 export const BACKGROUND_DEPTHS = [
   {

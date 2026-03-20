@@ -1,6 +1,6 @@
 {
   "name": "beatai-website",
-  "version": "0.12.12",
+  "version": "0.12.13",
   "private": true,
   "homepage": "https://beatai.org",
   "dependencies": {
@@ -41,7 +41,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "version": "0.12.12",
+    "version": "0.12.13",
     "release": "bash scripts/release.sh",
     "register-markdown-book": "node scripts/register-markdown-book.mjs",
     "update-changelog": "node scripts/update-changelog.mjs",

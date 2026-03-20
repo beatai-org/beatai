@@ -4,6 +4,10 @@ All notable releases for this project are recorded in this file.
 
 ## [Unreleased]
 
+## [0.12.13] - 2026-03-20
+
+- Refine theme panel defaults
+
 ## [0.12.12] - 2026-03-20
 
 - Add background depth slider

@@ -1,8 +1,8 @@
 export const DEFAULT_THEME_ID = 'classic-mono';
-export const DEFAULT_FONT_ID = 'system';
+export const DEFAULT_FONT_ID = 'pingfang';
 export const DEFAULT_FONT_WEIGHT_ID = 'normal';
 export const DEFAULT_FONT_SIZE_ID = 'large';
-export const DEFAULT_BACKGROUND_DEPTH_ID = 'balanced';
+export const DEFAULT_BACKGROUND_DEPTH_ID = 'soft';
 
 export const THEMES = [
   {

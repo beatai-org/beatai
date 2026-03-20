@@ -8,14 +8,6 @@
   flex-wrap: wrap;
 }
 
-.article-tags-label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
 .article-tags-list {
   display: flex;
   align-items: center;
@@ -90,10 +82,6 @@
     gap: 0.75rem;
   }
 
-  .article-tags-label {
-    font-size: 0.85rem;
-  }
-
   .article-tags-list {
     gap: 0.5rem;
   }
@@ -114,8 +102,4 @@
 [data-theme-mode="light"] .article-tag:hover {
   color: rgba(0, 0, 0, 0.9);
   background: rgba(0, 0, 0, 0.05);
-}
-
-[data-theme-mode="light"] .article-tags-label {
-  color: rgba(0, 0, 0, 0.6);
 }

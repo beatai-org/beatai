@@ -10,7 +10,6 @@ const ArticleTags = ({ tags }) => {
 
   return (
     <div className="article-tags">
-      <div className="article-tags-label">标签:</div>
       <div className="article-tags-list">
         {tags.map((tag, index) => (
           <Link

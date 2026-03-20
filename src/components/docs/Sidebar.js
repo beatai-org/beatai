@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { NavLink, useLocation } from 'react-router-dom';
 import { RepoCard } from '../common';
 import './Sidebar.css';
@@ -16,14 +17,97 @@ function isPublishedToday(publishedAt) {
   return Boolean(publishedAt) && publishedAt === getTodayDateString();
 }
 
+function GlobalNewBadge({ anchorRef, visible }) {
+  const [position, setPosition] = useState(null);
+
+  useEffect(() => {
+    if (!visible) {
+      setPosition(null);
+      return undefined;
+    }
+
+    let frameId = null;
+    let resizeObserver = null;
+
+    const updatePosition = () => {
+      const anchor = anchorRef.current;
+
+      if (!anchor) {
+        setPosition(null);
+        return;
+      }
+
+      const rect = anchor.getBoundingClientRect();
+      const computedStyle = window.getComputedStyle(anchor);
+      const fontSize = Number.parseFloat(computedStyle.fontSize) || 14;
+      const resolvedLineHeight = computedStyle.lineHeight === 'normal'
+        ? fontSize * 1.4
+        : Number.parseFloat(computedStyle.lineHeight) || fontSize * 1.4;
+
+      setPosition({
+        left: rect.left - 2,
+        top: rect.top + resolvedLineHeight / 2 + 1
+      });
+    };
+
+    const scheduleUpdate = () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      frameId = window.requestAnimationFrame(() => {
+        frameId = null;
+        updatePosition();
+      });
+    };
+
+    scheduleUpdate();
+    window.addEventListener('resize', scheduleUpdate);
+    window.addEventListener('scroll', scheduleUpdate, true);
+
+    if (typeof ResizeObserver !== 'undefined' && anchorRef.current) {
+      resizeObserver = new ResizeObserver(scheduleUpdate);
+      resizeObserver.observe(anchorRef.current);
+    }
+
+    return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+      window.removeEventListener('resize', scheduleUpdate);
+      window.removeEventListener('scroll', scheduleUpdate, true);
+      resizeObserver?.disconnect();
+    };
+  }, [anchorRef, visible]);
+
+  if (!visible || !position || typeof document === 'undefined') {
+    return null;
+  }
+
+  return createPortal(
+    <span
+      className="sidebar-global-new-badge"
+      style={{
+        left: `${position.left}px`,
+        top: `${position.top}px`
+      }}
+    >
+      new
+    </span>,
+    document.body
+  );
+}
+
 function TitleWithNewBadge({ title, publishedAt }) {
   const showNewBadge = isPublishedToday(publishedAt);
+  const titleRef = useRef(null);
 
   return (
     <span className="sidebar-title-with-badge">
-      <span className="sidebar-title-text" data-is-new={showNewBadge ? 'true' : undefined}>
+      <span ref={titleRef} className="sidebar-title-text">
         {title}
       </span>
+      <GlobalNewBadge anchorRef={titleRef} visible={showNewBadge} />
     </span>
   );
 }

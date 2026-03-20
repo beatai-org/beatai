@@ -1,0 +1,195 @@
+.background-depth-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.background-depth-header .theme-panel-title {
+  margin-bottom: 0;
+}
+
+.background-depth-current {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-start) 12%, transparent);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.background-depth-control {
+  border-radius: 14px;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme-mode="dark"] .background-depth-control {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.background-depth-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.background-depth-scale-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.background-depth-slider-shell {
+  position: relative;
+  height: 14px;
+  margin-bottom: 14px;
+}
+
+.background-depth-slider-shell::before {
+  content: '';
+  position: absolute;
+  inset: 4px 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(15, 23, 42, 0.38) 100%);
+}
+
+[data-theme-mode="dark"] .background-depth-slider-shell::before {
+  background: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(226, 232, 240, 0.42) 100%);
+}
+
+.background-depth-slider-progress {
+  position: absolute;
+  inset: 4px auto 4px 0;
+  border-radius: 999px;
+  background: var(--accent-gradient);
+  pointer-events: none;
+}
+
+.background-depth-slider {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.background-depth-slider::-webkit-slider-runnable-track {
+  height: 14px;
+  background: transparent;
+}
+
+.background-depth-slider::-moz-range-track {
+  height: 14px;
+  background: transparent;
+  border: none;
+}
+
+.background-depth-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -2px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: var(--accent-gradient);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--accent-start) 38%, transparent);
+}
+
+.background-depth-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: var(--accent-gradient);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--accent-start) 38%, transparent);
+}
+
+.background-depth-stops {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.background-depth-stop {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.background-depth-stop:hover {
+  transform: translateY(-1px);
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme-mode="dark"] .background-depth-stop:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.background-depth-stop.active {
+  background: color-mix(in srgb, var(--accent-start) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent-start) 32%, transparent);
+  color: var(--text-primary);
+}
+
+.background-depth-stop-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.34;
+}
+
+.background-depth-stop.active .background-depth-stop-dot {
+  opacity: 1;
+  background: var(--accent-start);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-start) 14%, transparent);
+}
+
+.background-depth-stop-name {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.background-depth-stop-index {
+  font-size: 11px;
+  opacity: 0.66;
+}
+
+.background-depth-description {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+@media (max-width: 480px) {
+  .background-depth-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .background-depth-stops {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

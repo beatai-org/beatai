@@ -11,6 +11,10 @@
   --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-weight: 400;
   --font-size: 16px;
+  --site-shell-bg-light: linear-gradient(180deg, #eef2f7 0%, #e7ecf3 100%);
+  --site-shell-bg-dark: linear-gradient(180deg, #080b12 0%, #0c1018 100%);
+  --site-shell-overlay-opacity-light: 0.58;
+  --site-shell-overlay-opacity-dark: 0.44;
   --bg-primary: #0a0a0a;
   --bg-secondary: #1a1a1a;
   --bg-tertiary: #262626;

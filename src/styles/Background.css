@@ -334,9 +334,13 @@
 .dynamic-background {
   position: relative;
   min-height: 100vh;
+  background: var(--site-shell-bg-light);
   transition: background 0.5s ease;
 }
 
+[data-theme-mode="dark"] .dynamic-background {
+  background: var(--site-shell-bg-dark);
+}
 
 /* 动态渐变背景层 - 使用 CSS 变量 */
 .dynamic-background::before {
@@ -353,6 +357,7 @@
   pointer-events: none;
   z-index: 0;
   /* Animation removed for better performance */
+  opacity: var(--site-shell-overlay-opacity-light);
   transition: background 0.5s ease;
 }
 
@@ -362,7 +367,7 @@
     radial-gradient(circle at 20% 30%, var(--bg-radial-1) 0%, transparent 45%),
     radial-gradient(circle at 80% 60%, var(--bg-radial-2) 0%, transparent 45%),
     radial-gradient(circle at 50% 80%, var(--bg-radial-3) 0%, transparent 45%);
-  opacity: 1.3;
+  opacity: var(--site-shell-overlay-opacity-dark);
 }
 
 /* 网格背景层 - 已移除 */

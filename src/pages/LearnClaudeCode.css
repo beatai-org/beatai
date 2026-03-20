@@ -2,19 +2,6 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #eef2f7 0%, #e7ecf3 100%);
-}
-
-:root[data-theme-mode='dark'] .lcc-page {
-  background: linear-gradient(180deg, #080b12 0%, #0c1018 100%);
-}
-
-.lcc-page.dynamic-background::before {
-  opacity: 0.58;
-}
-
-:root[data-theme-mode='dark'] .lcc-page.dynamic-background::before {
-  opacity: 0.44;
 }
 
 .lcc-shell {

@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import {
+  DEFAULT_BACKGROUND_DEPTH_ID,
   DEFAULT_FONT_ID,
   DEFAULT_FONT_SIZE_ID,
   DEFAULT_FONT_WEIGHT_ID,
   DEFAULT_THEME_ID
 } from './config';
 import {
+  applyBackgroundDepth,
   applyFont,
   applyFontSize,
   applyFontWeight,
@@ -15,6 +17,7 @@ import {
   persistFont,
   persistFontSize,
   persistFontWeight,
+  persistBackgroundDepth,
   persistTheme,
   setThemeAttribute
 } from './themeSelectorUtils';
@@ -27,6 +30,7 @@ export function useThemeSelectorState() {
   const [currentFont, setCurrentFont] = useState(DEFAULT_FONT_ID);
   const [currentFontWeight, setCurrentFontWeight] = useState(DEFAULT_FONT_WEIGHT_ID);
   const [currentFontSize, setCurrentFontSize] = useState(DEFAULT_FONT_SIZE_ID);
+  const [currentBackgroundDepth, setCurrentBackgroundDepth] = useState(DEFAULT_BACKGROUND_DEPTH_ID);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const themeApplyTimerRef = useRef(null);
@@ -39,6 +43,7 @@ export function useThemeSelectorState() {
     setCurrentFont(savedState.fontId);
     setCurrentFontWeight(savedState.fontWeightId);
     setCurrentFontSize(savedState.fontSizeId);
+    setCurrentBackgroundDepth(savedState.backgroundDepthId);
     applySavedThemeSelectorState(savedState);
     setIsDarkMode(getIsDarkMode());
 
@@ -100,11 +105,19 @@ export function useThemeSelectorState() {
     persistFontSize(sizeId);
   };
 
+  const handleBackgroundDepthChange = (depthId) => {
+    setCurrentBackgroundDepth(depthId);
+    applyBackgroundDepth(depthId);
+    persistBackgroundDepth(depthId);
+  };
+
   return {
+    currentBackgroundDepth,
     currentFont,
     currentFontSize,
     currentFontWeight,
     currentTheme,
+    handleBackgroundDepthChange,
     handleFontChange,
     handleFontSizeChange,
     handleFontWeightChange,

@@ -4,6 +4,10 @@ All notable releases for this project are recorded in this file.
 
 ## [Unreleased]
 
+## [0.12.12] - 2026-03-20
+
+- Add background depth slider
+
 ## [0.12.11] - 2026-03-20
 
 - Improve chapter text readability

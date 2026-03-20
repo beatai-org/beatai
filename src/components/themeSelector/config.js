@@ -2,6 +2,7 @@ export const DEFAULT_THEME_ID = 'classic-mono';
 export const DEFAULT_FONT_ID = 'system';
 export const DEFAULT_FONT_WEIGHT_ID = 'normal';
 export const DEFAULT_FONT_SIZE_ID = 'large';
+export const DEFAULT_BACKGROUND_DEPTH_ID = 'balanced';
 
 export const THEMES = [
   {
@@ -163,4 +164,57 @@ export const FONT_SIZES = [
   { id: 'normal', name: '标准', value: '16px' },
   { id: 'large', name: '大', value: '18px' },
   { id: 'xlarge', name: '超大', value: '20px' }
+];
+
+export const BACKGROUND_DEPTHS = [
+  {
+    id: 'bright',
+    name: '明亮',
+    shortName: '亮',
+    description: '保留原本更通透的主题背景，氛围更强。',
+    pageBackgroundLight: 'transparent',
+    pageBackgroundDark: 'transparent',
+    overlayOpacityLight: '1',
+    overlayOpacityDark: '1.3'
+  },
+  {
+    id: 'soft',
+    name: '柔和',
+    shortName: '柔',
+    description: '轻微压低背景亮度，兼顾主题氛围和阅读舒适度。',
+    pageBackgroundLight: 'linear-gradient(180deg, #f7f9fc 0%, #eef2f7 100%)',
+    pageBackgroundDark: 'linear-gradient(180deg, #0a0d14 0%, #101520 100%)',
+    overlayOpacityLight: '0.86',
+    overlayOpacityDark: '0.98'
+  },
+  {
+    id: 'balanced',
+    name: '平衡',
+    shortName: '衡',
+    description: '阅读和视觉效果均衡，适合作为日常默认档位。',
+    pageBackgroundLight: 'linear-gradient(180deg, #f3f6fa 0%, #ebf0f6 100%)',
+    pageBackgroundDark: 'linear-gradient(180deg, #09101a 0%, #0f1621 100%)',
+    overlayOpacityLight: '0.72',
+    overlayOpacityDark: '0.72'
+  },
+  {
+    id: 'dim',
+    name: '暗调',
+    shortName: '暗',
+    description: '明显压低背景存在感，让章节正文更稳定、更易读。',
+    pageBackgroundLight: 'linear-gradient(180deg, #eef2f7 0%, #e7ecf3 100%)',
+    pageBackgroundDark: 'linear-gradient(180deg, #080b12 0%, #0c1018 100%)',
+    overlayOpacityLight: '0.58',
+    overlayOpacityDark: '0.44'
+  },
+  {
+    id: 'deep',
+    name: '深夜',
+    shortName: '深',
+    description: '最克制的背景档位，适合长时间沉浸式阅读。',
+    pageBackgroundLight: 'linear-gradient(180deg, #e8edf4 0%, #e1e7ef 100%)',
+    pageBackgroundDark: 'linear-gradient(180deg, #06080d 0%, #090c12 100%)',
+    overlayOpacityLight: '0.42',
+    overlayOpacityDark: '0.24'
+  }
 ];

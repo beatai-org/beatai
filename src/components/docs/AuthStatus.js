@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { HiLogout, HiUser, HiAnnotation } from 'react-icons/hi';
+import { HiLogout, HiUser, HiAnnotation, HiLightningBolt } from 'react-icons/hi';
 import { useAnnotationContext } from '../../contexts/AnnotationContext';
 import { useNavigate } from 'react-router-dom';
 import AuthModal from './AuthModal';
+import HiddenTipsModal from './HiddenTipsModal';
 import './AuthStatus.css';
 
 const AuthStatus = () => {
@@ -17,6 +18,7 @@ const AuthStatus = () => {
   const navigate = useNavigate();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showUserPanel, setShowUserPanel] = useState(false);
+  const [showTipsModal, setShowTipsModal] = useState(false);
   const panelRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -127,6 +129,17 @@ const AuthStatus = () => {
               )}
             </button>
 
+            <button
+              className="auth-status-user-panel-btn"
+              onClick={() => {
+                setShowTipsModal(true);
+                setShowUserPanel(false);
+              }}
+            >
+              <HiLightningBolt />
+              <span>隐藏技巧</span>
+            </button>
+
             <div className="auth-status-user-panel-divider"></div>
 
             <button
@@ -142,6 +155,10 @@ const AuthStatus = () => {
           </div>
         )}
       </div>
+      <HiddenTipsModal
+        isOpen={showTipsModal}
+        onClose={() => setShowTipsModal(false)}
+      />
     </>
   );
 };

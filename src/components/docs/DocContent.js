@@ -30,6 +30,7 @@ import { usePageTitle } from '../../contexts/PageTitleContext';
 import { useMeta } from '../../contexts/MetaContext';
 import { useTag } from '../../contexts/TagContext';
 import { useMarkdownSource } from '../../hooks/useMarkdownSource';
+import { useDocShortcuts } from '../../hooks/useDocShortcuts';
 import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
 import { findMetaEntryByPath } from '../../utils/docsMeta';
 import { resolvePublicContentUrl } from '../../utils/markdown';
@@ -44,6 +45,7 @@ const DocContent = () => {
   const { meta } = useMeta();
   const { findArticleTags } = useTag();
   const articleRef = React.useRef(null);
+  const commentsRef = React.useRef(null);
   const [adjacentChapters, setAdjacentChapters] = useState({ prev: null, next: null });
   const [articleTags, setArticleTags] = useState([]);
 
@@ -97,6 +99,14 @@ const DocContent = () => {
     return stripAiInsightsTitle(content, isAiInsightsArticle);
   }, [content, isAiInsightsArticle]);
 
+  useDocShortcuts({
+    articleRef,
+    commentsRef,
+    prev: adjacentChapters.prev,
+    next: adjacentChapters.next,
+    enabled: Boolean(rawDoc)
+  });
+
   if (error) {
     return (
       <div className="doc-error">
@@ -138,7 +148,7 @@ const DocContent = () => {
           <>
             <ArticleTags tags={articleTags} />
             <PaginationNav prev={adjacentChapters.prev} next={adjacentChapters.next} />
-            <GiscusComments pageTitle={pageTitle} />
+            <GiscusComments pageTitle={pageTitle} containerRef={commentsRef} />
           </>
         )}
       >

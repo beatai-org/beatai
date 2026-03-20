@@ -90,7 +90,7 @@ function MarkdownPreBlock({ children, className, language = '', rawCode = '', ..
           onClick={handleCopy}
           aria-label={copied ? '代码已复制' : '复制代码'}
         >
-          {copied ? 'Copied' : 'Copy'}
+          {copied ? 'COPIED' : 'COPY'}
         </button>
         {children}
       </pre>

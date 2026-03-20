@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PaginationNav from '../docs/PaginationNav';
 import { cn } from '../../utils/classNames';
+import { useDocShortcuts } from '../../hooks/useDocShortcuts';
 import {
   ANNOTATIONS,
   LEARNING_PATH,
@@ -22,23 +23,37 @@ import { getVersionData, getVersionPagination, getVersionTabs, safeSessionLabel 
 function VersionPage() {
   const { version } = useParams();
   const [activeTab, setActiveTab] = useState('learn');
+  const commentsRef = React.useRef(null);
+  const articleTopRef = React.useRef(null);
 
   useEffect(() => {
     setActiveTab('learn');
   }, [version]);
 
-  if (!LEARNING_PATH.includes(version)) {
+  const isValidVersion = LEARNING_PATH.includes(version);
+
+  const versionData = isValidVersion ? getVersionData(version) : null;
+  const meta = isValidVersion ? VERSION_META[version] : null;
+  const hasVisualization = isValidVersion && Boolean(zhMessages.viz?.[version]);
+  const { prev: prevNav, next: nextNav } = isValidVersion
+    ? getVersionPagination(version)
+    : { prev: null, next: null };
+  const tabs = isValidVersion ? getVersionTabs(version, versionData) : [];
+
+  useDocShortcuts({
+    articleRef: articleTopRef,
+    commentsRef,
+    prev: prevNav,
+    next: nextNav,
+    enabled: isValidVersion
+  });
+
+  if (!isValidVersion) {
     return <NotFoundState label={version} />;
   }
 
-  const versionData = getVersionData(version);
-  const meta = VERSION_META[version];
-  const hasVisualization = Boolean(zhMessages.viz?.[version]);
-  const { prev: prevNav, next: nextNav } = getVersionPagination(version);
-  const tabs = getVersionTabs(version, versionData);
-
   return (
-    <section className="lcc-section">
+    <section ref={articleTopRef} className="lcc-section">
       <header className="lcc-version-header">
         <h2>{safeSessionLabel(version)}</h2>
         {version === 'preface' ? (
@@ -102,7 +117,9 @@ function VersionPage() {
       </section>
 
       <PaginationNav prev={prevNav} next={nextNav} />
-      {activeTab === 'learn' ? <GiscusComments pageTitle={safeSessionLabel(version)} /> : null}
+      {activeTab === 'learn' ? (
+        <GiscusComments pageTitle={safeSessionLabel(version)} containerRef={commentsRef} />
+      ) : null}
     </section>
   );
 }

@@ -1,0 +1,201 @@
+.hidden-tips-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(7, 10, 18, 0.56);
+  backdrop-filter: blur(10px);
+}
+
+.hidden-tips-modal {
+  width: min(720px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--accent-start) 20%, var(--border-primary));
+  background:
+    radial-gradient(circle at top right,
+      color-mix(in srgb, var(--accent-start) 12%, transparent),
+      transparent 34%),
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--card-bg) 96%, transparent),
+      color-mix(in srgb, var(--bg-secondary) 82%, var(--card-bg)));
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.24),
+    0 10px 28px color-mix(in srgb, var(--accent-start) 10%, transparent);
+}
+
+.hidden-tips-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-start) 14%, var(--border-primary));
+}
+
+.hidden-tips-eyebrow {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.hidden-tips-header h2 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+.hidden-tips-close {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-start) 12%, transparent);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.hidden-tips-close:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--accent-start) 18%, transparent);
+  color: var(--text-primary);
+}
+
+.hidden-tips-content {
+  padding: 24px 28px 28px;
+  display: grid;
+  gap: 20px;
+}
+
+.hidden-tips-section {
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--accent-start) 14%, var(--border-primary));
+  background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+}
+
+.hidden-tips-section-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.hidden-tips-section-title svg {
+  color: var(--accent-start);
+  font-size: 18px;
+}
+
+.hidden-tips-shortcuts {
+  display: grid;
+  gap: 12px;
+}
+
+.hidden-tips-shortcut {
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--accent-start) 7%, transparent);
+}
+
+.hidden-tips-shortcut-keys {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hidden-tips-shortcut kbd {
+  min-width: 52px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--accent-start) 18%, var(--border-primary));
+  background: color-mix(in srgb, var(--card-bg) 96%, transparent);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--accent-start) 10%, transparent);
+}
+
+.hidden-tips-shortcut p,
+.hidden-tips-note {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.hidden-tips-notes {
+  margin: 0;
+  padding-left: 22px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.hidden-tips-notes li + li {
+  margin-top: 8px;
+}
+
+.hidden-tips-note {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed color-mix(in srgb, var(--accent-start) 18%, var(--border-primary));
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+:root[data-theme-mode='dark'] .hidden-tips-modal {
+  background:
+    radial-gradient(circle at top right,
+      color-mix(in srgb, var(--accent-start) 16%, transparent),
+      transparent 32%),
+    linear-gradient(180deg, #10141d, #0b0f16);
+}
+
+:root[data-theme-mode='dark'] .hidden-tips-section {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+@media (max-width: 720px) {
+  .hidden-tips-backdrop {
+    padding: 14px;
+  }
+
+  .hidden-tips-header {
+    padding: 20px 18px 16px;
+  }
+
+  .hidden-tips-header h2 {
+    font-size: 24px;
+  }
+
+  .hidden-tips-content {
+    padding: 18px;
+  }
+
+  .hidden-tips-section {
+    padding: 16px;
+  }
+
+  .hidden-tips-shortcut {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "CC宝典",
+    "title": "AI 学习宝典",
     "description": "从 0 到 1 构建 nano Claude Code-like agent，每次只加一个机制"
   },
   "nav": {
@@ -11,7 +11,7 @@
     "github": "GitHub"
   },
   "home": {
-    "hero_title": "CC宝典",
+    "hero_title": "AI 学习宝典",
     "hero_subtitle": "从 0 到 1 构建 nano Claude Code-like agent，每次只加一个机制",
     "start": "开始学习",
     "core_pattern": "核心模式",

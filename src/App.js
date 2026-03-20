@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import './styles/Background.css';
@@ -7,6 +7,11 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { AnnotationProvider } from './contexts/AnnotationContext';
 import PageTransitionLoader from './components/PageTransitionLoader';
 import { lazyWithMinLoadTime } from './utils/lazyWithMinLoadTime';
+import {
+  LEARN_AI_PRACTICES_BASE_PATH,
+  LEARN_CLAUDE_CODE_BASE_PATH,
+  rewriteLegacyLearnClaudeCodePath
+} from './utils/learnAiPaths';
 
 // Lazy load components with minimum load time (500ms)
 const Home = lazy(() => lazyWithMinLoadTime(() => import('./pages/Home')));
@@ -16,6 +21,13 @@ const TagPage = lazy(() => lazyWithMinLoadTime(() => import('./pages/TagPage')))
 const Square = lazy(() => lazyWithMinLoadTime(() => import('./pages/Square')));
 const LogoShowcase = lazy(() => lazyWithMinLoadTime(() => import('./pages/LogoShowcase')));
 const LearnClaudeCode = lazy(() => lazyWithMinLoadTime(() => import('./pages/LearnClaudeCode')));
+
+function LegacyLearnClaudeCodeRedirect() {
+  const location = useLocation();
+  const nextPath = rewriteLegacyLearnClaudeCodePath(location.pathname);
+
+  return <Navigate to={`${nextPath}${location.search}${location.hash}`} replace />;
+}
 
 function App() {
   return (
@@ -32,7 +44,9 @@ function App() {
                   <Route path="/my-notes" element={<MyNotes />} />
                   <Route path="/square" element={<Square />} />
                   <Route path="/logo-showcase" element={<LogoShowcase />} />
-                  <Route path="/learn-claude-code/*" element={<LearnClaudeCode />} />
+                  <Route path="/learn-claude-code/*" element={<LegacyLearnClaudeCodeRedirect />} />
+                  <Route path={`${LEARN_CLAUDE_CODE_BASE_PATH}/*`} element={<LearnClaudeCode />} />
+                  <Route path={`${LEARN_AI_PRACTICES_BASE_PATH}/*`} element={<LearnClaudeCode />} />
                   <Route path="/tags/:tagName" element={<TagPage />} />
                   <Route path="/*" element={<Docs />} />
                 </Routes>

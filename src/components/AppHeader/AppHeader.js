@@ -5,6 +5,7 @@ import { FaGithub } from 'react-icons/fa';
 import ThemeSelector from '../ThemeSelector';
 import AuthStatus from '../docs/AuthStatus';
 import BeatAILogoWave from '../BeatAILogoWave';
+import { getLearnClaudeCodePath } from '../../utils/learnAiPaths';
 import './AppHeader.css';
 
 // GitHub repository mapping for each book
@@ -35,7 +36,7 @@ const AppHeader = ({
   const location = useLocation();
   const navigate = useNavigate();
   const showCategoryNav = categories.length > 0 && onCategoryClick;
-  const isLearnClaudeCodeActive = location.pathname.startsWith('/learn-claude-code');
+  const isLearnClaudeCodeActive = location.pathname.startsWith('/learn-ai/');
 
   useEffect(() => {
     setMobileDropdownOpen(false);
@@ -79,7 +80,7 @@ const AppHeader = ({
   };
 
   const handleMobileLearnClaudeCodeClick = () => {
-    navigate('/learn-claude-code/preface');
+    navigate(getLearnClaudeCodePath('preface'));
     setMobileDropdownOpen(false);
   };
 
@@ -111,7 +112,7 @@ const AppHeader = ({
                 aria-haspopup="menu"
                 onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
               >
-                <span>{isLearnClaudeCodeActive ? 'CC宝典' : (activeCategory?.title || '选择书籍')}</span>
+                <span>{isLearnClaudeCodeActive ? 'AI 学习宝典' : (activeCategory?.title || '选择书籍')}</span>
                 <HiChevronDown className={`dropdown-icon ${mobileDropdownOpen ? 'open' : ''}`} />
               </button>
               {mobileDropdownOpen && (
@@ -131,7 +132,7 @@ const AppHeader = ({
                     className={`mobile-category-item ${isLearnClaudeCodeActive ? 'active' : ''}`}
                     onClick={handleMobileLearnClaudeCodeClick}
                   >
-                    CC宝典
+                    AI 学习宝典
                   </button>
                 </div>
               )}
@@ -179,10 +180,10 @@ const AppHeader = ({
           ))}
 
           <Link
-            to="/learn-claude-code/preface"
+            to={getLearnClaudeCodePath('preface')}
             className={`category-tab category-link ${isLearnClaudeCodeActive ? 'active' : ''}`}
           >
-            <span className="category-title">CC宝典</span>
+            <span className="category-title">AI 学习宝典</span>
           </Link>
         </nav>
 

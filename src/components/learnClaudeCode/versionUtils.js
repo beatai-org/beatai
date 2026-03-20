@@ -8,6 +8,7 @@ import {
   versionsData,
   zhMessages
 } from '../../vendor/learn-claude-code/data';
+import { getLearnClaudeCodePath } from '../../utils/learnAiPaths';
 
 export function getVersionData(version) {
   return versionsData.versions.find((item) => item.id === version) || null;
@@ -37,7 +38,7 @@ export function getVersionNavTitle(version) {
 
 export function getLayerLabelForVersion(version) {
   const layer = LAYERS.find((item) => item.versions.includes(version));
-  return layer ? (zhMessages.layer_labels?.[layer.id] || layer.label) : 'CC宝典';
+  return layer ? (zhMessages.layer_labels?.[layer.id] || layer.label) : 'AI 学习宝典';
 }
 
 export function getVersionPagination(version) {
@@ -47,12 +48,12 @@ export function getVersionPagination(version) {
 
   return {
     prev: prevVersion ? {
-      path: `/learn-claude-code/${prevVersion}`,
+      path: getLearnClaudeCodePath(prevVersion),
       title: getVersionNavTitle(prevVersion),
       section: getLayerLabelForVersion(prevVersion)
     } : null,
     next: nextVersion ? {
-      path: `/learn-claude-code/${nextVersion}`,
+      path: getLearnClaudeCodePath(nextVersion),
       title: getVersionNavTitle(nextVersion),
       section: getLayerLabelForVersion(nextVersion)
     } : null

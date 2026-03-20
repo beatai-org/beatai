@@ -18,6 +18,11 @@ import '../components/docs/DocContent.css';
 import '../styles/prism-custom.css';
 import { LEARNING_PATH } from '../vendor/learn-claude-code/data';
 import { buildLearnClaudeCodeSidebarMeta } from '../components/learnClaudeCode/sidebarMeta';
+import {
+  getLearnClaudeCodePath,
+  isPracticeVersion,
+  LEARN_AI_PRACTICES_BASE_PATH
+} from '../utils/learnAiPaths';
 
 function LearnClaudeCode() {
   const { meta } = useDocsMeta();
@@ -29,14 +34,28 @@ function LearnClaudeCode() {
 
   const categories = meta?.categories || [];
   const sidebarMeta = useMemo(() => buildLearnClaudeCodeSidebarMeta(), []);
+  const isPracticesRoute = location.pathname.startsWith(LEARN_AI_PRACTICES_BASE_PATH);
+  const currentVersion = location.pathname.split('/').filter(Boolean).at(-1) || '';
+  const isVersionPath = currentVersion !== 'learn-claude-code' && currentVersion !== 'practices';
+
+  if (isVersionPath) {
+    const shouldUsePracticesRoute = isPracticeVersion(currentVersion);
+    if (shouldUsePracticesRoute !== isPracticesRoute) {
+      return <Navigate to={getLearnClaudeCodePath(currentVersion)} replace />;
+    }
+  }
+
+  const defaultVersion = isPracticesRoute
+    ? LEARNING_PATH.find(isPracticeVersion) || LEARNING_PATH[0]
+    : LEARNING_PATH.find((version) => !isPracticeVersion(version)) || LEARNING_PATH[0];
 
   return (
     <>
       <Helmet>
-        <title>CC宝典 | BeatAI</title>
+        <title>AI 学习宝典 | BeatAI</title>
         <meta
           name="description"
-          content="CC宝典学习路径已接入 BeatAI，包含学习路径、版本详情、文档讲解、模拟器与源码浏览。"
+          content="AI 学习宝典学习路径已接入 BeatAI，包含学习路径、版本详情、文档讲解、模拟器与源码浏览。"
         />
       </Helmet>
 
@@ -58,7 +77,7 @@ function LearnClaudeCode() {
 
             <div className="lcc-content">
               <Routes>
-                <Route index element={<Navigate to={LEARNING_PATH[0]} replace />} />
+                <Route index element={<Navigate to={defaultVersion} replace />} />
                 <Route path=":version" element={<VersionPage />} />
                 <Route path="*" element={<LearnRouteNotFound />} />
               </Routes>

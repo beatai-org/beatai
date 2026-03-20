@@ -1,4 +1,5 @@
 import { LAYERS, zhMessages } from '../../vendor/learn-claude-code/data';
+import { getLearnClaudeCodePath, LEARN_CLAUDE_CODE_BASE_PATH } from '../../utils/learnAiPaths';
 import { getVersionNavTitle } from './versionUtils';
 
 function mapLayerToSidebarItem(layer) {
@@ -9,17 +10,17 @@ function mapLayerToSidebarItem(layer) {
   if (layer.id === 'introduction') {
     return {
       title,
-      path: firstVersion ? `/learn-claude-code/${firstVersion}` : '/learn-claude-code'
+      path: firstVersion ? getLearnClaudeCodePath(firstVersion) : LEARN_CLAUDE_CODE_BASE_PATH
     };
   }
 
   return {
     title,
-    path: firstVersion ? `/learn-claude-code/${firstVersion}` : '/learn-claude-code',
+    path: firstVersion ? getLearnClaudeCodePath(firstVersion) : LEARN_CLAUDE_CODE_BASE_PATH,
     highlightable: false,
     children: versions.map((versionId) => ({
       title: getVersionNavTitle(versionId),
-      path: `/learn-claude-code/${versionId}`
+      path: getLearnClaudeCodePath(versionId)
     }))
   };
 }
@@ -27,7 +28,7 @@ function mapLayerToSidebarItem(layer) {
 function mapBestPracticeItems(layer) {
   return (layer.versions || []).map((versionId) => ({
     title: getVersionNavTitle(versionId),
-    path: `/learn-claude-code/${versionId}`
+    path: getLearnClaudeCodePath(versionId)
   }));
 }
 
@@ -48,5 +49,5 @@ export function buildLearnClaudeCodeSidebarMeta() {
     });
   }
 
-  return { title: 'CC宝典', sections };
+  return { title: 'AI 学习宝典', sections };
 }

@@ -1,3 +1,7 @@
+import {
+  LEARN_CLAUDE_CODE_BASE_PATH,
+  LEGACY_LEARN_CLAUDE_CODE_BASE_PATH
+} from '../../utils/learnAiPaths';
 import { docsData } from '../../vendor/learn-claude-code/data';
 
 export function getVersionDoc(version, locale = 'zh') {
@@ -30,10 +34,19 @@ export function trimPrefaceContent(version, content) {
 export function renameBookTitle(content) {
   return String(content || '').replace(
     /^# Learn Claude Code\b/m,
-    '# CC宝典'
+    '# AI 学习宝典'
+  );
+}
+
+export function rewriteLearnClaudeCodeLinks(content) {
+  return String(content || '').replaceAll(
+    `](${LEGACY_LEARN_CLAUDE_CODE_BASE_PATH}/`,
+    `](${LEARN_CLAUDE_CODE_BASE_PATH}/`
   );
 }
 
 export function transformVersionDocContent(version, content) {
-  return renameBookTitle(trimPrefaceContent(version, stripLearningPathCode(content)));
+  return rewriteLearnClaudeCodeLinks(
+    renameBookTitle(trimPrefaceContent(version, stripLearningPathCode(content)))
+  );
 }

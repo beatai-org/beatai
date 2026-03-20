@@ -4,6 +4,10 @@ All notable releases for this project are recorded in this file.
 
 ## [Unreleased]
 
+## [0.12.6] - 2026-03-20
+
+- Reset giscus to default styling
+
 ## [0.12.5] - 2026-03-20
 
 - Refine mobile category dropdown behavior

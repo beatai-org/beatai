@@ -5,26 +5,15 @@
   box-sizing: border-box;
   border: 1px solid color-mix(in srgb, var(--accent-start) 18%, var(--border-primary));
   border-radius: 24px;
-  background:
-    radial-gradient(
-      circle at top right,
-      color-mix(in srgb, var(--accent-start) 14%, transparent),
-      transparent 38%
-    ),
-    radial-gradient(
-      circle at bottom left,
-      color-mix(in srgb, var(--accent-end) 10%, transparent),
-      transparent 42%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--card-bg) 92%, transparent),
-      color-mix(in srgb, var(--bg-secondary) 72%, var(--card-bg))
-    );
+  background: rgba(255, 255, 255, 0.84);
   box-shadow:
     0 24px 48px color-mix(in srgb, var(--bg-primary) 22%, transparent),
     0 10px 24px color-mix(in srgb, var(--accent-start) 8%, transparent),
     inset 0 1px 0 color-mix(in srgb, #ffffff 35%, transparent);
+}
+
+:root[data-theme-mode='dark'] .doc-comments {
+  background: #1a1a1a;
 }
 
 .doc-comments-link {
@@ -35,11 +24,9 @@
   padding: 0 16px;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--accent-start) 28%, var(--border-primary));
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--accent-start) 18%, transparent),
-    color-mix(in srgb, var(--accent-end) 12%, transparent)
-  );
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--accent-start) 18%, transparent),
+      color-mix(in srgb, var(--accent-end) 12%, transparent));
   color: var(--text-primary);
   text-decoration: none;
   white-space: nowrap;
@@ -49,11 +36,9 @@
 .doc-comments-link:hover {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--accent-start) 44%, var(--border-primary));
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--accent-start) 24%, transparent),
-    color-mix(in srgb, var(--accent-end) 18%, transparent)
-  );
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--accent-start) 24%, transparent),
+      color-mix(in srgb, var(--accent-end) 18%, transparent));
 }
 
 .doc-comments-embed {
@@ -64,11 +49,9 @@
   padding: 18px 20px;
   border: 1px dashed color-mix(in srgb, var(--accent-start) 20%, var(--border-primary));
   border-radius: 18px;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--accent-start) 6%, transparent),
-    color-mix(in srgb, var(--accent-end) 4%, transparent)
-  );
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--accent-start) 6%, transparent),
+      color-mix(in srgb, var(--accent-end) 4%, transparent));
 }
 
 .doc-comments-fallback-copy,

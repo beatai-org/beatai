@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useParams, useLocation } from 'react-router-do
 import { Helmet } from 'react-helmet-async';
 import DocsLayout from '../components/docs/DocsLayout';
 import DocContent from '../components/docs/DocContent';
+import PageTransitionLoader from '../components/PageTransitionLoader';
 import { TagProvider } from '../contexts/TagContext';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import {
@@ -34,7 +35,7 @@ const Docs = () => {
   }
 
   if (loading || !docsMeta) {
-    return <div className="docs-loading">Loading documentation...</div>;
+    return <PageTransitionLoader />;
   }
 
   const isValidDocsPath = validPaths.has(location.pathname);

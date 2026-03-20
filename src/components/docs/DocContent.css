@@ -55,7 +55,7 @@
 }
 
 :root[data-theme-mode='dark'] .doc-content::before {
-  background: #141a24;
+  background: #1a1a1a;
   border-color: #263144;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.32);
 }
@@ -120,8 +120,8 @@
   color: #111827;
   margin: 48px 0 20px 0;
   padding-top: 20px;
-  border-top: 2px solid transparent;
-  border-image: var(--accent-gradient) 1;
+  /* border-top: 2px solid transparent; */
+  /* border-image: var(--accent-gradient) 1; */
   position: relative;
 }
 

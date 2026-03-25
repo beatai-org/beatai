@@ -81,6 +81,25 @@
       "path": "/ai-insights/viewpoint/2026-03",
       "items": [
         {
+          "title": "你的 Claude 配置会随着时间变质：用这条自检提示词，60 秒排毒",
+          "path": "/ai-insights/viewpoint/claude-self-audit-prompt",
+          "file": "/docs/ai-insights/viewpoint/claude-self-audit-prompt.md",
+          "publishedAt": "2026-03-25",
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Ole Lehmann"
+            }
+          ],
+          "tags": [
+            "Claude",
+            "CLAUDE.md",
+            "Prompt Hygiene",
+            "自检提示词",
+            "配置优化"
+          ]
+        },
+        {
           "title": "如何把 Claude Skills 的效果提升 10 倍：用 Karpathy 的 autoresearch 方法自动打磨",
           "path": "/ai-insights/viewpoint/how-to-10x-your-claude-skills",
           "file": "/docs/ai-insights/viewpoint/how-to-10x-your-claude-skills.md",

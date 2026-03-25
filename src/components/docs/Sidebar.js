@@ -112,7 +112,7 @@ function TitleWithNewBadge({ title, publishedAt }) {
   );
 }
 
-const Sidebar = ({ meta, isOpen, onClose }) => {
+const Sidebar = ({ meta, isOpen, onClose, className = '', overlayClassName = '' }) => {
   const sectionRefs = useRef({});
   const navRef = useRef(null);
   const [expandedItems, setExpandedItems] = useState({});
@@ -292,9 +292,9 @@ const Sidebar = ({ meta, isOpen, onClose }) => {
   return (
     <>
       {/* Mobile Overlay */}
-      {isOpen && <div className="sidebar-overlay" onClick={onClose} />}
+      {isOpen && <div className={`sidebar-overlay ${overlayClassName}`.trim()} onClick={onClose} />}
 
-      <aside className={`docs-sidebar ${isOpen ? 'open' : ''}`} ref={navRef}>
+      <aside className={`docs-sidebar ${isOpen ? 'open' : ''} ${className}`.trim()} ref={navRef}>
         {/* GitHub Repository Card - Show if repo info available */}
         {repoInfo && (
           <RepoCard

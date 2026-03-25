@@ -52,13 +52,13 @@ function HiddenTipsModal({ isOpen, onClose }) {
         <div className="hidden-tips-header">
           <div>
             <div className="hidden-tips-eyebrow">BeatAI Hidden Tips</div>
-            <h2 id="hidden-tips-title">隐藏技巧</h2>
+            <h2 id="hidden-tips-title">阅读技巧</h2>
           </div>
           <button
             type="button"
             className="hidden-tips-close"
             onClick={onClose}
-            aria-label="关闭隐藏技巧"
+            aria-label="关闭阅读技巧"
           >
             <HiX />
           </button>

@@ -26,6 +26,17 @@
   width: 100%;
 }
 
+.docs-container.reading-mode {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  padding: 0 24px;
+}
+
+.docs-main.reading-mode {
+  max-width: 100%;
+  padding-top: 24px;
+}
+
 @media (max-width: 1200px) {
   .docs-container {
     grid-template-columns: 220px 1fr;
@@ -43,6 +54,10 @@
   .docs-main {
     max-width: none;
     width: 100%;
+  }
+
+  .docs-container.reading-mode {
+    padding: 0 16px;
   }
 }
 

@@ -4,6 +4,7 @@ import { HiMenu, HiX, HiChevronDown } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 import ThemeSelector from '../ThemeSelector';
 import AuthStatus from '../docs/AuthStatus';
+import ReadingModeToggleButton from '../docs/ReadingModeToggleButton';
 import BeatAILogoWave from '../BeatAILogoWave';
 import './AppHeader.css';
 
@@ -16,13 +17,15 @@ import './AppHeader.css';
  * @param {Function} props.onSpaceClick - 知识空间点击回调（可选）
  * @param {boolean} props.sidebarOpen - 侧边栏打开状态（可选）
  * @param {Function} props.onMenuToggle - 菜单切换回调（可选）
+ * @param {boolean} props.showReadingModeToggle - 是否显示阅读模式按钮（可选）
  */
 const AppHeader = ({
   spaces = [],
   activeSpace = null,
   onSpaceClick = null,
   sidebarOpen = false,
-  onMenuToggle = null
+  onMenuToggle = null,
+  showReadingModeToggle = false
 }) => {
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const [desktopLogoAnimated, setDesktopLogoAnimated] = useState(false);
@@ -174,6 +177,7 @@ const AppHeader = ({
         {/* Actions */}
         <div className="app-header-actions">
           <AuthStatus />
+          {showReadingModeToggle && <ReadingModeToggleButton />}
           <ThemeSelector />
           {onMenuToggle && (
             <button

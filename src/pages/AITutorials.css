@@ -66,6 +66,13 @@
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border-primary) 76%, transparent);
 }
 
+.ai-tutorial-card-icon-text {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent-primary);
+}
+
 .ai-tutorial-card-body {
   display: flex;
   flex: 1;

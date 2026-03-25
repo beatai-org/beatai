@@ -1,3 +1,5 @@
+import { normalizeMetaPath } from './docsMeta';
+
 /**
  * 将嵌套的 _meta.json 结构展平为线性章节列表
  * @param {Object} meta - _meta.json 数据
@@ -42,7 +44,8 @@ export function flattenChapters(meta) {
  * @returns {Object} - {prev: {...}, next: {...}} 或 null
  */
 export function getAdjacentChapters(chapters, currentPath) {
-  const currentIndex = chapters.findIndex(ch => ch.path === currentPath);
+  const normalizedCurrentPath = normalizeMetaPath(currentPath);
+  const currentIndex = chapters.findIndex((ch) => normalizeMetaPath(ch.path) === normalizedCurrentPath);
 
   if (currentIndex === -1) {
     return { prev: null, next: null };

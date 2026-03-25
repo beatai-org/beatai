@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useMemo } from 'react';
+import { normalizeMetaPath } from '../utils/docsMeta';
 
 const TagContext = createContext();
 
@@ -110,9 +111,10 @@ const groupByCategory = (articles) => {
  */
 const findArticleTags = (meta, path) => {
   let foundTags = null;
+  const normalizedPath = normalizeMetaPath(path);
 
   const searchItem = (item) => {
-    if (item.path === path) {
+    if (normalizeMetaPath(item.path) === normalizedPath) {
       foundTags = item.tags || [];
       return true;
     }

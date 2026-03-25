@@ -24,6 +24,9 @@ export function getLearnAiEntryPath(version = '') {
 
 export function getLearnAiDefaultPath(spaceSlug = '') {
   const space = getLearnAiSpace(spaceSlug) || getDefaultLearnAiSpace();
+  if (space?.defaultPath) {
+    return space.defaultPath;
+  }
   return getLearnAiEntryPath(space?.defaultEntry || '');
 }
 

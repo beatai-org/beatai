@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { loadDocsMeta } from '../utils/docsMeta';
 
-export function useDocsMeta(initialMeta = null) {
+export function useDocsMeta(initialMeta = null, metaUrl = null) {
   const [meta, setMeta] = useState(initialMeta);
   const [loading, setLoading] = useState(!initialMeta);
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ export function useDocsMeta(initialMeta = null) {
 
     setLoading(true);
 
-    loadDocsMeta()
+    loadDocsMeta(metaUrl || undefined)
       .then((data) => {
         if (!isMounted) {
           return;
@@ -43,7 +43,7 @@ export function useDocsMeta(initialMeta = null) {
     return () => {
       isMounted = false;
     };
-  }, [initialMeta]);
+  }, [initialMeta, metaUrl]);
 
   return { meta, loading, error };
 }

@@ -6,13 +6,26 @@ import PageShell from '../components/layout/PageShell';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
+import { LEARN_AI_SPACES } from '../utils/learnAiSpaces';
 import { buildKnowledgeSpaces, getAiTutorialSpace } from '../utils/knowledgeSpaces';
 import './AITutorials.css';
 
 function AITutorialsContent({ categories, spaces }) {
   const handleCategoryClick = useCategoryNavigation();
-  const [cardHovered, setCardHovered] = useState(false);
+  const [hoveredSlug, setHoveredSlug] = useState('');
   const activeSpace = useMemo(() => getAiTutorialSpace(), []);
+
+  const renderCardIcon = (space) => {
+    if (space.slug === 'learn-claude-code') {
+      return <LearnClaudeCodeIcon size={88} animated={hoveredSlug === space.slug} />;
+    }
+
+    return (
+      <div className="ai-tutorial-card-icon-text" aria-hidden="true">
+        DL
+      </div>
+    );
+  };
 
   return (
     <>
@@ -35,28 +48,29 @@ function AITutorialsContent({ categories, spaces }) {
       >
         <div className="ai-tutorials-container">
           <section className="ai-tutorials-grid" aria-label="AI tutorial books">
-            <Link
-              to={getLearnAiDefaultPath()}
-              className="ai-tutorial-card glass-card"
-              onMouseEnter={() => setCardHovered(true)}
-              onMouseLeave={() => setCardHovered(false)}
-            >
-              <div className="ai-tutorial-card-spotlight" aria-hidden="true"></div>
-              <div className="ai-tutorial-card-icon">
-                <LearnClaudeCodeIcon size={88} animated={cardHovered} />
-              </div>
-              <div className="ai-tutorial-card-body">
-                <span className="ai-tutorial-card-badge">已上线</span>
-                <h2>Learn Claude Code</h2>
-                <p>
-                  收录从零手搓 Claude Code 与最佳实践内容，覆盖学习路径、版本拆解、源码讲解与实践经验。
-                </p>
-              </div>
-              <div className="ai-tutorial-card-footer">
-                <span>1 本教程书</span>
-                <span className="ai-tutorial-card-arrow">进入阅读</span>
-              </div>
-            </Link>
+            {LEARN_AI_SPACES.map((space) => (
+              <Link
+                key={space.slug}
+                to={getLearnAiDefaultPath(space.slug)}
+                className="ai-tutorial-card glass-card"
+                onMouseEnter={() => setHoveredSlug(space.slug)}
+                onMouseLeave={() => setHoveredSlug('')}
+              >
+                <div className="ai-tutorial-card-spotlight" aria-hidden="true"></div>
+                <div className="ai-tutorial-card-icon">
+                  {renderCardIcon(space)}
+                </div>
+                <div className="ai-tutorial-card-body">
+                  <span className="ai-tutorial-card-badge">{space.cardLabel || '已上线'}</span>
+                  <h2>{space.bookTitle}</h2>
+                  <p>{space.description}</p>
+                </div>
+                <div className="ai-tutorial-card-footer">
+                  <span>{space.cardMeta || '进入教程'}</span>
+                  <span className="ai-tutorial-card-arrow">{space.cardCta || '进入阅读'}</span>
+                </div>
+              </Link>
+            ))}
           </section>
         </div>
       </PageShell>

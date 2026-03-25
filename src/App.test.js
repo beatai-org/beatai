@@ -31,6 +31,12 @@ beforeEach(() => {
               title: 'RUST语言圣经',
               description: 'Rust 编程语言完整学习指南',
               metaFile: '/docs/rust-course/_meta.json'
+            },
+            {
+              id: 'deep-learning',
+              title: '深度学习指南',
+              description: '深度学习完整学习指南',
+              metaFile: '/docs/learn-ai/deep-learning/_meta.json'
             }
           ]
         })
@@ -61,6 +67,18 @@ beforeEach(() => {
       });
     }
 
+    if (url.endsWith('/docs/learn-ai/deep-learning/_meta.json')) {
+      return Promise.resolve({
+        ok: true,
+        json: async () => ({
+          id: 'deep-learning',
+          title: '深度学习指南',
+          description: '深度学习完整学习指南',
+          sections: []
+        })
+      });
+    }
+
     return Promise.reject(new Error(`Unhandled fetch in test: ${url}`));
   });
 });
@@ -79,6 +97,7 @@ test('renders ai tutorials page with learn-ai card', async () => {
   window.history.pushState({}, '', '/learn-ai');
   render(<App />);
   expect(await screen.findByRole('heading', { name: 'Learn Claude Code' })).toBeInTheDocument();
+  expect(await screen.findByRole('heading', { name: '深度学习指南' })).toBeInTheDocument();
 });
 
 test('maps best-practices chapter to unified learn-claude-code path', () => {

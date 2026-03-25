@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { NavLink, useLocation } from 'react-router-dom';
 import { RepoCard } from '../common';
+import { normalizeMetaPath } from '../../utils/docsMeta';
 import './Sidebar.css';
 import '../../styles/3d-effects.css';
 
@@ -122,12 +123,14 @@ const Sidebar = ({ meta, isOpen, onClose, className = '', overlayClassName = '' 
   useEffect(() => {
     if (!meta || !meta.sections) return;
 
+    const normalizedCurrentPath = normalizeMetaPath(location.pathname);
+
     const findAndExpandParents = (items, currentPath, parents = []) => {
       for (const item of items) {
         const newParents = [...parents, item.path];
 
         // Check if current item matches the current path
-        if (item.path === currentPath) {
+        if (normalizeMetaPath(item.path) === currentPath) {
           // Expand all parent paths
           const expandState = {};
           parents.forEach(parentPath => {
@@ -153,7 +156,7 @@ const Sidebar = ({ meta, isOpen, onClose, className = '', overlayClassName = '' 
     // Search through all sections
     for (const section of meta.sections) {
       if (section.items) {
-        findAndExpandParents(section.items, location.pathname);
+        findAndExpandParents(section.items, normalizedCurrentPath);
       }
     }
   }, [location.pathname, meta]);
@@ -229,7 +232,9 @@ const Sidebar = ({ meta, isOpen, onClose, className = '', overlayClassName = '' 
   const renderMenuItem = (item, level = 1) => {
     const hasChildren = item.children && item.children.length > 0;
     const isExpanded = expandedItems[item.path];
-    const isActive = item.highlightable === false ? false : location.pathname === item.path;
+    const isActive = item.highlightable === false
+      ? false
+      : normalizeMetaPath(location.pathname) === normalizeMetaPath(item.path);
     const indent = level > 1 ? `${(level - 1) * 16}px` : '0px';
 
     return (

@@ -20,7 +20,7 @@ const MyNotes = lazy(() => lazyWithMinLoadTime(() => import('./components/docs/M
 const TagPage = lazy(() => lazyWithMinLoadTime(() => import('./pages/TagPage')));
 const Square = lazy(() => lazyWithMinLoadTime(() => import('./pages/Square')));
 const LogoShowcase = lazy(() => lazyWithMinLoadTime(() => import('./pages/LogoShowcase')));
-const LearnClaudeCode = lazy(() => lazyWithMinLoadTime(() => import('./pages/LearnClaudeCode')));
+const LearnAiBook = lazy(() => lazyWithMinLoadTime(() => import('./pages/LearnAiBook')));
 const AITutorials = lazy(() => lazyWithMinLoadTime(() => import('./pages/AITutorials')));
 
 function LegacyLearnClaudeCodeRedirect() {
@@ -47,7 +47,7 @@ function App() {
                   <Route path="/logo-showcase" element={<LogoShowcase />} />
                   <Route path={AI_TUTORIALS_PATH} element={<AITutorials />} />
                   <Route path="/learn-claude-code/*" element={<LegacyLearnClaudeCodeRedirect />} />
-                  <Route path={`${LEARN_AI_BASE_PATH}/:space/*`} element={<LearnClaudeCode />} />
+                  <Route path={`${LEARN_AI_BASE_PATH}/:space/*`} element={<LearnAiBook />} />
                   <Route path="/tags/:tagName" element={<TagPage />} />
                   <Route path="/*" element={<Docs />} />
                 </Routes>

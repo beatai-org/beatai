@@ -1,6 +1,6 @@
 import { LAYERS, zhMessages } from '../../vendor/learn-claude-code/data';
 import { getLearnAiEntryPath, getLearnAiSpacePath } from '../../utils/learnAiPaths';
-import { LEARN_AI_SPACES } from '../../utils/learnAiSpaces';
+import { getLearnAiSpace, LEARN_AI_SPACES } from '../../utils/learnAiSpaces';
 import { getVersionNavTitle } from './versionUtils';
 
 function mapLayerToSidebarItem(layer, space) {
@@ -34,7 +34,32 @@ function mapFlatSpaceItems(space) {
 }
 
 export function buildLearnAiSidebarMeta(currentSpace = null) {
-  const sections = LEARN_AI_SPACES.flatMap((space) => {
+  const resolvedCurrentSpace = currentSpace?.slug
+    ? (getLearnAiSpace(currentSpace.slug) || currentSpace)
+    : LEARN_AI_SPACES.find((space) => (
+      space.id === currentSpace?.id ||
+      space.title === currentSpace?.title ||
+      space.bookTitle === currentSpace?.bookTitle
+    )) || currentSpace;
+
+  if (resolvedCurrentSpace?.contentSource === 'docs') {
+    return {
+      title: resolvedCurrentSpace.bookTitle || resolvedCurrentSpace.title,
+      sections: resolvedCurrentSpace.sections || [],
+      githubRepo: resolvedCurrentSpace.githubRepo,
+      repoTitle: resolvedCurrentSpace.repoTitle,
+      bookPath: {
+        parentTitle: 'AI学习教程',
+        currentTitle: resolvedCurrentSpace.bookTitle || resolvedCurrentSpace.title || 'AI学习教程'
+      }
+    };
+  }
+
+  const targetSpaces = resolvedCurrentSpace
+    ? [resolvedCurrentSpace]
+    : LEARN_AI_SPACES.filter((space) => space.contentSource !== 'docs');
+
+  const sections = targetSpaces.flatMap((space) => {
     if (space.sidebarKind === 'layered') {
       const sectionGroups = space.sectionGroups?.length
         ? space.sectionGroups
@@ -61,11 +86,11 @@ export function buildLearnAiSidebarMeta(currentSpace = null) {
   });
 
   return {
-    title: currentSpace?.bookTitle || currentSpace?.title || 'Learn Claude Code',
+    title: resolvedCurrentSpace?.bookTitle || resolvedCurrentSpace?.title || 'Learn Claude Code',
     sections,
     bookPath: {
       parentTitle: 'AI学习教程',
-      currentTitle: currentSpace?.bookTitle || currentSpace?.title || 'Learn Claude Code'
+      currentTitle: resolvedCurrentSpace?.bookTitle || resolvedCurrentSpace?.title || 'Learn Claude Code'
     }
   };
 }

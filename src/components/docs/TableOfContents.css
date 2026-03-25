@@ -8,18 +8,14 @@
   max-height: calc(100vh - 100px) !important;
   padding: 12px 16px;
   z-index: 90;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: transparent;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
 [data-theme-mode="dark"] .toc {
-  background: rgba(26, 32, 44, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: transparent;
 }
 
 /* 左侧进度指示器 */

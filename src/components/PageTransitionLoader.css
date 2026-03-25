@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--background-gradient);
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   animation: fadeIn 0.3s ease-out;
 }
 
@@ -282,4 +282,98 @@
 
 [data-theme-mode="light"] .loader-progress-bar {
   background: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="ink-paper"]:not([data-theme-mode="dark"]) .page-transition-loader,
+:root[data-theme="ink-paper"][data-theme-mode="light"] .page-transition-loader {
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.55), transparent 36%),
+    linear-gradient(180deg, #f6f1e7 0%, #efe8db 100%);
+}
+
+:root[data-theme="ink-paper"][data-theme-mode="dark"] .page-transition-loader {
+  background:
+    radial-gradient(circle at top left, rgba(255, 248, 236, 0.05), transparent 36%),
+    linear-gradient(180deg, #171411 0%, #201c18 100%);
+}
+
+:root[data-theme="ink-paper"] .loader-bg-layer {
+  background:
+    radial-gradient(circle at 50% 48%,
+      color-mix(in srgb, var(--accent-start) 18%, transparent) 0%,
+      transparent 58%);
+  opacity: 0.2;
+  animation-duration: 2.8s;
+}
+
+:root[data-theme="ink-paper"] .loader-logo-wrapper {
+  padding: 1.75rem 1.9rem;
+  border-radius: 28px;
+  animation: logoFloat 3.4s ease-in-out infinite;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:root[data-theme="ink-paper"]:not([data-theme-mode="dark"]) .loader-logo-wrapper,
+:root[data-theme="ink-paper"][data-theme-mode="light"] .loader-logo-wrapper {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0) 20%),
+    #fbf8f1;
+  border-color: rgba(61, 51, 41, 0.12);
+  box-shadow:
+    0 12px 28px rgba(45, 36, 29, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+:root[data-theme="ink-paper"][data-theme-mode="dark"] .loader-logo-wrapper {
+  background:
+    linear-gradient(180deg, rgba(255, 248, 236, 0.04) 0%, rgba(255, 248, 236, 0) 20%),
+    #231e19;
+  border-color: #4a4034;
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 248, 236, 0.03);
+}
+
+:root[data-theme="ink-paper"] .loader-logo-wrapper::before {
+  inset: -6px;
+  opacity: 0.2;
+  filter: blur(14px);
+}
+
+:root[data-theme="ink-paper"] .loader-text {
+  letter-spacing: 0.08em;
+}
+
+:root[data-theme="ink-paper"]:not([data-theme-mode="dark"]) .loader-text-gradient,
+:root[data-theme="ink-paper"][data-theme-mode="light"] .loader-text-gradient {
+  background: linear-gradient(135deg, #39433a 0%, #6f6255 100%);
+}
+
+:root[data-theme="ink-paper"][data-theme-mode="dark"] .loader-text-gradient {
+  background: linear-gradient(135deg, #d8cfbf 0%, #b57a69 100%);
+}
+
+:root[data-theme="ink-paper"] .loader-progress-bar {
+  height: 3px;
+}
+
+:root[data-theme="ink-paper"]:not([data-theme-mode="dark"]) .loader-progress-bar,
+:root[data-theme="ink-paper"][data-theme-mode="light"] .loader-progress-bar {
+  background: rgba(61, 51, 41, 0.1);
+}
+
+:root[data-theme="ink-paper"][data-theme-mode="dark"] .loader-progress-bar {
+  background: rgba(255, 248, 236, 0.08);
+}
+
+:root[data-theme="ink-paper"] .loader-progress-fill {
+  box-shadow: none;
+}
+
+:root[data-theme="ink-paper"] .particle {
+  width: 5px;
+  height: 5px;
+  box-shadow: none;
+  opacity: 0.6;
 }

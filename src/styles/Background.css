@@ -93,6 +93,32 @@
   --bg-radial-3: rgba(255, 255, 255, 0.05);
 }
 
+/* ==================== Ink Paper Theme ==================== */
+/* Light Mode */
+[data-theme="ink-paper"]:not([data-theme-mode="dark"]),
+[data-theme="ink-paper"][data-theme-mode="light"] {
+  --accent-start: #39433a;
+  --accent-end: #8b3a2e;
+  --accent-gradient: linear-gradient(135deg, #39433a 0%, #566253 72%, #6f6255 100%);
+  --glow-color: rgba(57, 67, 58, 0.18);
+  --particle-color: #8b3a2e;
+  --bg-radial-1: rgba(57, 67, 58, 0.06);
+  --bg-radial-2: rgba(139, 58, 46, 0.045);
+  --bg-radial-3: rgba(160, 140, 107, 0.05);
+}
+
+/* Dark Mode */
+[data-theme="ink-paper"][data-theme-mode="dark"] {
+  --accent-start: #d8cfbf;
+  --accent-end: #b57a69;
+  --accent-gradient: linear-gradient(135deg, #d8cfbf 0%, #beb39e 72%, #b57a69 100%);
+  --glow-color: rgba(216, 207, 191, 0.16);
+  --particle-color: #b57a69;
+  --bg-radial-1: rgba(216, 207, 191, 0.08);
+  --bg-radial-2: rgba(181, 122, 105, 0.07);
+  --bg-radial-3: rgba(109, 120, 101, 0.08);
+}
+
 /* ==================== Blue-Green Theme ==================== */
 /* Light Mode (default) */
 [data-theme="blue-green"]:not([data-theme-mode="dark"]),
@@ -342,6 +368,19 @@
   background: var(--site-shell-bg-dark);
 }
 
+[data-theme="ink-paper"]:not([data-theme-mode="dark"]) .dynamic-background,
+[data-theme="ink-paper"][data-theme-mode="light"] .dynamic-background {
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.6), transparent 42%),
+    linear-gradient(180deg, #f6f1e7 0%, #efe7da 100%);
+}
+
+[data-theme="ink-paper"][data-theme-mode="dark"] .dynamic-background {
+  background:
+    radial-gradient(circle at top left, rgba(255, 248, 236, 0.05), transparent 40%),
+    linear-gradient(180deg, #171411 0%, #201c18 100%);
+}
+
 /* 动态渐变背景层 - 使用 CSS 变量 */
 .dynamic-background::before {
   content: '';
@@ -368,6 +407,13 @@
     radial-gradient(circle at 80% 60%, var(--bg-radial-2) 0%, transparent 45%),
     radial-gradient(circle at 50% 80%, var(--bg-radial-3) 0%, transparent 45%);
   opacity: var(--site-shell-overlay-opacity-dark);
+}
+
+[data-theme="ink-paper"] .dynamic-background::before {
+  background:
+    radial-gradient(circle at 18% 24%, var(--bg-radial-1) 0%, transparent 42%),
+    radial-gradient(circle at 78% 20%, var(--bg-radial-2) 0%, transparent 36%),
+    radial-gradient(circle at 52% 76%, var(--bg-radial-3) 0%, transparent 40%);
 }
 
 /* 网格背景层 - 已移除 */

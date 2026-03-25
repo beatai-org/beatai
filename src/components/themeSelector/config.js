@@ -1,4 +1,4 @@
-export const DEFAULT_THEME_ID = 'classic-mono';
+export const DEFAULT_THEME_ID = 'ink-paper';
 export const DEFAULT_FONT_ID = 'pingfang';
 export const DEFAULT_FONT_WEIGHT_ID = 'normal';
 export const DEFAULT_FONT_SIZE_ID = '18';
@@ -12,6 +12,13 @@ export const THEMES = [
     gradientDark: '#d4d4d4',
     colors: ['#1a1a1a'],
     isSolid: true
+  },
+  {
+    id: 'ink-paper',
+    name: 'Ink Paper',
+    gradient: 'linear-gradient(135deg, #f4efe3 0%, #d8cdbd 52%, #39433a 100%)',
+    gradientDark: 'linear-gradient(135deg, #181511 0%, #3a332b 52%, #d9d0c0 100%)',
+    colors: ['#f4efe3', '#d8cdbd', '#39433a']
   },
   {
     id: 'classic-blue',

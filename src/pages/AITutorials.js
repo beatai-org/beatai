@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import LearnClaudeCodeIcon from '../components/icons/LearnClaudeCodeIcon';
 import PageShell from '../components/layout/PageShell';
+import { ReadingModeProvider } from '../contexts/ReadingModeContext';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
@@ -13,7 +14,13 @@ import './AITutorials.css';
 function AITutorialsContent({ categories, spaces }) {
   const handleCategoryClick = useCategoryNavigation();
   const [hoveredSlug, setHoveredSlug] = useState('');
+  const [isReadingMode, setIsReadingMode] = useState(false);
   const activeSpace = useMemo(() => getAiTutorialSpace(), []);
+  const readingModeValue = useMemo(() => ({
+    isReadingMode,
+    setReadingMode: setIsReadingMode,
+    toggleReadingMode: () => setIsReadingMode((current) => !current)
+  }), [isReadingMode]);
 
   const renderCardIcon = (space) => {
     if (space.slug === 'learn-claude-code') {
@@ -28,53 +35,57 @@ function AITutorialsContent({ categories, spaces }) {
   };
 
   return (
-    <>
-      <Helmet>
-        <title>AI 学习教程 | BeatAI</title>
-        <meta
-          name="description"
-          content="集中浏览 BeatAI 收录的 AI 学习教程，目前包含 Learn Claude Code，可直达书籍正文。"
-        />
-      </Helmet>
+    <ReadingModeProvider value={readingModeValue}>
+      <>
+        <Helmet>
+          <title>AI 学习教程 | BeatAI</title>
+          <meta
+            name="description"
+            content="集中浏览 BeatAI 收录的 AI 学习教程，目前包含 Learn Claude Code，可直达书籍正文。"
+          />
+        </Helmet>
 
-      <PageShell
-        rootClassName="ai-tutorials-page"
-        spaces={spaces}
-        activeSpace={activeSpace}
-        onSpaceClick={handleCategoryClick}
-        categories={categories}
-        activeCategory={null}
-        onCategoryClick={handleCategoryClick}
-      >
-        <div className="ai-tutorials-container">
-          <section className="ai-tutorials-grid" aria-label="AI tutorial books">
-            {LEARN_AI_SPACES.map((space) => (
-              <Link
-                key={space.slug}
-                to={getLearnAiDefaultPath(space.slug)}
-                className="ai-tutorial-card glass-card"
-                onMouseEnter={() => setHoveredSlug(space.slug)}
-                onMouseLeave={() => setHoveredSlug('')}
-              >
-                <div className="ai-tutorial-card-spotlight" aria-hidden="true"></div>
-                <div className="ai-tutorial-card-icon">
-                  {renderCardIcon(space)}
-                </div>
-                <div className="ai-tutorial-card-body">
-                  <span className="ai-tutorial-card-badge">{space.cardLabel || '已上线'}</span>
-                  <h2>{space.bookTitle}</h2>
-                  <p>{space.description}</p>
-                </div>
-                <div className="ai-tutorial-card-footer">
-                  <span>{space.cardMeta || '进入教程'}</span>
-                  <span className="ai-tutorial-card-arrow">{space.cardCta || '进入阅读'}</span>
-                </div>
-              </Link>
-            ))}
-          </section>
-        </div>
-      </PageShell>
-    </>
+        <PageShell
+          rootClassName={`ai-tutorials-page ${isReadingMode ? 'reading-mode' : ''}`.trim()}
+          spaces={spaces}
+          activeSpace={activeSpace}
+          onSpaceClick={handleCategoryClick}
+          categories={categories}
+          activeCategory={null}
+          onCategoryClick={handleCategoryClick}
+          hideHeader={isReadingMode}
+          showReadingModeToggle
+        >
+          <div className="ai-tutorials-container">
+            <section className="ai-tutorials-grid" aria-label="AI tutorial books">
+              {LEARN_AI_SPACES.map((space) => (
+                <Link
+                  key={space.slug}
+                  to={getLearnAiDefaultPath(space.slug)}
+                  className="ai-tutorial-card glass-card"
+                  onMouseEnter={() => setHoveredSlug(space.slug)}
+                  onMouseLeave={() => setHoveredSlug('')}
+                >
+                  <div className="ai-tutorial-card-spotlight" aria-hidden="true"></div>
+                  <div className="ai-tutorial-card-icon">
+                    {renderCardIcon(space)}
+                  </div>
+                  <div className="ai-tutorial-card-body">
+                    <span className="ai-tutorial-card-badge">{space.cardLabel || '已上线'}</span>
+                    <h2>{space.bookTitle}</h2>
+                    <p>{space.description}</p>
+                  </div>
+                  <div className="ai-tutorial-card-footer">
+                    <span>{space.cardMeta || '进入教程'}</span>
+                    <span className="ai-tutorial-card-arrow">{space.cardCta || '进入阅读'}</span>
+                  </div>
+                </Link>
+              ))}
+            </section>
+          </div>
+        </PageShell>
+      </>
+    </ReadingModeProvider>
   );
 }
 

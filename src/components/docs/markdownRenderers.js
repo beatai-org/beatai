@@ -1,6 +1,6 @@
 import React from 'react';
 import { defaultSchema } from 'rehype-sanitize';
-import { slugifyHeading, getTextContent } from '../../utils/markdown';
+import { getTextContent, resolveMarkdownAssetUrl, slugifyHeading } from '../../utils/markdown';
 import Prism from '../../utils/prism';
 
 function fallbackCopyText(text) {
@@ -178,7 +178,8 @@ export function createMarkdownPreComponent() {
 export function createDocMarkdownComponents({
   codeComponent,
   preComponent,
-  includeH1 = true
+  includeH1 = true,
+  markdownUrl = ''
 } = {}) {
   return {
     h1: includeH1 ? createMarkdownHeading(1) : () => null,
@@ -190,6 +191,16 @@ export function createDocMarkdownComponents({
     },
     a({ node, children, ...props }) {
       return <a className="doc-link" {...props}>{children}</a>;
+    },
+    img({ node, src, alt, ...props }) {
+      return (
+        <img
+          {...props}
+          src={resolveMarkdownAssetUrl(src, markdownUrl)}
+          alt={alt || ''}
+          loading="lazy"
+        />
+      );
     },
     blockquote({ node, ...props }) {
       return <blockquote className="doc-blockquote" {...props} />;

@@ -3,9 +3,12 @@ import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 import rehypeRaw from 'rehype-raw';
+import rehypeKatex from 'rehype-katex';
 import rehypeSanitize from 'rehype-sanitize';
 import matter from 'gray-matter';
+import 'katex/dist/katex.min.css';
 import '../../styles/prism-custom.css';
 import CodePlayground from './CodePlayground';
 import DocArticleHeader from './DocArticleHeader';
@@ -34,6 +37,7 @@ import { useMarkdownSource } from '../../hooks/useMarkdownSource';
 import { useDocShortcuts } from '../../hooks/useDocShortcuts';
 import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
 import { findMetaEntryByPath } from '../../utils/docsMeta';
+import { normalizeDeepLearningMathMarkdown } from '../../utils/deepLearningMath';
 import { resolvePublicContentUrl } from '../../utils/markdown';
 import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
 import './DocContent.css';
@@ -57,8 +61,9 @@ const DocContent = () => {
   const formattedPublishedDate = formatPublishedDate(docMetaEntry?.item?.publishedAt);
   const formattedContributors = formatContributors(docMetaEntry?.item?.contributors);
   const titleFromMeta = docMetaEntry?.item?.title || findTitleByPath(location.pathname);
+  const markdownUrl = useMemo(() => resolvePublicContentUrl(`/docs/${docPath}.md`), [docPath]);
   const { text: rawDoc, error } = useMarkdownSource({
-    url: resolvePublicContentUrl(`/docs/${docPath}.md`),
+    url: markdownUrl,
     enabled: Boolean(docPath)
   });
   const { data: frontmatter, content } = useMemo(() => {
@@ -98,8 +103,11 @@ const DocContent = () => {
   }, [meta, location.pathname, findArticleTags, docMetaEntry]);
 
   const markdownContent = useMemo(() => {
-    return stripAiInsightsTitle(content, isAiInsightsArticle);
-  }, [content, isAiInsightsArticle]);
+    return normalizeDeepLearningMathMarkdown(
+      stripAiInsightsTitle(content, isAiInsightsArticle),
+      docPath
+    );
+  }, [content, docPath, isAiInsightsArticle]);
 
   useDocShortcuts({
     articleRef,
@@ -126,7 +134,8 @@ const DocContent = () => {
   const PreComponent = createMarkdownPreComponent();
   const markdownComponents = createDocMarkdownComponents({
     codeComponent: CodeComponent,
-    preComponent: PreComponent
+    preComponent: PreComponent,
+    markdownUrl
   });
 
   const pageTitle = buildDocPageTitle(docPath, titleFromMeta, frontmatter.title);
@@ -194,8 +203,8 @@ const DocContent = () => {
           />
         )}
         <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema], rehypeKatex]}
           components={markdownComponents}
         >
           {markdownContent}

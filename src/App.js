@@ -22,6 +22,7 @@ const Square = lazy(() => lazyWithMinLoadTime(() => import('./pages/Square')));
 const LogoShowcase = lazy(() => lazyWithMinLoadTime(() => import('./pages/LogoShowcase')));
 const LearnAiBook = lazy(() => lazyWithMinLoadTime(() => import('./pages/LearnAiBook')));
 const AITutorials = lazy(() => lazyWithMinLoadTime(() => import('./pages/AITutorials')));
+const AnimationPlayground = lazy(() => lazyWithMinLoadTime(() => import('./pages/AnimationPlayground')));
 
 function LegacyLearnClaudeCodeRedirect() {
   const location = useLocation();
@@ -45,6 +46,7 @@ function App() {
                   <Route path="/my-notes" element={<MyNotes />} />
                   <Route path="/square" element={<Square />} />
                   <Route path="/logo-showcase" element={<LogoShowcase />} />
+                  <Route path="/animation-playground" element={<AnimationPlayground />} />
                   <Route path={AI_TUTORIALS_PATH} element={<AITutorials />} />
                   <Route path="/learn-claude-code/*" element={<LegacyLearnClaudeCodeRedirect />} />
                   <Route path={`${LEARN_AI_BASE_PATH}/:space/*`} element={<LearnAiBook />} />

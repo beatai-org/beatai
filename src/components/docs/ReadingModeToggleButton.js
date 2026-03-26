@@ -1,22 +1,26 @@
 import React from 'react';
 import { HiArrowsExpand, HiX } from 'react-icons/hi';
+import { Tooltip } from '../common';
 import { useReadingMode } from '../../contexts/ReadingModeContext';
 import './ReadingModeToggleButton.css';
 
 function ReadingModeToggleButton({ className = '' }) {
   const { isReadingMode, toggleReadingMode } = useReadingMode();
+  const tooltipText = isReadingMode ? '退出阅读模式' : '进入阅读模式';
 
   return (
-    <button
-      type="button"
-      className={`reading-mode-toggle-btn ${className}`.trim()}
-      onClick={toggleReadingMode}
-      aria-pressed={isReadingMode}
-      aria-label={isReadingMode ? 'Exit reading mode' : 'Enter reading mode'}
-      title={isReadingMode ? 'Exit reading mode' : 'Enter reading mode'}
-    >
-      {isReadingMode ? <HiX /> : <HiArrowsExpand />}
-    </button>
+    <Tooltip content={tooltipText}>
+      <button
+        type="button"
+        className={`reading-mode-toggle-btn ${className}`.trim()}
+        onClick={toggleReadingMode}
+        aria-pressed={isReadingMode}
+        aria-label={tooltipText}
+        title={tooltipText}
+      >
+        {isReadingMode ? <HiX /> : <HiArrowsExpand />}
+      </button>
+    </Tooltip>
   );
 }
 

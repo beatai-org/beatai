@@ -43,3 +43,24 @@ export function resolvePublicContentUrl(contentPath) {
 
   return `${publicBase}${normalizedPath}`;
 }
+
+function isRelativeContentPath(contentPath) {
+  return Boolean(contentPath)
+    && !/^(?:[a-z]+:)?\/\//i.test(contentPath)
+    && !contentPath.startsWith('/')
+    && !contentPath.startsWith('#');
+}
+
+export function resolveMarkdownAssetUrl(assetPath, markdownUrl) {
+  if (!assetPath || !isRelativeContentPath(assetPath) || !markdownUrl) {
+    return assetPath;
+  }
+
+  const baseOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://example.com';
+
+  try {
+    return new URL(assetPath, new URL(markdownUrl, baseOrigin)).toString();
+  } catch (error) {
+    return assetPath;
+  }
+}

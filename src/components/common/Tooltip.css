@@ -1,0 +1,30 @@
+.ui-tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.ui-tooltip-bubble {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bg-elevated, var(--card-bg)) 94%, transparent);
+  color: var(--text-primary);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px solid color-mix(in srgb, var(--border-primary) 78%, transparent);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 200;
+}
+
+.ui-tooltip:hover .ui-tooltip-bubble,
+.ui-tooltip:focus-within .ui-tooltip-bubble {
+  opacity: 1;
+  transform: translateY(0);
+}

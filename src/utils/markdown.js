@@ -52,15 +52,30 @@ function isRelativeContentPath(contentPath) {
 }
 
 export function resolveMarkdownAssetUrl(assetPath, markdownUrl) {
-  if (!assetPath || !isRelativeContentPath(assetPath) || !markdownUrl) {
+  return resolveContentAssetUrl(assetPath, markdownUrl);
+}
+
+export function resolveContentAssetUrl(assetPath, baseUrl) {
+  if (!assetPath || !isRelativeContentPath(assetPath) || !baseUrl) {
     return assetPath;
   }
 
   const baseOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://example.com';
 
   try {
-    return new URL(assetPath, new URL(markdownUrl, baseOrigin)).toString();
+    return new URL(assetPath, new URL(baseUrl, baseOrigin)).toString();
   } catch (error) {
     return assetPath;
   }
+}
+
+export function normalizeDocComponentMarkdown(markdown) {
+  if (!markdown) {
+    return '';
+  }
+
+  return String(markdown).replace(
+    /<doc-component\b([^>]*)\/>/g,
+    '<doc-component$1></doc-component>'
+  );
 }

@@ -11,7 +11,7 @@ import { cn } from '../../utils/classNames';
 import { useDocShortcuts } from '../../hooks/useDocShortcuts';
 import { useMarkdownSource } from '../../hooks/useMarkdownSource';
 import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
-import { resolvePublicContentUrl } from '../../utils/markdown';
+import { normalizeDocComponentMarkdown, resolvePublicContentUrl } from '../../utils/markdown';
 import {
   createMarkdownCodeComponent,
   createDocMarkdownComponents,
@@ -61,7 +61,7 @@ function VersionPage() {
     enabled: Boolean(doc)
   });
   const markdownContent = useMemo(
-    () => transformVersionDocContent(version, rawContent),
+    () => normalizeDocComponentMarkdown(transformVersionDocContent(version, rawContent)),
     [rawContent, version]
   );
   const headings = useRenderedHeadings(articleTopRef, markdownContent, {

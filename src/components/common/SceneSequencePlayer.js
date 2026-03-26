@@ -1,18 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Pause, Play, SkipBack, SkipForward } from 'lucide-react';
 import { cn } from '../../utils/classNames';
 import { useTheme } from '../../contexts/ThemeContext';
 import './SceneSequencePlayer.css';
 
+const PLAYBACK_SPEED_OPTIONS = [0.5, 0.75, 1, 1.5, 2];
+
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
-}
-
-function normalizeStatValue(value) {
-  if (value === null || value === undefined) {
-    return '';
-  }
-
-  return String(value);
 }
 
 function resolveThemeValue(value, theme, fallback) {
@@ -101,6 +96,7 @@ function SceneSequencePlayer({
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
   const [sceneProgress, setSceneProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const [playbackSpeed, setPlaybackSpeed] = useState(0.75);
   const progressRef = useRef(0);
 
   const safeScenes = useMemo(() => scenes.filter(Boolean), [scenes]);
@@ -125,7 +121,7 @@ function SceneSequencePlayer({
       return undefined;
     }
 
-    const durationMs = Math.max(currentScene?.durationMs || defaultDurationMs, 800);
+    const durationMs = Math.max((currentScene?.durationMs || defaultDurationMs) / playbackSpeed, 800 / playbackSpeed);
     const startedAt = performance.now() - (progressRef.current * durationMs);
 
     const intervalId = window.setInterval(() => {
@@ -159,6 +155,7 @@ function SceneSequencePlayer({
     defaultDurationMs,
     isPlaying,
     loop,
+    playbackSpeed,
     totalScenes
   ]);
 
@@ -229,100 +226,74 @@ function SceneSequencePlayer({
   }
 
   return (
-    <section className={cn('scene-sequence-player', className)} data-theme-mode={theme}>
+    <section
+      className={cn('scene-sequence-player', className)}
+      data-theme-mode={theme}
+      aria-label={title || currentScene.title || 'Scene sequence player'}
+    >
       <div className="scene-sequence-player__header">
-        <div>
-          <h2 className="scene-sequence-player__title">{title}</h2>
-          {description ? (
-            <p className="scene-sequence-player__description">{description}</p>
-          ) : null}
-        </div>
-        <div className="scene-sequence-player__status">
-          <span className="scene-sequence-player__status-pill">
-            Scene {currentSceneIndex + 1}/{totalScenes}
-          </span>
-          {isPlaying ? (
-            <span className="scene-sequence-player__status-pill active">Autoplay</span>
-          ) : null}
-        </div>
+        {currentScene.description || description ? (
+          <p className="scene-sequence-player__scene-description">
+            {currentScene.description || description}
+          </p>
+        ) : null}
       </div>
 
-      <div className="scene-sequence-player__body">
-        <div className="scene-sequence-player__stage-shell">
-          {renderSceneStage({
-            currentScene,
-            renderSceneFrame,
-            sceneProgress,
-            stageClassName,
-            viewport,
-            viewportWidth,
-            viewportHeight,
-            theme
-          })}
-        </div>
+      <div className="scene-sequence-player__stage-shell">
+        {renderSceneStage({
+          currentScene,
+          renderSceneFrame,
+          sceneProgress,
+          stageClassName,
+          viewport,
+          viewportWidth,
+          viewportHeight,
+          theme
+        })}
+      </div>
 
-        <div className="scene-sequence-player__panel">
-          <div className="scene-sequence-player__panel-top">
-            {currentScene.badge ? (
-              <span className="scene-sequence-player__badge">{currentScene.badge}</span>
-            ) : null}
-            <h3 className="scene-sequence-player__scene-title">{currentScene.title}</h3>
-            {currentScene.description ? (
-              <p className="scene-sequence-player__scene-description">{currentScene.description}</p>
-            ) : null}
-          </div>
-
-          {currentScene.formula ? (
-            <pre className="scene-sequence-player__formula">{currentScene.formula}</pre>
-          ) : null}
-
-          {currentScene.stats?.length ? (
-            <div className="scene-sequence-player__stats">
-              {currentScene.stats.map((stat) => (
-                <div key={stat.label} className="scene-sequence-player__stat-card">
-                  <span className="scene-sequence-player__stat-label">{stat.label}</span>
-                  <strong className="scene-sequence-player__stat-value">{normalizeStatValue(stat.value)}</strong>
-                </div>
-              ))}
-            </div>
-          ) : null}
-
-          {currentScene.notes?.length ? (
-            <ul className="scene-sequence-player__notes">
-              {currentScene.notes.map((note) => (
-                <li key={note}>{note}</li>
-              ))}
-            </ul>
-          ) : null}
-
-          <div className="scene-sequence-player__controls">
-            <button type="button" className="scene-sequence-player__control-btn" onClick={handlePrevious}>
-              Prev
-            </button>
-            <button type="button" className="scene-sequence-player__control-btn primary" onClick={handleTogglePlayback}>
-              {isPlaying ? 'Pause' : 'Play'}
-            </button>
-            <button type="button" className="scene-sequence-player__control-btn" onClick={handleNext}>
-              Next
-            </button>
-          </div>
-
-          <div className="scene-sequence-player__scene-tabs" role="tablist" aria-label={`${title} scenes`}>
-            {safeScenes.map((scene, index) => (
-              <button
-                key={scene.id || scene.title}
-                type="button"
-                role="tab"
-                aria-selected={index === currentSceneIndex}
-                className={cn('scene-sequence-player__scene-tab', index === currentSceneIndex && 'active')}
-                onClick={() => goToScene(index, { progress: 1, pause: true })}
-              >
-                <span className="scene-sequence-player__scene-tab-index">{index + 1}</span>
-                <span className="scene-sequence-player__scene-tab-label">{scene.shortLabel || scene.title}</span>
-              </button>
+      <div className="scene-sequence-player__controls" role="group" aria-label="Scene playback controls">
+        <button
+          type="button"
+          className="scene-sequence-player__control-btn"
+          onClick={handlePrevious}
+          aria-label="Previous scene"
+          title="Previous scene"
+        >
+          <SkipBack size={18} strokeWidth={2.2} />
+        </button>
+        <button
+          type="button"
+          className={cn('scene-sequence-player__control-btn', 'primary')}
+          onClick={handleTogglePlayback}
+          aria-label={isPlaying ? 'Pause playback' : 'Play sequence'}
+          title={isPlaying ? 'Pause playback' : 'Play sequence'}
+        >
+          {isPlaying ? <Pause size={18} strokeWidth={2.2} /> : <Play size={18} strokeWidth={2.2} />}
+        </button>
+        <button
+          type="button"
+          className="scene-sequence-player__control-btn"
+          onClick={handleNext}
+          aria-label="Next scene"
+          title="Next scene"
+        >
+          <SkipForward size={18} strokeWidth={2.2} />
+        </button>
+        <label className="scene-sequence-player__speed-select-wrap">
+          <select
+            className="scene-sequence-player__speed-select"
+            value={String(playbackSpeed)}
+            onChange={(event) => setPlaybackSpeed(Number(event.target.value))}
+            aria-label="Playback speed"
+          >
+            {PLAYBACK_SPEED_OPTIONS.map((speed) => (
+              <option key={speed} value={speed}>
+                {speed}x
+              </option>
             ))}
-          </div>
-        </div>
+          </select>
+        </label>
       </div>
     </section>
   );

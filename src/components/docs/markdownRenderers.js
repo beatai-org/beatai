@@ -2,6 +2,7 @@ import React from 'react';
 import { defaultSchema } from 'rehype-sanitize';
 import { getTextContent, resolveMarkdownAssetUrl, slugifyHeading } from '../../utils/markdown';
 import Prism from '../../utils/prism';
+import DocMarkdownComponent from './markdownEmbeds/DocMarkdownComponent';
 
 function fallbackCopyText(text) {
   if (typeof document === 'undefined') {
@@ -100,12 +101,31 @@ function MarkdownPreBlock({ children, className, language = '', rawCode = '', ..
 
 export const sanitizeSchema = {
   ...defaultSchema,
+  tagNames: [
+    ...(defaultSchema.tagNames || []),
+    'doc-component'
+  ],
   attributes: {
     ...defaultSchema.attributes,
     a: [
       ...(defaultSchema.attributes?.a || []),
       'target',
       'rel'
+    ],
+    'doc-component': [
+      'name',
+      'src',
+      'component',
+      'images',
+      'scenes',
+      'title',
+      'description',
+      'className',
+      'autoplay',
+      'loop',
+      'variant',
+      'props',
+      /^data-.*$/
     ]
   }
 };
@@ -219,6 +239,9 @@ export function createDocMarkdownComponents({
     },
     ol({ node, ...props }) {
       return <ol className="doc-ol" {...props} />;
+    },
+    'doc-component'({ node, name, ...props }) {
+      return <DocMarkdownComponent name={name} markdownUrl={markdownUrl} {...props} />;
     }
   };
 }

@@ -37,8 +37,7 @@ import { useMarkdownSource } from '../../hooks/useMarkdownSource';
 import { useDocShortcuts } from '../../hooks/useDocShortcuts';
 import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
 import { findMetaEntryByPath } from '../../utils/docsMeta';
-import { normalizeDeepLearningMathMarkdown } from '../../utils/deepLearningMath';
-import { resolvePublicContentUrl } from '../../utils/markdown';
+import { normalizeDocComponentMarkdown, resolvePublicContentUrl } from '../../utils/markdown';
 import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
 import './DocContent.css';
 import '../../styles/3d-effects.css';
@@ -103,11 +102,10 @@ const DocContent = () => {
   }, [meta, location.pathname, findArticleTags, docMetaEntry]);
 
   const markdownContent = useMemo(() => {
-    return normalizeDeepLearningMathMarkdown(
-      stripAiInsightsTitle(content, isAiInsightsArticle),
-      docPath
+    return normalizeDocComponentMarkdown(
+      stripAiInsightsTitle(content, isAiInsightsArticle)
     );
-  }, [content, docPath, isAiInsightsArticle]);
+  }, [content, isAiInsightsArticle]);
 
   useDocShortcuts({
     articleRef,

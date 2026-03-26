@@ -272,7 +272,13 @@ function TaylorApproximationDemo() {
         shortLabel: `P${order}`,
         badge: `P${order}(x)`,
         title: `${order} 次多项式逼近`,
-        description: `围绕 x = 0 展开，看看阶数增加后，曲线如何逐步贴近 sin(x)。`,
+        description: ({
+          1: '1 次多项式只保留线性项，离开 x = 0 后会很快偏离，基本只能贴住中心附近。',
+          3: '加入 x^3 项后，中心区域开始更像 sin(x)，但两侧仍然有明显误差。',
+          5: '5 次多项式把拟合范围继续向左右拉开，主干形状已经接近完整波峰和波谷。',
+          7: '7 次多项式进一步压缩边缘误差，除了接近边界的位置，整体走势已经相当贴近。',
+          9: '到 9 次时，多项式已经能逼近大部分区间，误差主要只剩在最外侧。'
+        }[order] || '围绕 x = 0 展开，看看阶数增加后，曲线如何逐步贴近 sin(x)。'),
         formula: formatTaylorFormula(order),
         durationMs: 2800,
         stats: [

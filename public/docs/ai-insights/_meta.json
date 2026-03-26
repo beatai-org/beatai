@@ -81,6 +81,26 @@
       "path": "/ai-insights/viewpoint/2026-03",
       "items": [
         {
+          "title": "Agent/Skills/Teams 架构演进过程及技术选型之道",
+          "path": "/ai-insights/viewpoint/agent-skills-teams-architecture-evolution-hifi-spicy",
+          "file": "/docs/ai-insights/viewpoint/agent-skills-teams-architecture-evolution-hifi-spicy.md",
+          "publishedAt": "2026-03-26",
+          "contributors": [
+            {
+              "role": "reviewer",
+              "name": "Sheldon Cooper",
+              "link": "https://baike.baidu.com/item/谢尔顿·库珀/9982394"
+            }
+          ],
+          "tags": [
+            "Agent",
+            "Multi-Agent",
+            "Agent Skills",
+            "Agent Teams",
+            "架构选型"
+          ]
+        },
+        {
           "title": "你的 Claude 配置会随着时间变质：用这条自检提示词，60 秒排毒",
           "path": "/ai-insights/viewpoint/claude-self-audit-prompt",
           "file": "/docs/ai-insights/viewpoint/claude-self-audit-prompt.md",

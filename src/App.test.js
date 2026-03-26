@@ -22,7 +22,7 @@ beforeEach(() => {
           books: [
             {
               id: 'ai-insights',
-              title: 'AI每日视点',
+              title: 'AI辣评',
               description: 'AI 领域最新动态、技术分享与深度解析',
               metaFile: '/docs/ai-insights/_meta.json'
             },
@@ -48,7 +48,7 @@ beforeEach(() => {
         ok: true,
         json: async () => ({
           id: 'ai-insights',
-          title: 'AI每日视点',
+          title: 'AI辣评',
           description: 'AI 领域最新动态、技术分享与深度解析',
           sections: []
         })
@@ -90,7 +90,7 @@ afterEach(() => {
 test('renders square page entry content', async () => {
   render(<App />);
   expect(await screen.findByText('探索内容')).toBeInTheDocument();
-  expect(await screen.findByText('AI 学习教程')).toBeInTheDocument();
+  expect(await screen.findByText('AI学习教程')).toBeInTheDocument();
 });
 
 test('renders ai tutorials page with learn-ai card', async () => {

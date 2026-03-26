@@ -3,13 +3,13 @@
   "books": [
     {
       "id": "ai-insights",
-      "title": "AI每日视点",
-      "description": "AI 领域最新动态、技术分享与深度解析",
+      "title": "AI 辣评",
+      "description": "通过 AI 辣评学习 AI，模拟各种明星角色，给大家不一样的学习体验",
       "metaFile": "/docs/ai-insights/_meta.json"
     },
     {
       "id": "rust-course",
-      "title": "RUST语言圣经",
+      "title": "RUST 语言圣经",
       "description": "Rust 编程语言完整学习指南",
       "metaFile": "/docs/rust-course/_meta.json"
     }

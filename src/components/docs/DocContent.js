@@ -179,7 +179,7 @@ const DocContent = () => {
                     <span className="doc-article-meta-credit">
                       <span className="doc-article-meta-credit-label">{contributor.label}</span>
                       {' '}
-                      <span className="doc-article-meta-credit-from">From</span>
+                      <span className="doc-article-meta-credit-from">By</span>
                       {' '}
                       {contributor.link ? (
                         <a

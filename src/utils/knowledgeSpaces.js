@@ -9,7 +9,7 @@ export const AI_TUTORIALS_PATH = LEARN_AI_BASE_PATH;
 export function getAiTutorialSpace() {
   return {
     id: 'ai-tutorials',
-    title: 'AI 学习教程',
+    title: 'AI学习教程',
     entryPath: AI_TUTORIALS_PATH,
     kind: 'tutorial-hub'
   };

@@ -38,10 +38,10 @@ function AITutorialsContent({ categories, spaces }) {
     <ReadingModeProvider value={readingModeValue}>
       <>
         <Helmet>
-          <title>AI 学习教程 | BeatAI</title>
+          <title>AI学习教程 | BeatAI</title>
           <meta
             name="description"
-            content="集中浏览 BeatAI 收录的 AI 学习教程，目前包含 Learn Claude Code，可直达书籍正文。"
+            content="集中浏览 BeatAI 收录的 AI学习教程，目前包含 Learn Claude Code，可直达书籍正文。"
           />
         </Helmet>
 

@@ -8,7 +8,7 @@
 
 简洁触发约定：
 - `提取文章` / `提取下载里的文章`：使用 `extract-article`
-- `翻译文章到 AI每日视点` / `译读文章`：使用 `ai-insights-translate`
+- `翻译文章到 AI辣评` / `译读文章`：使用 `ai-insights-translate`
 - `辣评文章` / `辣评下载里的文章`：使用 `tech-spicy-review`
 - `更新 BeatAI repo`：使用 `sync-ai-insights-readme`，从 `public/docs/ai-insights/_meta.json` 渲染完整 markdown，全量覆盖 `beatai-org/BeatAI` 的 `README.md`
 - `预览 BeatAI repo 更新`：使用 `sync-ai-insights-readme` dry-run，只渲染和预览，不推送

@@ -1,7 +1,7 @@
 {
   "id": "ai-insights",
-  "title": "AI每日视点",
-  "description": "AI 领域最新动态、技术分享与深度解析",
+  "title": "AI辣评",
+  "description": "通过 AI 辣评学习 AI，模拟各种明星角色，给大家不一样的学习体验",
   "githubRepo": "https://github.com/beatai-org/beatai",
   "repoTitle": "繁星点点，只因有你",
   "sections": [
@@ -82,14 +82,14 @@
       "items": [
         {
           "title": "Agent/Skills/Teams 架构演进过程及技术选型之道",
-          "path": "/ai-insights/viewpoint/agent-skills-teams-architecture-evolution-hifi-spicy",
-          "file": "/docs/ai-insights/viewpoint/agent-skills-teams-architecture-evolution-hifi-spicy.md",
+          "path": "/ai-insights/viewpoint/agent-skills-teams-architecture-evolution",
+          "file": "/docs/ai-insights/viewpoint/agent-skills-teams-architecture-evolution.md",
           "publishedAt": "2026-03-26",
           "contributors": [
             {
               "role": "reviewer",
-              "name": "Sheldon Cooper",
-              "link": "https://baike.baidu.com/item/谢尔顿·库珀/9982394"
+              "name": "霍华德·沃洛维茨",
+              "link": "https://baike.baidu.com/item/霍华德·沃洛维茨/18428561"
             }
           ],
           "tags": [

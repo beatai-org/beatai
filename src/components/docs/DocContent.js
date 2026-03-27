@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
@@ -43,6 +44,13 @@ import './DocContent.css';
 import '../../styles/3d-effects.css';
 import '../../styles/animations.css';
 
+const IMAGE_PREVIEW_MIN_SCALE = 1;
+const IMAGE_PREVIEW_MAX_SCALE = 4;
+
+function clampImagePreviewScale(value) {
+  return Math.min(IMAGE_PREVIEW_MAX_SCALE, Math.max(IMAGE_PREVIEW_MIN_SCALE, value));
+}
+
 const DocContent = () => {
   const location = useLocation();
   const { setPageTitle, findTitleByPath } = usePageTitle();
@@ -50,8 +58,11 @@ const DocContent = () => {
   const { findArticleTags } = useTag();
   const articleRef = React.useRef(null);
   const commentsRef = React.useRef(null);
+  const imageLightboxBackdropRef = React.useRef(null);
   const [adjacentChapters, setAdjacentChapters] = useState({ prev: null, next: null });
   const [articleTags, setArticleTags] = useState([]);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreviewScale, setImagePreviewScale] = useState(1);
 
   // Extract the path from URL (now starts from root)
   const docPath = location.pathname.replace(/^\//, '');
@@ -115,6 +126,86 @@ const DocContent = () => {
     enabled: Boolean(rawDoc)
   });
 
+  useEffect(() => {
+    if (!imagePreview || typeof document === 'undefined') {
+      return undefined;
+    }
+
+    const originalOverflow = document.body.style.overflow;
+    const handleEscClose = (event) => {
+      if (event.key === 'Escape') {
+        setImagePreview(null);
+        return;
+      }
+
+      if (
+        (event.metaKey || event.ctrlKey) &&
+        ['+', '=', '-', '_', '0'].includes(event.key)
+      ) {
+        event.preventDefault();
+      }
+    };
+    const handleLightboxWheel = (event) => {
+      const backdrop = imageLightboxBackdropRef.current;
+      if (!backdrop || !(event.target instanceof Node) || !backdrop.contains(event.target)) {
+        return;
+      }
+
+      // On macOS trackpad pinch-to-zoom, browsers fire wheel with ctrl/meta modifier.
+      if (!(event.ctrlKey || event.metaKey)) {
+        return;
+      }
+
+      event.preventDefault();
+      const zoomDelta = event.deltaY < 0 ? 0.12 : -0.12;
+      setImagePreviewScale((current) => clampImagePreviewScale(current + zoomDelta));
+    };
+    const preventGestureZoom = (event) => event.preventDefault();
+
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleEscClose);
+    document.addEventListener('wheel', handleLightboxWheel, { passive: false, capture: true });
+    document.addEventListener('gesturestart', preventGestureZoom);
+    document.addEventListener('gesturechange', preventGestureZoom);
+    document.addEventListener('gestureend', preventGestureZoom);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.removeEventListener('keydown', handleEscClose);
+      document.removeEventListener('wheel', handleLightboxWheel, { capture: true });
+      document.removeEventListener('gesturestart', preventGestureZoom);
+      document.removeEventListener('gesturechange', preventGestureZoom);
+      document.removeEventListener('gestureend', preventGestureZoom);
+    };
+  }, [imagePreview]);
+
+  const handleArticleImageClick = (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLImageElement)) {
+      return;
+    }
+
+    if (target.closest('a')) {
+      return;
+    }
+
+    const imageSrc = target.currentSrc || target.src;
+    if (!imageSrc) {
+      return;
+    }
+
+    setImagePreview({
+      src: imageSrc,
+      alt: target.alt || ''
+    });
+    setImagePreviewScale(1);
+  };
+
+  const closeImagePreview = () => {
+    setImagePreview(null);
+    setImagePreviewScale(1);
+  };
+
   if (error) {
     return (
       <div className="doc-error">
@@ -153,6 +244,7 @@ const DocContent = () => {
         articleClassName="doc-content"
         articleKey={docPath}
         headings={headings}
+        onArticleClick={handleArticleImageClick}
         afterArticle={(
           <>
             <ArticleTags tags={articleTags} />
@@ -208,6 +300,41 @@ const DocContent = () => {
           {markdownContent}
         </ReactMarkdown>
       </DocArticleLayout>
+      {imagePreview && typeof document !== 'undefined' && createPortal(
+        <div
+          ref={imageLightboxBackdropRef}
+          className="doc-image-lightbox-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-label={imagePreview.alt ? `图片预览：${imagePreview.alt}` : '图片预览'}
+          onClick={closeImagePreview}
+        >
+          <div
+            className="doc-image-lightbox-dialog"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="doc-image-lightbox-close"
+              onClick={closeImagePreview}
+              aria-label="关闭图片预览"
+            >
+              ×
+            </button>
+            <img
+              className="doc-image-lightbox-image"
+              src={imagePreview.src}
+              alt={imagePreview.alt}
+              style={{ transform: `scale(${imagePreviewScale})` }}
+              onClick={closeImagePreview}
+            />
+            {imagePreview.alt ? (
+              <p className="doc-image-lightbox-caption">{imagePreview.alt}</p>
+            ) : null}
+          </div>
+        </div>,
+        document.body
+      )}
     </>
   );
 };

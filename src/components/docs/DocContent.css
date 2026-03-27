@@ -925,6 +925,11 @@
   margin: 24px auto;
   display: block;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: zoom-in;
+}
+
+.doc-content a img {
+  cursor: pointer;
 }
 
 [data-theme-mode="dark"] .doc-content img {
@@ -951,6 +956,69 @@
 :root[data-theme="kindle-paper"][data-theme-mode="dark"] .doc-content img {
   border: 1px solid #3c3c38;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14);
+}
+
+.doc-image-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(5, 9, 18, 0.84);
+  backdrop-filter: blur(4px);
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
+.doc-image-lightbox-dialog {
+  position: relative;
+  max-width: min(96vw, 1600px);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.doc-image-lightbox-image {
+  max-width: 100%;
+  max-height: calc(92vh - 48px);
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+  cursor: zoom-out;
+  transform-origin: center center;
+  transition: transform 120ms ease-out;
+  will-change: transform;
+}
+
+.doc-image-lightbox-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.84);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.doc-image-lightbox-close:hover {
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.doc-image-lightbox-caption {
+  margin: 0;
+  max-width: min(90vw, 980px);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 14px;
 }
 
 .doc-content div[align="center"] {

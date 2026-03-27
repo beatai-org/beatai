@@ -6,16 +6,45 @@ import { normalizeMetaPath } from '../../utils/docsMeta';
 import './Sidebar.css';
 import '../../styles/3d-effects.css';
 
-function getTodayDateString() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
+function parseLocalDateFromYmd(dateText) {
+  if (typeof dateText !== 'string') {
+    return null;
+  }
+
+  const match = dateText.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) {
+    return null;
+  }
+
+  const year = Number(match[1]);
+  const monthIndex = Number(match[2]) - 1;
+  const day = Number(match[3]);
+  const parsed = new Date(year, monthIndex, day);
+
+  if (
+    Number.isNaN(parsed.getTime()) ||
+    parsed.getFullYear() !== year ||
+    parsed.getMonth() !== monthIndex ||
+    parsed.getDate() !== day
+  ) {
+    return null;
+  }
+
+  return parsed;
 }
 
-function isPublishedToday(publishedAt) {
-  return Boolean(publishedAt) && publishedAt === getTodayDateString();
+function isPublishedWithinTwoDays(publishedAt) {
+  const publishedDate = parseLocalDateFromYmd(publishedAt);
+  if (!publishedDate) {
+    return false;
+  }
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const diffMs = today.getTime() - publishedDate.getTime();
+  const diffDays = Math.floor(diffMs / (24 * 60 * 60 * 1000));
+
+  return diffDays >= 0 && diffDays < 2;
 }
 
 function GlobalNewBadge({ anchorRef, visible }) {
@@ -100,7 +129,7 @@ function GlobalNewBadge({ anchorRef, visible }) {
 }
 
 function TitleWithNewBadge({ title, publishedAt }) {
-  const showNewBadge = isPublishedToday(publishedAt);
+  const showNewBadge = isPublishedWithinTwoDays(publishedAt);
   const titleRef = useRef(null);
 
   return (

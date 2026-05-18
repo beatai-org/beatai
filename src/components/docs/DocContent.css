@@ -67,7 +67,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 968px) {
   .doc-content {
     padding: 20px 16px 26px;
     max-width: 100%;

@@ -328,7 +328,7 @@
 }
 
 /* Hide TOC on smaller screens */
-@media (max-width: 1200px) {
+@media (max-width: 968px) {
   .toc {
     display: none;
   }

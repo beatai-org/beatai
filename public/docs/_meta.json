@@ -3,8 +3,8 @@
   "books": [
     {
       "id": "ai-insights",
-      "title": "AI 辣评",
-      "description": "通过 AI 辣评学习 AI，模拟各种明星角色，给大家不一样的学习体验",
+      "title": "AI 前沿学习",
+      "description": "AI 前沿学习，模拟各种明星角色，给大家不一样的学习体验",
       "metaFile": "/docs/ai-insights/_meta.json"
     },
     {

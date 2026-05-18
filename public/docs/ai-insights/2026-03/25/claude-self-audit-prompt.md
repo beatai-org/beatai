@@ -1,4 +1,8 @@
-![Claude setup 自检提示词主图](/docs/ai-insights/viewpoint/images/claude-self-audit-prompt-cover.jpg)
+---
+title: "你的 Claude 配置会随着时间变质：用这条自检提示词，60 秒排毒"
+---
+
+![Claude setup 自检提示词主图](./images/claude-self-audit-prompt/cover.jpg)
 
 我上周把自己的 Claude 配置砍掉了一半，结果每一次输出都变得更好了。
 

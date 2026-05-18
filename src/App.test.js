@@ -22,7 +22,7 @@ beforeEach(() => {
           books: [
             {
               id: 'ai-insights',
-              title: 'AI辣评',
+              title: 'AI 前沿学习',
               description: 'AI 领域最新动态、技术分享与深度解析',
               metaFile: '/docs/ai-insights/_meta.json'
             },
@@ -48,7 +48,7 @@ beforeEach(() => {
         ok: true,
         json: async () => ({
           id: 'ai-insights',
-          title: 'AI辣评',
+          title: 'AI 前沿学习',
           description: 'AI 领域最新动态、技术分享与深度解析',
           sections: []
         })

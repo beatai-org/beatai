@@ -4,7 +4,7 @@
   height: calc(100vh - 90px);
   overflow-y: auto;
   overflow-x: visible;
-  padding: 20px 0;
+  padding: 0px 0;
 }
 
 /* Custom scrollbar for sidebar */

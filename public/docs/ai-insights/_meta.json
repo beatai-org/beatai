@@ -1,18 +1,18 @@
 {
   "id": "ai-insights",
-  "title": "AI辣评",
-  "description": "通过 AI 辣评学习 AI，模拟各种明星角色，给大家不一样的学习体验",
+  "title": "AI 前沿学习",
+  "description": "AI 前沿学习，模拟各种明星角色，给大家不一样的学习体验",
   "githubRepo": "https://github.com/beatai-org/beatai",
   "repoTitle": "繁星点点，只因有你",
   "sections": [
     {
       "title": "2026 年 2 月",
-      "path": "/ai-insights/viewpoint/2025-11",
+      "path": "/ai-insights/2025-11",
       "items": [
         {
           "title": "是什么让 Claude Code 如此出色（以及如何在你的智能体中重现这种魔力）!?",
-          "path": "/ai-insights/viewpoint/why-claude-code-is-so-good",
-          "file": "/docs/ai-insights/viewpoint/why-claude-code-is-so-good.md",
+          "path": "/ai-insights/why-claude-code-is-so-good",
+          "file": "/docs/ai-insights/2026-02/27/why-claude-code-is-so-good.md",
           "publishedAt": "2026-02-27",
           "tags": [
             "AI",
@@ -24,8 +24,8 @@
         },
         {
           "title": "从写代码到验代码：AI 搭档写走 3 年，我踩出来的协作路线图",
-          "path": "/ai-insights/viewpoint/from-writing-code-to-validating-code",
-          "file": "/docs/ai-insights/viewpoint/from-writing-code-to-validating-code.md",
+          "path": "/ai-insights/from-writing-code-to-validating-code",
+          "file": "/docs/ai-insights/2026-02/17/from-writing-code-to-validating-code.md",
           "publishedAt": "2026-02-17",
           "tags": [
             "AI",
@@ -37,8 +37,8 @@
         },
         {
           "title": "2028全球智能危机",
-          "path": "/ai-insights/viewpoint/2028-global-intelligence-crisis",
-          "file": "/docs/ai-insights/viewpoint/2028-global-intelligence-crisis.md",
+          "path": "/ai-insights/2028-global-intelligence-crisis",
+          "file": "/docs/ai-insights/2026-02/18/2028-global-intelligence-crisis.md",
           "publishedAt": "2026-02-18",
           "tags": [
             "AI",
@@ -50,8 +50,8 @@
         },
         {
           "title": "微软中国 CTO 韦青：警惕朋友圈 AI 神话，重视苦活、脏活、累活",
-          "path": "/ai-insights/viewpoint/weiching-ai-reform",
-          "file": "/docs/ai-insights/viewpoint/weiching-ai-reform.md",
+          "path": "/ai-insights/weiching-ai-reform",
+          "file": "/docs/ai-insights/2026-03/17/weiching-ai-reform.md",
           "publishedAt": "2026-03-17",
           "tags": [
             "AI",
@@ -63,8 +63,8 @@
         },
         {
           "title": "用 AI 反向工程 1986 年的游戏",
-          "path": "/ai-insights/viewpoint/ai-reverse-engineered-bubble-bobble",
-          "file": "/docs/ai-insights/viewpoint/ai-reverse-engineered-bubble-bobble.md",
+          "path": "/ai-insights/ai-reverse-engineered-bubble-bobble",
+          "file": "/docs/ai-insights/2026-02/18/ai-reverse-engineered-bubble-bobble.md",
           "publishedAt": "2026-02-18",
           "tags": [
             "AI",
@@ -78,12 +78,12 @@
     },
     {
       "title": "2026 年 3 月",
-      "path": "/ai-insights/viewpoint/2026-03",
+      "path": "/ai-insights/2026-03",
       "items": [
         {
           "title": "AI时代设计该何去何从",
-          "path": "/ai-insights/viewpoint/what-ai-exposes-about-design",
-          "file": "/docs/ai-insights/viewpoint/what-ai-exposes-about-design.md",
+          "path": "/ai-insights/what-ai-exposes-about-design",
+          "file": "/docs/ai-insights/2026-03/27/what-ai-exposes-about-design.md",
           "publishedAt": "2026-03-27",
           "tags": [
             "Design",
@@ -95,8 +95,8 @@
         },
         {
           "title": "Agent/Skills/Teams 架构演进过程及技术选型之道",
-          "path": "/ai-insights/viewpoint/agent-skills-teams-architecture-evolution",
-          "file": "/docs/ai-insights/viewpoint/agent-skills-teams-architecture-evolution.md",
+          "path": "/ai-insights/agent-skills-teams-architecture-evolution",
+          "file": "/docs/ai-insights/2026-03/26/agent-skills-teams-architecture-evolution.md",
           "publishedAt": "2026-03-26",
           "contributors": [
             {
@@ -115,8 +115,8 @@
         },
         {
           "title": "你的 Claude 配置会随着时间变质：用这条自检提示词，60 秒排毒",
-          "path": "/ai-insights/viewpoint/claude-self-audit-prompt",
-          "file": "/docs/ai-insights/viewpoint/claude-self-audit-prompt.md",
+          "path": "/ai-insights/claude-self-audit-prompt",
+          "file": "/docs/ai-insights/2026-03/25/claude-self-audit-prompt.md",
           "publishedAt": "2026-03-25",
           "contributors": [
             {
@@ -134,8 +134,8 @@
         },
         {
           "title": "如何把 Claude Skills 的效果提升 10 倍：用 Karpathy 的 autoresearch 方法自动打磨",
-          "path": "/ai-insights/viewpoint/how-to-10x-your-claude-skills",
-          "file": "/docs/ai-insights/viewpoint/how-to-10x-your-claude-skills.md",
+          "path": "/ai-insights/how-to-10x-your-claude-skills",
+          "file": "/docs/ai-insights/2026-03/25/how-to-10x-your-claude-skills.md",
           "publishedAt": "2026-03-25",
           "contributors": [
             {
@@ -153,8 +153,8 @@
         },
         {
           "title": "开源项目--1300 年前的唐朝制度，吊打了我用过的所有 AI 框架",
-          "path": "/ai-insights/viewpoint/tang-dynasty-beats-ai-frameworks",
-          "file": "/docs/ai-insights/viewpoint/tang-dynasty-beats-ai-frameworks.md",
+          "path": "/ai-insights/tang-dynasty-beats-ai-frameworks",
+          "file": "/docs/ai-insights/2026-03/24/tang-dynasty-beats-ai-frameworks.md",
           "publishedAt": "2026-03-24",
           "contributors": [
             {
@@ -173,8 +173,8 @@
         },
         {
           "title": "模型不是关键，Harness 才是",
-          "path": "/ai-insights/viewpoint/model-is-not-key-harness-is",
-          "file": "/docs/ai-insights/viewpoint/model-is-not-key-harness-is.md",
+          "path": "/ai-insights/model-is-not-key-harness-is",
+          "file": "/docs/ai-insights/2026-03/24/model-is-not-key-harness-is.md",
           "publishedAt": "2026-03-24",
           "contributors": [
             {
@@ -193,8 +193,8 @@
         },
         {
           "title": "构建 Claude Code 的经验：Prompt Caching 才是一切",
-          "path": "/ai-insights/viewpoint/prompt-caching-is-everything",
-          "file": "/docs/ai-insights/viewpoint/prompt-caching-is-everything.md",
+          "path": "/ai-insights/prompt-caching-is-everything",
+          "file": "/docs/ai-insights/2026-03/24/prompt-caching-is-everything.md",
           "publishedAt": "2026-03-24",
           "tags": [
             "ClaudeCode",
@@ -206,8 +206,8 @@
         },
         {
           "title": "Harness Engineering:2026年最被低估的工程革命",
-          "path": "/ai-insights/viewpoint/harness-engineering-revolution",
-          "file": "/docs/ai-insights/viewpoint/harness-engineering-revolution.md",
+          "path": "/ai-insights/harness-engineering-revolution",
+          "file": "/docs/ai-insights/2026-03/20/harness-engineering-revolution.md",
           "publishedAt": "2026-03-20",
           "contributors": [
             {
@@ -226,8 +226,8 @@
         },
         {
           "title": "CC之父曝内部团队使用Claude Code的10条技巧！网友：工作流很管用，但钱包有点痛",
-          "path": "/ai-insights/viewpoint/claude-code-team-10-tips",
-          "file": "/docs/ai-insights/viewpoint/claude-code-team-10-tips.md",
+          "path": "/ai-insights/claude-code-team-10-tips",
+          "file": "/docs/ai-insights/2026-03/20/claude-code-team-10-tips.md",
           "publishedAt": "2026-03-20",
           "contributors": [
             {
@@ -246,8 +246,8 @@
         },
         {
           "title": "钉钉已经彻底 CLI 化了。",
-          "path": "/ai-insights/viewpoint/dingtalk-cli",
-          "file": "/docs/ai-insights/viewpoint/dingtalk-cli.md",
+          "path": "/ai-insights/dingtalk-cli",
+          "file": "/docs/ai-insights/2026-03/20/dingtalk-cli.md",
           "publishedAt": "2026-03-20",
           "contributors": [
             {
@@ -266,8 +266,8 @@
         },
         {
           "title": "Vibe Coding，是怎么「玩废」程序员的？",
-          "path": "/ai-insights/viewpoint/vibe-coding",
-          "file": "/docs/ai-insights/viewpoint/vibe-coding.md",
+          "path": "/ai-insights/vibe-coding",
+          "file": "/docs/ai-insights/2026-03/17/vibe-coding.md",
           "publishedAt": "2026-03-17",
           "tags": [
             "AI",
@@ -279,8 +279,8 @@
         },
         {
           "title": "百万级代码背后的零人工奇迹",
-          "path": "/ai-insights/viewpoint/harness-engineering",
-          "file": "/docs/ai-insights/viewpoint/harness-engineering.md",
+          "path": "/ai-insights/harness-engineering",
+          "file": "/docs/ai-insights/2026-03/17/harness-engineering.md",
           "publishedAt": "2026-03-17",
           "tags": [
             "AI",
@@ -292,8 +292,8 @@
         },
         {
           "title": "从 Google ADK 到 OpenFang，我试了七个 Agent 框架，最后被一个教程点醒了",
-          "path": "/ai-insights/viewpoint/agent-framework-illusion",
-          "file": "/docs/ai-insights/viewpoint/agent-framework-illusion.md",
+          "path": "/ai-insights/agent-framework-illusion",
+          "file": "/docs/ai-insights/2026-03/18/agent-framework-illusion.md",
           "publishedAt": "2026-03-18",
           "tags": [
             "AI",
@@ -305,8 +305,8 @@
         },
         {
           "title": "为什么大模型越用越上头？",
-          "path": "/ai-insights/viewpoint/why-llms-are-so-addictive",
-          "file": "/docs/ai-insights/viewpoint/why-llms-are-so-addictive.md",
+          "path": "/ai-insights/why-llms-are-so-addictive",
+          "file": "/docs/ai-insights/2026-03/19/why-llms-are-so-addictive.md",
           "publishedAt": "2026-03-19",
           "tags": [
             "AI",
@@ -318,8 +318,8 @@
         },
         {
           "title": "Claude code团队内部skill构建踩坑经验大全",
-          "path": "/ai-insights/viewpoint/claude-code-skills-pitfalls",
-          "file": "/docs/ai-insights/viewpoint/claude-code-skills-pitfalls.md",
+          "path": "/ai-insights/claude-code-skills-pitfalls",
+          "file": "/docs/ai-insights/2026-03/19/claude-code-skills-pitfalls.md",
           "publishedAt": "2026-03-19",
           "tags": [
             "ClaudeCode",
@@ -333,12 +333,12 @@
     },
     {
       "title": "2026 年 5 月",
-      "path": "/ai-insights/viewpoint/2026-05",
+      "path": "/ai-insights/2026-05",
       "items": [
         {
           "title": "官方文档没告诉你的 Claude Code skills 真相",
-          "path": "/ai-insights/viewpoint/2026-05-18/what-the-docs-dont-tell-you-about-claude-code-skills",
-          "file": "/docs/ai-insights/viewpoint/2026-05-18/what-the-docs-dont-tell-you-about-claude-code-skills.md",
+          "path": "/ai-insights/what-the-docs-dont-tell-you-about-claude-code-skills",
+          "file": "/docs/ai-insights/2026-05/18/what-the-docs-dont-tell-you-about-claude-code-skills.md",
           "publishedAt": "2026-05-18",
           "contributors": [
             {
@@ -356,8 +356,8 @@
         },
         {
           "title": "云端蚁群",
-          "path": "/ai-insights/viewpoint/2026-05-18/cloud-ant-colonies",
-          "file": "/docs/ai-insights/viewpoint/2026-05-18/cloud-ant-colonies.md",
+          "path": "/ai-insights/cloud-ant-colonies",
+          "file": "/docs/ai-insights/2026-05/18/cloud-ant-colonies.md",
           "publishedAt": "2026-05-18",
           "tags": [],
           "contributors": [
@@ -369,8 +369,8 @@
         },
         {
           "title": "我们已经走到 legacy code 的尽头了吗？",
-          "path": "/ai-insights/viewpoint/2026-05-18/have-we-reached-the-end-of-legacy-code",
-          "file": "/docs/ai-insights/viewpoint/2026-05-18/have-we-reached-the-end-of-legacy-code.md",
+          "path": "/ai-insights/have-we-reached-the-end-of-legacy-code",
+          "file": "/docs/ai-insights/2026-05/18/have-we-reached-the-end-of-legacy-code.md",
           "publishedAt": "2026-05-18",
           "tags": [],
           "contributors": [

@@ -65,7 +65,10 @@ const DocContent = () => {
   const formattedPublishedDate = formatPublishedDate(docMetaEntry?.item?.publishedAt);
   const formattedContributors = formatContributors(docMetaEntry?.item?.contributors);
   const titleFromMeta = docMetaEntry?.item?.title || findTitleByPath(location.pathname);
-  const markdownUrl = useMemo(() => resolvePublicContentUrl(`/docs/${docPath}.md`), [docPath]);
+  const markdownUrl = useMemo(() => {
+    const fileFromMeta = docMetaEntry?.item?.file;
+    return resolvePublicContentUrl(fileFromMeta || `/docs/${docPath}.md`);
+  }, [docPath, docMetaEntry]);
   const { text: rawDoc, error } = useMarkdownSource({
     url: markdownUrl,
     enabled: Boolean(docPath)

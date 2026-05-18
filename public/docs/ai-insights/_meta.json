@@ -330,6 +330,57 @@
           ]
         }
       ]
+    },
+    {
+      "title": "2026 年 5 月",
+      "path": "/ai-insights/viewpoint/2026-05",
+      "items": [
+        {
+          "title": "官方文档没告诉你的 Claude Code skills 真相",
+          "path": "/ai-insights/viewpoint/2026-05-18/what-the-docs-dont-tell-you-about-claude-code-skills",
+          "file": "/docs/ai-insights/viewpoint/2026-05-18/what-the-docs-dont-tell-you-about-claude-code-skills.md",
+          "publishedAt": "2026-05-18",
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Jose Parreño"
+            }
+          ],
+          "tags": [
+            "Claude Code",
+            "Skills",
+            "设计模式",
+            "AI Coding",
+            "工程实践"
+          ]
+        },
+        {
+          "title": "云端蚁群",
+          "path": "/ai-insights/viewpoint/2026-05-18/cloud-ant-colonies",
+          "file": "/docs/ai-insights/viewpoint/2026-05-18/cloud-ant-colonies.md",
+          "publishedAt": "2026-05-18",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Jordan Carson"
+            }
+          ]
+        },
+        {
+          "title": "我们已经走到 legacy code 的尽头了吗？",
+          "path": "/ai-insights/viewpoint/2026-05-18/have-we-reached-the-end-of-legacy-code",
+          "file": "/docs/ai-insights/viewpoint/2026-05-18/have-we-reached-the-end-of-legacy-code.md",
+          "publishedAt": "2026-05-18",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "David Rodenas PhD"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -25,3 +25,4 @@ yarn-error.log*
 temp-article
 /out
 /public/docs/materials/output/.obsidian/
+/public/docs/materials/.obsidian/

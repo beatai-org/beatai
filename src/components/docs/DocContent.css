@@ -894,16 +894,17 @@
   }
 
   .doc-pre {
-    padding: 48px 16px 16px;
+    padding: 16px;
     font-size: 13px;
   }
 
+  /* 移动端隐藏代码块右上角的语言标签和 COPY 按钮 */
+  .doc-pre:has(code[class*="language-"])::before {
+    display: none;
+  }
+
   .doc-code-copy-btn {
-    top: 10px;
-    right: 10px;
-    min-width: 62px;
-    height: 28px;
-    font-size: 11px;
+    display: none;
   }
 
   .doc-pre:has(code[class*="language-"])::before {

@@ -19,10 +19,11 @@ const Square = () => {
   const [heroLogoAnimated, setHeroLogoAnimated] = useState(false);
   const [hoveredCard, setHoveredCard] = useState('');
 
-  // Get first item path for a category
-  const getFirstItemPath = (categoryId) => {
+  // Resolve a category's entry path: explicit `entryPath` in meta wins,
+  // otherwise fall back to the first navigable chapter.
+  const getCategoryEntryPath = (categoryId) => {
     const category = meta?.categories?.find((item) => item.id === categoryId);
-    return getFirstNavigablePathForCategory(category) || '#';
+    return category?.entryPath || getFirstNavigablePathForCategory(category) || '#';
   };
 
   const categories = meta?.categories || [];
@@ -63,7 +64,7 @@ const Square = () => {
               <h2 className="section-title">探索内容</h2>
               <div className="square-grid">
                 <a
-                  href={getFirstItemPath('ai-insights')}
+                  href={getCategoryEntryPath('ai-insights')}
                   className="square-card glass-card"
                   onMouseEnter={() => setHoveredCard('ai-insights')}
                   onMouseLeave={() => setHoveredCard('')}
@@ -76,7 +77,7 @@ const Square = () => {
                 </a>
 
                 <a
-                  href={getFirstItemPath('rust-course')}
+                  href={getCategoryEntryPath('rust-course')}
                   className="square-card glass-card"
                   onMouseEnter={() => setHoveredCard('rust-course')}
                   onMouseLeave={() => setHoveredCard('')}

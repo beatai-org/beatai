@@ -42,8 +42,8 @@ function App() {
             <div className="App dynamic-background">
               <Suspense fallback={<PageTransitionLoader />}>
                 <Routes>
-                  {/* 根目录跳转到广场 */}
-                  <Route path="/" element={<Navigate to="/square" replace />} />
+                  {/* 根目录跳转到 ai-insights 档案页 */}
+                  <Route path="/" element={<Navigate to="/ai-insights" replace />} />
                   <Route path="/genesis-lab" element={<Home />} />
                   <Route path="/my-notes" element={<MyNotes />} />
                   <Route path="/square" element={<Square />} />

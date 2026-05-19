@@ -45,15 +45,6 @@ function ReadingModeFloatingActions() {
     <>
       <div className="reading-mode-floating-actions">
         <button
-          type="button"
-          className="reading-mode-toggle-btn reading-mode-tips-btn"
-          onClick={() => setShowTipsModal(true)}
-          aria-label="打开阅读技巧"
-          title="阅读技巧"
-        >
-          <HiSparkles />
-        </button>
-        <button
           ref={tocButtonRef}
           type="button"
           className="reading-mode-toggle-btn reading-mode-toc-btn"
@@ -63,6 +54,15 @@ function ReadingModeFloatingActions() {
           title="目录"
         >
           <HiOutlineMenuAlt2 />
+        </button>
+        <button
+          type="button"
+          className="reading-mode-toggle-btn reading-mode-tips-btn"
+          onClick={() => setShowTipsModal(true)}
+          aria-label="打开阅读技巧"
+          title="阅读技巧"
+        >
+          <HiSparkles />
         </button>
         {!isReadonlyMode && <ReadingModeToggleButton />}
       </div>

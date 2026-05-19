@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './DocsLayout.css';
 import '../../styles/Background.css';
 import '../../styles/3d-effects.css';
@@ -8,6 +9,9 @@ import ReadingModeDirectoryButton from './ReadingModeDirectoryButton';
 import PageShell from '../layout/PageShell';
 import { cn } from '../../utils/classNames';
 import { ReadingModeProvider } from '../../contexts/ReadingModeContext';
+
+const READING_MODE_PARAM = 'mode';
+const READING_MODE_VALUE = 'read';
 
 function BookWorkspaceLayout({
   rootClassName = '',
@@ -27,8 +31,23 @@ function BookWorkspaceLayout({
   afterMain = null,
   children
 }) {
-  const [isReadingMode, setIsReadingMode] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const isReadingMode = searchParams.get(READING_MODE_PARAM) === READING_MODE_VALUE;
   const [isReadingModeDirectoryOpen, setIsReadingModeDirectoryOpen] = useState(false);
+
+  const setIsReadingMode = useCallback((next) => {
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      const currentValue = params.get(READING_MODE_PARAM) === READING_MODE_VALUE;
+      const resolved = typeof next === 'function' ? next(currentValue) : next;
+      if (resolved) {
+        params.set(READING_MODE_PARAM, READING_MODE_VALUE);
+      } else {
+        params.delete(READING_MODE_PARAM);
+      }
+      return params;
+    }, { replace: false });
+  }, [setSearchParams]);
 
   const toggleReadingMode = useCallback(() => {
     setIsReadingMode((current) => {
@@ -37,7 +56,7 @@ function BookWorkspaceLayout({
       }
       return !current;
     });
-  }, []);
+  }, [setIsReadingMode]);
 
   useEffect(() => {
     if (!isReadingMode) {
@@ -59,7 +78,7 @@ function BookWorkspaceLayout({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isReadingMode, isReadingModeDirectoryOpen]);
+  }, [isReadingMode, isReadingModeDirectoryOpen, setIsReadingMode]);
 
   useEffect(() => {
     if (isReadingMode && sidebarOpen && onSidebarClose) {
@@ -77,7 +96,7 @@ function BookWorkspaceLayout({
     isReadingMode,
     setReadingMode: setIsReadingMode,
     toggleReadingMode
-  }), [isReadingMode, toggleReadingMode]);
+  }), [isReadingMode, setIsReadingMode, toggleReadingMode]);
 
   return (
     <ReadingModeProvider value={readingModeValue}>

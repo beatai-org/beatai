@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import LearnClaudeCodeIcon from '../components/icons/LearnClaudeCodeIcon';
 import PageShell from '../components/layout/PageShell';
 import { ReadingModeProvider } from '../contexts/ReadingModeContext';
@@ -11,16 +11,35 @@ import { LEARN_AI_SPACES } from '../utils/learnAiSpaces';
 import { buildKnowledgeSpaces, getAiTutorialSpace } from '../utils/knowledgeSpaces';
 import './AITutorials.css';
 
+const READING_MODE_PARAM = 'mode';
+const READING_MODE_VALUE = 'read';
+
 function AITutorialsContent({ categories, spaces }) {
   const handleCategoryClick = useCategoryNavigation();
   const [hoveredSlug, setHoveredSlug] = useState('');
-  const [isReadingMode, setIsReadingMode] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const isReadingMode = searchParams.get(READING_MODE_PARAM) === READING_MODE_VALUE;
   const activeSpace = useMemo(() => getAiTutorialSpace(), []);
+
+  const setIsReadingMode = useCallback((next) => {
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      const currentValue = params.get(READING_MODE_PARAM) === READING_MODE_VALUE;
+      const resolved = typeof next === 'function' ? next(currentValue) : next;
+      if (resolved) {
+        params.set(READING_MODE_PARAM, READING_MODE_VALUE);
+      } else {
+        params.delete(READING_MODE_PARAM);
+      }
+      return params;
+    });
+  }, [setSearchParams]);
+
   const readingModeValue = useMemo(() => ({
     isReadingMode,
     setReadingMode: setIsReadingMode,
     toggleReadingMode: () => setIsReadingMode((current) => !current)
-  }), [isReadingMode]);
+  }), [isReadingMode, setIsReadingMode]);
 
   const renderCardIcon = (space) => {
     if (space.slug === 'learn-claude-code') {

@@ -48,7 +48,7 @@
 .pagination-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
   min-width: 0;
 }
 
@@ -61,8 +61,8 @@
 }
 
 .pagination-title {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -113,7 +113,7 @@
   }
 
   .pagination-title {
-    font-size: 15px;
+    font-size: 13px;
   }
 
   .pagination-icon {

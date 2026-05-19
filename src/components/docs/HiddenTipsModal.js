@@ -25,6 +25,7 @@ function HiddenTipsModal({ isOpen, onClose }) {
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
+        event.stopPropagation();
         onClose();
       }
     };

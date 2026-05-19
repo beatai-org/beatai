@@ -24,7 +24,10 @@ function ReadingModeFloatingActions() {
     };
 
     const handleKey = (event) => {
-      if (event.key === 'Escape') setShowToc(false);
+      if (event.key === 'Escape') {
+        event.stopPropagation();
+        setShowToc(false);
+      }
     };
 
     document.addEventListener('mousedown', handlePointer);

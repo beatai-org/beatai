@@ -6,7 +6,7 @@
 
 我们盯着一个文件夹，里面有 24 个文件。文件名像这样：`a78-09.12`、`a78-05-1.52`、`68705.bin`。最大的 64 KB，最小的 115 字节。没有文件头，没有元数据，没有 README。只有从一块 1986 年太东街机电路板上直接 dump 出来的原始二进制数据。
 
-![Bubble Bobble ROM 文件集](./images/ai-reverse-engineered-bubble-bobble/roms.png)
+![Bubble Bobble ROM 文件集](./images/ai-reverse-engineered-bubble-bobble/roms.webp)
 
 这些是《泡泡龙》（Bubble Bobble）的 ROM 文件，也是史上最受欢迎的街机游戏之一。确切地说，是 `bub68705` 变体版本，而这套 ROM 本身就有一段引人入胜的历史。我们把它们交给了 Anthropic 的 AI Claude，让它告诉我们这些字节里藏着什么。
 
@@ -54,7 +54,7 @@
 
 Claude 找到了两部分数据，弄清楚了它们是如何关联在一起的，解码了位压缩方案，并将全部 100 关渲染成带有正确调色板颜色和怪物位置的图像。
 
-![Bubble Bobble 全部关卡可视化](./images/ai-reverse-engineered-bubble-bobble/levels.png)
+![Bubble Bobble 全部关卡可视化](./images/ai-reverse-engineered-bubble-bobble/levels.webp)
 
 结果令人叹为观止。第 1 关那个经典的三平台布局，让数百万玩家爱上这款游戏的设计，立刻就能认出来。第 3 关展示了嵌套方框设计，那一关教会了玩家乘气泡的机制。到了第 50 关，设计变成了精细的、不对称的构造，要求玩家掌握游戏的每一个系统。
 

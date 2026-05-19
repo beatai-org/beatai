@@ -65,7 +65,7 @@ description: Summarises raw meeting notes into a short structured recap. Use whe
 -   **Instructions** —— 这是 `SKILL.md` 的主体部分。它会在 skill 被真正选中时加载。这是 workflow、步骤、示例和输出预期所在之处。
 -   **Resources** —— 这些是配套文件，例如文档、模板、schemas 或 scripts，放在 `references/`、`assets/` 或 `scripts/` 这样的目录里。它们只在执行过程中*需要时*才加载。
 
-![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/01.png)
+![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/01.webp)
 
 如果你能吃透这些资产，它们能让 skills 在你的生产系统中实现质量上的巨大飞跃。这也是为什么 skills 更应该被理解为一种**设计模式**，而不只是一个 feature。既然心智模型已经清晰了，我们就可以来看一个 skill 的实际结构，看看这几层在实践中各自落地在哪里。
 
@@ -133,7 +133,7 @@ description: Summarises raw meeting notes into a short structured recap. Use whe
 
 你可以用一大堆控制 skill 的参数来扩展这些可选描述字段。
 
-![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/02.png)
+![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/02.webp)
 *截图来自 Anthropic 官方文档。*
 
 下面是一个可能的示例。
@@ -154,7 +154,7 @@ allowed-tools: Read Write Bash(python:\*)
 
 作为 Data Scientists 或 Software Engineers，我们都非常习惯在函数之间传递变量。skills 也有类似的概念，[其中允许字符串替换或注入](https://code.claude.com/docs/en/skills#available-string-substitutions)，从而让 skill 能够接收动态值。
 
-![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/03.png)
+![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/03.webp)
 
 下面是一个例子：
 
@@ -199,7 +199,7 @@ $ARGUMENTS
 
 xlsx skill 的 description 精确解释了哪些电子表格操作应该触发这个 skill、哪些不应该、以及这个 skill 对输出质量保证什么。
 
-![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/04.png)
+![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/04.webp)
 *Anthropic skill description 的截图。*
 
 ### 在选择层就编码失败模式
@@ -271,7 +271,7 @@ model: Sonnet
 
 下面是我自己的某个 skill 里这种行为如何被触发的例子。在下面的截图里，我把 `Opus` 设为主 session 模型，但名为 `fetch-calibration-data` 的 skill 使用了 `Haiku`。
 
-![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/05.png)
+![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/05.webp)
 
 到目前为止，我们已经看了一些非常棒的 skills 技巧。然而，一旦 skills 开始与更大的 Claude 系统交互——尤其是用于外部访问的 MCP、以及用于委派执行的 subagents——它们会变得强大得多。我们在下一节简短地讲讲这点。
 
@@ -287,7 +287,7 @@ model: Sonnet
 
 Anthropic 的 [skills explained 博客](https://claude.com/blog/skills-explained) 包含了一个跨五个原语的对比表：Skills、Prompts、Projects、Subagents 和 MCP。表里覆盖了持久性、各自包含什么、何时加载、以及最适合的场景。实践中最重要的两个整合是 skills + MCP 和 skills + subagents。
 
-![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/06.png)
+![](./images/what-the-docs-dont-tell-you-about-claude-code-skills/06.webp)
 *截图来自 Anthropic 的博客文章。*
 
 ### Skills + MCP

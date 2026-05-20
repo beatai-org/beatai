@@ -3,6 +3,7 @@ title: Harness：企业被打造来迎接的时代
 author: Fabio Yáñez Romero
 url: https://pub.towardsai.net/harness-the-era-enterprises-were-built-for-87eff27ccb02
 translated: 2026-05-19
+summary: 这是一个关于“终端用户如何把语言模型当作黑盒（我们只能控制输入什么、以及对输出做什么）来提升其性能”的故事。从最简单的做法，一路到提升模型性能的复杂变通方案。
 ---
 
 # Harness：企业被打造来迎接的时代

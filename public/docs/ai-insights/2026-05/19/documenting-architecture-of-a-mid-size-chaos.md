@@ -3,6 +3,7 @@ title: 为一团中等规模的混乱编写架构文档
 author: Ondřej Popelka
 url: https://blog.gopenai.com/documenting-architecture-of-a-mid-size-chaos-f75695f04990
 translated: 2026-05-19
+summary: 写软件架构文档很可怕。尤其是在一家没有架构师角色或部门的中型公司。光是想一想公司信息系统的架构，看起来就如此“多余”和“拖我们后腿”。然而中型公司一次又一次最终陷入重复的系统、重复的数据，以及一团混乱。
 ---
 
 # 为一团中等规模的混乱编写架构文档

@@ -3,6 +3,7 @@ title: Anthropic 的工程师说 "干掉 Markdown"，他真正想表达的是什
 author: Yanli Liu
 url: https://generativeai.pub/anthropics-engineer-said-kill-markdown-here-s-what-he-actually-meant-36bee00c0ca2
 translated: 2026-05-19
+summary: 上周，Claude Code 的工程负责人告诉开发者们：别再输出 Markdown 了。整个互联网炸了。
 ---
 
 # Anthropic 的工程师说 "干掉 Markdown"，他真正想表达的是什么。

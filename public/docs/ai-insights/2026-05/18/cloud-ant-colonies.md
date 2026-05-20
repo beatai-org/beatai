@@ -3,6 +3,7 @@ title: 云端蚁群
 author: Jordan Carson
 url: https://ai.gopubby.com/cloud-ant-colonies-5b311dcae1d5
 translated: 2026-05-18
+summary: 科学、数学和工程中最美的东西，很多都不是被发明出来的。它们是被发现的——早已在自然界中运行着、早已最优、早已优雅，只等着我们去注意到它们、把它们写下来。
 ---
 
 # 云端蚁群

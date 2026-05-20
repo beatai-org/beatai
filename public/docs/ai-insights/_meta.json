@@ -393,6 +393,173 @@
           ],
           "summary": "随着 AI 在\"造一切\"上越来越强，设计师工作里哪一部分变得更重要，哪一部分变得不那么重要？过去一年，DoorDash 的两支团队一直在探索这一概念。在本文中，Qixing 将把两个案例研究串起来，讲讲产品开发流程是如何转变的、观察到了哪些新模式、做了哪些实验、又有哪些问题尚未解决。",
           "cover": "./images/two-teams-one-shift-how-ai-is-rewiring-our-product-design-process/01.thumb.webp"
+        },
+        {
+          "title": "智能体 AI 安全模式",
+          "path": "/ai-insights/agentic-ai-security-patterns",
+          "file": "/docs/ai-insights/2026-05/20/agentic-ai-security-patterns.md",
+          "publishedAt": "2026-05-20",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Debmalya Biswas"
+            }
+          ],
+          "summary": "智能体 AI 系统的关键特征在于其自主性与推理能力，这让它们能够把复杂任务分解为更小的可执行任务，进而编排这些任务的执行，并在需要时对执行过程进行监控、反思、适配 / 自我纠错。鉴于此，",
+          "cover": "./images/agentic-ai-security-patterns/01.thumb.webp"
+        },
+        {
+          "title": "超越代码生成：让 AI 覆盖完整的数据科学工作流",
+          "path": "/ai-insights/beyond-code-generation-ai-for-the-full-data-science-workflow",
+          "file": "/docs/ai-insights/2026-05/20/beyond-code-generation-ai-for-the-full-data-science-workflow.md",
+          "publishedAt": "2026-05-20",
+          "tags": [
+            "Artificial Intelligence"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Yu Dong"
+            }
+          ],
+          "summary": "最近，我一直感到一种持续的 AI FOMO。每天，我都会看到人们分享 AI 技巧、他们构建的新智能体和技能，以及凭感觉编出来的应用。我越来越意识到，快速适应 AI 正在成为今天作为一名数据科学家保持竞争力的一项必备要求。",
+          "cover": "./images/beyond-code-generation-ai-for-the-full-data-science-workflow/01.thumb.webp"
+        },
+        {
+          "title": "仅解码器 Transformer：生成式 LLM 的主力架构",
+          "path": "/ai-insights/decoder-only-transformers-the-workhorse-of-generative-llms",
+          "file": "/docs/ai-insights/2026-05/20/decoder-only-transformers-the-workhorse-of-generative-llms.md",
+          "publishedAt": "2026-05-20",
+          "tags": [
+            "Artificial Intelligence"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Cameron R. Wolfe, Ph.D."
+            }
+          ],
+          "summary": "当下 AI 研究的步伐令人瞠目。跟上最新的发表成果是一件难事，即便是这个领域的专家也会感觉自己未能把握住这个不断演化的前沿的那些更细微的细节。…",
+          "cover": "./images/decoder-only-transformers-the-workhorse-of-generative-llms/01.thumb.webp"
+        },
+        {
+          "title": "DeepSeek-V4 及其之前 —— 把基础打牢",
+          "path": "/ai-insights/deepseek-v4-and-before-getting-the-foundations-right",
+          "file": "/docs/ai-insights/2026-05/20/deepseek-v4-and-before-getting-the-foundations-right.md",
+          "publishedAt": "2026-05-20",
+          "tags": [
+            "LLM"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "James Koh, PhD"
+            }
+          ],
+          "summary": "2025 年 1 月 Deepseek-R1 的发布，伴随着开放发布的蒸馏版「32B 与 70B 模型，性能与 OpenAI-o1-mini 相当」，在随后的一周里引发了大型 AI 公司股价的暴跌。",
+          "cover": "./images/deepseek-v4-and-before-getting-the-foundations-right/01.thumb.webp"
+        },
+        {
+          "title": "从原型到预测：用随机森林实时分类 NBA 球员",
+          "path": "/ai-insights/from-archetypes-to-predictions-using-random-forest-to-classify-nba-players-in-real-time",
+          "file": "/docs/ai-insights/2026-05/20/from-archetypes-to-predictions-using-random-forest-to-classify-nba-players-in-real-time.md",
+          "publishedAt": "2026-05-20",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Adron Allen"
+            }
+          ],
+          "summary": "如果你读过我上一篇文章，你就知道我用 K-Means 聚类来论证：传统的 NBA 位置基本上已经过时了。数据找到了五种自然的球员原型，它们与某人被登记为后卫还是前锋毫无关系。看到这一点很酷，但它在桌面上留下了一个相当明显的后续问题：好吧，那现在怎么办？如果一位球队管理层的分析师想知道某个球员属于哪种原型，难道他们每次都得重新跑一遍整个聚类流程？那不现实",
+          "cover": "./images/from-archetypes-to-predictions-using-random-forest-to-classify-nba-players-in-real-time/01.thumb.webp"
+        },
+        {
+          "title": "AI 如何记忆，又为何遗忘：第 1 部分。上下文问题",
+          "path": "/ai-insights/how-ai-remembers-and-why-it-forgets-part-1-the-context-problem",
+          "file": "/docs/ai-insights/2026-05/20/how-ai-remembers-and-why-it-forgets-part-1-the-context-problem.md",
+          "publishedAt": "2026-05-20",
+          "tags": [
+            "LLM"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Nadia Makarevich"
+            }
+          ],
+          "summary": "AI 编程。我打算假设你在此时此刻至少已经试过了。你大概用过像 Claude 或 Cursor 这样的工具，试过不同的模型，甚至可能用 Anthropic 或 OpenAI API 构建过你自己的东西。当你不得不为超额使用的 token 付费时，你可能哭过一小会儿，而“agents”这个词到现在已经能让你脑动脉瘤了。如果你完全不知道我在这里说什么，请把你星球的坐标发给我，那里一定非常宁静。",
+          "cover": "./images/how-ai-remembers-and-why-it-forgets-part-1-the-context-problem/01.thumb.webp"
+        },
+        {
+          "title": "我们能如何更好地对葡萄酒品质进行分类？",
+          "path": "/ai-insights/how-do-we-classify-wine-quality",
+          "file": "/docs/ai-insights/2026-05/20/how-do-we-classify-wine-quality.md",
+          "publishedAt": "2026-05-20",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Tanika Jangam"
+            }
+          ],
+          "summary": "用于评定葡萄酒品质的度量体系在经验丰富的评审之间往往并不一致。专家给出的分数可能因各自的评价而出现显著差异，然而，一旦葡萄酒已经装瓶、待售，葡萄酒本身就再也无法因这些评价的结果而改变或受到影响。这类结果浪费了时间与资源，而它在这个行业里几乎每天都在发生。",
+          "cover": "./images/how-do-we-classify-wine-quality/01.thumb.webp"
+        },
+        {
+          "title": "我造了一座证据工厂，因为\"相信我，agent 没问题\"不是一种治理策略",
+          "path": "/ai-insights/ive-built-an-evidence-factory-because-trust-me-the-agent-is-fine-is-not-a-governance-strategy",
+          "file": "/docs/ai-insights/2026-05/20/ive-built-an-evidence-factory-because-trust-me-the-agent-is-fine-is-not-a-governance-strategy.md",
+          "publishedAt": "2026-05-20",
+          "tags": [
+            "Artificial Intelligence"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Marco van Hurne"
+            }
+          ],
+          "summary": "我现在写关于企业 agent 化的东西已经够多了，多到能填满一本小小的、令人不舒服的书，而在我的想象里，这本书摆在一位 AI 架构师的桌上，让他们质疑自己的职业选择。我写过流程选择。35% 的自动化天花板。Agentic 架构模式。治理哲学。还有大规模运行一座 AI 工厂的经济学。我用一种好为人师的方式把这一切都讲了个遍，也看着足够多的它们失败过，因而挣得了发表观点的权利。",
+          "cover": "./images/ive-built-an-evidence-factory-because-trust-me-the-agent-is-fine-is-not-a-governance-strategy/01.thumb.webp"
+        },
+        {
+          "title": "Anthropic 新推出的金融 Agent 有何不同",
+          "path": "/ai-insights/what-makes-anthropics-new-finance-agent-different",
+          "file": "/docs/ai-insights/2026-05/20/what-makes-anthropics-new-finance-agent-different.md",
+          "publishedAt": "2026-05-20",
+          "tags": [
+            "Artificial Intelligence",
+            "Technology",
+            "Programming"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Yanli Liu"
+            }
+          ],
+          "summary": "5 月 5 日，Anthropic 为金融服务业开源了 10 个 agent 模板。媒体报道的是那笔与 Blackstone 和 Goldman Sachs 合作、价值 15 亿美元的华尔街合资项目。Jamie Dimon 告诉记者，Claude 在 20 分钟内为他做出了\"一个巨大的仪表盘，配齐了所有支撑材料和所有研究\"。",
+          "cover": "./images/what-makes-anthropics-new-finance-agent-different/01.thumb.webp"
+        },
+        {
+          "title": "当你的 AI 治理模型试图监管一个智能体蜂群",
+          "path": "/ai-insights/when-your-ai-governance-model-tries-to-regulate-an-agentic-swarm",
+          "file": "/docs/ai-insights/2026-05/20/when-your-ai-governance-model-tries-to-regulate-an-agentic-swarm.md",
+          "publishedAt": "2026-05-20",
+          "tags": [
+            "Artificial Intelligence",
+            "AI Agent"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Marco van Hurne"
+            }
+          ],
+          "summary": "我小时候对组合逻辑很感兴趣，是的，这件事在很大程度上解释了我后来变成什么样，也解释了为什么我的小学老师看我的眼神，就像人们看一只学会了开冰箱的狗那样。",
+          "cover": "./images/when-your-ai-governance-model-tries-to-regulate-an-agentic-swarm/01.thumb.webp"
         }
       ]
     }

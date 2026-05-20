@@ -444,7 +444,7 @@
           "cover": "./images/decoder-only-transformers-the-workhorse-of-generative-llms/01.thumb.webp"
         },
         {
-          "title": "DeepSeek-V4 及其之前 —— 把基础打牢",
+          "title": "读懂 DeepSeek-V4 之前，先把基础打牢",
           "path": "/ai-insights/deepseek-v4-and-before-getting-the-foundations-right",
           "file": "/docs/ai-insights/2026-05/20/deepseek-v4-and-before-getting-the-foundations-right.md",
           "publishedAt": "2026-05-20",
@@ -457,7 +457,7 @@
               "name": "James Koh, PhD"
             }
           ],
-          "summary": "2025 年 1 月 Deepseek-R1 的发布，伴随着开放发布的蒸馏版「32B 与 70B 模型，性能与 OpenAI-o1-mini 相当」，在随后的一周里引发了大型 AI 公司股价的暴跌。",
+          "summary": "2025 年 1 月，DeepSeek-R1 发布，同时开源了蒸馏版的「32B 与 70B 模型，性能与 OpenAI-o1-mini 相当」。接下来那一周，几家 AI 巨头的股价应声暴跌。",
           "cover": "./images/deepseek-v4-and-before-getting-the-foundations-right/01.thumb.webp"
         },
         {

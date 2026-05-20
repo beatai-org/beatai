@@ -10,8 +10,8 @@
   最近，我一直感到一种持续的 AI FOMO。每天，我都会看到人们分享 AI 技巧、他们构建的新智能体和技能，以及凭感觉编出来的应用。我越来越意识到，快速适应 AI 正在成为今天作为一名数据科学家保持竞争力的一项必备要求。
 - [仅解码器 Transformer：生成式 LLM 的主力架构](https://beatai.org/ai-insights/decoder-only-transformers-the-workhorse-of-generative-llms?mode=read)  
   当下 AI 研究的步伐令人瞠目。跟上最新的发表成果是一件难事，即便是这个领域的专家也会感觉自己未能把握住这个不断演化的前沿的那些更细微的细节。…
-- [DeepSeek-V4 及其之前 —— 把基础打牢](https://beatai.org/ai-insights/deepseek-v4-and-before-getting-the-foundations-right?mode=read)  
-  2025 年 1 月 Deepseek-R1 的发布，伴随着开放发布的蒸馏版「32B 与 70B 模型，性能与 OpenAI-o1-mini 相当」，在随后的一周里引发了大型 AI 公司股价的暴跌。
+- [读懂 DeepSeek-V4 之前，先把基础打牢](https://beatai.org/ai-insights/deepseek-v4-and-before-getting-the-foundations-right?mode=read)  
+  2025 年 1 月，DeepSeek-R1 发布，同时开源了蒸馏版的「32B 与 70B 模型，性能与 OpenAI-o1-mini 相当」。接下来那一周，几家 AI 巨头的股价应声暴跌。
 - [从原型到预测：用随机森林实时分类 NBA 球员](https://beatai.org/ai-insights/from-archetypes-to-predictions-using-random-forest-to-classify-nba-players-in-real-time?mode=read)  
   如果你读过我上一篇文章，你就知道我用 K-Means 聚类来论证：传统的 NBA 位置基本上已经过时了。数据找到了五种自然的球员原型，它们与某人被登记为后卫还是前锋毫无关系。看到这一点很酷，但它在桌面上留下了一个相当明显的后续问题：好吧，那现在怎么办？如果一位球队管理层的分析师想知道某个球员属于哪种原型，难道他们每次都得重新跑一遍整个聚类流程？那不现实
 - [AI 如何记忆，又为何遗忘：第 1 部分。上下文问题](https://beatai.org/ai-insights/how-ai-remembers-and-why-it-forgets-part-1-the-context-problem?mode=read)  

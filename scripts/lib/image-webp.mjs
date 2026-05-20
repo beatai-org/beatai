@@ -51,6 +51,60 @@ export function fmtMB(bytes) {
   return (bytes / 1048576).toFixed(2) + ' MB';
 }
 
+// 列表卡片缩略图默认规格：宽 400px（卡片显示 160px，@2.5x 覆盖高 DPR），q72。
+export const DEFAULT_THUMB_WIDTH = 400;
+export const DEFAULT_THUMB_QUALITY = 72;
+const THUMB_SUFFIX = '.thumb.webp';
+
+/**
+ * 由封面图引用推出缩略图引用（不碰文件，纯字符串）。
+ *   ./images/x/cover.jpg   → ./images/x/cover.thumb.webp
+ *   远端 http(s) URL        → null（无法本地衍生，调用方回退原图）
+ *   已是 .thumb.webp 的引用 → 原样返回
+ */
+export function thumbRefPath(coverRef) {
+  if (!coverRef || /^https?:\/\//i.test(coverRef)) return null;
+  if (coverRef.toLowerCase().endsWith(THUMB_SUFFIX)) return coverRef;
+  return coverRef.replace(/\.[^.\/?#]+(?=$|[?#])/, THUMB_SUFFIX);
+}
+
+/**
+ * 为一张本地图片生成缩略图衍生 `<name>.thumb.webp`（同目录），用于列表/卡片。
+ * cwebp 支持 png/jpg/webp 输入；-resize <w> 0 等比缩放。
+ *
+ * 参数：
+ *   srcPath  必填；原图绝对路径
+ *   width    缩略图目标宽度，默认 400
+ *   quality  cwebp -q，默认 72
+ *   force    目标已存在时是否重新生成（默认 false → 幂等跳过）
+ *   cwebp    cwebp 二进制路径
+ *
+ * 返回：{ ok, dst?, before?, after?, skipped?, error? }
+ */
+export function makeThumbnail(srcPath, {
+  width = DEFAULT_THUMB_WIDTH,
+  quality = DEFAULT_THUMB_QUALITY,
+  force = false,
+  cwebp = DEFAULT_CWEBP,
+} = {}) {
+  if (!srcPath || /^https?:\/\//i.test(srcPath)) return { ok: false, skipped: 'remote' };
+  if (srcPath.toLowerCase().endsWith(THUMB_SUFFIX)) return { ok: false, skipped: 'already-thumb' };
+  if (!existsSync(srcPath)) return { ok: false, error: `src not found: ${srcPath}` };
+
+  const dst = srcPath.replace(/\.[^.\/]+$/, THUMB_SUFFIX);
+  if (existsSync(dst) && !force) return { ok: true, dst, skipped: 'exists' };
+
+  const r = spawnSync(
+    cwebp,
+    ['-q', String(quality), '-resize', String(width), '0', '-quiet', srcPath, '-o', dst],
+    { stdio: 'pipe' }
+  );
+  if (r.status !== 0) {
+    return { ok: false, error: (r.stderr?.toString() || `exit ${r.status}`).trim() };
+  }
+  return { ok: true, dst, before: statSync(srcPath).size, after: statSync(dst).size };
+}
+
 /**
  * 把 root 下所有 png/gif 转成同目录 .webp，删除原文件。
  *

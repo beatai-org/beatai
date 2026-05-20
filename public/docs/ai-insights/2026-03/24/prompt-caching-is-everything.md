@@ -1,6 +1,6 @@
 ---
 summary: 工程界常说 “Cache Rules Everything Around Me”，这条规则放到 Agent 产品上一样成立。Claude Code 这类长时运行、不断往返调用模型的产品之所以在成本和延迟上可行，关键不是“模型更便宜了”，而是 prompt caching 让前几轮已经算过的前缀可以被重复利用。
-cover: ./images/prompt-caching-is-everything/cover.jpg
+cover: ./images/prompt-caching-is-everything/cover.thumb.webp
 ---
 
 # 构建 Claude Code 的经验：Prompt Caching 才是一切

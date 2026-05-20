@@ -66,7 +66,7 @@ function collectArticles(today) {
             slug,
             title,
             summary,
-            url: `${BASE_URL}/ai-insights/${slug}`,
+            url: `${BASE_URL}/ai-insights/${slug}?mode=read`,
           };
         })
         .sort((a, b) => a.slug.localeCompare(b.slug));

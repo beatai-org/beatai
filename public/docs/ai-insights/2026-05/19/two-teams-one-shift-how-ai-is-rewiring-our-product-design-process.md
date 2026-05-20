@@ -6,7 +6,7 @@ translated: 2026-05-19
 tags:
   - Artificial Intelligence
 summary: 随着 AI 在"造一切"上越来越强，设计师工作里哪一部分变得更重要，哪一部分变得不那么重要？过去一年，DoorDash 的两支团队一直在探索这一概念。在本文中，Qixing 将把两个案例研究串起来，讲讲产品开发流程是如何转变的、观察到了哪些新模式、做了哪些实验、又有哪些问题尚未解决。
-cover: ./images/two-teams-one-shift-how-ai-is-rewiring-our-product-design-process/01.webp
+cover: ./images/two-teams-one-shift-how-ai-is-rewiring-our-product-design-process/01.thumb.webp
 ---
 
 # 两支团队，一次转向：AI 如何重塑我们的产品设计流程

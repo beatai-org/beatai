@@ -1,6 +1,6 @@
 ---
 summary: 我们让 AI 去读 1986 年的原始二进制文件。
-cover: ./images/ai-reverse-engineered-bubble-bobble/roms.webp
+cover: ./images/ai-reverse-engineered-bubble-bobble/roms.thumb.webp
 ---
 
 # 用 AI 反向工程 1986 年的游戏

@@ -6,7 +6,7 @@ translated: 2026-05-19
 tags:
   - Artificial Intelligence
 summary: 经营一家走入式紧急护理诊所有一个反复出现的运营头痛：要决定某一天该排多少临床医生。如果排得太少，候诊室就可能堵塞，患者会流向最近的急诊科 (ED)。反过来，你又得为不需要的医生工时买单，反之亦然。大多数诊所基于去年的数字、直觉和一点猜测来估算就诊人数，特别是在流感季前后。…
-cover: ./images/predicting-daily-patient-volume-for-a-melbourne-urgent-care-clinic/01.webp
+cover: ./images/predicting-daily-patient-volume-for-a-melbourne-urgent-care-clinic/01.thumb.webp
 ---
 
 # 预测墨尔本一家紧急护理诊所的日就诊量

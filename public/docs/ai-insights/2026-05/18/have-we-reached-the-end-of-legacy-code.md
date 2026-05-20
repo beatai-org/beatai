@@ -4,7 +4,7 @@ author: David Rodenas PhD
 url: https://drpicox.medium.com/have-we-reached-the-end-of-legacy-code-dc65c7c67cdd
 translated: 2026-05-18
 summary: 让软件演化并不简单。每一次改动都意味着把新代码与既有代码集成在一起，而那并不总是容易的。既有代码通常没有预见到未来的改动，即便预见到了，也从来不会正好就是必须做出的那些改动。所以你必须沿途不断地更新和清理。
-cover: ./images/have-we-reached-the-end-of-legacy-code/01.webp
+cover: ./images/have-we-reached-the-end-of-legacy-code/01.thumb.webp
 ---
 
 # 我们已经走到 legacy code 的尽头了吗？

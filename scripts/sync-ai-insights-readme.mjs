@@ -20,16 +20,26 @@ function withinWindow(dateStr, today, days) {
   return d >= cutoff;
 }
 
-function extractTitle(mdPath) {
+function unquote(s) {
+  return s.trim().replace(/^["']|["']$/g, '');
+}
+
+function extractMeta(mdPath) {
   const raw = readFileSync(mdPath, 'utf-8');
   const fm = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  let title = '';
+  let summary = '';
   if (fm) {
-    const m = fm[1].match(/^title:\s*(.+)$/m);
-    if (m) return m[1].trim().replace(/^["']|["']$/g, '');
+    const t = fm[1].match(/^title:\s*(.+)$/m);
+    if (t) title = unquote(t[1]);
+    const s = fm[1].match(/^summary:\s*(.+)$/m);
+    if (s) summary = unquote(s[1]);
   }
-  const h1 = raw.match(/^#\s+(.+)$/m);
-  if (h1) return h1[1].trim();
-  return basename(mdPath, '.md');
+  if (!title) {
+    const h1 = raw.match(/^#\s+(.+)$/m);
+    title = h1 ? h1[1].trim() : basename(mdPath, '.md');
+  }
+  return { title, summary };
 }
 
 function collectArticles(today) {
@@ -51,9 +61,11 @@ function collectArticles(today) {
         .filter((f) => f.endsWith('.md'))
         .map((f) => {
           const slug = f.replace(/\.md$/, '');
+          const { title, summary } = extractMeta(join(dirPath, f));
           return {
             slug,
-            title: extractTitle(join(dirPath, f)),
+            title,
+            summary,
             url: `${BASE_URL}/ai-insights/${slug}`,
           };
         })
@@ -78,7 +90,12 @@ function render(byDate) {
   for (const date of dates) {
     lines.push(`### ${date}`, '');
     for (const a of byDate.get(date)) {
-      lines.push(`- [${a.title}](${a.url})`);
+      if (a.summary) {
+        lines.push(`- [${a.title}](${a.url})  `);
+        lines.push(`  ${a.summary}`);
+      } else {
+        lines.push(`- [${a.title}](${a.url})`);
+      }
     }
     lines.push('');
   }

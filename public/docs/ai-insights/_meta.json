@@ -560,6 +560,141 @@
           ],
           "summary": "我小时候对组合逻辑很感兴趣。是的，这件事很大程度上解释了我后来为什么变成这样，也解释了为什么我的小学老师看我的眼神，活像人们看一只学会了开冰箱的狗。",
           "cover": "./images/when-your-ai-governance-model-tries-to-regulate-an-agentic-swarm/01.thumb.webp"
+        },
+        {
+          "title": "代码变便宜了，判断力没有。",
+          "path": "/ai-insights/code-got-cheap-judgement-did-not",
+          "file": "/docs/ai-insights/2026-05/21/code-got-cheap-judgement-did-not.md",
+          "publishedAt": "2026-05-21",
+          "tags": [
+            "Technology"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Matt Whetton"
+            }
+          ],
+          "summary": "关于 AI 与工程，主流的说法是它降低了门槛。如今一个初级工程师配上趁手的工具，就能做过去中级工程师才能做的事。一个中级工程师能做过去资深工程师才能做的事。金字塔被压扁，组织架构变得更扁平，顶端那些经验丰富的工程师变得不那么不可或缺了——因为他们过去提供的杠杆，现在已经被烤进了工具里。",
+          "cover": "./images/code-got-cheap-judgement-did-not/01.thumb.webp"
+        },
+        {
+          "title": "提升广告相关性：把实时上下文融入序列推荐模型",
+          "path": "/ai-insights/enhancing-ad-relevance-integrating-real-time-context-into-sequential-recommender-models",
+          "file": "/docs/ai-insights/2026-05/21/enhancing-ad-relevance-integrating-real-time-context-into-sequential-recommender-models.md",
+          "publishedAt": "2026-05-21",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Pinterest Engineering"
+            }
+          ],
+          "summary": "在此前的一篇文章 Ads Candidate Generation using Behavioral Sequence Modeling（原文）中，我们介绍过一个候选生成器（CG）。它用一个基于 Transformer 的双塔模型，借助用户的站外转化历史——这是一个很强的信号——来预测用户未来会与哪些广告主、哪些具体商品发生交互。…",
+          "cover": "./images/enhancing-ad-relevance-integrating-real-time-context-into-sequential-recommender-models/01.thumb.webp"
+        },
+        {
+          "title": "我们如何为 6 万名知识工作者打造 AI 第二大脑",
+          "path": "/ai-insights/how-we-built-an-ai-second-brain-for-60k-knowledge-workers",
+          "file": "/docs/ai-insights/2026-05/21/how-we-built-an-ai-second-brain-for-60k-knowledge-workers.md",
+          "publishedAt": "2026-05-21",
+          "tags": [
+            "Artificial Intelligence",
+            "Machine Learning"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Analytics at Meta"
+            }
+          ],
+          "summary": "Meta 的知识工作者每天都在跟工作流的碎片化作斗争：会议记录、任务、关键决策、代码上下文这些重要信息，散落在彼此割裂的平台上。每开启一段新的 AI 对话，都得从零冷启动——重复同样的解释、贴同样的链接、花同样的十分钟铺垫上下文，真正的工作才能开始。",
+          "cover": "./images/how-we-built-an-ai-second-brain-for-60k-knowledge-workers/01.thumb.webp"
+        },
+        {
+          "title": "LLM 弃用与迁移策略：如何应对不断上涨的 AI 价格",
+          "path": "/ai-insights/llm-deprecation-and-migration-strategy-how-to-adapt-to-rising-ai-prices",
+          "file": "/docs/ai-insights/2026-05/21/llm-deprecation-and-migration-strategy-how-to-adapt-to-rising-ai-prices.md",
+          "publishedAt": "2026-05-21",
+          "tags": [
+            "LLM"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Ruben Melkonian"
+            }
+          ],
+          "summary": "模型退役是 AI 市场的一种结构性现实，不是罕见的运维事件。OpenAI（GPT）、Anthropic（Claude）、Google（Gemini）以及其他 LLM 供应商，会频繁弃用某些特定的 API 版本，转而推出更新的模型。",
+          "cover": "./images/llm-deprecation-and-migration-strategy-how-to-adapt-to-rising-ai-prices/01.thumb.webp"
+        },
+        {
+          "title": "MIRAS：Transformers、Mamba 与 Titans 背后的设计蓝图",
+          "path": "/ai-insights/miras-the-blueprint-behind-transformers-mamba-and-titans",
+          "file": "/docs/ai-insights/2026-05/21/miras-the-blueprint-behind-transformers-mamba-and-titans.md",
+          "publishedAt": "2026-05-21",
+          "tags": [
+            "Machine Learning",
+            "LLM"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Fabio Yáñez Romero"
+            }
+          ],
+          "summary": "我们用来让语言模型记得更好的那些精巧机制——门控函数、权重衰减、自适应遗忘——结果都只是同一个底层原理的不同实例，这个原理就是保留门（retention gate）。",
+          "cover": "./images/miras-the-blueprint-behind-transformers-mamba-and-titans/01.thumb.webp"
+        },
+        {
+          "title": "拥有你自己的 Harness",
+          "path": "/ai-insights/own-your-harness",
+          "file": "/docs/ai-insights/2026-05/21/own-your-harness.md",
+          "publishedAt": "2026-05-21",
+          "tags": [
+            "AI Agent"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Sau Sheong"
+            }
+          ],
+          "summary": "过去几个月里，我写了几篇关于 agent harness 的文章，也写了为什么所有人似乎都聚焦于它。一句话总结就是：它是新的前沿。没错，大家仍在模型这条战线上厮杀（比如 DeepSeek 刚发布了 v4，OpenAI 发布了 GPT-5.5，Anthropic 拿 Mythos 把所有人吓得不轻），但真正的战斗将发生在 harness 上。",
+          "cover": "./images/own-your-harness/01.thumb.webp"
+        },
+        {
+          "title": "Snake Coding",
+          "path": "/ai-insights/snake-coding",
+          "file": "/docs/ai-insights/2026-05/21/snake-coding.md",
+          "publishedAt": "2026-05-21",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "ArtXploder"
+            }
+          ],
+          "summary": "用提示词写代码是有诱惑力的。这种诱惑并不只是新工具的副产品，它恰恰塑造着未来。每一波技术生产力的浪潮都伴随着某种形式的诱惑。五十年前也不例外：当时，用汇编写代码逐渐被 FORTRAN 和 COBOL 取代，至少是被它们覆盖。那时，一个新的表述层级取代了直接面向机器的方式。",
+          "cover": "./images/snake-coding/01.thumb.webp"
+        },
+        {
+          "title": "为什么 AI 修不好客户服务",
+          "path": "/ai-insights/why-ai-cant-fix-customer-service",
+          "file": "/docs/ai-insights/2026-05/21/why-ai-cant-fix-customer-service.md",
+          "publishedAt": "2026-05-21",
+          "tags": [
+            "Artificial Intelligence",
+            "Technology"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Giles Crouch | Digital Anthropologist"
+            }
+          ],
+          "summary": "客户服务是企业版的道歉，可企业看不到这一点。它在大多数时候还高度情绪化，这一点企业多少能看到，却很难做得有效。正是这两件事，构成了 AI 工具——无论是 LLM 还是生成式 AI——至今没能真正取代客户服务、也许永远做不到的根源。",
+          "cover": "./images/why-ai-cant-fix-customer-service/01.thumb.webp"
         }
       ]
     }

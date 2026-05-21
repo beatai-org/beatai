@@ -2,6 +2,25 @@
 
 > 最近 30 天发布 · 完整列表见 <https://beatai.org/ai-insights>
 
+### 2026-05-21
+
+- [代码变便宜了，判断力没有。](https://beatai.org/ai-insights/code-got-cheap-judgement-did-not?mode=read)  
+  关于 AI 与工程，主流的说法是它降低了门槛。如今一个初级工程师配上趁手的工具，就能做过去中级工程师才能做的事。一个中级工程师能做过去资深工程师才能做的事。金字塔被压扁，组织架构变得更扁平，顶端那些经验丰富的工程师变得不那么不可或缺了——因为他们过去提供的杠杆，现在已经被烤进了工具里。
+- [提升广告相关性：把实时上下文融入序列推荐模型](https://beatai.org/ai-insights/enhancing-ad-relevance-integrating-real-time-context-into-sequential-recommender-models?mode=read)  
+  在此前的一篇文章 Ads Candidate Generation using Behavioral Sequence Modeling（原文）中，我们介绍过一个候选生成器（CG）。它用一个基于 Transformer 的双塔模型，借助用户的站外转化历史——这是一个很强的信号——来预测用户未来会与哪些广告主、哪些具体商品发生交互。…
+- [我们如何为 6 万名知识工作者打造 AI 第二大脑](https://beatai.org/ai-insights/how-we-built-an-ai-second-brain-for-60k-knowledge-workers?mode=read)  
+  Meta 的知识工作者每天都在跟工作流的碎片化作斗争：会议记录、任务、关键决策、代码上下文这些重要信息，散落在彼此割裂的平台上。每开启一段新的 AI 对话，都得从零冷启动——重复同样的解释、贴同样的链接、花同样的十分钟铺垫上下文，真正的工作才能开始。
+- [LLM 弃用与迁移策略：如何应对不断上涨的 AI 价格](https://beatai.org/ai-insights/llm-deprecation-and-migration-strategy-how-to-adapt-to-rising-ai-prices?mode=read)  
+  模型退役是 AI 市场的一种结构性现实，不是罕见的运维事件。OpenAI（GPT）、Anthropic（Claude）、Google（Gemini）以及其他 LLM 供应商，会频繁弃用某些特定的 API 版本，转而推出更新的模型。
+- [MIRAS：Transformers、Mamba 与 Titans 背后的设计蓝图](https://beatai.org/ai-insights/miras-the-blueprint-behind-transformers-mamba-and-titans?mode=read)  
+  我们用来让语言模型记得更好的那些精巧机制——门控函数、权重衰减、自适应遗忘——结果都只是同一个底层原理的不同实例，这个原理就是保留门（retention gate）。
+- [拥有你自己的 Harness](https://beatai.org/ai-insights/own-your-harness?mode=read)  
+  过去几个月里，我写了几篇关于 agent harness 的文章，也写了为什么所有人似乎都聚焦于它。一句话总结就是：它是新的前沿。没错，大家仍在模型这条战线上厮杀（比如 DeepSeek 刚发布了 v4，OpenAI 发布了 GPT-5.5，Anthropic 拿 Mythos 把所有人吓得不轻），但真正的战斗将发生在 harness 上。
+- [Snake Coding](https://beatai.org/ai-insights/snake-coding?mode=read)  
+  用提示词写代码是有诱惑力的。这种诱惑并不只是新工具的副产品，它恰恰塑造着未来。每一波技术生产力的浪潮都伴随着某种形式的诱惑。五十年前也不例外：当时，用汇编写代码逐渐被 FORTRAN 和 COBOL 取代，至少是被它们覆盖。那时，一个新的表述层级取代了直接面向机器的方式。
+- [为什么 AI 修不好客户服务](https://beatai.org/ai-insights/why-ai-cant-fix-customer-service?mode=read)  
+  客户服务是企业版的道歉，可企业看不到这一点。它在大多数时候还高度情绪化，这一点企业多少能看到，却很难做得有效。正是这两件事，构成了 AI 工具——无论是 LLM 还是生成式 AI——至今没能真正取代客户服务、也许永远做不到的根源。
+
 ### 2026-05-20
 
 - [智能体 AI 安全模式](https://beatai.org/ai-insights/agentic-ai-security-patterns?mode=read)  

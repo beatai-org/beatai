@@ -629,18 +629,19 @@ pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
 :root[data-theme="kindle-paper"]:not([data-theme-mode="dark"]) pre.doc-pre[class*="language-"],
 :root[data-theme="kindle-paper"][data-theme-mode="light"] pre.doc-pre,
 :root[data-theme="kindle-paper"][data-theme-mode="light"] pre.doc-pre[class*="language-"] {
-  background: #efefeb !important;
-  border: 1px solid #d3d2cc !important;
+  background: #2d2d2d !important;
+  border: 1px solid #e1e4e8 !important;
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.025),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
 }
 
 :root[data-theme="kindle-paper"]:not([data-theme-mode="dark"]) pre.doc-pre code[class*="language-"],
 :root[data-theme="kindle-paper"][data-theme-mode="light"] pre.doc-pre code[class*="language-"] {
   background: none !important;
   border: none !important;
-  color: #2d2d2a !important;
+  color: #e6edf3 !important;
   box-shadow: none !important;
 }
 

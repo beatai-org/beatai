@@ -145,14 +145,20 @@ export function createMarkdownHeading(level) {
 }
 
 export function createMarkdownCodeComponent({ playgroundRenderer = null } = {}) {
-  return ({ inline, className, children, ...props }) => {
-    if (inline) {
+  return ({ inline, node, className, children, ...props }) => {
+    const match = /language-(\w+)/.exec(className || '');
+    const code = String(children).replace(/\n$/, '');
+
+    // react-markdown v10 no longer passes the `inline` prop. Treat code as a
+    // block only when it carries a language class or spans multiple lines;
+    // everything else (e.g. `rustup`) is inline code.
+    const isInline = inline ?? (!match && !code.includes('\n'));
+
+    if (isInline) {
       return <code className="doc-code-inline" {...props}>{children}</code>;
     }
 
-    const match = /language-(\w+)/.exec(className || '');
     const language = match ? match[1] : '';
-    const code = String(children).replace(/\n$/, '');
     const isPlayground = className?.includes('playground');
 
     if (isPlayground && playgroundRenderer) {

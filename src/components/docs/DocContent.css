@@ -389,24 +389,22 @@
   opacity: 0.8;
 }
 
-/* Code - Modern pill design */
+/* Code - Modern pill design (softened, faded accent tint) */
 .doc-code-inline {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.08));
-  color: var(--accent-primary);
-  padding: 3px 10px;
+  background: color-mix(in srgb, var(--accent-primary) 8%, transparent);
+  color: color-mix(in srgb, var(--accent-primary) 72%, var(--text-primary));
+  padding: 2px 8px;
   border-radius: 6px;
   font-size: 14px;
   font-family: 'Fira Code', 'SF Mono', 'Monaco', monospace;
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  font-weight: 600;
-  box-shadow: 0 1px 2px rgba(139, 92, 246, 0.1);
+  border: none;
+  font-weight: 500;
 }
 
 [data-theme-mode="dark"] .doc-code-inline {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15));
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  color: #c4b5fd;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  background: color-mix(in srgb, var(--accent-primary) 14%, transparent);
+  border: none;
+  color: color-mix(in srgb, var(--accent-primary) 62%, var(--text-primary));
 }
 
 :root[data-theme="ink-paper"]:not([data-theme-mode="dark"]) .doc-code-inline,

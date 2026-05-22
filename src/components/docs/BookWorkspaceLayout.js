@@ -1,19 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import './DocsLayout.css';
-import '../../styles/Background.css';
-import '../../styles/3d-effects.css';
-import '../../styles/animations.css';
 import Sidebar from './Sidebar';
 import ReadingModeDirectoryButton from './ReadingModeDirectoryButton';
 import PageShell from '../layout/PageShell';
 import { cn } from '../../utils/classNames';
 import { ReadingModeProvider } from '../../contexts/ReadingModeContext';
-
-const READING_MODE_PARAM = 'mode';
-const READING_MODE_VALUE = 'read';
-const READING_MODE_READONLY = 'readonly';
-const READING_MODE_VALUES = new Set([READING_MODE_VALUE, READING_MODE_READONLY]);
+import { useReadingModeSearchParam } from '../../hooks/useReadingModeSearchParam';
 
 function BookWorkspaceLayout({
   rootClassName = '',
@@ -33,35 +24,22 @@ function BookWorkspaceLayout({
   afterMain = null,
   children
 }) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const modeParam = searchParams.get(READING_MODE_PARAM) || '';
-  const isReadingMode = READING_MODE_VALUES.has(modeParam);
-  const isReadonlyMode = modeParam === READING_MODE_READONLY;
-  const modeSearch = isReadingMode ? `?${READING_MODE_PARAM}=${modeParam}` : '';
+  const {
+    isReadingMode,
+    isReadonlyMode,
+    modeSearch,
+    setReadingMode: setIsReadingMode,
+    toggleReadingMode: toggleReadingModeParam
+  } = useReadingModeSearchParam();
   const [isReadingModeDirectoryOpen, setIsReadingModeDirectoryOpen] = useState(false);
 
-  const setIsReadingMode = useCallback((next) => {
-    setSearchParams((prev) => {
-      const params = new URLSearchParams(prev);
-      const currentValue = READING_MODE_VALUES.has(params.get(READING_MODE_PARAM));
-      const resolved = typeof next === 'function' ? next(currentValue) : next;
-      if (resolved) {
-        params.set(READING_MODE_PARAM, READING_MODE_VALUE);
-      } else {
-        params.delete(READING_MODE_PARAM);
-      }
-      return params;
-    }, { replace: false });
-  }, [setSearchParams]);
-
   const toggleReadingMode = useCallback(() => {
-    setIsReadingMode((current) => {
-      if (current) {
-        setIsReadingModeDirectoryOpen(false);
-      }
-      return !current;
-    });
-  }, [setIsReadingMode]);
+    if (isReadingMode) {
+      setIsReadingModeDirectoryOpen(false);
+    }
+
+    toggleReadingModeParam();
+  }, [isReadingMode, toggleReadingModeParam]);
 
   useEffect(() => {
     if (!isReadingMode) {

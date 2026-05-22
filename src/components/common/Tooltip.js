@@ -1,5 +1,4 @@
 import React from 'react';
-import './Tooltip.css';
 
 function Tooltip({ content, children, className = '' }) {
   if (!content) {

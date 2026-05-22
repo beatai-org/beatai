@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
-import './GiscusComments.css';
 
 const GISCUS_ORIGIN = 'https://giscus.app';
 const BEATAI_GISCUS_CONFIG = {

@@ -4,8 +4,6 @@ import Fuse from 'fuse.js';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import { loadDocsMeta } from '../../utils/docsMeta';
 import './AIAssistant.css';
-import '../../styles/3d-effects.css';
-import '../../styles/animations.css';
 
 const AIAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);

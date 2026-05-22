@@ -5,7 +5,7 @@ import { FaGithub } from 'react-icons/fa';
 import ThemeSelector from '../ThemeSelector';
 import ReadingModeToggleButton from '../docs/ReadingModeToggleButton';
 import AuthStatus from '../docs/AuthStatus';
-import './AppHeader.css';
+import { HOME_PATH } from '../../utils/siteRoutes';
 
 /**
  * 应用统一 Header 组件
@@ -78,12 +78,12 @@ const AppHeader = ({
     <header className="app-header glass-morphism">
       <div className="app-header-content">
         {/* Desktop brand text */}
-        <Link to="/ai-insights" className="app-logo desktop-only">
+        <Link to={HOME_PATH} className="app-logo desktop-only">
           <span className="logo-text">BeatAI</span>
         </Link>
 
         {/* Mobile brand text */}
-        <Link to="/ai-insights" className="app-logo-mobile mobile-only">
+        <Link to={HOME_PATH} className="app-logo-mobile mobile-only">
           <span className="logo-text">BeatAI</span>
         </Link>
 

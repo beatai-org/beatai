@@ -1,3 +1,6 @@
+import { fetchJson } from './http';
+import { AI_INSIGHTS_CATEGORY_ID } from './siteRoutes';
+
 const PUBLIC_URL = process.env.PUBLIC_URL || '';
 const DOCS_META_PATH = `${PUBLIC_URL}/docs/_meta.json`;
 
@@ -5,7 +8,7 @@ const docsMetaCache = new Map();
 const docsMetaPromises = new Map();
 
 function normalizeCategoryMeta(category) {
-  if (category?.id !== 'ai-insights' || !Array.isArray(category.sections)) {
+  if (category?.id !== AI_INSIGHTS_CATEGORY_ID || !Array.isArray(category.sections)) {
     return category;
   }
 
@@ -49,16 +52,6 @@ export function normalizeMetaPath(path = '') {
   } catch (error) {
     return path;
   }
-}
-
-function fetchJson(url) {
-  return fetch(url).then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return response.json();
-  });
 }
 
 function mergeBookMeta(entry, categoryMeta) {

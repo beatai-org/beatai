@@ -32,7 +32,7 @@ export function useThemeSelectorState() {
   const [currentFontSize, setCurrentFontSize] = useState(DEFAULT_FONT_SIZE_ID);
   const [currentBackgroundDepth, setCurrentBackgroundDepth] = useState(DEFAULT_BACKGROUND_DEPTH_ID);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() => getIsDarkMode());
   const themeApplyTimerRef = useRef(null);
   const themeOverlayTimerRef = useRef(null);
 

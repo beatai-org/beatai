@@ -1,144 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
 import { NavLink, useLocation } from 'react-router-dom';
 import { RepoCard } from '../common';
 import { normalizeMetaPath } from '../../utils/docsMeta';
-import './Sidebar.css';
-import '../../styles/3d-effects.css';
 
-function parseLocalDateFromYmd(dateText) {
-  if (typeof dateText !== 'string') {
-    return null;
-  }
-
-  const match = dateText.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if (!match) {
-    return null;
-  }
-
-  const year = Number(match[1]);
-  const monthIndex = Number(match[2]) - 1;
-  const day = Number(match[3]);
-  const parsed = new Date(year, monthIndex, day);
-
-  if (
-    Number.isNaN(parsed.getTime()) ||
-    parsed.getFullYear() !== year ||
-    parsed.getMonth() !== monthIndex ||
-    parsed.getDate() !== day
-  ) {
-    return null;
-  }
-
-  return parsed;
-}
-
-function isPublishedWithinTwoDays(publishedAt) {
-  const publishedDate = parseLocalDateFromYmd(publishedAt);
-  if (!publishedDate) {
-    return false;
-  }
-
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const diffMs = today.getTime() - publishedDate.getTime();
-  const diffDays = Math.floor(diffMs / (24 * 60 * 60 * 1000));
-
-  return diffDays >= 0 && diffDays < 2;
-}
-
-function GlobalNewBadge({ anchorRef, visible }) {
-  const [position, setPosition] = useState(null);
-
-  useEffect(() => {
-    if (!visible) {
-      setPosition(null);
-      return undefined;
-    }
-
-    let frameId = null;
-    let resizeObserver = null;
-
-    const updatePosition = () => {
-      const anchor = anchorRef.current;
-
-      if (!anchor) {
-        setPosition(null);
-        return;
-      }
-
-      const rect = anchor.getBoundingClientRect();
-      const computedStyle = window.getComputedStyle(anchor);
-      const fontSize = Number.parseFloat(computedStyle.fontSize) || 14;
-      const resolvedLineHeight = computedStyle.lineHeight === 'normal'
-        ? fontSize * 1.4
-        : Number.parseFloat(computedStyle.lineHeight) || fontSize * 1.4;
-
-      setPosition({
-        left: rect.left - 2,
-        top: rect.top + resolvedLineHeight / 2 + 1
-      });
-    };
-
-    const scheduleUpdate = () => {
-      if (frameId) {
-        window.cancelAnimationFrame(frameId);
-      }
-
-      frameId = window.requestAnimationFrame(() => {
-        frameId = null;
-        updatePosition();
-      });
-    };
-
-    scheduleUpdate();
-    window.addEventListener('resize', scheduleUpdate);
-    window.addEventListener('scroll', scheduleUpdate, true);
-
-    if (typeof ResizeObserver !== 'undefined' && anchorRef.current) {
-      resizeObserver = new ResizeObserver(scheduleUpdate);
-      resizeObserver.observe(anchorRef.current);
-    }
-
-    return () => {
-      if (frameId) {
-        window.cancelAnimationFrame(frameId);
-      }
-      window.removeEventListener('resize', scheduleUpdate);
-      window.removeEventListener('scroll', scheduleUpdate, true);
-      resizeObserver?.disconnect();
-    };
-  }, [anchorRef, visible]);
-
-  if (!visible || !position || typeof document === 'undefined') {
-    return null;
-  }
-
-  return createPortal(
-    <span
-      className="sidebar-global-new-badge"
-      style={{
-        left: `${position.left}px`,
-        top: `${position.top}px`
-      }}
-    >
-      new
-    </span>,
-    document.body
-  );
-}
-
-function TitleWithNewBadge({ title, publishedAt }) {
-  // NEW 角标暂时屏蔽：保留逻辑与组件，仅停止渲染。
-  // const showNewBadge = isPublishedWithinTwoDays(publishedAt);
-  const titleRef = useRef(null);
-
+function SidebarTitle({ title }) {
   return (
     <span className="sidebar-title-with-badge">
-      <span ref={titleRef} className="sidebar-title-text">
-        {title}
-      </span>
-      {/* <GlobalNewBadge anchorRef={titleRef} visible={showNewBadge} /> */}
+      <span className="sidebar-title-text">{title}</span>
     </span>
   );
 }
@@ -255,7 +123,7 @@ const Sidebar = ({ meta, isOpen, onClose, className = '', overlayClassName = '',
                 }
                 onClick={() => handleParentItemClick(item.path)}
               >
-                <TitleWithNewBadge title={item.title} publishedAt={item.publishedAt} />
+                <SidebarTitle title={item.title} />
                 <span
                   className="sidebar-expand-icon"
                   onClick={(e) => {
@@ -281,7 +149,7 @@ const Sidebar = ({ meta, isOpen, onClose, className = '', overlayClassName = '',
               }
               onClick={onClose}
             >
-              <TitleWithNewBadge title={item.title} publishedAt={item.publishedAt} />
+              <SidebarTitle title={item.title} />
               <span className="sidebar-link-indicator"></span>
             </NavLink>
           )}
@@ -340,7 +208,7 @@ const Sidebar = ({ meta, isOpen, onClose, className = '', overlayClassName = '',
             >
               <div className="sidebar-section-header">
                 <h3 className="sidebar-section-title">
-                  <TitleWithNewBadge title={section.title} publishedAt={section.publishedAt} />
+                  <SidebarTitle title={section.title} />
                 </h3>
               </div>
               <ul className="sidebar-items">

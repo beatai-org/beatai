@@ -2,7 +2,6 @@ import React from 'react';
 import { HiArrowsExpand, HiX } from 'react-icons/hi';
 import { Tooltip } from '../common';
 import { useReadingMode } from '../../contexts/ReadingModeContext';
-import './ReadingModeToggleButton.css';
 
 function ReadingModeToggleButton({ className = '' }) {
   const { isReadingMode, toggleReadingMode } = useReadingMode();

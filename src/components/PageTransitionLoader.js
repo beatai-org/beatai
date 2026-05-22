@@ -1,5 +1,4 @@
 import React from 'react';
-import './PageTransitionLoader.css';
 import BeatAILogoWave from './BeatAILogoWave';
 
 /**

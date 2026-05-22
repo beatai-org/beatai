@@ -88,6 +88,7 @@ afterEach(() => {
 });
 
 test('renders square page entry content', async () => {
+  window.history.pushState({}, '', '/square');
   render(<App />);
   expect(await screen.findByText('探索内容')).toBeInTheDocument();
   expect(await screen.findByText('AI学习教程')).toBeInTheDocument();

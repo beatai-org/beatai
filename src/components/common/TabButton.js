@@ -1,5 +1,4 @@
 import React from 'react';
-import './TabButton.css';
 
 /**
  * TabButton - 单个标签按钮组件

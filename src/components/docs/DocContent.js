@@ -11,9 +11,6 @@ import rehypeSanitize from 'rehype-sanitize';
 import matter from 'gray-matter';
 import Lightbox from 'yet-another-react-lightbox';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
-import 'yet-another-react-lightbox/styles.css';
-import 'katex/dist/katex.min.css';
-import '../../styles/prism-custom.css';
 import CodePlayground from './CodePlayground';
 import DocArticleHeader from './DocArticleHeader';
 import PaginationNav from './PaginationNav';
@@ -45,9 +42,7 @@ import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
 import { findMetaEntryByPath } from '../../utils/docsMeta';
 import { normalizeDocComponentMarkdown, resolvePublicContentUrl } from '../../utils/markdown';
 import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
-import './DocContent.css';
-import '../../styles/3d-effects.css';
-import '../../styles/animations.css';
+import { AI_INSIGHTS_CATEGORY_ID } from '../../utils/siteRoutes';
 
 const DocContent = () => {
   const location = useLocation();
@@ -65,7 +60,7 @@ const DocContent = () => {
   // Extract the path from URL (now starts from root)
   const docPath = location.pathname.replace(/^\//, '');
   const docMetaEntry = useMemo(() => findMetaEntryByPath(meta, location.pathname), [meta, location.pathname]);
-  const isAiInsightsArticle = docMetaEntry?.category?.id === 'ai-insights';
+  const isAiInsightsArticle = docMetaEntry?.category?.id === AI_INSIGHTS_CATEGORY_ID;
   const formattedPublishedDate = formatPublishedDate(docMetaEntry?.item?.publishedAt);
   const formattedContributors = formatContributors(docMetaEntry?.item?.contributors);
   const titleFromMeta = docMetaEntry?.item?.title || findTitleByPath(location.pathname);

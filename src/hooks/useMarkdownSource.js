@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { fetchText } from '../utils/http';
 
 export function useMarkdownSource({ url = '', inlineContent = '', enabled = true } = {}) {
   const [text, setText] = useState('');
@@ -26,13 +27,7 @@ export function useMarkdownSource({ url = '', inlineContent = '', enabled = true
     setLoading(true);
     setError(null);
 
-    fetch(url, { signal: controller.signal })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.text();
-      })
+    fetchText(url, { signal: controller.signal })
       .then((value) => {
         setText(value);
         setLoading(false);

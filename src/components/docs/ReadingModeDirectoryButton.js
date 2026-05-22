@@ -1,6 +1,5 @@
 import React from 'react';
 import { HiMenuAlt2 } from 'react-icons/hi';
-import './ReadingModeToggleButton.css';
 
 function ReadingModeDirectoryButton({ onClick }) {
   return (

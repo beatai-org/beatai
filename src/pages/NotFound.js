@@ -5,6 +5,7 @@ import PageShell from '../components/layout/PageShell';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import { HOME_PATH } from '../utils/siteRoutes';
 import './NotFound.css';
 
 const NotFound = ({ requestedPath = '' }) => {
@@ -40,7 +41,7 @@ const NotFound = ({ requestedPath = '' }) => {
             </div>
 
             <h1 className="notfound-code">404</h1>
-            <p className="notfound-sub">// 该路径没有对应页面 — route not found</p>
+            <p className="notfound-sub">{'// 该路径没有对应页面 — route not found'}</p>
 
             <div className="notfound-line">
               <span className="prompt">beatai@web</span>
@@ -49,8 +50,8 @@ const NotFound = ({ requestedPath = '' }) => {
             </div>
 
             <div className="notfound-actions">
-              <Link to="/ai-insights" className="notfound-btn primary">
-                cd /ai-insights
+              <Link to={HOME_PATH} className="notfound-btn primary">
+                cd {HOME_PATH}
               </Link>
             </div>
           </div>

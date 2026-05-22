@@ -2,6 +2,7 @@ import { Buffer } from 'buffer';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './styles/globalStyles';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {

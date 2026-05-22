@@ -1,3 +1,5 @@
+export const DEFAULT_THEME_MODE = 'light';
+export const THEME_MODE_STORAGE_KEY = 'theme-mode';
 export const DEFAULT_THEME_ID = 'kindle-paper';
 export const DEFAULT_FONT_ID = 'pingfang';
 export const DEFAULT_FONT_WEIGHT_ID = 'normal';

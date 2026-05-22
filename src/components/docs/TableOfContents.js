@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './TableOfContents.css';
 
 const TableOfContents = ({ headings }) => {
   const [activeId, setActiveId] = useState('');

@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Pause, Play, SkipBack, SkipForward } from 'lucide-react';
 import { cn } from '../../utils/classNames';
 import { useTheme } from '../../contexts/ThemeContext';
-import './SceneSequencePlayer.css';
 
 const PLAYBACK_SPEED_OPTIONS = [0.5, 0.75, 1, 1.5, 2];
 

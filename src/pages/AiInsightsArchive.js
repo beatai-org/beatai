@@ -9,6 +9,7 @@ import ViewToggle from '../components/aiInsights/ViewToggle';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import { AI_INSIGHTS_CATEGORY_ID, HOME_PATH } from '../utils/siteRoutes';
 import './AiInsightsArchive.css';
 
 const VIEW_STORAGE_KEY = 'aiInsightsView';
@@ -199,12 +200,12 @@ const AiInsightsArchive = () => {
     return <div className="ai-insights-archive-error">Failed to load metadata</div>;
   }
 
-  const category = meta.categories?.find((c) => c.id === 'ai-insights');
+  const category = meta.categories?.find((c) => c.id === AI_INSIGHTS_CATEGORY_ID);
   if (!category) {
     return (
       <div className="ai-insights-archive-error">
         <p>未找到 ai-insights 分类。</p>
-        <Link to="/">返回首页</Link>
+        <Link to={HOME_PATH}>返回首页</Link>
       </div>
     );
   }

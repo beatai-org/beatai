@@ -1,5 +1,4 @@
 import React from 'react';
-import './RepoCard.css';
 
 /**
  * RepoCard - 通用的 GitHub 仓库卡片组件

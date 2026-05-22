@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import { useReadingMode } from '../../contexts/ReadingModeContext';
-import './PaginationNav.css';
 
 const PaginationNav = ({ prev, next }) => {
   const { isReadingMode, modeSearch } = useReadingMode();

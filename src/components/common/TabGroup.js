@@ -1,5 +1,4 @@
 import React from 'react';
-import './TabGroup.css';
 
 /**
  * TabGroup - 通用标签页组件

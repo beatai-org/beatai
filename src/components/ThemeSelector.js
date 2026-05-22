@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { useTheme } from '../contexts/ThemeContext';
 import ThemePanel from './themeSelector/ThemePanel';
 import { useThemeSelectorState } from './themeSelector/useThemeSelectorState';
-import './ThemeSelector.css';
 
 const ThemeSelector = () => {
   const { theme, toggleTheme } = useTheme();

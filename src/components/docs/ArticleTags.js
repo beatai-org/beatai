@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './ArticleTags.css';
 
 const ArticleTags = ({ tags }) => {
   // Don't render anything if there are no tags

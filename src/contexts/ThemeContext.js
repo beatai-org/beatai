@@ -1,4 +1,12 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import {
+  DEFAULT_THEME_MODE,
+  THEME_MODE_STORAGE_KEY
+} from '../components/themeSelector/config';
+import {
+  getSavedThemeSelectorState,
+  setThemeAttribute
+} from '../components/themeSelector/themeSelectorUtils';
 
 const ThemeContext = createContext();
 
@@ -12,20 +20,19 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('theme-mode');
-    return savedTheme || 'light';  // Default to light mode
+    const savedTheme = localStorage.getItem(THEME_MODE_STORAGE_KEY);
+    return savedTheme || DEFAULT_THEME_MODE;
   });
 
   useEffect(() => {
     // Set theme mode
-    localStorage.setItem('theme-mode', theme);
+    localStorage.setItem(THEME_MODE_STORAGE_KEY, theme);
     document.documentElement.setAttribute('data-theme-mode', theme);
 
     // Ensure gradient theme is set (don't override if already set)
     const currentGradientTheme = document.documentElement.getAttribute('data-theme');
     if (!currentGradientTheme) {
-      const savedGradientTheme = localStorage.getItem('docs-theme') || 'classic-mono';
-      document.documentElement.setAttribute('data-theme', savedGradientTheme);
+      setThemeAttribute(getSavedThemeSelectorState().themeId);
     }
   }, [theme]);
 

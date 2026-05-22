@@ -1,8 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import './App.css';
-import './styles/Background.css';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { HistoryProvider } from './contexts/HistoryContext';
@@ -13,6 +11,7 @@ import {
   rewriteLegacyLearnClaudeCodePath
 } from './utils/learnAiPaths';
 import { AI_TUTORIALS_PATH } from './utils/knowledgeSpaces';
+import { AI_INSIGHTS_PATH, HOME_PATH } from './utils/siteRoutes';
 
 // Lazy load components with minimum load time (500ms)
 const Home = lazy(() => lazyWithMinLoadTime(() => import('./pages/Home')));
@@ -44,7 +43,7 @@ function App() {
                 <Suspense fallback={<PageTransitionLoader />}>
                   <Routes>
                     {/* 根目录跳转到 ai-insights 档案页 */}
-                    <Route path="/" element={<Navigate to="/ai-insights" replace />} />
+                    <Route path="/" element={<Navigate to={HOME_PATH} replace />} />
                     <Route path="/genesis-lab" element={<Home />} />
                     <Route path="/square" element={<Square />} />
                     <Route path="/ai-continent-demo" element={<AIContinentDemo />} />
@@ -54,7 +53,7 @@ function App() {
                     <Route path="/learn-claude-code/*" element={<LegacyLearnClaudeCodeRedirect />} />
                     <Route path={`${LEARN_AI_BASE_PATH}/:space/*`} element={<LearnAiBook />} />
                     <Route path="/tags/:tagName" element={<TagPage />} />
-                    <Route path="/ai-insights" element={<AiInsightsArchive />} />
+                    <Route path={AI_INSIGHTS_PATH} element={<AiInsightsArchive />} />
                     <Route path="/*" element={<Docs />} />
                   </Routes>
                 </Suspense>

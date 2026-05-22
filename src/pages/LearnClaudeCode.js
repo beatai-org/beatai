@@ -14,8 +14,6 @@ import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useSidebarState } from '../hooks/useSidebarState';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import './LearnClaudeCode.css';
-import '../components/docs/DocContent.css';
-import '../styles/prism-custom.css';
 import { buildLearnAiSidebarMeta } from '../components/learnClaudeCode/sidebarMeta';
 import {
   getLearnAiDefaultPath,

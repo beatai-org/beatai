@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { RepoCard } from '../common';
-import { normalizeMetaPath } from '../../utils/docsMetaSelectors';
+import { buildArticlePrefetchModel, normalizeDocPath } from '../../domain/docs';
 import { preloadMarkdownFile } from '../../utils/markdownPrefetch';
 import { preloadRouteForPath } from '../../utils/routePrefetch';
 
@@ -22,14 +22,14 @@ const Sidebar = ({ meta, isOpen, onClose, className = '', overlayClassName = '',
   useEffect(() => {
     if (!meta || !meta.sections) return;
 
-    const normalizedCurrentPath = normalizeMetaPath(location.pathname);
+    const normalizedCurrentPath = normalizeDocPath(location.pathname);
 
     const findAndExpandParents = (items, currentPath, parents = []) => {
       for (const item of items) {
         const newParents = [...parents, item.path];
 
         // Check if current item matches the current path
-        if (normalizeMetaPath(item.path) === currentPath) {
+        if (normalizeDocPath(item.path) === currentPath) {
           // Expand all parent paths
           const expandState = {};
           parents.forEach(parentPath => {
@@ -105,8 +105,9 @@ const Sidebar = ({ meta, isOpen, onClose, className = '', overlayClassName = '',
     linkSearch ? { pathname: path, search: linkSearch } : path;
 
   const preloadMenuItemAssets = (item) => {
-    preloadMarkdownFile(item?.file);
-    preloadRouteForPath(item?.path);
+    const { file, path } = buildArticlePrefetchModel(item);
+    preloadMarkdownFile(file);
+    preloadRouteForPath(path);
   };
 
   // Recursive component to render nested menu items
@@ -115,7 +116,7 @@ const Sidebar = ({ meta, isOpen, onClose, className = '', overlayClassName = '',
     const isExpanded = expandedItems[item.path];
     const isActive = item.highlightable === false
       ? false
-      : normalizeMetaPath(location.pathname) === normalizeMetaPath(item.path);
+      : normalizeDocPath(location.pathname) === normalizeDocPath(item.path);
     const indent = level > 1 ? `${(level - 1) * 16}px` : '0px';
 
     return (

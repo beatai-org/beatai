@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
+import { buildDocArticleRouteModel } from '../../domain/docs';
 import { normalizeDocsMeta } from '../../utils/docsMetaNormalizer';
-import { findMetaEntryByPath } from '../../utils/docsMetaSelectors';
 import { useDocArticleNavigation } from './useDocArticleNavigation';
 
 const QUIET = { warn: false };
@@ -48,7 +48,10 @@ function createMeta() {
 
 test('derives adjacent chapters and article tags from meta', () => {
   const meta = createMeta();
-  const docMetaEntry = findMetaEntryByPath(meta, '/book/second-child');
+  const { docMetaEntry } = buildDocArticleRouteModel({
+    meta,
+    pathname: '/book/second-child'
+  });
 
   const { result } = renderHook(() => useDocArticleNavigation({
     meta,

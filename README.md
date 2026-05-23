@@ -4,14 +4,14 @@
 
 ### 2026-05-23
 
-- [代码并不廉价：如何用软件基础能力放大 AI 的产出](https://beatai.org/ai-insights/code-is-not-cheap-how-to-multiply-your-ais-output-with-software-fundamentals?mode=read)  
-  2025 年 2 月，Andrej Karpathy 创造了 "vibe coding" 这个说法：描述你想要什么，让 AI 写代码，然后忘掉代码的存在。这个概念迅速火了。所有人都想相信，编码已经变得像说话一样简单。
-- [从鸢尾花到反向图片搜索：K-Nearest Neighbors](https://beatai.org/ai-insights/knn-distance-metrics-choosing-k-modern-ai-explained?mode=read)  
-  For You 页面、Spotify Discover Weekly、你做过的每一次反向图片搜索，以及 ChatGPT 内部的检索，背后的算法比彩色电视还老。
-- [AI PM 的菜单：成本-质量权衡实战指南](https://beatai.org/ai-insights/the-ai-pms-menu-a-field-guide-to-cost-quality-tradeoffs?mode=read)  
-  我经营一家创业公司。打造 NomNow 这个已经上线 App Store 的多模态 AI 营养师，让我学到了很多东西。但如果只能让年轻时的自己读到其中一条，我最想说的是：对一家基于 LLM 的创业公司来说，成本纪律不是优化，而是生存。
-- [你的 AI agent 能读你的代码库，却不了解你的产品](https://beatai.org/ai-insights/your-ai-agent-can-read-your-codebase-it-doesnt-know-your-product?mode=read)  
-  我让我的 AI agent 为我们的产品头脑风暴新功能。不到一分钟，它返回了一份干净的清单：通知中心、活动流、带分析小组件的仪表盘、入门引导向导。都是合理的功能。却没有一个适合我们。
+- [代码并不便宜：用软件基本功放大 AI 的产出](https://beatai.org/ai-insights/code-is-not-cheap-how-to-multiply-your-ais-output-with-software-fundamentals?mode=read)  
+  2025 年 2 月，Andrej Karpathy 造了个词："vibe coding"——说出你想要什么，让 AI 写代码，然后把代码忘掉。这个说法迅速火了。所有人都愿意相信，写代码已经像说话一样轻松。
+- [从鸢尾花到反向图搜：K-Nearest Neighbors 是怎么撑起现代 AI 的](https://beatai.org/ai-insights/knn-distance-metrics-choosing-k-modern-ai-explained?mode=read)  
+  For You 页面、Spotify Discover Weekly、你做过的每一次反向图片搜索、ChatGPT 内部的检索——它们背后的算法，比彩色电视还要老。1951 年由 Evelyn Fix 和 Joseph Hodges 在一份美国空军技术报告里提出，从未被真正取代过。
+- [AI PM 的菜单：成本-质量权衡实战手册](https://beatai.org/ai-insights/the-ai-pms-menu-a-field-guide-to-cost-quality-tradeoffs?mode=read)  
+  我经营一家创业公司。打造 NomNow——一款已经上线 App Store 的多模态 AI 营养师——教会了我很多事，但如果只能挑一条让年轻版的自己读到，我会挑这条：对一家基于 LLM 的创业公司来说，成本纪律不是优化，是生死。
+- [你的 AI agent 能读懂代码库，却不懂你的产品](https://beatai.org/ai-insights/your-ai-agent-can-read-your-codebase-it-doesnt-know-your-product?mode=read)  
+  我让 AI agent 给我们的产品头脑风暴一些新功能。不到一分钟它就甩回一份整齐的清单：通知中心、动态流、带分析 widget 的 dashboard、新手引导向导。功能本身都挺合理，但没有一个对得上我们的产品。
 
 ### 2026-05-22
 

@@ -14,7 +14,7 @@ import {
   getPrerequisites,
   getRecommendedPath
 } from '../data/aiContinentMap';
-import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import { buildKnowledgeNavigationModel } from '../domain/docs';
 import { SITE_CONFIG } from '../utils/siteConfig';
 import { PAGE_IDS } from '../utils/pageConfig';
 import './AIContinentDemo.css';
@@ -22,8 +22,7 @@ import './AIContinentDemo.css';
 function AIContinentDemo() {
   const { meta } = useDocsMeta();
   const handleCategoryClick = useCategoryNavigation();
-  const spaces = useMemo(() => buildKnowledgeSpaces(meta), [meta]);
-  const categories = meta?.categories || [];
+  const { categories, spaces } = useMemo(() => buildKnowledgeNavigationModel(meta), [meta]);
 
   const [mode, setMode] = useState('mainline');
   const [completedNodeIds, setCompletedNodeIds] = useState(AI_CONTINENT_INITIAL_COMPLETED_NODE_IDS);

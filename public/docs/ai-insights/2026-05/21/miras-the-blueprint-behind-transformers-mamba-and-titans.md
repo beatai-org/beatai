@@ -7,7 +7,7 @@ tags:
   - Machine Learning
   - LLM
 summary: 我们用来让语言模型记得更好的那些精巧机制——门控函数、权重衰减、自适应遗忘——结果都只是同一个底层原理的不同实例，这个原理就是保留门（retention gate）。
-cover: ./images/miras-the-blueprint-behind-transformers-mamba-and-titans/01.thumb.webp
+cover: ./images/miras-the-blueprint-behind-transformers-mamba-and-titans/01.webp
 ---
 
 # MIRAS：Transformers、Mamba 与 Titans 背后的设计蓝图

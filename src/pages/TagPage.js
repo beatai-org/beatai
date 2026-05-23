@@ -5,7 +5,7 @@ import PageShell from '../components/layout/PageShell';
 import PageSeo from '../components/seo/PageSeo';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import { buildArticlePrefetchModel, buildKnowledgeNavigationModel } from '../domain/docs';
 import { preloadMarkdownFile } from '../utils/markdownPrefetch';
 import { preloadRouteForPath } from '../utils/routePrefetch';
 import { buildDocsTitle } from '../utils/siteConfig';
@@ -26,8 +26,9 @@ const TagPageContent = ({ categories, spaces }) => {
   const groupedArticles = groupByCategory(articles);
   const articleCategories = Object.keys(groupedArticles);
   const preloadArticleAssets = (article) => {
-    preloadMarkdownFile(article.file);
-    preloadRouteForPath(article.path);
+    const { file, path } = buildArticlePrefetchModel(article);
+    preloadMarkdownFile(file);
+    preloadRouteForPath(path);
   };
 
   return (
@@ -108,9 +109,11 @@ const TagPage = () => {
     return <div className="tag-page-error">Failed to load metadata</div>;
   }
 
+  const { categories, spaces } = buildKnowledgeNavigationModel(meta);
+
   return (
     <TagProvider meta={meta}>
-      <TagPageContent categories={meta.categories} spaces={buildKnowledgeSpaces(meta)} />
+      <TagPageContent categories={categories} spaces={spaces} />
     </TagProvider>
   );
 };

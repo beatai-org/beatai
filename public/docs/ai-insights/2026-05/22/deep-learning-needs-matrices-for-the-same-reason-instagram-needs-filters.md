@@ -7,7 +7,7 @@ tags:
   - Machine Learning
   - Technology
 summary: 上学的时候，矩阵是我最喜欢的主题。我学得很快，也许你也一样。
-cover: ./images/deep-learning-needs-matrices-for-the-same-reason-instagram-needs-filters/01.thumb.webp
+cover: ./images/deep-learning-needs-matrices-for-the-same-reason-instagram-needs-filters/01.webp
 ---
 
 # 深度学习需要矩阵，原因和 Instagram 需要滤镜一样

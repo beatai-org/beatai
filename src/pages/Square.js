@@ -7,9 +7,12 @@ import PageShell from '../components/layout/PageShell';
 import PageSeo from '../components/seo/PageSeo';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { getFirstNavigablePathForCategory } from '../utils/docsMetaSelectors';
+import {
+  buildKnowledgeNavigationModel,
+  findDocCategory,
+  getCategoryEntryPath
+} from '../domain/docs';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
-import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
 import { SITE_CONFIG } from '../utils/siteConfig';
 import {
   buildTagPath,
@@ -29,15 +32,12 @@ const SQUARE_CARD_ICONS = {
 const Square = () => {
   const { meta } = useDocsMeta();
   const handleCategoryClick = useCategoryNavigation();
-  const spaces = useMemo(() => buildKnowledgeSpaces(meta), [meta]);
+  const { categories, spaces } = useMemo(() => buildKnowledgeNavigationModel(meta), [meta]);
   const [heroLogoAnimated, setHeroLogoAnimated] = useState(false);
   const [hoveredCard, setHoveredCard] = useState('');
 
-  // Resolve a category's entry path: explicit `entryPath` in meta wins,
-  // otherwise fall back to the first navigable chapter.
-  const getCategoryEntryPath = (categoryId) => {
-    const category = meta?.categories?.find((item) => item.id === categoryId);
-    return category?.entryPath || getFirstNavigablePathForCategory(category) || '#';
+  const getSquareCategoryEntryPath = (categoryId) => {
+    return getCategoryEntryPath(findDocCategory(meta, categoryId), '#');
   };
 
   const getSquareCardPath = (card) => {
@@ -45,10 +45,8 @@ const Square = () => {
       return getLearnAiDefaultPath();
     }
 
-    return getCategoryEntryPath(card.categoryId);
+    return getSquareCategoryEntryPath(card.categoryId);
   };
-
-  const categories = meta?.categories || [];
 
   return (
     <>

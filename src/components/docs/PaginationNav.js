@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import { useReadingMode } from '../../contexts/ReadingModeContext';
+import { buildArticlePrefetchModel } from '../../domain/docs';
 import { preloadMarkdownFile } from '../../utils/markdownPrefetch';
 import { preloadRouteForPath } from '../../utils/routePrefetch';
 
@@ -33,8 +34,9 @@ const PaginationNav = ({ prev, next }) => {
     isReadingMode && modeSearch ? { pathname: path, search: modeSearch } : path;
 
   const preloadItemAssets = (item) => {
-    preloadMarkdownFile(item?.file);
-    preloadRouteForPath(item?.path);
+    const { file, path } = buildArticlePrefetchModel(item);
+    preloadMarkdownFile(file);
+    preloadRouteForPath(path);
   };
 
   return (

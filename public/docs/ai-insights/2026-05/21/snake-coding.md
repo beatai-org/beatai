@@ -4,7 +4,7 @@ author: ArtXploder
 url: https://medium.com/predict/snake-coding-7ffa9cb3a347
 translated: 2026-05-21
 summary: 用提示词写代码是有诱惑力的。这种诱惑并不只是新工具的副产品，它恰恰塑造着未来。每一波技术生产力的浪潮都伴随着某种形式的诱惑。五十年前也不例外：当时，用汇编写代码逐渐被 FORTRAN 和 COBOL 取代，至少是被它们覆盖。那时，一个新的表述层级取代了直接面向机器的方式。
-cover: ./images/snake-coding/01.thumb.webp
+cover: ./images/snake-coding/01.webp
 ---
 
 # Snake Coding

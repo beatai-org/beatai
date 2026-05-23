@@ -84,6 +84,19 @@ export function getDocsMetaUrl() {
   return DOCS_META_PATH;
 }
 
+export function getCachedDocsMeta(metaUrl = getDocsMetaUrl()) {
+  if (!metaUrl) {
+    return null;
+  }
+
+  return docsMetaCache.get(metaUrl) || null;
+}
+
+export function clearDocsMetaCache() {
+  docsMetaCache.clear();
+  docsMetaPromises.clear();
+}
+
 export async function loadDocsMeta(metaUrl = getDocsMetaUrl()) {
   if (!metaUrl) {
     throw new Error('Meta URL is required');

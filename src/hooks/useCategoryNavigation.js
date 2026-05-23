@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { getFirstNavigablePathForCategory } from '../utils/docsMetaSelectors';
+import { getCategoryEntryPath } from '../domain/docs';
 
 export function useCategoryNavigation(options = {}) {
   const { mode = 'navigate' } = options;
   const navigate = useNavigate();
 
   return (entry) => {
-    const path = entry?.entryPath || getFirstNavigablePathForCategory(entry);
+    const path = getCategoryEntryPath(entry, '');
 
     if (!path) {
       return;

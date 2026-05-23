@@ -4,7 +4,7 @@ import PageShell from '../components/layout/PageShell';
 import PageSeo from '../components/seo/PageSeo';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import { buildKnowledgeNavigationModel } from '../domain/docs';
 import { SITE_CONFIG } from '../utils/siteConfig';
 import { PAGE_IDS } from '../utils/pageConfig';
 import { HOME_PATH } from '../utils/siteRoutes';
@@ -14,8 +14,7 @@ const NotFound = ({ requestedPath = '' }) => {
   const { meta } = useDocsMeta();
   const handleCategoryClick = useCategoryNavigation({ mode: 'reload' });
 
-  const categories = meta?.categories || [];
-  const spaces = buildKnowledgeSpaces(meta);
+  const { categories, spaces } = buildKnowledgeNavigationModel(meta);
   const lostPath = requestedPath || window.location.pathname;
 
   return (

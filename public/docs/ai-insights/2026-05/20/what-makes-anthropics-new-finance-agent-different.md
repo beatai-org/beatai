@@ -8,7 +8,7 @@ tags:
   - Technology
   - Programming
 summary: 5 月 5 日，Anthropic 为金融服务业开源了 10 个 agent 模板。媒体报道的焦点是那笔与 Blackstone 和 Goldman Sachs 合作、价值 15 亿美元的华尔街合资项目。Jamie Dimon 对记者说，Claude 在 20 分钟内为他做出了"一个巨大的仪表盘，配齐了所有支撑材料和所有研究"。
-cover: ./images/what-makes-anthropics-new-finance-agent-different/01.thumb.webp
+cover: ./images/what-makes-anthropics-new-finance-agent-different/01.jpg
 ---
 
 # Anthropic 新推出的金融 Agent 究竟有何不同

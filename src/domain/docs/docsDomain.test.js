@@ -1,11 +1,15 @@
 import { normalizeDocsMeta } from '../../utils/docsMetaNormalizer';
 import {
+  buildArticlePrefetchModel,
   buildDocArticleHistoryRecord,
   buildDocArticleNavigationModel,
   buildDocArticleRouteModel,
   buildDocsArchiveModel,
   buildDocsRouteValidationModel,
   buildDocsWorkspaceModel,
+  buildKnowledgeNavigationModel,
+  buildLearnAiDocsMeta,
+  buildLearnAiDocsRouteValidationModel,
   buildNormalizedArticleMarkdown
 } from './docsDomain';
 
@@ -166,5 +170,56 @@ test('builds workspace and route validation models for page shells', () => {
   });
   expect(buildDocsRouteValidationModel(meta, '/missing')).toMatchObject({
     isValidDocsPath: false
+  });
+});
+
+test('builds shared navigation, prefetch, and learn-ai docs models', () => {
+  const meta = createMeta();
+  const currentSpace = {
+    slug: 'deep-learning',
+    docsCategoryId: 'learn-ai/deep-learning',
+    bookTitle: 'Deep Learning',
+    githubRepo: 'https://example.com/deep-learning',
+    repoTitle: 'Deep Learning Repo'
+  };
+  const tutorialMeta = buildLearnAiDocsMeta({
+    spaceMeta: meta.categories[0],
+    currentSpace,
+    parentTitle: 'AI Tutorials'
+  });
+
+  const navigationModel = buildKnowledgeNavigationModel(meta);
+  expect(navigationModel.categories).toMatchObject([
+    { id: 'ai-insights' },
+    { id: 'rust-course' }
+  ]);
+  expect(navigationModel.spaces).toEqual(expect.arrayContaining([
+    expect.objectContaining({ id: 'ai-insights' }),
+    expect.objectContaining({ id: 'rust-course' }),
+    expect.objectContaining({ id: 'ai-tutorials' })
+  ]));
+  expect(buildArticlePrefetchModel(meta.categories[0].sections[0].items[0])).toEqual({
+    file: '/docs/ai-insights/2026-05/23/first.md',
+    path: '/ai-insights/first'
+  });
+  expect(tutorialMeta).toMatchObject({
+    categories: [{
+      id: 'learn-ai/deep-learning',
+      title: 'Deep Learning',
+      githubRepo: 'https://example.com/deep-learning',
+      bookPath: {
+        parentTitle: 'AI Tutorials',
+        currentTitle: 'Deep Learning'
+      }
+    }]
+  });
+  expect(buildLearnAiDocsRouteValidationModel(
+    tutorialMeta,
+    '/ai-insights/first',
+    '/learn-ai/deep-learning'
+  )).toMatchObject({
+    isBasePath: false,
+    isValidPath: true,
+    normalizedPathname: '/ai-insights/first'
   });
 });

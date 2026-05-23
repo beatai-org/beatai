@@ -6,7 +6,7 @@ translated: 2026-05-20
 tags:
   - LLM
 summary: 2025 年 1 月，DeepSeek-R1 发布，同时开源了蒸馏版的「32B 与 70B 模型，性能与 OpenAI-o1-mini 相当」。接下来那一周，几家 AI 巨头的股价应声暴跌。
-cover: ./images/deepseek-v4-and-before-getting-the-foundations-right/01.thumb.webp
+cover: ./images/deepseek-v4-and-before-getting-the-foundations-right/01.webp
 ---
 
 # 读懂 DeepSeek-V4 之前，先把基础打牢

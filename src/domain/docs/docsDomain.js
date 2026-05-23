@@ -1,14 +1,27 @@
 import {
   buildArticleTagList,
+  buildSearchableDocs,
+  buildTagIndex,
   collectDocPaths,
   filterArticlesByTag,
   findActiveCategoryByPath,
+  findArticleTags,
+  findCategoryById,
   findMetaEntryByPath,
+  getAllTags,
+  getArticlesByTag,
   getCategoryArticles,
   getDefaultDocsPath,
-  groupArticlesByDate
+  getFirstNavigablePathForCategory,
+  groupArticlesByCategory,
+  groupArticlesByDate,
+  normalizeMetaPath
 } from '../../utils/docsMetaSelectors';
-import { buildKnowledgeSpaces, findActiveKnowledgeSpace } from '../../utils/knowledgeSpaces';
+import {
+  buildKnowledgeSpaces,
+  findActiveKnowledgeSpace,
+  getAiTutorialSpace
+} from '../../utils/knowledgeSpaces';
 import { normalizeDocComponentMarkdown, resolvePublicContentUrl } from '../../utils/markdown';
 import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
 import { AI_INSIGHTS_CATEGORY_ID } from '../../utils/siteRoutes';
@@ -29,6 +42,56 @@ function stripLeadingSlash(pathname = '') {
 
 function buildFallbackMarkdownFile(docPath) {
   return docPath ? `/docs/${docPath}.md` : '';
+}
+
+export function normalizeDocPath(path = '') {
+  return normalizeMetaPath(path);
+}
+
+export function findDocCategory(meta, categoryId) {
+  return findCategoryById(meta, categoryId);
+}
+
+export function findDocTitleByPath(meta, path) {
+  return findMetaEntryByPath(meta, path)?.item?.title || null;
+}
+
+export function getCategoryEntryPath(category, fallbackPath = '#') {
+  return category?.entryPath || getFirstNavigablePathForCategory(category) || fallbackPath;
+}
+
+export function buildKnowledgeNavigationModel(meta) {
+  return {
+    categories: meta?.categories || [],
+    spaces: buildKnowledgeSpaces(meta)
+  };
+}
+
+export function getAiTutorialNavigationSpace() {
+  return getAiTutorialSpace();
+}
+
+export function buildArticlePrefetchModel(item) {
+  return {
+    file: item?.file || '',
+    path: item?.path || ''
+  };
+}
+
+export function buildSearchableDocsModel(meta) {
+  return buildSearchableDocs(meta);
+}
+
+export function buildTagModel(meta) {
+  const tagIndex = buildTagIndex(meta);
+
+  return {
+    tagIndex,
+    getAllTags: () => getAllTags(tagIndex),
+    getArticlesByTag: (tagName) => getArticlesByTag(tagIndex, tagName),
+    groupByCategory: groupArticlesByCategory,
+    findArticleTags: (path) => findArticleTags(meta, path)
+  };
 }
 
 export function buildDocArticleRouteModel({
@@ -144,6 +207,40 @@ export function buildDocsRouteValidationModel(meta, pathname = '') {
     defaultPath,
     validPaths,
     isValidDocsPath: pathname === '/' || validPaths.has(pathname)
+  };
+}
+
+export function buildLearnAiDocsMeta({ spaceMeta, currentSpace, parentTitle = '' } = {}) {
+  if (!spaceMeta || !currentSpace) {
+    return null;
+  }
+
+  return {
+    categories: [{
+      ...spaceMeta,
+      id: currentSpace.docsCategoryId || currentSpace.slug,
+      title: currentSpace.bookTitle || spaceMeta.title,
+      githubRepo: currentSpace.githubRepo || spaceMeta.githubRepo,
+      repoTitle: currentSpace.repoTitle || spaceMeta.repoTitle,
+      bookPath: {
+        parentTitle,
+        currentTitle: currentSpace.bookTitle || spaceMeta.title
+      }
+    }]
+  };
+}
+
+export function buildLearnAiDocsRouteValidationModel(meta, pathname = '', basePath = '') {
+  const validPaths = collectDocPaths(meta);
+  const normalizedPathname = normalizeDocPath(pathname);
+  const normalizedBasePath = normalizeDocPath(basePath);
+  const isBasePath = normalizedPathname === normalizedBasePath;
+
+  return {
+    isBasePath,
+    isValidPath: isBasePath || validPaths.has(normalizedPathname),
+    normalizedPathname,
+    validPaths
   };
 }
 

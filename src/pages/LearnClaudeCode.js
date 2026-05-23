@@ -16,6 +16,10 @@ import { useDocsMeta } from '../hooks/useDocsMeta';
 import './LearnClaudeCode.css';
 import { buildLearnAiSidebarMeta } from '../components/learnClaudeCode/sidebarMeta';
 import {
+  buildKnowledgeNavigationModel,
+  getAiTutorialNavigationSpace
+} from '../domain/docs';
+import {
   getLearnAiDefaultPath,
   getLearnAiEntryPath
 } from '../utils/learnAiPaths';
@@ -23,7 +27,6 @@ import {
   getLearnAiSpace,
   getLearnAiSpaceByVersion
 } from '../utils/learnAiSpaces';
-import { buildKnowledgeSpaces, getAiTutorialSpace } from '../utils/knowledgeSpaces';
 import { PAGE_IDS } from '../utils/pageConfig';
 
 function LearnClaudeCode() {
@@ -35,11 +38,10 @@ function LearnClaudeCode() {
     closeOnChange: location.pathname
   });
 
-  const categories = meta?.categories || [];
-  const spaces = useMemo(() => buildKnowledgeSpaces(meta), [meta]);
+  const { categories, spaces } = useMemo(() => buildKnowledgeNavigationModel(meta), [meta]);
   const currentSpace = getLearnAiSpace(spaceSlug);
   const sidebarMeta = useMemo(() => buildLearnAiSidebarMeta(currentSpace), [currentSpace]);
-  const activeSpace = useMemo(() => getAiTutorialSpace(), []);
+  const activeSpace = useMemo(() => getAiTutorialNavigationSpace(), []);
   const pathParts = location.pathname.split('/').filter(Boolean);
   const currentVersion = pathParts.length > 2 ? pathParts[2] : '';
 

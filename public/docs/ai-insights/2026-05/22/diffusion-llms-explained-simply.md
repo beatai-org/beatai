@@ -9,7 +9,7 @@ tags:
   - Programming
   - Machine Learning
 summary: 基于 LLM 的聊天机器人在我们身边随处可见。它们回复时，是按顺序逐步生成内容的。也就是说，它们的输出是一个 token 接一个 token、一次一个地生成出来的。
-cover: ./images/diffusion-llms-explained-simply/01.thumb.webp
+cover: ./images/diffusion-llms-explained-simply/01.webp
 ---
 
 # 简明讲清 Diffusion LLM

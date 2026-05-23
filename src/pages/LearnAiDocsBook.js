@@ -7,7 +7,10 @@ import PageSeo from '../components/seo/PageSeo';
 import { NotFoundState } from '../components/learnClaudeCode/NotFoundState';
 import { TagProvider } from '../contexts/TagContext';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { collectDocPaths, normalizeMetaPath } from '../utils/docsMetaSelectors';
+import {
+  buildLearnAiDocsMeta,
+  buildLearnAiDocsRouteValidationModel
+} from '../domain/docs';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { getLearnAiSpace } from '../utils/learnAiSpaces';
 import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
@@ -27,29 +30,16 @@ function LearnAiDocsBook() {
     error: spaceError
   } = useDocsMeta(null, currentSpace?.docsMetaFile || null);
 
-  const tutorialMeta = useMemo(() => {
-    if (!spaceMeta || !currentSpace) {
-      return null;
-    }
-
-    return {
-      categories: [{
-        ...spaceMeta,
-        id: currentSpace.docsCategoryId || currentSpace.slug,
-        title: currentSpace.bookTitle || spaceMeta.title,
-        githubRepo: currentSpace.githubRepo || spaceMeta.githubRepo,
-        repoTitle: currentSpace.repoTitle || spaceMeta.repoTitle,
-        bookPath: {
-          parentTitle: PAGE_CONFIG[PAGE_IDS.aiTutorials].title,
-          currentTitle: currentSpace.bookTitle || spaceMeta.title
-        }
-      }]
-    };
-  }, [currentSpace, spaceMeta]);
-
-  const validPaths = useMemo(() => collectDocPaths(tutorialMeta), [tutorialMeta]);
-  const normalizedPathname = normalizeMetaPath(location.pathname);
-  const isBasePath = normalizedPathname === `/learn-ai/${spaceSlug}`;
+  const tutorialMeta = useMemo(() => buildLearnAiDocsMeta({
+    spaceMeta,
+    currentSpace,
+    parentTitle: PAGE_CONFIG[PAGE_IDS.aiTutorials].title
+  }), [currentSpace, spaceMeta]);
+  const routeValidation = useMemo(() => buildLearnAiDocsRouteValidationModel(
+    tutorialMeta,
+    location.pathname,
+    `/learn-ai/${spaceSlug || ''}`
+  ), [location.pathname, spaceSlug, tutorialMeta]);
 
   if (!currentSpace || currentSpace.contentSource !== 'docs') {
     return <NotFoundState label={spaceSlug || location.pathname} />;
@@ -63,8 +53,8 @@ function LearnAiDocsBook() {
     return <div className="docs-loading">Failed to load documentation.</div>;
   }
 
-  if (!isBasePath && !validPaths.has(normalizedPathname)) {
-    return <NotFoundState label={normalizedPathname} />;
+  if (!routeValidation.isValidPath) {
+    return <NotFoundState label={routeValidation.normalizedPathname} />;
   }
 
   return (

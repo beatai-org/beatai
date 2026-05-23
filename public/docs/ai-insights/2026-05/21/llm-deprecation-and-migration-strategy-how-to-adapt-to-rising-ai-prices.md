@@ -6,7 +6,7 @@ translated: 2026-05-21
 tags:
   - LLM
 summary: 模型退役是 AI 市场的一种结构性现实，不是罕见的运维事件。OpenAI（GPT）、Anthropic（Claude）、Google（Gemini）以及其他 LLM 供应商，会频繁弃用某些特定的 API 版本，转而推出更新的模型。
-cover: ./images/llm-deprecation-and-migration-strategy-how-to-adapt-to-rising-ai-prices/01.thumb.webp
+cover: ./images/llm-deprecation-and-migration-strategy-how-to-adapt-to-rising-ai-prices/01.webp
 ---
 
 # LLM 弃用与迁移策略：如何应对不断上涨的 AI 价格

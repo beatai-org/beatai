@@ -6,7 +6,7 @@ translated: 2026-05-20
 tags:
   - Artificial Intelligence
 summary: 关于企业 agent 化，我写下的东西已经足够填满一本小书——一本会让翻开它的 AI 架构师怀疑自己职业选择的、令人不太舒服的书。流程选择、35% 的自动化天花板、agentic 架构模式、治理哲学、大规模运行一座 AI 工厂的经济学，我都用一种好为人师的口吻讲了个遍，也亲眼看着足够多的项目失败，因而挣得了发表观点的资格。
-cover: ./images/ive-built-an-evidence-factory-because-trust-me-the-agent-is-fine-is-not-a-governance-strategy/01.thumb.webp
+cover: ./images/ive-built-an-evidence-factory-because-trust-me-the-agent-is-fine-is-not-a-governance-strategy/01.webp
 ---
 
 # 我建了一座"证据工厂"，因为"相信我，agent 没问题"算不上治理策略

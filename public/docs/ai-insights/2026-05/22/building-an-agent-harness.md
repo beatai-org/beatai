@@ -4,7 +4,7 @@ author: Heeki Park
 url: https://heeki.medium.com/building-an-agent-harness-31942331d605
 translated: 2026-05-22
 summary: Prompt engineering、context engineering，现在轮到 harness engineering。
-cover: ./images/building-an-agent-harness/01.thumb.webp
+cover: ./images/building-an-agent-harness/01.webp
 ---
 
 # 构建一套 agent harness

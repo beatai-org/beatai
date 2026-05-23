@@ -4,7 +4,7 @@ author: Adron Allen
 url: https://medium.com/@aallen04/from-archetypes-to-predictions-using-random-forest-to-classify-nba-players-in-real-time-ce6ed63c3707
 translated: 2026-05-20
 summary: 读过我上一篇文章的人都知道，我用 K-Means 聚类论证过一个观点：传统的 NBA 位置基本已经过时。数据找出了五种自然的球员原型，它们和一个人被登记成后卫还是前锋毫无关系。这个发现很有意思，但它也留下了一个明摆着的后续问题：好，那现在怎么办？如果一位球队管理层的分析师想知道某个球员属于哪种原型，难道每次都得把整套聚类流程重跑一遍？那不现实
-cover: ./images/from-archetypes-to-predictions-using-random-forest-to-classify-nba-players-in-real-time/01.thumb.webp
+cover: ./images/from-archetypes-to-predictions-using-random-forest-to-classify-nba-players-in-real-time/01.webp
 ---
 
 # 从原型到预测：用随机森林实时归类 NBA 球员

@@ -6,7 +6,7 @@ translated: 2026-05-20
 tags:
   - LLM
 summary: AI 编程。我姑且假设你到现在至少试过了。你大概用过 Claude 或 Cursor 这类工具，试过不同的模型，说不定还用 Anthropic 或 OpenAI API 自己搭过东西。被迫为超额的 token 付费时，你可能哭过一小会儿，而“agents”这个词到现在大概一听就让你头疼。如果你完全不知道我在说什么，那请把你星球的坐标发给我——那里一定特别宁静。
-cover: ./images/how-ai-remembers-and-why-it-forgets-part-1-the-context-problem/01.thumb.webp
+cover: ./images/how-ai-remembers-and-why-it-forgets-part-1-the-context-problem/01.webp
 ---
 
 # AI 如何记忆，又为何遗忘：第 1 部分，上下文问题

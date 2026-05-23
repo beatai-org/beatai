@@ -1,10 +1,21 @@
 export {
+  buildArticlePrefetchModel,
   buildDocArticleHistoryRecord,
   buildDocArticleNavigationModel,
   buildDocArticleRouteModel,
   buildDocsArchiveModel,
   buildDocsRouteValidationModel,
   buildDocsWorkspaceModel,
+  buildKnowledgeNavigationModel,
+  buildLearnAiDocsMeta,
+  buildLearnAiDocsRouteValidationModel,
   buildNormalizedArticleMarkdown,
-  buildSidebarMeta
+  buildSearchableDocsModel,
+  buildSidebarMeta,
+  buildTagModel,
+  findDocCategory,
+  findDocTitleByPath,
+  getAiTutorialNavigationSpace,
+  getCategoryEntryPath,
+  normalizeDocPath
 } from './docsDomain';

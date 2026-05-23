@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigationType } from 'react-router-dom';
 import DocArticleHeader from './DocArticleHeader';
 import PaginationNav from './PaginationNav';
 import ArticleTags from './ArticleTags';
@@ -24,6 +24,7 @@ const DocImageLightbox = React.lazy(() => import('./DocImageLightbox'));
 
 const DocContent = () => {
   const location = useLocation();
+  const navigationType = useNavigationType();
   const { setPageTitle, findTitleByPath } = usePageTitle();
   const { meta } = useMeta();
   const { recordVisit } = useHistory();
@@ -61,8 +62,10 @@ const DocContent = () => {
     }
 
     setPageTitle(pageTitle);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [error, pageTitle, rawDoc, setPageTitle]);
+    if (navigationType !== 'POP') {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+  }, [error, navigationType, pageTitle, rawDoc, setPageTitle]);
 
   // 仅记录真正的文章页（meta 中的叶子条目），并带上所属上级分类。
   useEffect(() => {

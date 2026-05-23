@@ -4,7 +4,7 @@ author: Jose Parreño
 url: https://medium.com/data-science-collective/what-the-docs-dont-tell-you-about-claude-code-skills-235d1278162b
 translated: 2026-05-18
 summary: 这个月，我为自己 newsletter 写作 pipeline 的每一个环节都构建了一个 skill。
-cover: ./images/what-the-docs-dont-tell-you-about-claude-code-skills/01.thumb.webp
+cover: ./images/what-the-docs-dont-tell-you-about-claude-code-skills/01.webp
 ---
 
 # 官方文档没告诉你的 Claude Code skills 真相

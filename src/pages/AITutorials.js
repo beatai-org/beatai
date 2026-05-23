@@ -7,9 +7,12 @@ import { ReadingModeProvider } from '../contexts/ReadingModeContext';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { useReadingModeSearchParam } from '../hooks/useReadingModeSearchParam';
+import {
+  buildKnowledgeNavigationModel,
+  getAiTutorialNavigationSpace
+} from '../domain/docs';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { LEARN_AI_SPACES } from '../utils/learnAiSpaces';
-import { buildKnowledgeSpaces, getAiTutorialSpace } from '../utils/knowledgeSpaces';
 import { PAGE_IDS } from '../utils/pageConfig';
 import { preloadRouteForPath } from '../utils/routePrefetch';
 import './AITutorials.css';
@@ -19,7 +22,7 @@ function AITutorialsContent({ categories, spaces }) {
   const [hoveredSlug, setHoveredSlug] = useState('');
   const readingMode = useReadingModeSearchParam();
   const { isReadingMode } = readingMode;
-  const activeSpace = useMemo(() => getAiTutorialSpace(), []);
+  const activeSpace = useMemo(() => getAiTutorialNavigationSpace(), []);
 
   const renderCardIcon = (space) => {
     if (space.slug === 'learn-claude-code') {
@@ -101,10 +104,12 @@ export default function AITutorials() {
     return <div className="ai-tutorials-status">Failed to load tutorials</div>;
   }
 
+  const { categories, spaces } = buildKnowledgeNavigationModel(meta);
+
   return (
     <AITutorialsContent
-      categories={meta.categories}
-      spaces={buildKnowledgeSpaces(meta)}
+      categories={categories}
+      spaces={spaces}
     />
   );
 }

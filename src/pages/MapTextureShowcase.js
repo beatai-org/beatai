@@ -3,7 +3,7 @@ import PageShell from '../components/layout/PageShell';
 import PageSeo from '../components/seo/PageSeo';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import { buildKnowledgeNavigationModel } from '../domain/docs';
 import { SITE_CONFIG } from '../utils/siteConfig';
 import { PAGE_IDS } from '../utils/pageConfig';
 import './MapTextureShowcase.css';
@@ -106,8 +106,7 @@ const MAP_TEXTURE_OPTIONS = [
 export default function MapTextureShowcase() {
   const { meta } = useDocsMeta();
   const handleCategoryClick = useCategoryNavigation();
-  const spaces = useMemo(() => buildKnowledgeSpaces(meta), [meta]);
-  const categories = meta?.categories || [];
+  const { categories, spaces } = useMemo(() => buildKnowledgeNavigationModel(meta), [meta]);
   const [selectedId, setSelectedId] = useState('pandemos');
 
   const selectedTexture = MAP_TEXTURE_OPTIONS.find((item) => item.id === selectedId) || MAP_TEXTURE_OPTIONS[0];

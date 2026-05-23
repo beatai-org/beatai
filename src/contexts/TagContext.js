@@ -1,11 +1,5 @@
 import React, { createContext, useContext, useMemo } from 'react';
-import {
-  buildTagIndex,
-  findArticleTags,
-  getAllTags,
-  getArticlesByTag,
-  groupArticlesByCategory
-} from '../utils/docsMetaSelectors';
+import { buildTagModel } from '../domain/docs';
 
 const TagContext = createContext();
 
@@ -18,16 +12,7 @@ export const useTag = () => {
 };
 
 export const TagProvider = ({ children, meta }) => {
-  // Build tag index and cache it
-  const tagIndex = useMemo(() => buildTagIndex(meta), [meta]);
-
-  const value = {
-    tagIndex,
-    getAllTags: () => getAllTags(tagIndex),
-    getArticlesByTag: (tagName) => getArticlesByTag(tagIndex, tagName),
-    groupByCategory: groupArticlesByCategory,
-    findArticleTags: (path) => findArticleTags(meta, path)
-  };
+  const value = useMemo(() => buildTagModel(meta), [meta]);
 
   return <TagContext.Provider value={value}>{children}</TagContext.Provider>;
 };

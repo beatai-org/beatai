@@ -6,7 +6,7 @@ translated: 2026-05-20
 tags:
   - Artificial Intelligence
 summary: 最近我一直被一种挥之不去的 AI FOMO 笼罩。每天都能看到有人分享 AI 技巧、晒出自己造的新智能体和技能，还有各种凭感觉写出来的应用。我越来越意识到，对今天的数据科学家来说，快速适应 AI 已经成了保持竞争力的硬性要求。
-cover: ./images/beyond-code-generation-ai-for-the-full-data-science-workflow/01.thumb.webp
+cover: ./images/beyond-code-generation-ai-for-the-full-data-science-workflow/01.webp
 ---
 
 # 超越代码生成：让 AI 覆盖完整的数据科学工作流

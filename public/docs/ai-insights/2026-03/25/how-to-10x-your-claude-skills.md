@@ -1,7 +1,7 @@
 ---
 title: "如何把 Claude Skills 的效果提升 10 倍：用 Karpathy 的 autoresearch 方法自动打磨"
 summary: Claude Skills 很可能有 30% 的时候在失效，而且这种失效甚至不会被注意到。
-cover: ./images/how-to-10x-your-claude-skills/cover.thumb.webp
+cover: ./images/how-to-10x-your-claude-skills/cover.jpg
 ---
 
 ![autoresearch 主图](./images/how-to-10x-your-claude-skills/cover.jpg)

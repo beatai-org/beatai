@@ -8,7 +8,7 @@ tags:
   - Technology
   - Machine Learning
 summary: 在很多人眼里,Anthropic 是硅谷有史以来最动人的故事。这家公司五年前才成立,如今却有望在今年年底把年化收入做到 1000 亿美元。
-cover: ./images/the-dark-side-of-anthropics-growth/01.thumb.webp
+cover: ./images/the-dark-side-of-anthropics-growth/01.webp
 ---
 
 # Anthropic 高速增长的阴暗面

@@ -1,6 +1,6 @@
 ---
 summary: 上来先争论“要不要多智能体”，却不先画清问题边界，这和先选喷漆配色再写控制程序一样不靠谱。
-cover: ./images/agent-skills-teams-architecture-evolution/01.thumb.webp
+cover: ./images/agent-skills-teams-architecture-evolution/01.jpg
 ---
 
 # Agent/Skills/Teams 架构演进过程及技术选型之道

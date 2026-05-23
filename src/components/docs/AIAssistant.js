@@ -2,8 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { HiSparkles, HiX, HiSearch } from 'react-icons/hi';
 import Fuse from 'fuse.js';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
+import { buildSearchableDocsModel } from '../../domain/docs';
 import { loadDocsMeta } from '../../utils/docsMeta';
-import { buildSearchableDocs } from '../../utils/docsMetaSelectors';
 import { SITE_CONFIG } from '../../utils/siteConfig';
 import './AIAssistant.css';
 
@@ -36,7 +36,7 @@ const AIAssistant = () => {
     // Load and index documentation metadata
     loadDocsMeta()
       .then((data) => {
-        const fuse = new Fuse(buildSearchableDocs(data), {
+        const fuse = new Fuse(buildSearchableDocsModel(data), {
           keys: ['title', 'description', 'section', 'category'],
           threshold: 0.4,
           includeScore: true

@@ -6,11 +6,14 @@ import ArchiveCard from '../components/aiInsights/ArchiveCard';
 import ArchiveList from '../components/aiInsights/ArchiveList';
 import TagChipBar from '../components/aiInsights/TagChipBar';
 import ViewToggle from '../components/aiInsights/ViewToggle';
+import { useAiInsightsScrollRestoration } from '../hooks/useAiInsightsScrollRestoration';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { findCategoryById } from '../utils/docsMetaSelectors';
-import { buildDocsArchiveModel } from '../domain/docs';
-import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import {
+  buildDocsArchiveModel,
+  buildKnowledgeNavigationModel,
+  findDocCategory
+} from '../domain/docs';
 import { PAGE_IDS } from '../utils/pageConfig';
 import { AI_INSIGHTS_CATEGORY_ID, HOME_PATH } from '../utils/siteRoutes';
 import './AiInsightsArchive.css';
@@ -46,6 +49,11 @@ const ArchiveContent = ({ category, categories, spaces }) => {
   const { filteredCount, groups, tagList } = useMemo(() => {
     return buildDocsArchiveModel(category, selectedTag);
   }, [category, selectedTag]);
+  const restoreSignature = `${viewMode}:${selectedTag}:${filteredCount}`;
+  const handleArticleNavigate = useAiInsightsScrollRestoration({
+    enabled: filteredCount > 0,
+    restoreSignature
+  });
 
   const handleSelectTag = useCallback(
     (tag) => {
@@ -118,7 +126,7 @@ const ArchiveContent = ({ category, categories, spaces }) => {
               </button>
             </div>
           ) : viewMode === 'list' ? (
-            <ArchiveList groups={groups} />
+            <ArchiveList groups={groups} onArticleNavigate={handleArticleNavigate} />
           ) : (
             <div className="archive-cards">
               {groups.map(({ date, articles: dayArticles }) => (
@@ -128,7 +136,11 @@ const ArchiveContent = ({ category, categories, spaces }) => {
                   </h2>
                   <div className="archive-cards-grid">
                     {dayArticles.map((article) => (
-                      <ArchiveCard key={article.path} article={article} />
+                      <ArchiveCard
+                        key={article.path}
+                        article={article}
+                        onArticleNavigate={handleArticleNavigate}
+                      />
                     ))}
                   </div>
                 </section>
@@ -152,7 +164,7 @@ const AiInsightsArchive = () => {
     return <div className="ai-insights-archive-error">Failed to load metadata</div>;
   }
 
-  const category = findCategoryById(meta, AI_INSIGHTS_CATEGORY_ID);
+  const category = findDocCategory(meta, AI_INSIGHTS_CATEGORY_ID);
   if (!category) {
     return (
       <div className="ai-insights-archive-error">
@@ -162,12 +174,12 @@ const AiInsightsArchive = () => {
     );
   }
 
-  const spaces = buildKnowledgeSpaces(meta);
+  const { categories, spaces } = buildKnowledgeNavigationModel(meta);
 
   return (
     <ArchiveContent
       category={category}
-      categories={meta.categories}
+      categories={categories}
       spaces={spaces}
     />
   );

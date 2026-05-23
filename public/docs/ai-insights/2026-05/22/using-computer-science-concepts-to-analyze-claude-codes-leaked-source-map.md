@@ -7,7 +7,7 @@ tags:
   - Artificial Intelligence
   - LLM
 summary: 这个故事现在大家都知道了。
-cover: ./images/using-computer-science-concepts-to-analyze-claude-codes-leaked-source-map/01.thumb.webp
+cover: ./images/using-computer-science-concepts-to-analyze-claude-codes-leaked-source-map/01.webp
 ---
 
 # 用计算机科学概念解读 Claude Code 泄露的 source map

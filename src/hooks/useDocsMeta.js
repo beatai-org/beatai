@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react';
-import { loadDocsMeta } from '../utils/docsMeta';
+import { getCachedDocsMeta, loadDocsMeta } from '../utils/docsMeta';
 import { normalizeDocsMeta } from '../utils/docsMetaNormalizer';
 
+function readInitialMeta(initialMeta, metaUrl) {
+  if (initialMeta) {
+    return normalizeDocsMeta(initialMeta);
+  }
+
+  return getCachedDocsMeta(metaUrl || undefined);
+}
+
 export function useDocsMeta(initialMeta = null, metaUrl = null) {
-  const [meta, setMeta] = useState(() => (initialMeta ? normalizeDocsMeta(initialMeta) : null));
-  const [loading, setLoading] = useState(!initialMeta);
+  const [meta, setMeta] = useState(() => readInitialMeta(initialMeta, metaUrl));
+  const [loading, setLoading] = useState(() => !readInitialMeta(initialMeta, metaUrl));
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -12,6 +20,14 @@ export function useDocsMeta(initialMeta = null, metaUrl = null) {
 
     if (initialMeta) {
       setMeta(normalizeDocsMeta(initialMeta));
+      setLoading(false);
+      setError(null);
+      return undefined;
+    }
+
+    const cachedMeta = getCachedDocsMeta(metaUrl || undefined);
+    if (cachedMeta) {
+      setMeta(cachedMeta);
       setLoading(false);
       setError(null);
       return undefined;

@@ -7,7 +7,7 @@ tags:
   - Artificial Intelligence
   - AI Agent
 summary: 我小时候对组合逻辑很感兴趣。是的，这件事很大程度上解释了我后来为什么变成这样，也解释了为什么我的小学老师看我的眼神，活像人们看一只学会了开冰箱的狗。
-cover: ./images/when-your-ai-governance-model-tries-to-regulate-an-agentic-swarm/01.thumb.webp
+cover: ./images/when-your-ai-governance-model-tries-to-regulate-an-agentic-swarm/01.webp
 ---
 
 # 当你的 AI 治理模型试图监管一个智能体蜂群

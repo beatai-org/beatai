@@ -7,10 +7,10 @@ import PageSeo from '../components/seo/PageSeo';
 import { TagProvider } from '../contexts/TagContext';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import {
-  findCategoryById,
-  getFirstNavigablePathForCategory
-} from '../utils/docsMetaSelectors';
-import { buildDocsRouteValidationModel } from '../domain/docs';
+  buildDocsRouteValidationModel,
+  findDocCategory,
+  getCategoryEntryPath
+} from '../domain/docs';
 import { PAGE_IDS } from '../utils/pageConfig';
 import NotFound from './NotFound';
 import './Docs.css';
@@ -18,8 +18,8 @@ import './Docs.css';
 // Component to handle category-level redirects
 const CategoryRedirect = ({ meta }) => {
   const { categoryId } = useParams();
-  const category = findCategoryById(meta, categoryId);
-  const redirectPath = getFirstNavigablePathForCategory(category) || '/';
+  const category = findDocCategory(meta, categoryId);
+  const redirectPath = getCategoryEntryPath(category, '/');
   return <Navigate to={redirectPath} replace />;
 };
 

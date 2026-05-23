@@ -3,6 +3,7 @@ import { HiSparkles, HiX, HiSearch } from 'react-icons/hi';
 import Fuse from 'fuse.js';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import { loadDocsMeta } from '../../utils/docsMeta';
+import { SITE_CONFIG } from '../../utils/siteConfig';
 import './AIAssistant.css';
 
 const AIAssistant = () => {
@@ -129,7 +130,7 @@ const AIAssistant = () => {
   };
 
   const quickQuestions = [
-    'How to install BeatAI?',
+    `How to install ${SITE_CONFIG.brandName}?`,
     'Getting started guide',
     'API documentation',
     'Configuration options'

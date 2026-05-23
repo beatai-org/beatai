@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { HiLightningBolt, HiX } from 'react-icons/hi';
+import { SITE_CONFIG } from '../../utils/siteConfig';
 import './HiddenTipsModal.css';
 
 const shortcuts = [
@@ -45,7 +46,7 @@ function HiddenTipsModal({ isOpen, onClose }) {
       >
         <div className="hidden-tips-header">
           <div>
-            <div className="hidden-tips-eyebrow">BeatAI Hidden Tips</div>
+            <div className="hidden-tips-eyebrow">{SITE_CONFIG.brandName} Hidden Tips</div>
             <h2 id="hidden-tips-title">阅读技巧</h2>
           </div>
           <button

@@ -1,24 +1,12 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
+import {
+  buildAbsoluteSiteUrl,
+  SITE_CONFIG
+} from '../../utils/siteConfig';
 
-const GISCUS_ORIGIN = 'https://giscus.app';
-const BEATAI_GISCUS_CONFIG = {
-  repo: process.env.REACT_APP_GISCUS_REPO || 'beatai-org/BeatAI',
-  repoId: process.env.REACT_APP_GISCUS_REPO_ID || 'R_kgDOGmKA_Q',
-  category: process.env.REACT_APP_GISCUS_CATEGORY || 'giscus',
-  categoryId: process.env.REACT_APP_GISCUS_CATEGORY_ID || 'DIC_kwDOGmKA_c4COcYR',
-  discussionsUrl: process.env.REACT_APP_GISCUS_DISCUSSIONS_URL ||
-    'https://github.com/beatai-org/BeatAI/discussions/categories/giscus'
-};
-const RUST_COURSE_GISCUS_CONFIG = {
-  repo: process.env.REACT_APP_RUST_COURSE_GISCUS_REPO || 'sunface/rust-course',
-  repoId: process.env.REACT_APP_RUST_COURSE_GISCUS_REPO_ID || 'MDEwOlJlcG9zaXRvcnkxNDM4MjIwNjk=',
-  category: process.env.REACT_APP_RUST_COURSE_GISCUS_CATEGORY || '章节评论区',
-  categoryId: process.env.REACT_APP_RUST_COURSE_GISCUS_CATEGORY_ID || 'DIC_kwDOCJKM9c4COQcP',
-  discussionsUrl: process.env.REACT_APP_RUST_COURSE_GISCUS_DISCUSSIONS_URL ||
-    'https://github.com/sunface/rust-course/discussions/categories/%E7%AB%A0%E8%8A%82%E8%AF%84%E8%AE%BA%E5%8C%BA'
-};
+const { giscus: GISCUS_CONFIG, links: SITE_LINKS, labels: SITE_LABELS } = SITE_CONFIG;
 
 function buildGiscusTheme(mode) {
   return mode === 'dark' ? 'noborder_dark' : 'noborder_light';
@@ -26,13 +14,13 @@ function buildGiscusTheme(mode) {
 
 function getGiscusConfig(pathname) {
   return pathname.startsWith('/rust-course')
-    ? RUST_COURSE_GISCUS_CONFIG
-    : BEATAI_GISCUS_CONFIG;
+    ? GISCUS_CONFIG.rustCourse
+    : GISCUS_CONFIG.default;
 }
 
 function buildDiscussionUrl(pathname, pageTitle, config) {
   const normalizedPath = pathname || '/';
-  const pageUrl = `https://beatai.org${normalizedPath}`;
+  const pageUrl = buildAbsoluteSiteUrl(normalizedPath);
   const discussionTitle = `评论：${pageTitle || normalizedPath}`;
   const discussionBody = [
     `页面：${pageTitle || normalizedPath}`,
@@ -79,7 +67,7 @@ function GiscusComments({ className = '', pageTitle = '', containerRef: sectionR
     container.innerHTML = '';
 
     const script = document.createElement('script');
-    script.src = `${GISCUS_ORIGIN}/client.js`;
+    script.src = `${SITE_LINKS.giscusOrigin}/client.js`;
     script.async = true;
     script.crossOrigin = 'anonymous';
     script.setAttribute('data-repo', giscusConfig.repo);
@@ -120,7 +108,7 @@ function GiscusComments({ className = '', pageTitle = '', containerRef: sectionR
           }
         }
       },
-      GISCUS_ORIGIN
+      SITE_LINKS.giscusOrigin
     );
   }, [giscusTheme, isEmbeddedMode]);
 
@@ -150,7 +138,7 @@ function GiscusComments({ className = '', pageTitle = '', containerRef: sectionR
               target="_blank"
               rel="noreferrer"
             >
-              GitHub Discussions
+              {SITE_LABELS.githubDiscussions}
             </a>
           </p>
         </div>

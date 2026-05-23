@@ -5,6 +5,7 @@ import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
 import ThemeSelector from './ThemeSelector';
 import { HiSparkles } from 'react-icons/hi';
+import { SITE_CONFIG } from '../utils/siteConfig';
 
 const Hero = () => {
   return (
@@ -21,7 +22,7 @@ const Hero = () => {
 
           {/* 品牌名称 */}
           <h1 className="brand-name">
-            <span className="gradient-text">BeatAI</span>
+            <span className="gradient-text">{SITE_CONFIG.brandName}</span>
           </h1>
 
           <p className="tagline">
@@ -46,7 +47,7 @@ const Hero = () => {
             <Link to="/" className="btn btn-primary btn-large">
               Get Started →
             </Link>
-            <a href="https://github.com/loong-ai" target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-large">
+            <a href={SITE_CONFIG.links.githubOrgUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-large">
               View on GitHub
             </a>
           </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import ThemeToggle from './ThemeToggle';
 import ThemeSelector from './ThemeSelector';
+import { SITE_CONFIG } from '../utils/siteConfig';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,7 +13,7 @@ const Header = () => {
         <div className="header-content">
           <div className="logo">
             <span className="logo-icon">🤖</span>
-            <span className="logo-text">BeatAI</span>
+            <span className="logo-text">{SITE_CONFIG.brandName}</span>
           </div>
 
           <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
@@ -25,7 +26,7 @@ const Header = () => {
           <div className="header-actions">
             <ThemeSelector />
             <ThemeToggle />
-            <a href="https://github.com/loong-ai" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">GitHub</a>
+            <a href={SITE_CONFIG.links.githubOrgUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">{SITE_CONFIG.labels.github}</a>
             <Link to="/" className="btn btn-primary">Get Started</Link>
           </div>
 

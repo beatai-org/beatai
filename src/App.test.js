@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 import { getLearnAiEntryPath } from './utils/learnAiPaths';
+import { SITE_CONFIG } from './utils/siteConfig';
 import { buildLearnAiSidebarMeta } from './components/learnClaudeCode/sidebarMeta';
 
 jest.mock('./utils/lazyWithMinLoadTime', () => ({
@@ -18,7 +19,7 @@ beforeEach(() => {
       return Promise.resolve({
         ok: true,
         json: async () => ({
-          title: 'BeatAI Documentation',
+          title: `${SITE_CONFIG.brandName} Documentation`,
           books: [
             {
               id: 'ai-insights',

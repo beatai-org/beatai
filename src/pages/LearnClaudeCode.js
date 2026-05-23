@@ -24,6 +24,10 @@ import {
   getLearnAiSpaceByVersion
 } from '../utils/learnAiSpaces';
 import { buildKnowledgeSpaces, getAiTutorialSpace } from '../utils/knowledgeSpaces';
+import {
+  buildSiteTitle,
+  SITE_CONFIG
+} from '../utils/siteConfig';
 
 function LearnClaudeCode() {
   const { space: spaceSlug } = useParams();
@@ -56,10 +60,10 @@ function LearnClaudeCode() {
   return (
     <>
       <Helmet>
-        <title>Learn Claude Code | BeatAI</title>
+        <title>{buildSiteTitle('Learn Claude Code')}</title>
         <meta
           name="description"
-          content="Learn Claude Code 学习路径已接入 BeatAI，包含学习路径、版本详情、文档讲解、模拟器与源码浏览。"
+          content={`Learn Claude Code 学习路径已接入 ${SITE_CONFIG.brandName}，包含学习路径、版本详情、文档讲解、模拟器与源码浏览。`}
         />
       </Helmet>
 

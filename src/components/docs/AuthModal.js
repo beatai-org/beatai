@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { HiX, HiCheckCircle, HiExclamationCircle } from 'react-icons/hi';
 import { useAuthContext } from '../../contexts/AuthContext';
+import { SITE_CONFIG } from '../../utils/siteConfig';
 import './AuthModal.css';
+
+const GITHUB_TOKEN_URL = `https://github.com/settings/tokens/new?description=${encodeURIComponent(`${SITE_CONFIG.brandName} Login`)}`;
 
 const AuthModal = ({ isOpen, onClose }) => {
   const { login } = useAuthContext();
@@ -110,7 +113,7 @@ const AuthModal = ({ isOpen, onClose }) => {
 
                 <div className="auth-modal-help">
                   <a
-                    href="https://github.com/settings/tokens/new?description=BeatAI%20Login"
+                    href={GITHUB_TOKEN_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="auth-modal-help-link"

@@ -5,6 +5,7 @@ import { FaGithub } from 'react-icons/fa';
 import ThemeSelector from '../ThemeSelector';
 import ReadingModeToggleButton from '../docs/ReadingModeToggleButton';
 import AuthStatus from '../docs/AuthStatus';
+import { SITE_CONFIG } from '../../utils/siteConfig';
 import { HOME_PATH } from '../../utils/siteRoutes';
 
 /**
@@ -79,12 +80,12 @@ const AppHeader = ({
       <div className="app-header-content">
         {/* Desktop brand text */}
         <Link to={HOME_PATH} className="app-logo desktop-only">
-          <span className="logo-text">BeatAI</span>
+          <span className="logo-text">{SITE_CONFIG.brandName}</span>
         </Link>
 
         {/* Mobile brand text */}
         <Link to={HOME_PATH} className="app-logo-mobile mobile-only">
-          <span className="logo-text">BeatAI</span>
+          <span className="logo-text">{SITE_CONFIG.brandName}</span>
         </Link>
 
         {/* Mobile Category Dropdown */}
@@ -101,7 +102,7 @@ const AppHeader = ({
                 aria-haspopup="menu"
                 onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
               >
-                <span>{visibleActiveSpace?.title || '选择书籍'}</span>
+                <span>{visibleActiveSpace?.title || SITE_CONFIG.labels.selectBook}</span>
                 <HiChevronDown className={`dropdown-icon ${mobileDropdownOpen ? 'open' : ''}`} />
               </button>
               {mobileDropdownOpen && (

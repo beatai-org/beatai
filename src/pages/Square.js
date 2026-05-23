@@ -10,6 +10,11 @@ import { useDocsMeta } from '../hooks/useDocsMeta';
 import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import {
+  buildSiteTitle,
+  SITE_CONFIG
+} from '../utils/siteConfig';
+import { AI_INSIGHTS_CATEGORY_ID } from '../utils/siteRoutes';
 import './Square.css';
 
 const Square = () => {
@@ -31,8 +36,8 @@ const Square = () => {
   return (
     <>
       <Helmet>
-        <title>广场 | BeatAI</title>
-        <meta name="description" content="BeatAI 社区广场 - 分享、交流与探索" />
+        <title>{buildSiteTitle('广场')}</title>
+        <meta name="description" content={`${SITE_CONFIG.brandName} 社区广场 - 分享、交流与探索`} />
       </Helmet>
 
       <PageShell
@@ -53,7 +58,7 @@ const Square = () => {
             >
               <BeatAILogoWave size={64} animated={heroLogoAnimated} />
             </div>
-            <h1 className="square-title">BeatAI</h1>
+            <h1 className="square-title">{SITE_CONFIG.brandName}</h1>
             <p className="square-subtitle">
               让 AI 学习更简单
             </p>
@@ -64,13 +69,13 @@ const Square = () => {
               <h2 className="section-title">探索内容</h2>
               <div className="square-grid">
                 <a
-                  href={getCategoryEntryPath('ai-insights')}
+                  href={getCategoryEntryPath(AI_INSIGHTS_CATEGORY_ID)}
                   className="square-card glass-card"
-                  onMouseEnter={() => setHoveredCard('ai-insights')}
+                  onMouseEnter={() => setHoveredCard(AI_INSIGHTS_CATEGORY_ID)}
                   onMouseLeave={() => setHoveredCard('')}
                 >
                   <div className="card-icon">
-                    <AIInsightsIcon size={80} animated={hoveredCard === 'ai-insights'} />
+                    <AIInsightsIcon size={80} animated={hoveredCard === AI_INSIGHTS_CATEGORY_ID} />
                   </div>
                   <h3>AI 前沿分享</h3>
                   <p>AI 领域最新动态、技术分享与深度解析</p>

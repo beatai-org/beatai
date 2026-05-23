@@ -5,6 +5,10 @@ import BeatAILogoGeometric from '../components/BeatAILogoGeometric';
 import BeatAILogoCircuit from '../components/BeatAILogoCircuit';
 import BeatAILogoWave from '../components/BeatAILogoWave';
 import BeatAILogoHex from '../components/BeatAILogoHex';
+import {
+  buildSiteTitle,
+  SITE_CONFIG
+} from '../utils/siteConfig';
 import './LogoShowcase.css';
 
 const LogoShowcase = () => {
@@ -48,12 +52,12 @@ const LogoShowcase = () => {
   return (
     <>
       <Helmet>
-        <title>Logo 设计方案 | BeatAI</title>
+        <title>{buildSiteTitle('Logo 设计方案')}</title>
       </Helmet>
 
       <div className="logo-showcase">
         <div className="logo-showcase-container">
-          <h1 className="showcase-title">BeatAI Logo 设计方案</h1>
+          <h1 className="showcase-title">{SITE_CONFIG.brandName} Logo 设计方案</h1>
           <p className="showcase-subtitle">选择你喜欢的设计风格</p>
 
           {/* 大图预览 */}
@@ -70,7 +74,7 @@ const LogoShowcase = () => {
             <div className="preview-with-text">
               <div className="preview-logo-text">
                 <SelectedLogoComponent size={48} />
-                <span className="preview-text">BeatAI</span>
+                <span className="preview-text">{SITE_CONFIG.brandName}</span>
               </div>
               <p className="preview-hint">Header 中的效果预览</p>
             </div>

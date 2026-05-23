@@ -42,6 +42,7 @@ import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
 import { findMetaEntryByPath } from '../../utils/docsMeta';
 import { normalizeDocComponentMarkdown, resolvePublicContentUrl } from '../../utils/markdown';
 import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
+import { buildDocsTitle } from '../../utils/siteConfig';
 import { AI_INSIGHTS_CATEGORY_ID } from '../../utils/siteRoutes';
 
 const DocContent = () => {
@@ -189,7 +190,7 @@ const DocContent = () => {
   return (
     <>
       <Helmet>
-        <title>{pageTitle} | BeatAI Docs</title>
+        <title>{buildDocsTitle(pageTitle)}</title>
         <meta name="description" content={pageDescription} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />

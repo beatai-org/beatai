@@ -9,6 +9,7 @@ import ViewToggle from '../components/aiInsights/ViewToggle';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import { buildSiteTitle } from '../utils/siteConfig';
 import { AI_INSIGHTS_CATEGORY_ID, HOME_PATH } from '../utils/siteRoutes';
 import './AiInsightsArchive.css';
 
@@ -127,7 +128,7 @@ const ArchiveContent = ({ category, categories, spaces }) => {
   return (
     <>
       <Helmet>
-        <title>{category.title} | BeatAI</title>
+        <title>{buildSiteTitle(category.title)}</title>
         <meta
           name="description"
           content={category.description || `${category.title} 档案`}

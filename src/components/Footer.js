@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 import { FaGithub, FaTwitter, FaDiscord } from 'react-icons/fa';
+import { SITE_CONFIG } from '../utils/siteConfig';
 
 const Footer = () => {
   return (
@@ -10,19 +11,19 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-left">
             <p className="footer-copyright">
-              © 2026 BeatAI. Open Source under MIT License.
+              © 2026 {SITE_CONFIG.brandName}. Open Source under MIT License.
             </p>
           </div>
 
           <div className="footer-links">
             <Link to="/">Docs</Link>
             <a href="#api">API</a>
-            <a href="https://github.com/beatai-org" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href={SITE_CONFIG.links.githubOrgUrl} target="_blank" rel="noopener noreferrer">{SITE_CONFIG.labels.github}</a>
             <a href="#blog">Blog</a>
           </div>
 
           <div className="footer-social">
-            <a href="https://github.com/beatai-org" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a href={SITE_CONFIG.links.githubOrgUrl} target="_blank" rel="noopener noreferrer" aria-label={SITE_CONFIG.labels.github}>
               <FaGithub />
             </a>
             <a href="#twitter" aria-label="Twitter">

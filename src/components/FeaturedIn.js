@@ -3,13 +3,14 @@ import './FeaturedIn.css';
 import { HiNewspaper } from 'react-icons/hi';
 import { HiLightBulb } from 'react-icons/hi';
 import { HiSparkles } from 'react-icons/hi';
+import { SITE_CONFIG } from '../utils/siteConfig';
 
 const FeaturedIn = () => {
   const testimonials = [
     {
       logo: <HiNewspaper />,
       company: 'TechStories',
-      quote: '"BeatAI Showed Me What the Future of Personal AI Assistants Looks Like"',
+      quote: `"${SITE_CONFIG.brandName} Showed Me What the Future of Personal AI Assistants Looks Like"`,
       author: 'Sarah Chen',
       bgGradient: 'linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(236, 72, 153, 0.02) 100%)'
     },

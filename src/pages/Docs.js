@@ -11,6 +11,10 @@ import {
   getDefaultDocsPath,
   getFirstNavigablePathForCategory
 } from '../utils/docsMeta';
+import {
+  buildSiteTitle,
+  SITE_CONFIG
+} from '../utils/siteConfig';
 import NotFound from './NotFound';
 import './Docs.css';
 
@@ -49,8 +53,8 @@ const Docs = () => {
   return (
     <>
       <Helmet>
-        <title>Documentation | BeatAI</title>
-        <meta name="description" content="Complete documentation for BeatAI - the open-source AI bot framework" />
+        <title>{buildSiteTitle(SITE_CONFIG.seo.docsPageTitle)}</title>
+        <meta name="description" content={SITE_CONFIG.seo.docsDescription} />
       </Helmet>
 
       <TagProvider meta={docsMeta}>

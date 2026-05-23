@@ -1,5 +1,6 @@
 import React from 'react';
 import BeatAILogoWave from './BeatAILogoWave';
+import { SITE_CONFIG } from '../utils/siteConfig';
 
 /**
  * 页面跳转Loading效果
@@ -21,7 +22,7 @@ const PageTransitionLoader = () => {
 
         {/* 文字提示 */}
         <div className="loader-text">
-          <span className="loader-text-gradient">BeatAI</span>
+          <span className="loader-text-gradient">{SITE_CONFIG.brandName}</span>
         </div>
 
         {/* 进度条 */}

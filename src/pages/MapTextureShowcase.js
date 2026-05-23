@@ -4,6 +4,10 @@ import PageShell from '../components/layout/PageShell';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import {
+  buildSiteTitle,
+  SITE_CONFIG
+} from '../utils/siteConfig';
 import './MapTextureShowcase.css';
 
 const PUBLIC_ROOT = process.env.PUBLIC_URL || '';
@@ -13,7 +17,7 @@ const MAP_TEXTURE_OPTIONS = [
     id: 'pandemos',
     name: '帝国地图',
     style: '史诗帝国 / 高细节 / 桌游感',
-    fit: '最适合做 BeatAI 大陆的主视觉底图，细节丰富但不幼稚。',
+    fit: `最适合做 ${SITE_CONFIG.brandName} 大陆的主视觉底图，细节丰富但不幼稚。`,
     resolution: '3235 x 1970',
     image: `${PUBLIC_ROOT}/images/map-texture-showcase/pandemos-empire-map.png`,
     source: 'https://opengameart.org/content/map-of-the-pandemos-empire-world-of-sustelas'
@@ -113,8 +117,8 @@ export default function MapTextureShowcase() {
   return (
     <>
       <Helmet>
-        <title>游戏世界贴图测试页 | BeatAI</title>
-        <meta name="description" content="BeatAI 游戏世界贴图测试页，横向比较 10 张不同风格的世界地图素材。" />
+        <title>{buildSiteTitle('游戏世界贴图测试页')}</title>
+        <meta name="description" content={`${SITE_CONFIG.brandName} 游戏世界贴图测试页，横向比较 10 张不同风格的世界地图素材。`} />
       </Helmet>
 
       <PageShell
@@ -131,7 +135,7 @@ export default function MapTextureShowcase() {
             <p className="map-texture-kicker">Texture Lab</p>
             <h1>10 张不同风格的游戏世界贴图测试页</h1>
             <p>
-              这一页不是最终方案，而是风格对比页。重点看三件事：底图气质够不够成熟、节点叠上去是否清楚、以及它是否适合继续演化成 BeatAI 的大陆地图。
+              {`这一页不是最终方案，而是风格对比页。重点看三件事：底图气质够不够成熟、节点叠上去是否清楚、以及它是否适合继续演化成 ${SITE_CONFIG.brandName} 的大陆地图。`}
             </p>
           </section>
 

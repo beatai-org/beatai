@@ -10,6 +10,7 @@ import { useDocsMeta } from '../hooks/useDocsMeta';
 import { collectDocPaths, normalizeMetaPath } from '../utils/docsMeta';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { getLearnAiSpace } from '../utils/learnAiSpaces';
+import { buildSiteTitle } from '../utils/siteConfig';
 
 function LearnAiDocsBook() {
   const { space: spaceSlug } = useParams();
@@ -69,7 +70,7 @@ function LearnAiDocsBook() {
   return (
     <>
       <Helmet>
-        <title>{currentSpace.bookTitle} | BeatAI</title>
+        <title>{buildSiteTitle(currentSpace.bookTitle)}</title>
         <meta name="description" content={spaceMeta?.description || currentSpace.description} />
       </Helmet>
 

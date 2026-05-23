@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Demo.css';
 import { HiCode } from 'react-icons/hi';
+import { SITE_CONFIG } from '../utils/siteConfig';
 
 const Demo = () => {
   const [activeTab, setActiveTab] = useState('quickstart');
@@ -98,7 +99,7 @@ bot.start();`
               <div className="output-content">
                 <div className="output-line success">
                   <span className="output-icon">✓</span>
-                  <span>BeatAI initialized successfully</span>
+                  <span>{SITE_CONFIG.brandName} initialized successfully</span>
                 </div>
                 <div className="output-line">
                   <span className="output-icon">→</span>

@@ -6,6 +6,7 @@ import PageShell from '../components/layout/PageShell';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import { buildDocsTitle } from '../utils/siteConfig';
 import './TagPage.css';
 
 // Inner component that uses TagContext
@@ -25,7 +26,7 @@ const TagPageContent = ({ categories, spaces }) => {
   return (
     <>
       <Helmet>
-        <title>#{decodedTagName} 标签 | BeatAI Docs</title>
+        <title>{buildDocsTitle(`#${decodedTagName} 标签`)}</title>
         <meta
           name="description"
           content={`浏览所有带有 ${decodedTagName} 标签的文章，共 ${articles.length} 篇。`}

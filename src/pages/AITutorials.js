@@ -10,6 +10,10 @@ import { useReadingModeSearchParam } from '../hooks/useReadingModeSearchParam';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { LEARN_AI_SPACES } from '../utils/learnAiSpaces';
 import { buildKnowledgeSpaces, getAiTutorialSpace } from '../utils/knowledgeSpaces';
+import {
+  buildSiteTitle,
+  SITE_CONFIG
+} from '../utils/siteConfig';
 import './AITutorials.css';
 
 function AITutorialsContent({ categories, spaces }) {
@@ -35,10 +39,10 @@ function AITutorialsContent({ categories, spaces }) {
     <ReadingModeProvider value={readingMode}>
       <>
         <Helmet>
-          <title>AI学习教程 | BeatAI</title>
+          <title>{buildSiteTitle('AI学习教程')}</title>
           <meta
             name="description"
-            content="集中浏览 BeatAI 收录的 AI学习教程，目前包含 Learn Claude Code，可直达书籍正文。"
+            content={`集中浏览 ${SITE_CONFIG.brandName} 收录的 AI学习教程，目前包含 Learn Claude Code，可直达书籍正文。`}
           />
         </Helmet>
 

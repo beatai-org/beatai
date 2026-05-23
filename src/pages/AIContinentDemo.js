@@ -15,6 +15,10 @@ import {
   getRecommendedPath
 } from '../data/aiContinentMap';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import {
+  buildSiteTitle,
+  SITE_CONFIG
+} from '../utils/siteConfig';
 import './AIContinentDemo.css';
 
 function AIContinentDemo() {
@@ -65,8 +69,8 @@ function AIContinentDemo() {
   return (
     <>
       <Helmet>
-        <title>AI 大陆测试场 | BeatAI</title>
-        <meta name="description" content="BeatAI AI 大陆学习路径测试页：可视化展示地点、依赖关系与解锁流程。" />
+        <title>{buildSiteTitle('AI 大陆测试场')}</title>
+        <meta name="description" content={`${SITE_CONFIG.brandName} AI 大陆学习路径测试页：可视化展示地点、依赖关系与解锁流程。`} />
       </Helmet>
 
       <PageShell
@@ -81,7 +85,7 @@ function AIContinentDemo() {
         <main className="ai-continent-main">
           <section className="ai-continent-intro">
             <div className="ai-continent-intro-copy">
-              <p className="ai-continent-kicker">BeatAI World Preview</p>
+              <p className="ai-continent-kicker">{SITE_CONFIG.brandName} World Preview</p>
               <h1>AI 大陆世界模型地图测试场</h1>
               <p>
                 这一版已经放弃手搓地形模型，改成完整游戏地图底图，只保留路线、节点和任务交互。

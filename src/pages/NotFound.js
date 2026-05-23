@@ -5,6 +5,10 @@ import PageShell from '../components/layout/PageShell';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
+import {
+  buildSiteTitle,
+  SITE_CONFIG
+} from '../utils/siteConfig';
 import { HOME_PATH } from '../utils/siteRoutes';
 import './NotFound.css';
 
@@ -19,8 +23,8 @@ const NotFound = ({ requestedPath = '' }) => {
   return (
     <>
       <Helmet>
-        <title>404 | BeatAI</title>
-        <meta name="description" content="BeatAI 404 页面 - 当前访问路径不存在" />
+        <title>{buildSiteTitle('404')}</title>
+        <meta name="description" content={`${SITE_CONFIG.brandName} 404 页面 - 当前访问路径不存在`} />
       </Helmet>
 
       <PageShell
@@ -35,7 +39,7 @@ const NotFound = ({ requestedPath = '' }) => {
         <main className="notfound-shell">
           <div className="notfound-term">
             <div className="notfound-line">
-              <span className="prompt">beatai@web</span>
+              <span className="prompt">{SITE_CONFIG.labels.terminalPrompt}</span>
               <span className="dim"> :~$ </span>
               open <span className="path">{lostPath}</span>
             </div>
@@ -44,7 +48,7 @@ const NotFound = ({ requestedPath = '' }) => {
             <p className="notfound-sub">{'// 该路径没有对应页面 — route not found'}</p>
 
             <div className="notfound-line">
-              <span className="prompt">beatai@web</span>
+              <span className="prompt">{SITE_CONFIG.labels.terminalPrompt}</span>
               <span className="dim"> :~$ </span>
               <span className="notfound-cursor" aria-hidden="true"></span>
             </div>

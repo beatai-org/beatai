@@ -1,14 +1,11 @@
 import React, { useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import PageShell from '../components/layout/PageShell';
+import PageSeo from '../components/seo/PageSeo';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
-import {
-  buildSiteTitle,
-  SITE_CONFIG
-} from '../utils/siteConfig';
-import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
+import { SITE_CONFIG } from '../utils/siteConfig';
+import { PAGE_IDS } from '../utils/pageConfig';
 import './MapTextureShowcase.css';
 
 const PUBLIC_ROOT = process.env.PUBLIC_URL || '';
@@ -117,10 +114,7 @@ export default function MapTextureShowcase() {
 
   return (
     <>
-      <Helmet>
-        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.mapTextureShowcase].title)}</title>
-        <meta name="description" content={PAGE_CONFIG[PAGE_IDS.mapTextureShowcase].description} />
-      </Helmet>
+      <PageSeo pageId={PAGE_IDS.mapTextureShowcase} />
 
       <PageShell
         rootClassName="map-texture-page"

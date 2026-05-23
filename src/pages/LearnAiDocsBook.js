@@ -1,16 +1,15 @@
 import React, { useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import DocContent from '../components/docs/DocContent';
 import DocsLayout from '../components/docs/DocsLayout';
 import PageTransitionLoader from '../components/PageTransitionLoader';
+import PageSeo from '../components/seo/PageSeo';
 import { NotFoundState } from '../components/learnClaudeCode/NotFoundState';
 import { TagProvider } from '../contexts/TagContext';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { collectDocPaths, normalizeMetaPath } from '../utils/docsMeta';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { getLearnAiSpace } from '../utils/learnAiSpaces';
-import { buildSiteTitle } from '../utils/siteConfig';
 import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 
 function LearnAiDocsBook() {
@@ -70,10 +69,10 @@ function LearnAiDocsBook() {
 
   return (
     <>
-      <Helmet>
-        <title>{buildSiteTitle(currentSpace.bookTitle)}</title>
-        <meta name="description" content={spaceMeta?.description || currentSpace.description} />
-      </Helmet>
+      <PageSeo
+        title={currentSpace.bookTitle}
+        description={spaceMeta?.description || currentSpace.description}
+      />
 
       <TagProvider meta={tutorialMeta}>
         <DocsLayout meta={tutorialMeta} shellMeta={rootMeta}>

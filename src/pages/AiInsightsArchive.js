@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import PageShell from '../components/layout/PageShell';
+import PageSeo from '../components/seo/PageSeo';
 import ArchiveCard from '../components/aiInsights/ArchiveCard';
 import ArchiveList from '../components/aiInsights/ArchiveList';
 import TagChipBar from '../components/aiInsights/TagChipBar';
@@ -9,8 +9,7 @@ import ViewToggle from '../components/aiInsights/ViewToggle';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
-import { buildSiteTitle } from '../utils/siteConfig';
-import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
+import { PAGE_IDS } from '../utils/pageConfig';
 import { AI_INSIGHTS_CATEGORY_ID, HOME_PATH } from '../utils/siteRoutes';
 import './AiInsightsArchive.css';
 
@@ -128,13 +127,11 @@ const ArchiveContent = ({ category, categories, spaces }) => {
 
   return (
     <>
-      <Helmet>
-        <title>{buildSiteTitle(category.title)}</title>
-        <meta
-          name="description"
-          content={category.description || PAGE_CONFIG[PAGE_IDS.aiInsights].description}
-        />
-      </Helmet>
+      <PageSeo
+        pageId={PAGE_IDS.aiInsights}
+        title={category.title}
+        description={category.description || undefined}
+      />
 
       <PageShell
         rootClassName="ai-insights-archive-page"

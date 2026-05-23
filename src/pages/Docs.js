@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import DocsLayout from '../components/docs/DocsLayout';
 import DocContent from '../components/docs/DocContent';
 import PageTransitionLoader from '../components/PageTransitionLoader';
+import PageSeo from '../components/seo/PageSeo';
 import { TagProvider } from '../contexts/TagContext';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import {
@@ -11,10 +11,7 @@ import {
   getDefaultDocsPath,
   getFirstNavigablePathForCategory
 } from '../utils/docsMeta';
-import {
-  buildSiteTitle,
-} from '../utils/siteConfig';
-import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
+import { PAGE_IDS } from '../utils/pageConfig';
 import NotFound from './NotFound';
 import './Docs.css';
 
@@ -52,10 +49,7 @@ const Docs = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.docs].title)}</title>
-        <meta name="description" content={PAGE_CONFIG[PAGE_IDS.docs].description} />
-      </Helmet>
+      <PageSeo pageId={PAGE_IDS.docs} />
 
       <TagProvider meta={docsMeta}>
         <DocsLayout meta={docsMeta}>

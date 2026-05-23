@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import LearnClaudeCodeIcon from '../components/icons/LearnClaudeCodeIcon';
 import PageShell from '../components/layout/PageShell';
+import PageSeo from '../components/seo/PageSeo';
 import { ReadingModeProvider } from '../contexts/ReadingModeContext';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
@@ -10,8 +10,7 @@ import { useReadingModeSearchParam } from '../hooks/useReadingModeSearchParam';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { LEARN_AI_SPACES } from '../utils/learnAiSpaces';
 import { buildKnowledgeSpaces, getAiTutorialSpace } from '../utils/knowledgeSpaces';
-import { buildSiteTitle } from '../utils/siteConfig';
-import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
+import { PAGE_IDS } from '../utils/pageConfig';
 import './AITutorials.css';
 
 function AITutorialsContent({ categories, spaces }) {
@@ -36,13 +35,7 @@ function AITutorialsContent({ categories, spaces }) {
   return (
     <ReadingModeProvider value={readingMode}>
       <>
-        <Helmet>
-          <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.aiTutorials].title)}</title>
-          <meta
-            name="description"
-            content={PAGE_CONFIG[PAGE_IDS.aiTutorials].description}
-          />
-        </Helmet>
+        <PageSeo pageId={PAGE_IDS.aiTutorials} />
 
         <PageShell
           rootClassName={`ai-tutorials-page ${isReadingMode ? 'reading-mode' : ''}`.trim()}

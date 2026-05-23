@@ -1,22 +1,18 @@
 import React, { useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import AIInsightsIcon from '../components/icons/AIInsightsIcon';
 import RustBookIcon from '../components/icons/RustBookIcon';
 import LearnClaudeCodeIcon from '../components/icons/LearnClaudeCodeIcon';
 import BeatAILogoWave from '../components/BeatAILogoWave';
 import PageShell from '../components/layout/PageShell';
+import PageSeo from '../components/seo/PageSeo';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
-import {
-  buildSiteTitle,
-  SITE_CONFIG
-} from '../utils/siteConfig';
+import { SITE_CONFIG } from '../utils/siteConfig';
 import {
   buildTagPath,
-  PAGE_CONFIG,
   PAGE_IDS,
   SQUARE_CONTENT_CARDS,
   SQUARE_TAGS
@@ -55,10 +51,7 @@ const Square = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.square].title)}</title>
-        <meta name="description" content={PAGE_CONFIG[PAGE_IDS.square].description} />
-      </Helmet>
+      <PageSeo pageId={PAGE_IDS.square} />
 
       <PageShell
         rootClassName="square-page"

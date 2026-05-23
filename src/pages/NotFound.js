@@ -1,15 +1,12 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import PageShell from '../components/layout/PageShell';
+import PageSeo from '../components/seo/PageSeo';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
-import {
-  buildSiteTitle,
-  SITE_CONFIG
-} from '../utils/siteConfig';
-import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
+import { SITE_CONFIG } from '../utils/siteConfig';
+import { PAGE_IDS } from '../utils/pageConfig';
 import { HOME_PATH } from '../utils/siteRoutes';
 import './NotFound.css';
 
@@ -23,10 +20,7 @@ const NotFound = ({ requestedPath = '' }) => {
 
   return (
     <>
-      <Helmet>
-        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.notFound].title)}</title>
-        <meta name="description" content={PAGE_CONFIG[PAGE_IDS.notFound].description} />
-      </Helmet>
+      <PageSeo pageId={PAGE_IDS.notFound} />
 
       <PageShell
         rootClassName="notfound-page"

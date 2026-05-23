@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import MapScene from '../components/aiContinent/MapScene';
 import QuestPanel from '../components/aiContinent/QuestPanel';
 import PageShell from '../components/layout/PageShell';
+import PageSeo from '../components/seo/PageSeo';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import {
@@ -15,11 +15,8 @@ import {
   getRecommendedPath
 } from '../data/aiContinentMap';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
-import {
-  buildSiteTitle,
-  SITE_CONFIG
-} from '../utils/siteConfig';
-import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
+import { SITE_CONFIG } from '../utils/siteConfig';
+import { PAGE_IDS } from '../utils/pageConfig';
 import './AIContinentDemo.css';
 
 function AIContinentDemo() {
@@ -69,10 +66,7 @@ function AIContinentDemo() {
 
   return (
     <>
-      <Helmet>
-        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.aiContinentDemo].title)}</title>
-        <meta name="description" content={PAGE_CONFIG[PAGE_IDS.aiContinentDemo].description} />
-      </Helmet>
+      <PageSeo pageId={PAGE_IDS.aiContinentDemo} />
 
       <PageShell
         rootClassName="ai-continent-page"

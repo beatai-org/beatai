@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { TagProvider, useTag } from '../contexts/TagContext';
 import PageShell from '../components/layout/PageShell';
+import PageSeo from '../components/seo/PageSeo';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
@@ -26,13 +26,11 @@ const TagPageContent = ({ categories, spaces }) => {
 
   return (
     <>
-      <Helmet>
-        <title>{buildDocsTitle(`#${decodedTagName} 标签`)}</title>
-        <meta
-          name="description"
-          content={`浏览所有带有 ${decodedTagName} 标签的文章，共 ${articles.length} 篇。`}
-        />
-      </Helmet>
+      <PageSeo
+        title={`#${decodedTagName} 标签`}
+        description={`浏览所有带有 ${decodedTagName} 标签的文章，共 ${articles.length} 篇。`}
+        titleBuilder={buildDocsTitle}
+      />
 
       <PageShell
         rootClassName="tag-page"

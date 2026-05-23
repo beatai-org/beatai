@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import BeatAILogo from '../components/BeatAILogo';
 import BeatAILogoGeometric from '../components/BeatAILogoGeometric';
 import BeatAILogoCircuit from '../components/BeatAILogoCircuit';
 import BeatAILogoWave from '../components/BeatAILogoWave';
 import BeatAILogoHex from '../components/BeatAILogoHex';
-import {
-  buildSiteTitle,
-  SITE_CONFIG
-} from '../utils/siteConfig';
+import PageSeo from '../components/seo/PageSeo';
+import { SITE_CONFIG } from '../utils/siteConfig';
 import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 import './LogoShowcase.css';
 
@@ -52,9 +49,7 @@ const LogoShowcase = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.logoShowcase].title)}</title>
-      </Helmet>
+      <PageSeo pageId={PAGE_IDS.logoShowcase} />
 
       <div className="logo-showcase">
         <div className="logo-showcase-container">

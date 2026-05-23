@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
 import {
   Navigate,
   Route,
@@ -8,6 +7,7 @@ import {
   useParams
 } from 'react-router-dom';
 import BookWorkspaceLayout from '../components/docs/BookWorkspaceLayout';
+import PageSeo from '../components/seo/PageSeo';
 import { LearnRouteNotFound, NotFoundState } from '../components/learnClaudeCode/NotFoundState';
 import VersionPage from '../components/learnClaudeCode/VersionPage';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
@@ -24,8 +24,7 @@ import {
   getLearnAiSpaceByVersion
 } from '../utils/learnAiSpaces';
 import { buildKnowledgeSpaces, getAiTutorialSpace } from '../utils/knowledgeSpaces';
-import { buildSiteTitle } from '../utils/siteConfig';
-import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
+import { PAGE_IDS } from '../utils/pageConfig';
 
 function LearnClaudeCode() {
   const { space: spaceSlug } = useParams();
@@ -57,13 +56,7 @@ function LearnClaudeCode() {
 
   return (
     <>
-      <Helmet>
-        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.learnClaudeCode].title)}</title>
-        <meta
-          name="description"
-          content={PAGE_CONFIG[PAGE_IDS.learnClaudeCode].description}
-        />
-      </Helmet>
+      <PageSeo pageId={PAGE_IDS.learnClaudeCode} />
 
       <BookWorkspaceLayout
         rootClassName="lcc-page"

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkCjkFriendly from 'remark-cjk-friendly';
@@ -18,6 +17,7 @@ import ArticleTags from './ArticleTags';
 import ArticleSourceCard from './ArticleSourceCard';
 import DocArticleLayout from './DocArticleLayout';
 import GiscusComments from '../comments/GiscusComments';
+import PageSeo from '../seo/PageSeo';
 import {
   buildDocPageDescription,
   buildDocPageTitle,
@@ -189,12 +189,13 @@ const DocContent = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{buildDocsTitle(pageTitle)}</title>
-        <meta name="description" content={pageDescription} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-      </Helmet>
+      <PageSeo
+        title={pageTitle}
+        description={pageDescription}
+        titleBuilder={buildDocsTitle}
+        openGraphTitle={pageTitle}
+        openGraphDescription={pageDescription}
+      />
 
       <DocArticleLayout
         articleRef={articleRef}

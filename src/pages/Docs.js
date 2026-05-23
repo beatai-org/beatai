@@ -8,9 +8,10 @@ import { TagProvider } from '../contexts/TagContext';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import {
   collectDocPaths,
+  findCategoryById,
   getDefaultDocsPath,
   getFirstNavigablePathForCategory
-} from '../utils/docsMeta';
+} from '../utils/docsMetaSelectors';
 import { PAGE_IDS } from '../utils/pageConfig';
 import NotFound from './NotFound';
 import './Docs.css';
@@ -18,7 +19,7 @@ import './Docs.css';
 // Component to handle category-level redirects
 const CategoryRedirect = ({ meta }) => {
   const { categoryId } = useParams();
-  const category = meta?.categories?.find((item) => item.id === categoryId);
+  const category = findCategoryById(meta, categoryId);
   const redirectPath = getFirstNavigablePathForCategory(category) || '/';
   return <Navigate to={redirectPath} replace />;
 };

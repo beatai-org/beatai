@@ -5,7 +5,7 @@ import { PageTitleProvider } from '../../contexts/PageTitleContext';
 import { MetaProvider } from '../../contexts/MetaContext';
 import { useCategoryNavigation } from '../../hooks/useCategoryNavigation';
 import { useSidebarState } from '../../hooks/useSidebarState';
-import { findActiveCategoryByPath } from '../../utils/docsMeta';
+import { findActiveCategoryByPath } from '../../utils/docsMetaSelectors';
 import { buildKnowledgeSpaces, findActiveKnowledgeSpace } from '../../utils/knowledgeSpaces';
 
 // Inner component that uses the context

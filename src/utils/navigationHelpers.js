@@ -1,4 +1,4 @@
-import { normalizeMetaPath } from './docsMeta';
+import { normalizeMetaPath } from './docsMetaSelectors';
 import { forEachDocItem } from './docsMetaTraversal';
 
 /**

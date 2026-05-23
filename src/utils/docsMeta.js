@@ -1,6 +1,27 @@
 import { fetchJson } from './http';
 import { normalizeDocsMeta } from './docsMetaNormalizer';
 
+export {
+  buildArticleTagList,
+  buildSearchableDocs,
+  buildTagIndex,
+  collectDocPaths,
+  filterArticlesByTag,
+  findActiveCategoryByPath,
+  findArticleTags,
+  findCategoryById,
+  findMetaEntryByPath,
+  getAllTags,
+  getArticlesByTag,
+  getCategoryArticles,
+  getDefaultDocsPath,
+  getFirstNavigablePathForCategory,
+  getFirstNavigablePathForSection,
+  groupArticlesByCategory,
+  groupArticlesByDate,
+  normalizeMetaPath
+} from './docsMetaSelectors';
+
 const PUBLIC_URL = process.env.PUBLIC_URL || '';
 const DOCS_META_PATH = `${PUBLIC_URL}/docs/_meta.json`;
 
@@ -18,18 +39,6 @@ function resolveMetaUrl(metaPath) {
 
   const normalizedPath = metaPath.startsWith('/') ? metaPath : `/${metaPath}`;
   return `${PUBLIC_URL}${normalizedPath}`;
-}
-
-export function normalizeMetaPath(path = '') {
-  if (!path) {
-    return '';
-  }
-
-  try {
-    return decodeURI(path);
-  } catch (error) {
-    return path;
-  }
 }
 
 function mergeBookMeta(entry, categoryMeta) {
@@ -68,42 +77,6 @@ async function resolveDocsMeta(data) {
   };
 }
 
-function findFirstPathInItems(items = []) {
-  for (const item of items) {
-    if (item.path) {
-      return item.path;
-    }
-
-    if (item.children?.length) {
-      const childPath = findFirstPathInItems(item.children);
-      if (childPath) {
-        return childPath;
-      }
-    }
-  }
-
-  return null;
-}
-
-function findItemByPath(items = [], path, category, section) {
-  const normalizedPath = normalizeMetaPath(path);
-
-  for (const item of items) {
-    if (normalizeMetaPath(item.path) === normalizedPath) {
-      return { type: 'item', item, category, section };
-    }
-
-    if (item.children?.length) {
-      const found = findItemByPath(item.children, path, category, section);
-      if (found) {
-        return found;
-      }
-    }
-  }
-
-  return null;
-}
-
 export function getDocsMetaUrl() {
   return DOCS_META_PATH;
 }
@@ -135,106 +108,4 @@ export async function loadDocsMeta(metaUrl = getDocsMetaUrl()) {
   docsMetaPromises.set(metaUrl, request);
 
   return request;
-}
-
-export function getFirstNavigablePathForSection(section) {
-  if (!section) {
-    return null;
-  }
-
-  return findFirstPathInItems(section.items || []) || section.path || null;
-}
-
-export function getFirstNavigablePathForCategory(category) {
-  if (!category) {
-    return null;
-  }
-
-  return getFirstNavigablePathForSection(category.sections?.[0]);
-}
-
-export function getDefaultDocsPath(meta) {
-  return getFirstNavigablePathForCategory(meta?.categories?.[0]) || '/';
-}
-
-export function collectDocPaths(meta) {
-  const paths = new Set();
-
-  const addPath = (path) => {
-    if (!path) {
-      return;
-    }
-
-    const normalizedPath = normalizeMetaPath(path);
-    paths.add(normalizedPath);
-
-    try {
-      paths.add(encodeURI(normalizedPath));
-    } catch (error) {
-      // Keep the normalized path only when encoding fails.
-    }
-  };
-
-  const collectItems = (items = []) => {
-    items.forEach((item) => {
-      if (item.path) {
-        addPath(item.path);
-      }
-
-      if (item.children?.length) {
-        collectItems(item.children);
-      }
-    });
-  };
-
-  (meta?.categories || []).forEach((category) => {
-    addPath(`/${category.id}`);
-
-    (category.sections || []).forEach((section) => {
-      if (section.path) {
-        addPath(section.path);
-      }
-
-      collectItems(section.items || []);
-    });
-  });
-
-  return paths;
-}
-
-export function findMetaEntryByPath(meta, path) {
-  const normalizedPath = normalizeMetaPath(path);
-
-  for (const category of meta?.categories || []) {
-    if (normalizeMetaPath(`/${category.id}`) === normalizedPath) {
-      return { type: 'category', item: category, category, section: null };
-    }
-
-    for (const section of category.sections || []) {
-      if (normalizeMetaPath(section.path) === normalizedPath) {
-        return { type: 'section', item: section, category, section };
-      }
-
-      const foundItem = findItemByPath(section.items || [], normalizedPath, category, section);
-      if (foundItem) {
-        return foundItem;
-      }
-    }
-  }
-
-  return null;
-}
-
-export function findActiveCategoryByPath(meta, path) {
-  const found = findMetaEntryByPath(meta, path);
-  const normalizedPath = normalizeMetaPath(path);
-
-  if (found?.category) {
-    return found.category;
-  }
-
-  const categories = meta?.categories || [];
-  const categoryByPrefix = categories.find((category) => normalizedPath.startsWith(`/${category.id}`));
-
-  return categoryByPrefix || categories[0] || null;
 }

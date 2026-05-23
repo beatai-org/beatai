@@ -1,7 +1,7 @@
 import {
   findActiveCategoryByPath,
   getFirstNavigablePathForCategory
-} from './docsMeta';
+} from './docsMetaSelectors';
 import { getLearnAiDefaultPath, LEARN_AI_BASE_PATH } from './learnAiPaths';
 import { PAGE_CONFIG, PAGE_IDS } from './pageConfig';
 

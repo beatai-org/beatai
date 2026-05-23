@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { RepoCard } from '../common';
-import { normalizeMetaPath } from '../../utils/docsMeta';
+import { normalizeMetaPath } from '../../utils/docsMetaSelectors';
 
 function SidebarTitle({ title }) {
   return (

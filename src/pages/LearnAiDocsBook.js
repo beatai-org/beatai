@@ -7,7 +7,7 @@ import PageSeo from '../components/seo/PageSeo';
 import { NotFoundState } from '../components/learnClaudeCode/NotFoundState';
 import { TagProvider } from '../contexts/TagContext';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { collectDocPaths, normalizeMetaPath } from '../utils/docsMeta';
+import { collectDocPaths, normalizeMetaPath } from '../utils/docsMetaSelectors';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { getLearnAiSpace } from '../utils/learnAiSpaces';
 import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';

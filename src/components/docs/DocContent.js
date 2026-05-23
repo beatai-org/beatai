@@ -39,7 +39,7 @@ import { useTag } from '../../contexts/TagContext';
 import { useMarkdownSource } from '../../hooks/useMarkdownSource';
 import { useDocShortcuts } from '../../hooks/useDocShortcuts';
 import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
-import { findMetaEntryByPath } from '../../utils/docsMeta';
+import { findMetaEntryByPath } from '../../utils/docsMetaSelectors';
 import { normalizeDocComponentMarkdown, resolvePublicContentUrl } from '../../utils/markdown';
 import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
 import { buildDocsTitle } from '../../utils/siteConfig';

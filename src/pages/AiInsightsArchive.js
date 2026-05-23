@@ -8,6 +8,13 @@ import TagChipBar from '../components/aiInsights/TagChipBar';
 import ViewToggle from '../components/aiInsights/ViewToggle';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
+import {
+  buildArticleTagList,
+  filterArticlesByTag,
+  findCategoryById,
+  getCategoryArticles,
+  groupArticlesByDate
+} from '../utils/docsMetaSelectors';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
 import { PAGE_IDS } from '../utils/pageConfig';
 import { AI_INSIGHTS_CATEGORY_ID, HOME_PATH } from '../utils/siteRoutes';
@@ -31,44 +38,6 @@ function parseTagParam(value) {
   return value.trim();
 }
 
-function flattenArticles(category) {
-  const out = [];
-  for (const section of category.sections) {
-    for (const item of section.items) {
-      if (item.path && item.publishedAt) out.push(item);
-    }
-  }
-  return out;
-}
-
-function groupByDate(articles) {
-  const map = new Map();
-  for (const a of articles) {
-    const date = a.publishedAt;
-    if (!map.has(date)) map.set(date, []);
-    map.get(date).push(a);
-  }
-  // YYYY-MM-DD 字典序倒排 = 时间倒序
-  return [...map.entries()]
-    .sort((a, b) => (a[0] < b[0] ? 1 : a[0] > b[0] ? -1 : 0))
-    .map(([date, items]) => ({ date, articles: items }));
-}
-
-function buildTagList(articles) {
-  const counts = new Map();
-  for (const a of articles) {
-    for (const tag of a.tags) {
-      counts.set(tag, (counts.get(tag) || 0) + 1);
-    }
-  }
-  return [...counts.entries()]
-    .map(([tag, count]) => ({ tag, count }))
-    .sort((a, b) => {
-      if (b.count !== a.count) return b.count - a.count;
-      return a.tag.localeCompare(b.tag, 'zh');
-    });
-}
-
 const ArchiveContent = ({ category, categories, spaces }) => {
   const handleCategoryClick = useCategoryNavigation();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -79,15 +48,14 @@ const ArchiveContent = ({ category, categories, spaces }) => {
     [searchParams]
   );
 
-  const articles = useMemo(() => flattenArticles(category), [category]);
-  const tagList = useMemo(() => buildTagList(articles), [articles]);
+  const articles = useMemo(() => getCategoryArticles(category), [category]);
+  const tagList = useMemo(() => buildArticleTagList(articles), [articles]);
 
   const filteredArticles = useMemo(() => {
-    if (!selectedTag) return articles;
-    return articles.filter((a) => a.tags.includes(selectedTag));
+    return filterArticlesByTag(articles, selectedTag);
   }, [articles, selectedTag]);
 
-  const groups = useMemo(() => groupByDate(filteredArticles), [filteredArticles]);
+  const groups = useMemo(() => groupArticlesByDate(filteredArticles), [filteredArticles]);
 
   const handleSelectTag = useCallback(
     (tag) => {
@@ -196,7 +164,7 @@ const AiInsightsArchive = () => {
     return <div className="ai-insights-archive-error">Failed to load metadata</div>;
   }
 
-  const category = meta.categories?.find((c) => c.id === AI_INSIGHTS_CATEGORY_ID);
+  const category = findCategoryById(meta, AI_INSIGHTS_CATEGORY_ID);
   if (!category) {
     return (
       <div className="ai-insights-archive-error">

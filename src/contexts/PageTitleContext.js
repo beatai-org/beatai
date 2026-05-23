@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useMemo } from 'react';
-import { findMetaEntryByPath } from '../utils/docsMeta';
+import { findMetaEntryByPath } from '../utils/docsMetaSelectors';
 
 const PageTitleContext = createContext(null);
 

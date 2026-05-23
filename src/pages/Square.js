@@ -7,7 +7,7 @@ import PageShell from '../components/layout/PageShell';
 import PageSeo from '../components/seo/PageSeo';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { getFirstNavigablePathForCategory } from '../utils/docsMeta';
+import { getFirstNavigablePathForCategory } from '../utils/docsMetaSelectors';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
 import { SITE_CONFIG } from '../utils/siteConfig';

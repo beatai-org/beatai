@@ -8,6 +8,7 @@ import {
   buildSiteTitle,
   SITE_CONFIG
 } from '../utils/siteConfig';
+import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 import './MapTextureShowcase.css';
 
 const PUBLIC_ROOT = process.env.PUBLIC_URL || '';
@@ -117,8 +118,8 @@ export default function MapTextureShowcase() {
   return (
     <>
       <Helmet>
-        <title>{buildSiteTitle('游戏世界贴图测试页')}</title>
-        <meta name="description" content={`${SITE_CONFIG.brandName} 游戏世界贴图测试页，横向比较 10 张不同风格的世界地图素材。`} />
+        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.mapTextureShowcase].title)}</title>
+        <meta name="description" content={PAGE_CONFIG[PAGE_IDS.mapTextureShowcase].description} />
       </Helmet>
 
       <PageShell

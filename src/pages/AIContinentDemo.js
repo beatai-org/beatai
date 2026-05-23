@@ -19,6 +19,7 @@ import {
   buildSiteTitle,
   SITE_CONFIG
 } from '../utils/siteConfig';
+import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 import './AIContinentDemo.css';
 
 function AIContinentDemo() {
@@ -69,8 +70,8 @@ function AIContinentDemo() {
   return (
     <>
       <Helmet>
-        <title>{buildSiteTitle('AI 大陆测试场')}</title>
-        <meta name="description" content={`${SITE_CONFIG.brandName} AI 大陆学习路径测试页：可视化展示地点、依赖关系与解锁流程。`} />
+        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.aiContinentDemo].title)}</title>
+        <meta name="description" content={PAGE_CONFIG[PAGE_IDS.aiContinentDemo].description} />
       </Helmet>
 
       <PageShell

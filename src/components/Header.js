@@ -4,6 +4,7 @@ import './Header.css';
 import ThemeToggle from './ThemeToggle';
 import ThemeSelector from './ThemeSelector';
 import { SITE_CONFIG } from '../utils/siteConfig';
+import { MARKETING_NAV_ITEMS, PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,17 +18,22 @@ const Header = () => {
           </div>
 
           <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
-            <a href="#features">Features</a>
-            <a href="#demo">Demo</a>
-            <Link to="/">Documentation</Link>
-            <a href="#community">Community</a>
+            {MARKETING_NAV_ITEMS.map((item) => (
+              item.to ? (
+                <Link key={item.id} to={item.to}>{item.label}</Link>
+              ) : (
+                <a key={item.id} href={item.href}>{item.label}</a>
+              )
+            ))}
           </nav>
 
           <div className="header-actions">
             <ThemeSelector />
             <ThemeToggle />
             <a href={SITE_CONFIG.links.githubOrgUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">{SITE_CONFIG.labels.github}</a>
-            <Link to="/" className="btn btn-primary">Get Started</Link>
+            <Link to={PAGE_CONFIG[PAGE_IDS.docs].path} className="btn btn-primary">
+              {PAGE_CONFIG[PAGE_IDS.docs].ctaLabel}
+            </Link>
           </div>
 
           <button

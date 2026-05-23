@@ -3,13 +3,14 @@ import {
   getFirstNavigablePathForCategory
 } from './docsMeta';
 import { getLearnAiDefaultPath, LEARN_AI_BASE_PATH } from './learnAiPaths';
+import { PAGE_CONFIG, PAGE_IDS } from './pageConfig';
 
 export const AI_TUTORIALS_PATH = LEARN_AI_BASE_PATH;
 
 export function getAiTutorialSpace() {
   return {
     id: 'ai-tutorials',
-    title: 'AI学习教程',
+    title: PAGE_CONFIG[PAGE_IDS.aiTutorials].title,
     entryPath: AI_TUTORIALS_PATH,
     kind: 'tutorial-hub'
   };

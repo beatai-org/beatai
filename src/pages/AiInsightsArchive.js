@@ -10,6 +10,7 @@ import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
 import { buildSiteTitle } from '../utils/siteConfig';
+import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 import { AI_INSIGHTS_CATEGORY_ID, HOME_PATH } from '../utils/siteRoutes';
 import './AiInsightsArchive.css';
 
@@ -131,7 +132,7 @@ const ArchiveContent = ({ category, categories, spaces }) => {
         <title>{buildSiteTitle(category.title)}</title>
         <meta
           name="description"
-          content={category.description || `${category.title} 档案`}
+          content={category.description || PAGE_CONFIG[PAGE_IDS.aiInsights].description}
         />
       </Helmet>
 

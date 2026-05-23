@@ -1,7 +1,10 @@
 import { LAYERS, zhMessages } from '../../vendor/learn-claude-code/data';
 import { getLearnAiEntryPath, getLearnAiSpacePath } from '../../utils/learnAiPaths';
 import { getLearnAiSpace, LEARN_AI_SPACES } from '../../utils/learnAiSpaces';
+import { PAGE_CONFIG, PAGE_IDS } from '../../utils/pageConfig';
 import { getVersionNavTitle } from './versionUtils';
+
+const AI_TUTORIALS_TITLE = PAGE_CONFIG[PAGE_IDS.aiTutorials].title;
 
 function mapLayerToSidebarItem(layer, space) {
   const versions = layer.versions || [];
@@ -49,8 +52,8 @@ export function buildLearnAiSidebarMeta(currentSpace = null) {
       githubRepo: resolvedCurrentSpace.githubRepo,
       repoTitle: resolvedCurrentSpace.repoTitle,
       bookPath: {
-        parentTitle: 'AI学习教程',
-        currentTitle: resolvedCurrentSpace.bookTitle || resolvedCurrentSpace.title || 'AI学习教程'
+        parentTitle: AI_TUTORIALS_TITLE,
+        currentTitle: resolvedCurrentSpace.bookTitle || resolvedCurrentSpace.title || AI_TUTORIALS_TITLE
       }
     };
   }
@@ -89,7 +92,7 @@ export function buildLearnAiSidebarMeta(currentSpace = null) {
     title: resolvedCurrentSpace?.bookTitle || resolvedCurrentSpace?.title || 'Learn Claude Code',
     sections,
     bookPath: {
-      parentTitle: 'AI学习教程',
+      parentTitle: AI_TUTORIALS_TITLE,
       currentTitle: resolvedCurrentSpace?.bookTitle || resolvedCurrentSpace?.title || 'Learn Claude Code'
     }
   };

@@ -13,8 +13,8 @@ import {
 } from '../utils/docsMeta';
 import {
   buildSiteTitle,
-  SITE_CONFIG
 } from '../utils/siteConfig';
+import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 import NotFound from './NotFound';
 import './Docs.css';
 
@@ -53,8 +53,8 @@ const Docs = () => {
   return (
     <>
       <Helmet>
-        <title>{buildSiteTitle(SITE_CONFIG.seo.docsPageTitle)}</title>
-        <meta name="description" content={SITE_CONFIG.seo.docsDescription} />
+        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.docs].title)}</title>
+        <meta name="description" content={PAGE_CONFIG[PAGE_IDS.docs].description} />
       </Helmet>
 
       <TagProvider meta={docsMeta}>

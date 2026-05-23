@@ -6,6 +6,7 @@ import ThemeToggle from './ThemeToggle';
 import ThemeSelector from './ThemeSelector';
 import { HiSparkles } from 'react-icons/hi';
 import { SITE_CONFIG } from '../utils/siteConfig';
+import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 
 const Hero = () => {
   return (
@@ -44,8 +45,8 @@ const Hero = () => {
           </div>
 
           <div className="hero-actions">
-            <Link to="/" className="btn btn-primary btn-large">
-              Get Started →
+            <Link to={PAGE_CONFIG[PAGE_IDS.docs].path} className="btn btn-primary btn-large">
+              {PAGE_CONFIG[PAGE_IDS.docs].ctaLabel} →
             </Link>
             <a href={SITE_CONFIG.links.githubOrgUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-large">
               View on GitHub

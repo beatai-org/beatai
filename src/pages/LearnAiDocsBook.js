@@ -11,6 +11,7 @@ import { collectDocPaths, normalizeMetaPath } from '../utils/docsMeta';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { getLearnAiSpace } from '../utils/learnAiSpaces';
 import { buildSiteTitle } from '../utils/siteConfig';
+import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 
 function LearnAiDocsBook() {
   const { space: spaceSlug } = useParams();
@@ -40,7 +41,7 @@ function LearnAiDocsBook() {
         githubRepo: currentSpace.githubRepo || spaceMeta.githubRepo,
         repoTitle: currentSpace.repoTitle || spaceMeta.repoTitle,
         bookPath: {
-          parentTitle: 'AI学习教程',
+          parentTitle: PAGE_CONFIG[PAGE_IDS.aiTutorials].title,
           currentTitle: currentSpace.bookTitle || spaceMeta.title
         }
       }]

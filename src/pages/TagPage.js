@@ -7,6 +7,7 @@ import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
 import { buildDocsTitle } from '../utils/siteConfig';
+import { HOME_PATH } from '../utils/siteRoutes';
 import './TagPage.css';
 
 // Inner component that uses TagContext
@@ -53,7 +54,7 @@ const TagPageContent = ({ categories, spaces }) => {
           {articles.length === 0 ? (
             <div className="tag-page-empty">
               <p>暂无带有此标签的文章</p>
-              <Link to="/" className="tag-page-back-link">
+              <Link to={HOME_PATH} className="tag-page-back-link">
                 返回首页
               </Link>
             </div>

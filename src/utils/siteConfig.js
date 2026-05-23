@@ -7,8 +7,7 @@ export const SITE_CONFIG = {
   defaultDescription: 'BeatAI - The AI that actually does things',
   routes: {
     aiInsightsCategoryId: AI_INSIGHTS_CATEGORY_ID,
-    aiInsightsPath: AI_INSIGHTS_PATH,
-    homePath: AI_INSIGHTS_PATH
+    aiInsightsPath: AI_INSIGHTS_PATH
   },
   seo: {
     titleSuffix: 'BeatAI',

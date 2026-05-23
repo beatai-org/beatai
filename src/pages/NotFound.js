@@ -9,6 +9,7 @@ import {
   buildSiteTitle,
   SITE_CONFIG
 } from '../utils/siteConfig';
+import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 import { HOME_PATH } from '../utils/siteRoutes';
 import './NotFound.css';
 
@@ -23,8 +24,8 @@ const NotFound = ({ requestedPath = '' }) => {
   return (
     <>
       <Helmet>
-        <title>{buildSiteTitle('404')}</title>
-        <meta name="description" content={`${SITE_CONFIG.brandName} 404 页面 - 当前访问路径不存在`} />
+        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.notFound].title)}</title>
+        <meta name="description" content={PAGE_CONFIG[PAGE_IDS.notFound].description} />
       </Helmet>
 
       <PageShell

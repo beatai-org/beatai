@@ -9,6 +9,7 @@ import {
   buildSiteTitle,
   SITE_CONFIG
 } from '../utils/siteConfig';
+import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 import './LogoShowcase.css';
 
 const LogoShowcase = () => {
@@ -52,12 +53,12 @@ const LogoShowcase = () => {
   return (
     <>
       <Helmet>
-        <title>{buildSiteTitle('Logo 设计方案')}</title>
+        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.logoShowcase].title)}</title>
       </Helmet>
 
       <div className="logo-showcase">
         <div className="logo-showcase-container">
-          <h1 className="showcase-title">{SITE_CONFIG.brandName} Logo 设计方案</h1>
+          <h1 className="showcase-title">{SITE_CONFIG.brandName} {PAGE_CONFIG[PAGE_IDS.logoShowcase].title}</h1>
           <p className="showcase-subtitle">选择你喜欢的设计风格</p>
 
           {/* 大图预览 */}

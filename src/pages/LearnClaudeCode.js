@@ -24,10 +24,8 @@ import {
   getLearnAiSpaceByVersion
 } from '../utils/learnAiSpaces';
 import { buildKnowledgeSpaces, getAiTutorialSpace } from '../utils/knowledgeSpaces';
-import {
-  buildSiteTitle,
-  SITE_CONFIG
-} from '../utils/siteConfig';
+import { buildSiteTitle } from '../utils/siteConfig';
+import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 
 function LearnClaudeCode() {
   const { space: spaceSlug } = useParams();
@@ -60,10 +58,10 @@ function LearnClaudeCode() {
   return (
     <>
       <Helmet>
-        <title>{buildSiteTitle('Learn Claude Code')}</title>
+        <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.learnClaudeCode].title)}</title>
         <meta
           name="description"
-          content={`Learn Claude Code 学习路径已接入 ${SITE_CONFIG.brandName}，包含学习路径、版本详情、文档讲解、模拟器与源码浏览。`}
+          content={PAGE_CONFIG[PAGE_IDS.learnClaudeCode].description}
         />
       </Helmet>
 

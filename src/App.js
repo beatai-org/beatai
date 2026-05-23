@@ -7,11 +7,10 @@ import { HistoryProvider } from './contexts/HistoryContext';
 import PageTransitionLoader from './components/PageTransitionLoader';
 import { lazyWithMinLoadTime } from './utils/lazyWithMinLoadTime';
 import {
-  LEARN_AI_BASE_PATH,
   rewriteLegacyLearnClaudeCodePath
 } from './utils/learnAiPaths';
-import { AI_TUTORIALS_PATH } from './utils/knowledgeSpaces';
-import { AI_INSIGHTS_PATH, HOME_PATH } from './utils/siteRoutes';
+import { APP_ROUTE_PATHS, PAGE_CONFIG, PAGE_IDS } from './utils/pageConfig';
+import { HOME_PATH } from './utils/siteRoutes';
 
 // Lazy load components with minimum load time (500ms)
 const Home = lazy(() => lazyWithMinLoadTime(() => import('./pages/Home')));
@@ -43,18 +42,18 @@ function App() {
                 <Suspense fallback={<PageTransitionLoader />}>
                   <Routes>
                     {/* 根目录跳转到 ai-insights 档案页 */}
-                    <Route path="/" element={<Navigate to={HOME_PATH} replace />} />
-                    <Route path="/genesis-lab" element={<Home />} />
-                    <Route path="/square" element={<Square />} />
-                    <Route path="/ai-continent-demo" element={<AIContinentDemo />} />
-                    <Route path="/map-texture-showcase" element={<MapTextureShowcase />} />
-                    <Route path="/logo-showcase" element={<LogoShowcase />} />
-                    <Route path={AI_TUTORIALS_PATH} element={<AITutorials />} />
-                    <Route path="/learn-claude-code/*" element={<LegacyLearnClaudeCodeRedirect />} />
-                    <Route path={`${LEARN_AI_BASE_PATH}/:space/*`} element={<LearnAiBook />} />
-                    <Route path="/tags/:tagName" element={<TagPage />} />
-                    <Route path={AI_INSIGHTS_PATH} element={<AiInsightsArchive />} />
-                    <Route path="/*" element={<Docs />} />
+                    <Route path={APP_ROUTE_PATHS.root} element={<Navigate to={HOME_PATH} replace />} />
+                    <Route path={PAGE_CONFIG[PAGE_IDS.genesisLab].path} element={<Home />} />
+                    <Route path={PAGE_CONFIG[PAGE_IDS.square].path} element={<Square />} />
+                    <Route path={PAGE_CONFIG[PAGE_IDS.aiContinentDemo].path} element={<AIContinentDemo />} />
+                    <Route path={PAGE_CONFIG[PAGE_IDS.mapTextureShowcase].path} element={<MapTextureShowcase />} />
+                    <Route path={PAGE_CONFIG[PAGE_IDS.logoShowcase].path} element={<LogoShowcase />} />
+                    <Route path={PAGE_CONFIG[PAGE_IDS.aiTutorials].path} element={<AITutorials />} />
+                    <Route path={APP_ROUTE_PATHS.legacyLearnClaudeCode} element={<LegacyLearnClaudeCodeRedirect />} />
+                    <Route path={APP_ROUTE_PATHS.learnAiBook} element={<LearnAiBook />} />
+                    <Route path={APP_ROUTE_PATHS.tags} element={<TagPage />} />
+                    <Route path={PAGE_CONFIG[PAGE_IDS.aiInsights].path} element={<AiInsightsArchive />} />
+                    <Route path={APP_ROUTE_PATHS.catchAll} element={<Docs />} />
                   </Routes>
                 </Suspense>
               </div>

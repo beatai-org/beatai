@@ -10,10 +10,8 @@ import { useReadingModeSearchParam } from '../hooks/useReadingModeSearchParam';
 import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
 import { LEARN_AI_SPACES } from '../utils/learnAiSpaces';
 import { buildKnowledgeSpaces, getAiTutorialSpace } from '../utils/knowledgeSpaces';
-import {
-  buildSiteTitle,
-  SITE_CONFIG
-} from '../utils/siteConfig';
+import { buildSiteTitle } from '../utils/siteConfig';
+import { PAGE_CONFIG, PAGE_IDS } from '../utils/pageConfig';
 import './AITutorials.css';
 
 function AITutorialsContent({ categories, spaces }) {
@@ -39,10 +37,10 @@ function AITutorialsContent({ categories, spaces }) {
     <ReadingModeProvider value={readingMode}>
       <>
         <Helmet>
-          <title>{buildSiteTitle('AI学习教程')}</title>
+          <title>{buildSiteTitle(PAGE_CONFIG[PAGE_IDS.aiTutorials].title)}</title>
           <meta
             name="description"
-            content={`集中浏览 ${SITE_CONFIG.brandName} 收录的 AI学习教程，目前包含 Learn Claude Code，可直达书籍正文。`}
+            content={PAGE_CONFIG[PAGE_IDS.aiTutorials].description}
           />
         </Helmet>
 

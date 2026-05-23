@@ -1,12 +1,11 @@
 /**
- * 延迟加载工具
- * 确保Loading动画至少显示指定时长后再加载组件
+ * Lazy-load helper with an optional minimum loader duration.
  *
- * @param {Function} importFunc - 动态导入函数
- * @param {number} minLoadTime - 最小加载时间（毫秒），默认1000ms
- * @returns {Promise} 延迟后的组件导入Promise
+ * @param {Function} importFunc - Dynamic import function.
+ * @param {number} minLoadTime - Optional minimum load time in ms.
+ * @returns {Promise} Component import promise.
  */
-export const lazyWithMinLoadTime = (importFunc, minLoadTime = 1200) => {
+export const lazyWithMinLoadTime = (importFunc, minLoadTime = 0) => {
   return new Promise((resolve) => {
     const startTime = Date.now();
 

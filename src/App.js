@@ -12,7 +12,7 @@ import {
 import { APP_ROUTE_PATHS, PAGE_CONFIG, PAGE_IDS } from './utils/pageConfig';
 import { HOME_PATH } from './utils/siteRoutes';
 
-// Lazy load components with minimum load time (500ms)
+// Lazy-load route components; avoid adding artificial delay to navigation.
 const Home = lazy(() => lazyWithMinLoadTime(() => import('./pages/Home')));
 const Docs = lazy(() => lazyWithMinLoadTime(() => import('./pages/Docs')));
 const TagPage = lazy(() => lazyWithMinLoadTime(() => import('./pages/TagPage')));

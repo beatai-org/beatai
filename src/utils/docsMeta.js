@@ -1,33 +1,11 @@
 import { fetchJson } from './http';
-import { AI_INSIGHTS_CATEGORY_ID } from './siteRoutes';
+import { normalizeDocsMeta } from './docsMetaNormalizer';
 
 const PUBLIC_URL = process.env.PUBLIC_URL || '';
 const DOCS_META_PATH = `${PUBLIC_URL}/docs/_meta.json`;
 
 const docsMetaCache = new Map();
 const docsMetaPromises = new Map();
-
-function normalizeCategoryMeta(category) {
-  if (category?.id !== AI_INSIGHTS_CATEGORY_ID || !Array.isArray(category.sections)) {
-    return category;
-  }
-
-  return {
-    ...category,
-    sections: [...category.sections].reverse()
-  };
-}
-
-function normalizeDocsMeta(meta) {
-  if (!meta?.categories) {
-    return meta;
-  }
-
-  return {
-    ...meta,
-    categories: meta.categories.map(normalizeCategoryMeta)
-  };
-}
 
 function resolveMetaUrl(metaPath) {
   if (!metaPath) {
@@ -70,19 +48,22 @@ async function resolveDocsMeta(data) {
     return data;
   }
 
-  if (!Array.isArray(data?.books)) {
+  const rootMeta = normalizeDocsMeta(data);
+
+  if (!Array.isArray(rootMeta?.books) || rootMeta.books.length === 0) {
     return data;
   }
 
+  const resolvableBooks = rootMeta.books.filter((entry) => entry.metaFile);
   const categories = await Promise.all(
-    data.books.map(async (entry) => {
+    resolvableBooks.map(async (entry) => {
       const categoryMeta = await fetchJson(resolveMetaUrl(entry.metaFile));
       return mergeBookMeta(entry, categoryMeta);
     })
   );
 
   return {
-    ...data,
+    ...rootMeta,
     categories
   };
 }

@@ -1,8 +1,5 @@
 import { useMemo } from 'react';
-import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
-
-const EMPTY_ADJACENT_CHAPTERS = Object.freeze({ prev: null, next: null });
-const EMPTY_TAGS = Object.freeze([]);
+import { buildDocArticleNavigationModel } from '../../domain/docs';
 
 export function useDocArticleNavigation({
   meta,
@@ -11,18 +8,11 @@ export function useDocArticleNavigation({
   findArticleTags = () => []
 } = {}) {
   return useMemo(() => {
-    if (!meta) {
-      return {
-        adjacentChapters: EMPTY_ADJACENT_CHAPTERS,
-        articleTags: EMPTY_TAGS
-      };
-    }
-
-    const chapters = flattenChapters(meta);
-
-    return {
-      adjacentChapters: getAdjacentChapters(chapters, pathname),
-      articleTags: docMetaEntry?.item?.tags || findArticleTags(pathname)
-    };
+    return buildDocArticleNavigationModel({
+      meta,
+      pathname,
+      docMetaEntry,
+      findArticleTags
+    });
   }, [docMetaEntry, findArticleTags, meta, pathname]);
 }

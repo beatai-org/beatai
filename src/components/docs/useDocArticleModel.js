@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
 import { useMarkdownSource } from '../../hooks/useMarkdownSource';
-import { findMetaEntryByPath } from '../../utils/docsMetaSelectors';
 import { parseMarkdownFrontmatter } from '../../utils/markdownFrontmatter';
-import { normalizeDocComponentMarkdown, resolvePublicContentUrl } from '../../utils/markdown';
-import { AI_INSIGHTS_CATEGORY_ID } from '../../utils/siteRoutes';
+import {
+  buildDocArticleHistoryRecord,
+  buildDocArticleRouteModel,
+  buildNormalizedArticleMarkdown
+} from '../../domain/docs';
 import {
   buildDocPageDescription,
   buildDocPageTitle,
@@ -13,20 +15,17 @@ import {
 } from './docContentUtils';
 
 export function useDocArticleModel({ meta, pathname = '', findTitleByPath = () => null } = {}) {
-  const docPath = useMemo(() => pathname.replace(/^\//, ''), [pathname]);
-  const docMetaEntry = useMemo(
-    () => findMetaEntryByPath(meta, pathname),
-    [meta, pathname]
+  const articleRoute = useMemo(
+    () => buildDocArticleRouteModel({ meta, pathname, findTitleByPath }),
+    [findTitleByPath, meta, pathname]
   );
-  const isAiInsightsArticle = docMetaEntry?.category?.id === AI_INSIGHTS_CATEGORY_ID;
-  const titleFromMeta = useMemo(
-    () => docMetaEntry?.item?.title || findTitleByPath(pathname),
-    [docMetaEntry, findTitleByPath, pathname]
-  );
-  const markdownUrl = useMemo(() => {
-    const fileFromMeta = docMetaEntry?.item?.file;
-    return resolvePublicContentUrl(fileFromMeta || `/docs/${docPath}.md`);
-  }, [docPath, docMetaEntry]);
+  const {
+    docPath,
+    docMetaEntry,
+    isAiInsightsArticle,
+    markdownUrl,
+    titleFromMeta
+  } = articleRoute;
   const {
     text: rawDoc,
     loading,
@@ -51,34 +50,25 @@ export function useDocArticleModel({ meta, pathname = '', findTitleByPath = () =
     [frontmatter.description, pageTitle]
   );
   const markdownContent = useMemo(() => {
-    return normalizeDocComponentMarkdown(
-      stripAiInsightsTitle(content, isAiInsightsArticle)
-    );
+    return buildNormalizedArticleMarkdown(content, {
+      isAiInsightsArticle,
+      stripTitle: stripAiInsightsTitle
+    });
   }, [content, isAiInsightsArticle]);
   const historyRecord = useMemo(() => {
-    if (error || !rawDoc || docMetaEntry?.type !== 'item') {
-      return null;
-    }
-
-    const articleTitle = titleFromMeta || frontmatter.title;
-    if (!articleTitle) {
-      return null;
-    }
-
-    return {
-      path: pathname,
-      title: articleTitle,
-      categoryId: docMetaEntry.category?.id || null,
-      category: docMetaEntry.category?.title || null,
-      section: docMetaEntry.section?.title || null
-    };
+    return buildDocArticleHistoryRecord({
+      articleRoute,
+      pathname,
+      frontmatter,
+      rawDoc,
+      error
+    });
   }, [
-    docMetaEntry,
+    articleRoute,
     error,
-    frontmatter.title,
+    frontmatter,
     pathname,
-    rawDoc,
-    titleFromMeta
+    rawDoc
   ]);
 
   return {

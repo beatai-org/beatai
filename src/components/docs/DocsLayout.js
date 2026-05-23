@@ -5,40 +5,26 @@ import { PageTitleProvider } from '../../contexts/PageTitleContext';
 import { MetaProvider } from '../../contexts/MetaContext';
 import { useCategoryNavigation } from '../../hooks/useCategoryNavigation';
 import { useSidebarState } from '../../hooks/useSidebarState';
-import { findActiveCategoryByPath } from '../../utils/docsMetaSelectors';
-import { buildKnowledgeSpaces, findActiveKnowledgeSpace } from '../../utils/knowledgeSpaces';
+import { buildDocsWorkspaceModel } from '../../domain/docs';
 
 // Inner component that uses the context
 const DocsLayoutInner = ({ meta, shellMeta = null, children }) => {
   const location = useLocation();
   const handleCategoryClick = useCategoryNavigation();
   const { sidebarOpen, closeSidebar, toggleSidebar } = useSidebarState();
-  const navMeta = shellMeta || meta;
-
-  // Extract categories from meta with useMemo to prevent recreation
-  const categories = useMemo(() => navMeta?.categories || [], [navMeta]);
-  const spaces = useMemo(() => buildKnowledgeSpaces(navMeta), [navMeta]);
-
-  const activeCategory = useMemo(() => {
-    return findActiveCategoryByPath(navMeta, location.pathname);
-  }, [navMeta, location.pathname]);
-
-  const activeSpace = useMemo(() => {
-    return findActiveKnowledgeSpace(navMeta, location.pathname);
-  }, [navMeta, location.pathname]);
-
-  const sidebarCategory = useMemo(() => {
-    return findActiveCategoryByPath(meta, location.pathname);
-  }, [meta, location.pathname]);
-
-  // Prepare meta object for Sidebar (using only active category's sections)
-  const sidebarMeta = sidebarCategory ? {
-    title: sidebarCategory.title,
-    sections: sidebarCategory.sections,
-    githubRepo: sidebarCategory.githubRepo,
-    repoTitle: sidebarCategory.repoTitle,
-    bookPath: sidebarCategory.bookPath || null
-  } : null;
+  const {
+    activeCategory,
+    activeSpace,
+    categories,
+    sidebarMeta,
+    spaces
+  } = useMemo(() => {
+    return buildDocsWorkspaceModel({
+      meta,
+      shellMeta,
+      pathname: location.pathname
+    });
+  }, [location.pathname, meta, shellMeta]);
 
   return (
     <BookWorkspaceLayout

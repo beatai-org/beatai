@@ -7,11 +7,10 @@ import PageSeo from '../components/seo/PageSeo';
 import { TagProvider } from '../contexts/TagContext';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import {
-  collectDocPaths,
   findCategoryById,
-  getDefaultDocsPath,
   getFirstNavigablePathForCategory
 } from '../utils/docsMetaSelectors';
+import { buildDocsRouteValidationModel } from '../domain/docs';
 import { PAGE_IDS } from '../utils/pageConfig';
 import NotFound from './NotFound';
 import './Docs.css';
@@ -28,9 +27,9 @@ const Docs = () => {
   const { meta: docsMeta, loading, error } = useDocsMeta();
   const location = useLocation();
 
-  const validPaths = useMemo(() => {
-    return collectDocPaths(docsMeta);
-  }, [docsMeta]);
+  const routeValidation = useMemo(() => {
+    return buildDocsRouteValidationModel(docsMeta, location.pathname);
+  }, [docsMeta, location.pathname]);
 
   if (error) {
     return <div className="docs-loading">Failed to load documentation.</div>;
@@ -40,13 +39,9 @@ const Docs = () => {
     return <PageTransitionLoader />;
   }
 
-  const isValidDocsPath = validPaths.has(location.pathname);
-
-  if (location.pathname !== '/' && !isValidDocsPath) {
+  if (!routeValidation.isValidDocsPath) {
     return <NotFound requestedPath={location.pathname} />;
   }
-
-  const defaultPath = getDefaultDocsPath(docsMeta);
 
   return (
     <>
@@ -55,7 +50,7 @@ const Docs = () => {
       <TagProvider meta={docsMeta}>
         <DocsLayout meta={docsMeta}>
           <Routes>
-            <Route index element={<Navigate to={defaultPath} replace />} />
+            <Route index element={<Navigate to={routeValidation.defaultPath} replace />} />
             <Route path=":categoryId" element={<CategoryRedirect meta={docsMeta} />} />
             <Route path="*" element={<DocContent />} />
           </Routes>

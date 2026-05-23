@@ -2,6 +2,17 @@
 
 > 最近 30 天发布 · 完整列表见 <https://beatai.org/ai-insights>
 
+### 2026-05-23
+
+- [代码并不廉价：如何用软件基础能力放大 AI 的产出](https://beatai.org/ai-insights/code-is-not-cheap-how-to-multiply-your-ais-output-with-software-fundamentals?mode=read)  
+  2025 年 2 月，Andrej Karpathy 创造了 "vibe coding" 这个说法：描述你想要什么，让 AI 写代码，然后忘掉代码的存在。这个概念迅速火了。所有人都想相信，编码已经变得像说话一样简单。
+- [从鸢尾花到反向图片搜索：K-Nearest Neighbors](https://beatai.org/ai-insights/knn-distance-metrics-choosing-k-modern-ai-explained?mode=read)  
+  For You 页面、Spotify Discover Weekly、你做过的每一次反向图片搜索，以及 ChatGPT 内部的检索，背后的算法比彩色电视还老。
+- [AI PM 的菜单：成本-质量权衡实战指南](https://beatai.org/ai-insights/the-ai-pms-menu-a-field-guide-to-cost-quality-tradeoffs?mode=read)  
+  我经营一家创业公司。打造 NomNow 这个已经上线 App Store 的多模态 AI 营养师，让我学到了很多东西。但如果只能让年轻时的自己读到其中一条，我最想说的是：对一家基于 LLM 的创业公司来说，成本纪律不是优化，而是生存。
+- [你的 AI agent 能读你的代码库，却不了解你的产品](https://beatai.org/ai-insights/your-ai-agent-can-read-your-codebase-it-doesnt-know-your-product?mode=read)  
+  我让我的 AI agent 为我们的产品头脑风暴新功能。不到一分钟，它返回了一份干净的清单：通知中心、活动流、带分析小组件的仪表盘、入门引导向导。都是合理的功能。却没有一个适合我们。
+
 ### 2026-05-22
 
 - [构建一套 agent harness](https://beatai.org/ai-insights/building-an-agent-harness?mode=read)  
@@ -11,7 +22,7 @@
 - [深度学习需要矩阵，原因和 Instagram 需要滤镜一样](https://beatai.org/ai-insights/deep-learning-needs-matrices-for-the-same-reason-instagram-needs-filters?mode=read)  
   上学的时候，矩阵是我最喜欢的主题。我学得很快，也许你也一样。
 - [在 Netflix 让机器学习人人可用：构建模型生命周期图谱](https://beatai.org/ai-insights/democratizing-machine-learning-at-netflix-building-the-model-lifecycle-graph?mode=read)  
-  随着 Netflix 不断成长，机器学习持续支撑着我们向会员交付价值、并在业务的多个领域追求卓越的能力。十多年前 Netflix 刚开始投入机器学习时，它主要聚焦于单一领域：个性化推荐。当时 Scala 是行业标准，我们的 ML 团队规模相对较小，优化会员参与度是我们的主要用例。快进到今天，机器学习已经成为 Netflix 业务转型的支柱。我们现在把 ML 应用到各个业务领域，包括：
+  随着 Netflix 不断成长，机器学习持续支撑着 Netflix 向会员交付价值、在多个业务领域追求卓越。十多年前 Netflix 刚开始投入机器学习时，主要聚焦单一领域：个性化推荐。当时 Scala 是行业标准，ML 团队规模相对较小，优化会员参与度是主要用例。快进到今天，机器学习已成为 Netflix 业务转型的支柱。如今 ML 已应用到各个业务领域，包括：
 - [简明讲清 Diffusion LLM](https://beatai.org/ai-insights/diffusion-llms-explained-simply?mode=read)  
   基于 LLM 的聊天机器人在我们身边随处可见。它们回复时，是按顺序逐步生成内容的。也就是说，它们的输出是一个 token 接一个 token、一次一个地生成出来的。
 - [Anthropic 高速增长的阴暗面](https://beatai.org/ai-insights/the-dark-side-of-anthropics-growth?mode=read)  

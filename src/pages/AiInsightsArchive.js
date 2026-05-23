@@ -8,13 +8,8 @@ import TagChipBar from '../components/aiInsights/TagChipBar';
 import ViewToggle from '../components/aiInsights/ViewToggle';
 import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import {
-  buildArticleTagList,
-  filterArticlesByTag,
-  findCategoryById,
-  getCategoryArticles,
-  groupArticlesByDate
-} from '../utils/docsMetaSelectors';
+import { findCategoryById } from '../utils/docsMetaSelectors';
+import { buildDocsArchiveModel } from '../domain/docs';
 import { buildKnowledgeSpaces } from '../utils/knowledgeSpaces';
 import { PAGE_IDS } from '../utils/pageConfig';
 import { AI_INSIGHTS_CATEGORY_ID, HOME_PATH } from '../utils/siteRoutes';
@@ -48,14 +43,9 @@ const ArchiveContent = ({ category, categories, spaces }) => {
     [searchParams]
   );
 
-  const articles = useMemo(() => getCategoryArticles(category), [category]);
-  const tagList = useMemo(() => buildArticleTagList(articles), [articles]);
-
-  const filteredArticles = useMemo(() => {
-    return filterArticlesByTag(articles, selectedTag);
-  }, [articles, selectedTag]);
-
-  const groups = useMemo(() => groupArticlesByDate(filteredArticles), [filteredArticles]);
+  const { filteredCount, groups, tagList } = useMemo(() => {
+    return buildDocsArchiveModel(category, selectedTag);
+  }, [category, selectedTag]);
 
   const handleSelectTag = useCallback(
     (tag) => {
@@ -87,8 +77,6 @@ const ArchiveContent = ({ category, categories, spaces }) => {
       setViewMode(DEFAULT_VIEW);
     }
   }, [viewMode]);
-
-  const filteredCount = filteredArticles.length;
 
   return (
     <>

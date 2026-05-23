@@ -25,13 +25,13 @@ import {
   sanitizeSchema
 } from './markdownRenderers';
 import { useDocArticleModel } from './useDocArticleModel';
+import { useDocArticleNavigation } from './useDocArticleNavigation';
 import { usePageTitle } from '../../contexts/PageTitleContext';
 import { useMeta } from '../../contexts/MetaContext';
 import { useHistory } from '../../contexts/HistoryContext';
 import { useTag } from '../../contexts/TagContext';
 import { useDocShortcuts } from '../../hooks/useDocShortcuts';
 import { useRenderedHeadings } from '../../hooks/useRenderedHeadings';
-import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
 import { buildDocsTitle } from '../../utils/siteConfig';
 
 const DocContent = () => {
@@ -42,8 +42,6 @@ const DocContent = () => {
   const { findArticleTags } = useTag();
   const articleRef = React.useRef(null);
   const commentsRef = React.useRef(null);
-  const [adjacentChapters, setAdjacentChapters] = useState({ prev: null, next: null });
-  const [articleTags, setArticleTags] = useState([]);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxSlides, setLightboxSlides] = useState([]);
   const {
@@ -90,19 +88,12 @@ const DocContent = () => {
     enabled: Boolean(content)
   });
 
-  // Calculate adjacent chapters for pagination
-  useEffect(() => {
-    if (!meta) {
-      return;
-    }
-
-    const chapters = flattenChapters(meta);
-    const adjacent = getAdjacentChapters(chapters, location.pathname);
-    setAdjacentChapters(adjacent);
-
-    const tags = docMetaEntry?.item?.tags || findArticleTags(location.pathname);
-    setArticleTags(tags);
-  }, [meta, location.pathname, findArticleTags, docMetaEntry]);
+  const { adjacentChapters, articleTags } = useDocArticleNavigation({
+    meta,
+    pathname: location.pathname,
+    docMetaEntry,
+    findArticleTags
+  });
 
   useDocShortcuts({
     articleRef,

@@ -4,9 +4,10 @@
 
 import { BOOKS } from './books';
 import { COLLECTIONS } from './collections';
+import { SQUARE_CARDS } from './squareCards';
 import { TOP_NAV } from './topNav';
 
-export { BOOKS, COLLECTIONS, TOP_NAV };
+export { BOOKS, COLLECTIONS, SQUARE_CARDS, TOP_NAV };
 
 export function getBookById(id) {
   return BOOKS.find((book) => book.id === id) || null;
@@ -108,4 +109,31 @@ export function getActiveTopNavItem(pathname = '') {
   return items
     .filter((item) => pathname === item.href || pathname.startsWith(`${item.href}/`))
     .sort((a, b) => b.href.length - a.href.length)[0] || null;
+}
+
+// Project SQUARE_CARDS into renderable items: { icon, href, title, description }.
+export function getSquareCards() {
+  return SQUARE_CARDS
+    .map((card) => {
+      if (card.kind === 'book') {
+        const book = getBookById(card.bookId);
+        if (!book) return null;
+        return {
+          id: `book:${book.id}`,
+          icon: card.icon,
+          href: getBookDefaultUrl(book),
+          title: card.title,
+          description: card.description
+        };
+      }
+      // 'route'
+      return {
+        id: `route:${card.href}`,
+        icon: card.icon,
+        href: card.href,
+        title: card.title,
+        description: card.description
+      };
+    })
+    .filter(Boolean);
 }

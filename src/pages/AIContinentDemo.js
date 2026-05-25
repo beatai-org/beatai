@@ -3,8 +3,6 @@ import MapScene from '../components/aiContinent/MapScene';
 import QuestPanel from '../components/aiContinent/QuestPanel';
 import PageShell from '../components/layout/PageShell';
 import PageSeo from '../components/seo/PageSeo';
-import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
-import { useDocsMeta } from '../hooks/useDocsMeta';
 import {
   AI_CONTINENT_INITIAL_COMPLETED_NODE_IDS,
   AI_CONTINENT_NODE_MAP,
@@ -14,16 +12,11 @@ import {
   getPrerequisites,
   getRecommendedPath
 } from '../data/aiContinentMap';
-import { buildKnowledgeNavigationModel } from '../domain/docs';
 import { SITE_CONFIG } from '../utils/siteConfig';
 import { PAGE_IDS } from '../utils/pageConfig';
 import './AIContinentDemo.css';
 
 function AIContinentDemo() {
-  const { meta } = useDocsMeta();
-  const handleCategoryClick = useCategoryNavigation();
-  const { categories, spaces } = useMemo(() => buildKnowledgeNavigationModel(meta), [meta]);
-
   const [mode, setMode] = useState('mainline');
   const [completedNodeIds, setCompletedNodeIds] = useState(AI_CONTINENT_INITIAL_COMPLETED_NODE_IDS);
   const [selectedNodeId, setSelectedNodeId] = useState('ml');
@@ -67,15 +60,7 @@ function AIContinentDemo() {
     <>
       <PageSeo pageId={PAGE_IDS.aiContinentDemo} />
 
-      <PageShell
-        rootClassName="ai-continent-page"
-        spaces={spaces}
-        activeSpace={null}
-        onSpaceClick={handleCategoryClick}
-        categories={categories}
-        activeCategory={null}
-        onCategoryClick={handleCategoryClick}
-      >
+      <PageShell rootClassName="ai-continent-page">
         <main className="ai-continent-main">
           <section className="ai-continent-intro">
             <div className="ai-continent-intro-copy">

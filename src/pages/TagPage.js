@@ -3,9 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { TagProvider, useTag } from '../contexts/TagContext';
 import PageShell from '../components/layout/PageShell';
 import PageSeo from '../components/seo/PageSeo';
-import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
-import { buildArticlePrefetchModel, buildKnowledgeNavigationModel } from '../domain/docs';
+import { buildArticlePrefetchModel } from '../domain/docs';
 import { preloadMarkdownFile } from '../utils/markdownPrefetch';
 import { preloadRouteForPath } from '../utils/routePrefetch';
 import { buildDocsTitle } from '../utils/siteConfig';
@@ -13,11 +12,10 @@ import { HOME_PATH } from '../utils/siteRoutes';
 import './TagPage.css';
 
 // Inner component that uses TagContext
-const TagPageContent = ({ categories, spaces }) => {
+const TagPageContent = () => {
   const { tagName } = useParams();
   const decodedTagName = decodeURIComponent(tagName);
   const { getArticlesByTag, groupByCategory } = useTag();
-  const handleCategoryClick = useCategoryNavigation();
 
   // Get all articles with this tag
   const articles = getArticlesByTag(decodedTagName);
@@ -39,15 +37,7 @@ const TagPageContent = ({ categories, spaces }) => {
         titleBuilder={buildDocsTitle}
       />
 
-      <PageShell
-        rootClassName="tag-page"
-        spaces={spaces}
-        activeSpace={null}
-        onSpaceClick={handleCategoryClick}
-        categories={categories}
-        activeCategory={null}
-        onCategoryClick={handleCategoryClick}
-      >
+      <PageShell rootClassName="tag-page">
         <div className="tag-page-container">
           <div className="tag-page-header">
             <h1 className="tag-page-title">#{decodedTagName}</h1>
@@ -109,11 +99,9 @@ const TagPage = () => {
     return <div className="tag-page-error">Failed to load metadata</div>;
   }
 
-  const { categories, spaces } = buildKnowledgeNavigationModel(meta);
-
   return (
     <TagProvider meta={meta}>
-      <TagPageContent categories={categories} spaces={spaces} />
+      <TagPageContent />
     </TagProvider>
   );
 };

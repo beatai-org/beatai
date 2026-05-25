@@ -127,32 +127,6 @@ export const MARKETING_SOCIAL_LINKS = Object.freeze([
   { id: 'discord', label: 'Discord', href: '#discord' }
 ]);
 
-export const SQUARE_CONTENT_CARDS = Object.freeze([
-  {
-    id: PAGE_IDS.aiInsights,
-    icon: 'ai-insights',
-    pathKind: 'category',
-    categoryId: PAGE_CONFIG[PAGE_IDS.aiInsights].categoryId,
-    title: 'AI 前沿分享',
-    description: 'AI 领域最新动态、技术分享与深度解析'
-  },
-  {
-    id: 'rustCourse',
-    icon: 'rust-course',
-    pathKind: 'category',
-    categoryId: 'rust-course',
-    title: 'RUST 语言圣经',
-    description: '学习 AI 时代最安全的语言'
-  },
-  {
-    id: 'learnClaudeCode',
-    icon: 'learn-ai',
-    pathKind: 'learnAiDefault',
-    title: 'Learn Claude Code',
-    description: '欲练此功...'
-  }
-]);
-
 export const SQUARE_TAGS = Object.freeze([
   'Rust',
   '基础',

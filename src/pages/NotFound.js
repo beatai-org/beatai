@@ -2,34 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PageShell from '../components/layout/PageShell';
 import PageSeo from '../components/seo/PageSeo';
-import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
-import { useDocsMeta } from '../hooks/useDocsMeta';
-import { buildKnowledgeNavigationModel } from '../domain/docs';
 import { SITE_CONFIG } from '../utils/siteConfig';
 import { PAGE_IDS } from '../utils/pageConfig';
 import { HOME_PATH } from '../utils/siteRoutes';
 import './NotFound.css';
 
 const NotFound = ({ requestedPath = '' }) => {
-  const { meta } = useDocsMeta();
-  const handleCategoryClick = useCategoryNavigation({ mode: 'reload' });
-
-  const { categories, spaces } = buildKnowledgeNavigationModel(meta);
   const lostPath = requestedPath || window.location.pathname;
 
   return (
     <>
       <PageSeo pageId={PAGE_IDS.notFound} />
 
-      <PageShell
-        rootClassName="notfound-page"
-        spaces={spaces}
-        activeSpace={null}
-        onSpaceClick={handleCategoryClick}
-        categories={categories}
-        activeCategory={null}
-        onCategoryClick={handleCategoryClick}
-      >
+      <PageShell rootClassName="notfound-page">
         <main className="notfound-shell">
           <div className="notfound-term">
             <div className="notfound-line">

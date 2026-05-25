@@ -7,11 +7,9 @@ import ArchiveList from '../components/aiInsights/ArchiveList';
 import TagChipBar from '../components/aiInsights/TagChipBar';
 import ViewToggle from '../components/aiInsights/ViewToggle';
 import { useAiInsightsScrollRestoration } from '../hooks/useAiInsightsScrollRestoration';
-import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import {
   buildDocsArchiveModel,
-  buildKnowledgeNavigationModel,
   findDocCategory
 } from '../domain/docs';
 import { PAGE_IDS } from '../utils/pageConfig';
@@ -36,8 +34,7 @@ function parseTagParam(value) {
   return value.trim();
 }
 
-const ArchiveContent = ({ category, categories, spaces }) => {
-  const handleCategoryClick = useCategoryNavigation();
+const ArchiveContent = ({ category }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState(readStoredView);
 
@@ -94,15 +91,7 @@ const ArchiveContent = ({ category, categories, spaces }) => {
         description={category.description || undefined}
       />
 
-      <PageShell
-        rootClassName="ai-insights-archive-page"
-        spaces={spaces}
-        activeSpace={null}
-        onSpaceClick={handleCategoryClick}
-        categories={categories}
-        activeCategory={category}
-        onCategoryClick={handleCategoryClick}
-      >
+      <PageShell rootClassName="ai-insights-archive-page">
         <div className="archive-container">
           <div className="archive-controls">
             <TagChipBar
@@ -174,15 +163,7 @@ const AiInsightsArchive = () => {
     );
   }
 
-  const { categories, spaces } = buildKnowledgeNavigationModel(meta);
-
-  return (
-    <ArchiveContent
-      category={category}
-      categories={categories}
-      spaces={spaces}
-    />
-  );
+  return <ArchiveContent category={category} />;
 };
 
 export default AiInsightsArchive;

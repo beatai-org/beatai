@@ -45,29 +45,14 @@ export const BOOKS = Object.freeze([
     title: 'Learn Claude Code',
     bookTitle: 'Learn Claude Code',
     description: '从零手搓 Claude Code 与最佳实践内容，覆盖学习路径、版本拆解、源码讲解与实践经验。',
-    // LCC drives its TOC from src/vendor/learn-claude-code/data.js, not a JSON file.
+    // LCC drives its TOC from src/vendor/learn-claude-code/data.js, not a JSON
+    // file. Sidebar layout config is co-located with the vendor data in
+    // vendor/learn-claude-code/sidebarConfig.js.
     metaFile: null,
     defaultEntry: 'preface',
     cardLabel: '已上线',
     cardMeta: '1 本教程书',
-    cardCta: '进入阅读',
-    // LCC-specific layered-sidebar config. Lives on the book entry until a real
-    // MDX runtime replaces the bespoke <LearnClaudeCode /> renderer.
-    lcc: {
-      sidebarKind: 'layered',
-      layerIds: ['introduction', 'tools', 'planning', 'memory', 'concurrency', 'collaboration', 'best-practices'],
-      sectionGroups: [
-        {
-          title: '从零手搓 Claude Code',
-          layerIds: ['introduction', 'tools', 'planning', 'memory', 'concurrency', 'collaboration']
-        },
-        {
-          title: '最佳实践',
-          versionIds: ['bp01']
-        }
-      ],
-      versionIds: ['preface', 's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12', 'bp01']
-    }
+    cardCta: '进入阅读'
   },
   {
     id: 'deep-learning',

@@ -8,8 +8,8 @@ import { NotFoundState } from '../components/learnClaudeCode/NotFoundState';
 import { TagProvider } from '../contexts/TagContext';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import {
-  buildLearnAiDocsMeta,
-  buildLearnAiDocsRouteValidationModel
+  buildBookCategoryMeta,
+  buildBookRouteValidationModel
 } from '../domain/docs';
 import { getBookBasePath, getBookDefaultUrl, getCollectionOfBook } from '../content';
 
@@ -22,41 +22,28 @@ function MarkdownBookContent({ book }) {
   const basePath = getBookBasePath(book);
 
   const {
-    meta: rootMeta,
-    loading: rootLoading,
-    error: rootError
-  } = useDocsMeta();
-  const {
     meta: bookMetaRaw,
     loading: bookLoading,
     error: bookError
   } = useDocsMeta(null, book.metaFile || null);
 
-  const docsMeta = useMemo(() => buildLearnAiDocsMeta({
-    spaceMeta: bookMetaRaw,
-    currentSpace: {
-      slug: book.slug,
-      bookTitle: book.bookTitle,
-      title: book.title,
-      description: book.description,
-      docsCategoryId: book.id,
-      githubRepo: book.githubRepo,
-      repoTitle: book.repoTitle
-    },
+  const docsMeta = useMemo(() => buildBookCategoryMeta({
+    bookMeta: bookMetaRaw,
+    book,
     parentTitle: collection?.title || ''
   }), [bookMetaRaw, book, collection]);
 
-  const routeValidation = useMemo(() => buildLearnAiDocsRouteValidationModel(
+  const routeValidation = useMemo(() => buildBookRouteValidationModel(
     docsMeta,
     location.pathname,
     basePath
   ), [basePath, docsMeta, location.pathname]);
 
-  if (rootLoading || bookLoading) {
+  if (bookLoading) {
     return <PageTransitionLoader />;
   }
 
-  if (rootError || bookError || !rootMeta || !docsMeta) {
+  if (bookError || !docsMeta) {
     return <div className="docs-loading">Failed to load documentation.</div>;
   }
 
@@ -72,7 +59,7 @@ function MarkdownBookContent({ book }) {
       />
 
       <TagProvider meta={docsMeta}>
-        <DocsLayout meta={docsMeta} shellMeta={rootMeta}>
+        <DocsLayout meta={docsMeta}>
           <Routes>
             <Route index element={<Navigate to={getBookDefaultUrl(book)} replace />} />
             <Route path="*" element={<DocContent />} />

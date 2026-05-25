@@ -17,10 +17,6 @@ import {
   groupArticlesByDate,
   normalizeMetaPath
 } from '../../utils/docsMetaSelectors';
-import {
-  buildKnowledgeSpaces,
-  findActiveKnowledgeSpace
-} from '../../utils/knowledgeSpaces';
 import { normalizeDocComponentMarkdown, resolvePublicContentUrl } from '../../utils/markdown';
 import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
 import { AI_INSIGHTS_CATEGORY_ID } from '../../utils/siteRoutes';
@@ -57,13 +53,6 @@ export function findDocTitleByPath(meta, path) {
 
 export function getCategoryEntryPath(category, fallbackPath = '#') {
   return category?.entryPath || getFirstNavigablePathForCategory(category) || fallbackPath;
-}
-
-export function buildKnowledgeNavigationModel(meta) {
-  return {
-    categories: meta?.categories || [],
-    spaces: buildKnowledgeSpaces(meta)
-  };
 }
 
 export function buildArticlePrefetchModel(item) {
@@ -179,16 +168,9 @@ export function buildSidebarMeta(category) {
   };
 }
 
-export function buildDocsWorkspaceModel({ meta, shellMeta = null, pathname = '' } = {}) {
-  const navMeta = shellMeta || meta;
+export function buildDocsWorkspaceModel({ meta, pathname = '' } = {}) {
   const sidebarCategory = findActiveCategoryByPath(meta, pathname);
-
   return {
-    navMeta,
-    categories: navMeta?.categories || [],
-    spaces: buildKnowledgeSpaces(navMeta),
-    activeCategory: findActiveCategoryByPath(navMeta, pathname),
-    activeSpace: findActiveKnowledgeSpace(navMeta, pathname),
     sidebarCategory,
     sidebarMeta: buildSidebarMeta(sidebarCategory)
   };
@@ -205,27 +187,27 @@ export function buildDocsRouteValidationModel(meta, pathname = '') {
   };
 }
 
-export function buildLearnAiDocsMeta({ spaceMeta, currentSpace, parentTitle = '' } = {}) {
-  if (!spaceMeta || !currentSpace) {
+export function buildBookCategoryMeta({ bookMeta, book, parentTitle = '' } = {}) {
+  if (!bookMeta || !book) {
     return null;
   }
 
   return {
     categories: [{
-      ...spaceMeta,
-      id: currentSpace.docsCategoryId || currentSpace.slug,
-      title: currentSpace.bookTitle || spaceMeta.title,
-      githubRepo: currentSpace.githubRepo || spaceMeta.githubRepo,
-      repoTitle: currentSpace.repoTitle || spaceMeta.repoTitle,
+      ...bookMeta,
+      id: book.docsCategoryId || book.id || book.slug,
+      title: book.bookTitle || bookMeta.title,
+      githubRepo: book.githubRepo || bookMeta.githubRepo,
+      repoTitle: book.repoTitle || bookMeta.repoTitle,
       bookPath: {
         parentTitle,
-        currentTitle: currentSpace.bookTitle || spaceMeta.title
+        currentTitle: book.bookTitle || bookMeta.title
       }
     }]
   };
 }
 
-export function buildLearnAiDocsRouteValidationModel(meta, pathname = '', basePath = '') {
+export function buildBookRouteValidationModel(meta, pathname = '', basePath = '') {
   const validPaths = collectDocPaths(meta);
   const normalizedPathname = normalizeDocPath(pathname);
   const normalizedBasePath = normalizeDocPath(basePath);

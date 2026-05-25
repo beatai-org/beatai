@@ -5,12 +5,6 @@ import ReadingModeFloatingActions from '../docs/ReadingModeFloatingActions';
 
 function PageShell({
   rootClassName = '',
-  spaces = null,
-  activeSpace = null,
-  onSpaceClick = null,
-  categories = [],
-  activeCategory = null,
-  onCategoryClick = null,
   sidebarOpen = false,
   onMenuToggle = null,
   showFooter = true,
@@ -19,9 +13,6 @@ function PageShell({
   children
 }) {
   const classes = [rootClassName, 'dynamic-background'].filter(Boolean).join(' ');
-  const resolvedSpaces = spaces || categories;
-  const resolvedActiveSpace = activeSpace || activeCategory;
-  const resolvedOnSpaceClick = onSpaceClick || onCategoryClick;
 
   return (
     <div className={classes}>
@@ -29,9 +20,6 @@ function PageShell({
 
       {!hideHeader && (
         <AppHeader
-          spaces={resolvedSpaces}
-          activeSpace={resolvedActiveSpace}
-          onSpaceClick={resolvedOnSpaceClick}
           sidebarOpen={sidebarOpen}
           onMenuToggle={onMenuToggle}
           showReadingModeToggle={showReadingModeToggle}

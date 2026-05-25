@@ -8,12 +8,6 @@ import { useReadingModeSearchParam } from '../../hooks/useReadingModeSearchParam
 
 function BookWorkspaceLayout({
   rootClassName = '',
-  spaces = null,
-  activeSpace = null,
-  onSpaceClick = null,
-  categories = [],
-  activeCategory = null,
-  onCategoryClick = null,
   sidebarMeta = null,
   sidebarOpen = false,
   onMenuToggle = null,
@@ -88,12 +82,6 @@ function BookWorkspaceLayout({
     <ReadingModeProvider value={readingModeValue}>
       <PageShell
         rootClassName={cn(rootClassName, isReadingMode && 'reading-mode')}
-        spaces={spaces}
-        activeSpace={activeSpace}
-        onSpaceClick={onSpaceClick}
-        categories={categories}
-        activeCategory={activeCategory}
-        onCategoryClick={onCategoryClick}
         sidebarOpen={sidebarOpen}
         onMenuToggle={onMenuToggle}
         showFooter={showFooter}

@@ -7,9 +7,8 @@ import {
   buildDocsArchiveModel,
   buildDocsRouteValidationModel,
   buildDocsWorkspaceModel,
-  buildKnowledgeNavigationModel,
-  buildLearnAiDocsMeta,
-  buildLearnAiDocsRouteValidationModel,
+  buildBookCategoryMeta,
+  buildBookRouteValidationModel,
   buildNormalizedArticleMarkdown
 } from './docsDomain';
 
@@ -152,12 +151,6 @@ test('builds workspace and route validation models for page shells', () => {
     meta,
     pathname: '/rust-course/ownership'
   })).toMatchObject({
-    categories: [
-      { id: 'ai-insights' },
-      { id: 'rust-course' }
-    ],
-    activeCategory: { id: 'rust-course' },
-    activeSpace: { id: 'rust-course' },
     sidebarMeta: {
       title: 'Rust Course',
       sections: expect.any(Array)
@@ -173,32 +166,21 @@ test('builds workspace and route validation models for page shells', () => {
   });
 });
 
-test('builds shared navigation, prefetch, and learn-ai docs models', () => {
+test('builds shared navigation, prefetch, and book category models', () => {
   const meta = createMeta();
-  const currentSpace = {
+  const book = {
     slug: 'deep-learning',
     docsCategoryId: 'learn-ai/deep-learning',
     bookTitle: 'Deep Learning',
     githubRepo: 'https://example.com/deep-learning',
     repoTitle: 'Deep Learning Repo'
   };
-  const tutorialMeta = buildLearnAiDocsMeta({
-    spaceMeta: meta.categories[0],
-    currentSpace,
+  const tutorialMeta = buildBookCategoryMeta({
+    bookMeta: meta.categories[0],
+    book,
     parentTitle: 'AI Tutorials'
   });
 
-  const navigationModel = buildKnowledgeNavigationModel(meta);
-  expect(navigationModel.categories).toMatchObject([
-    { id: 'ai-insights' },
-    { id: 'rust-course' }
-  ]);
-  expect(navigationModel.spaces).toEqual(expect.arrayContaining([
-    expect.objectContaining({ id: 'ai-insights' }),
-    expect.objectContaining({ id: 'rust-course' }),
-    expect.objectContaining({ id: 'learn-ai' }),
-    expect.objectContaining({ id: 'mba' })
-  ]));
   expect(buildArticlePrefetchModel(meta.categories[0].sections[0].items[0])).toEqual({
     file: '/docs/ai-insights/2026-05/23/first.md',
     path: '/ai-insights/first'
@@ -214,7 +196,7 @@ test('builds shared navigation, prefetch, and learn-ai docs models', () => {
       }
     }]
   });
-  expect(buildLearnAiDocsRouteValidationModel(
+  expect(buildBookRouteValidationModel(
     tutorialMeta,
     '/ai-insights/first',
     '/learn-ai/deep-learning'

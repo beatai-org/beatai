@@ -3,6 +3,7 @@
 // each book's `_meta.json` and is built by DocsLayout directly.
 
 import { LAYERS, zhMessages } from '../../vendor/learn-claude-code/data';
+import { LCC_SIDEBAR_SECTION_GROUPS } from '../../vendor/learn-claude-code/sidebarConfig';
 import { getBookBasePath } from '../../content';
 import { getLccVersionPath, getVersionNavTitle } from './versionUtils';
 
@@ -28,12 +29,7 @@ function mapLayerToSidebarItem(layer, book) {
 }
 
 export function buildLccSidebarMeta(book, collection = null) {
-  const lcc = book?.lcc;
-  const sectionGroups = lcc?.sectionGroups?.length
-    ? lcc.sectionGroups
-    : [{ title: book?.title, layerIds: lcc?.layerIds || [] }];
-
-  const sections = sectionGroups.map((group) => ({
+  const sections = LCC_SIDEBAR_SECTION_GROUPS.map((group) => ({
     title: group.title,
     items: group.versionIds?.length
       ? group.versionIds.map((versionId) => ({

@@ -5,27 +5,21 @@ import { FaGithub } from 'react-icons/fa';
 import ThemeSelector from '../ThemeSelector';
 import ReadingModeToggleButton from '../docs/ReadingModeToggleButton';
 import AuthStatus from '../docs/AuthStatus';
-import { preloadMarkdownFile } from '../../utils/markdownPrefetch';
 import { preloadRouteForPath } from '../../utils/routePrefetch';
 import { SITE_CONFIG } from '../../utils/siteConfig';
 import { HOME_PATH } from '../../utils/siteRoutes';
-import { getActiveTopNavItem, getTopNavItems } from '../../content';
+import {
+  getActiveTopNavItem,
+  getBookById,
+  getTopNavItems
+} from '../../content';
 
 /**
- * 应用统一 Header 组件
- *
- * 顶部导航来自独立的 getTopNavItems() 配置（src/utils/topNav.js），跟 doc-category 注册解耦。
- * spaces / activeSpace 仍可传入：当某个 nav 项的 id 在 spaces 里能匹配到，会顺带启用
- * GitHub 图标与资源 preload；匹配不到的条目（例如嵌套在 hub 下的书）则优雅降级。
- *
- * @param {Object} props
- * @param {Array} props.spaces - 知识空间数据，用作 GitHub 图标/preload 的元数据来源（可选）
- * @param {boolean} props.sidebarOpen - 侧边栏打开状态（可选）
- * @param {Function} props.onMenuToggle - 菜单切换回调（可选）
- * @param {boolean} props.showReadingModeToggle - 是否显示阅读模式按钮（可选）
+ * Top header. Nav items come from src/content/topNav.js; the GitHub icon
+ * next to the active item is derived from the book's `githubRepo` field
+ * (collections / route entries don't show one).
  */
 const AppHeader = ({
-  spaces = [],
   sidebarOpen = false,
   onMenuToggle = null,
   showReadingModeToggle = false
@@ -34,19 +28,9 @@ const AppHeader = ({
   const mobileDropdownRef = useRef(null);
   const location = useLocation();
 
-  const spaceById = useMemo(() => {
-    const map = new Map();
-    spaces.forEach((space) => {
-      if (space?.id) {
-        map.set(space.id, space);
-      }
-    });
-    return map;
-  }, [spaces]);
-
   const navItems = useMemo(() => getTopNavItems(), []);
   const activeNavItem = getActiveTopNavItem(location.pathname);
-  const activeSpaceEnrichment = activeNavItem ? spaceById.get(activeNavItem.id) : null;
+  const activeGithubRepo = activeNavItem ? getBookById(activeNavItem.id)?.githubRepo : null;
 
   useEffect(() => {
     setMobileDropdownOpen(false);
@@ -86,10 +70,6 @@ const AppHeader = ({
 
   const preloadNavItem = (item) => {
     preloadRouteForPath(item.href);
-    const space = spaceById.get(item.id);
-    if (space?.entryFile) {
-      preloadMarkdownFile(space.entryFile);
-    }
   };
 
   return (
@@ -139,10 +119,9 @@ const AppHeader = ({
               </div>
             )}
           </div>
-          {/* GitHub icon next to the dropdown */}
-          {activeSpaceEnrichment?.githubRepo && (
+          {activeGithubRepo && (
             <a
-              href={activeSpaceEnrichment.githubRepo}
+              href={activeGithubRepo}
               target="_blank"
               rel="noopener noreferrer"
               className="github-link-mobile"
@@ -156,7 +135,6 @@ const AppHeader = ({
         {/* Desktop Category Navigation */}
         <nav className="category-nav desktop-only">
           {navItems.map((item) => {
-            const enrichment = spaceById.get(item.id);
             const isActive = activeNavItem?.id === item.id;
             return (
               <Link
@@ -168,9 +146,9 @@ const AppHeader = ({
                 onTouchStart={() => preloadNavItem(item)}
               >
                 <span className="category-title">{item.label}</span>
-                {isActive && enrichment?.githubRepo && (
+                {isActive && activeGithubRepo && (
                   <a
-                    href={enrichment.githubRepo}
+                    href={activeGithubRepo}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="github-link-inline"

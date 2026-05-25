@@ -5,19 +5,11 @@ import LearnClaudeCodeIcon from '../components/icons/LearnClaudeCodeIcon';
 import BeatAILogoWave from '../components/BeatAILogoWave';
 import PageShell from '../components/layout/PageShell';
 import PageSeo from '../components/seo/PageSeo';
-import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
-import { useDocsMeta } from '../hooks/useDocsMeta';
-import {
-  buildKnowledgeNavigationModel,
-  findDocCategory,
-  getCategoryEntryPath
-} from '../domain/docs';
-import { getBookDefaultUrl } from '../content';
+import { getSquareCards } from '../content';
 import { SITE_CONFIG } from '../utils/siteConfig';
 import {
   buildTagPath,
   PAGE_IDS,
-  SQUARE_CONTENT_CARDS,
   SQUARE_TAGS
 } from '../utils/pageConfig';
 import { preloadRouteForPath } from '../utils/routePrefetch';
@@ -30,37 +22,15 @@ const SQUARE_CARD_ICONS = {
 };
 
 const Square = () => {
-  const { meta } = useDocsMeta();
-  const handleCategoryClick = useCategoryNavigation();
-  const { categories, spaces } = useMemo(() => buildKnowledgeNavigationModel(meta), [meta]);
   const [heroLogoAnimated, setHeroLogoAnimated] = useState(false);
   const [hoveredCard, setHoveredCard] = useState('');
-
-  const getSquareCategoryEntryPath = (categoryId) => {
-    return getCategoryEntryPath(findDocCategory(meta, categoryId), '#');
-  };
-
-  const getSquareCardPath = (card) => {
-    if (card.pathKind === 'learnAiDefault') {
-      return getBookDefaultUrl('learn-claude-code');
-    }
-
-    return getSquareCategoryEntryPath(card.categoryId);
-  };
+  const squareCards = useMemo(() => getSquareCards(), []);
 
   return (
     <>
       <PageSeo pageId={PAGE_IDS.square} />
 
-      <PageShell
-        rootClassName="square-page"
-        spaces={spaces}
-        activeSpace={null}
-        onSpaceClick={handleCategoryClick}
-        categories={categories}
-        activeCategory={null}
-        onCategoryClick={handleCategoryClick}
-      >
+      <PageShell rootClassName="square-page">
         <div className="square-container">
           <div className="square-hero">
             <div
@@ -80,20 +50,20 @@ const Square = () => {
             <div className="square-section">
               <h2 className="section-title">探索内容</h2>
               <div className="square-grid">
-                {SQUARE_CONTENT_CARDS.map((card) => {
+                {squareCards.map((card) => {
                   const CardIcon = SQUARE_CARD_ICONS[card.icon];
 
                   return (
                     <a
                       key={card.id}
-                      href={getSquareCardPath(card)}
+                      href={card.href}
                       className="square-card glass-card"
                       onMouseEnter={() => {
                         setHoveredCard(card.id);
-                        preloadRouteForPath(getSquareCardPath(card));
+                        preloadRouteForPath(card.href);
                       }}
-                      onFocus={() => preloadRouteForPath(getSquareCardPath(card))}
-                      onTouchStart={() => preloadRouteForPath(getSquareCardPath(card))}
+                      onFocus={() => preloadRouteForPath(card.href)}
+                      onTouchStart={() => preloadRouteForPath(card.href)}
                       onMouseLeave={() => setHoveredCard('')}
                     >
                       <div className="card-icon">

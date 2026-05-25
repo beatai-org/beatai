@@ -4,27 +4,16 @@ import LearnClaudeCodeIcon from '../components/icons/LearnClaudeCodeIcon';
 import PageShell from '../components/layout/PageShell';
 import PageSeo from '../components/seo/PageSeo';
 import { ReadingModeProvider } from '../contexts/ReadingModeContext';
-import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
-import { useDocsMeta } from '../hooks/useDocsMeta';
 import { useReadingModeSearchParam } from '../hooks/useReadingModeSearchParam';
-import { buildKnowledgeNavigationModel } from '../domain/docs';
 import { getBookDefaultUrl, getBooksOfCollection } from '../content';
 import { preloadRouteForPath } from '../utils/routePrefetch';
 import './AITutorials.css';
 
-function CollectionContent({ collection, categories, spaces }) {
-  const handleCategoryClick = useCategoryNavigation();
+export default function CollectionPage({ collection }) {
   const [hoveredId, setHoveredId] = useState('');
   const readingMode = useReadingModeSearchParam();
   const { isReadingMode } = readingMode;
   const books = useMemo(() => getBooksOfCollection(collection), [collection]);
-
-  const activeSpace = useMemo(() => ({
-    id: collection.id,
-    title: collection.title,
-    entryPath: collection.basePath,
-    kind: 'tutorial-hub'
-  }), [collection]);
 
   const renderCardIcon = (book) => {
     if (book.id === 'learn-claude-code') {
@@ -48,12 +37,6 @@ function CollectionContent({ collection, categories, spaces }) {
 
         <PageShell
           rootClassName={`ai-tutorials-page ${isReadingMode ? 'reading-mode' : ''}`.trim()}
-          spaces={spaces}
-          activeSpace={activeSpace}
-          onSpaceClick={handleCategoryClick}
-          categories={categories}
-          activeCategory={null}
-          onCategoryClick={handleCategoryClick}
           hideHeader={isReadingMode}
           showReadingModeToggle
         >
@@ -93,20 +76,4 @@ function CollectionContent({ collection, categories, spaces }) {
       </>
     </ReadingModeProvider>
   );
-}
-
-export default function CollectionPage({ collection }) {
-  const { meta, loading, error } = useDocsMeta();
-
-  if (loading) {
-    return <div className="ai-tutorials-status">Loading...</div>;
-  }
-
-  if (error || !meta) {
-    return <div className="ai-tutorials-status">Failed to load tutorials</div>;
-  }
-
-  const { categories, spaces } = buildKnowledgeNavigationModel(meta);
-
-  return <CollectionContent collection={collection} categories={categories} spaces={spaces} />;
 }

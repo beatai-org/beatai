@@ -14,7 +14,7 @@ const RepoCard = ({
   repoUrl,
   repoOwner,
   repoName,
-  title = '繁星点点，只因有你',
+  title = '',
   className = ''
 }) => {
   // 如果没有提供仓库信息，不渲染组件
@@ -30,7 +30,7 @@ const RepoCard = ({
         </svg>
       </div>
       <div className="repo-card-content">
-        <div className="repo-card-title">{title}</div>
+        {title && <div className="repo-card-title">{title}</div>}
         <a
           href={repoUrl}
           target="_blank"

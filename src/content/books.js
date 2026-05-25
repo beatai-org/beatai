@@ -18,7 +18,9 @@ export const BOOKS = Object.freeze([
     bookTitle: 'AI 前沿学习',
     description: 'AI 前沿学习，模拟各种明星角色，给大家不一样的学习体验。',
     metaFile: '/docs/ai-insights/_meta.json',
-    defaultEntry: ''
+    defaultEntry: '',
+    githubRepo: 'https://github.com/beatai-org/beatai',
+    repoTitle: '繁星点点，只因有你'
   },
   {
     id: 'rust-course',
@@ -40,7 +42,6 @@ export const BOOKS = Object.freeze([
     metaFile: '/docs/llc-content/_meta.json',
     defaultEntry: 'preface',
     githubRepo: 'https://github.com/shareAI-lab/learn-claude-code',
-    repoTitle: 'shareAI-lab / learn-claude-code',
     cardLabel: '已上线',
     cardMeta: '1 本教程书',
     cardCta: '进入阅读',
@@ -54,6 +55,8 @@ export const BOOKS = Object.freeze([
     description: '从线性代数、微积分、概率统计一路走到 CNN、RNN、Transformer、GPT、Llama 与 DeepSeek。',
     metaFile: '/docs/learn-ai/deep-learning/_meta.json',
     defaultEntry: 'chapter-01/lesson-01',
+    githubRepo: 'https://github.com/RethinkFun/DeepLearning',
+    repoTitle: 'RethinkFun 深度学习',
     cardLabel: '新收录',
     cardMeta: '18 个章节',
     cardCta: '开始学习'

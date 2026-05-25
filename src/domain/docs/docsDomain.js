@@ -197,8 +197,8 @@ export function buildBookCategoryMeta({ bookMeta, book, parentTitle = '' } = {})
       ...bookMeta,
       id: book.docsCategoryId || book.id || book.slug,
       title: book.bookTitle || bookMeta.title,
-      githubRepo: book.githubRepo || bookMeta.githubRepo,
-      repoTitle: book.repoTitle || bookMeta.repoTitle,
+      githubRepo: book.githubRepo,
+      repoTitle: book.repoTitle,
       bookPath: {
         parentTitle,
         currentTitle: book.bookTitle || bookMeta.title

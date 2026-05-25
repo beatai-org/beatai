@@ -40,55 +40,6 @@
   perspective: 1000px;
 }
 
-.sidebar-book-path-card {
-  margin-bottom: 6px;
-}
-
-.sidebar-book-path-card .sidebar-section-header {
-  margin-bottom: 0;
-}
-
-.sidebar-book-path-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  min-width: 0;
-  width: 100%;
-}
-
-.sidebar-book-path-value {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-  overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: none;
-  font-size: 13px;
-  line-height: 1.3;
-}
-
-.sidebar-book-path-value::-webkit-scrollbar {
-  display: none;
-}
-
-.sidebar-book-path-parent {
-  color: var(--text-secondary);
-  flex-shrink: 0;
-}
-
-.sidebar-book-path-separator {
-  color: var(--text-tertiary);
-  flex-shrink: 0;
-  font-size: 12px;
-}
-
-.sidebar-book-path-current {
-  font-weight: 700;
-  color: var(--text-primary);
-  flex-shrink: 0;
-}
-
 .sidebar-section {
   display: flex;
   flex-direction: column;

@@ -2,8 +2,6 @@
   "id": "learn-ai/deep-learning",
   "title": "深度学习指南",
   "description": "从线性代数、微积分、概率统计到神经网络、Transformer、GPT、Llama 与 DeepSeek 的完整深度学习入门教程。",
-  "githubRepo": "https://github.com/RethinkFun/DeepLearning",
-  "repoTitle": "RethinkFun 深度学习",
   "sections": [
     {
       "title": "初识深度学习",

@@ -2,8 +2,6 @@
   "id": "learn-ai/learn-claude-code",
   "title": "Learn Claude Code",
   "description": "从 0 到 1 构建 nano Claude Code-like agent，每次只加一个机制",
-  "githubRepo": "https://github.com/shareAI-lab/learn-claude-code",
-  "repoTitle": "shareAI-lab / learn-claude-code",
   "sections": [
     {
       "title": "序言",

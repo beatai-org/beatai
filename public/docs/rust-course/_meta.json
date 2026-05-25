@@ -2,8 +2,6 @@
   "id": "rust-course",
   "title": "RUST语言圣经",
   "description": "Rust 编程语言完整学习指南",
-  "githubRepo": "https://github.com/sunface/rust-course",
-  "repoTitle": "繁星点点，只因有你",
   "sections": [
     {
       "title": "序言",

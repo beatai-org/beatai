@@ -342,6 +342,12 @@
   margin-top: 16px;
 }
 
+.doc-tabs-shell {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 24px;
+  padding-top: 24px;
+}
+
 .lcc-prose {
   color: #f8fafc;
 }
@@ -1104,10 +1110,18 @@
   background: rgba(15, 23, 42, 0.03);
 }
 
+:root[data-theme-mode='light'] .lcc-accordion button {
+  color: #0f172a;
+}
+
 :root[data-theme-mode='light'] .lcc-tabs button.active,
 :root[data-theme-mode='light'] .lcc-speed-row button.active {
   background: #0f172a;
   color: #fff;
+}
+
+:root[data-theme-mode='light'] .doc-tabs-shell {
+  border-top-color: rgba(15, 23, 42, 0.08);
 }
 
 :root[data-theme-mode='light'] .lcc-timeline-card h3 span,

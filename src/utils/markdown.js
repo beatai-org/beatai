@@ -74,8 +74,14 @@ export function normalizeDocComponentMarkdown(markdown) {
     return '';
   }
 
+  // CommonMark type-7 HTML blocks require the line to contain only an opening
+  // tag (or only a closing tag); a paired `<x>...</x>` on the same line falls
+  // back to inline HTML and gets wrapped in <p>. parse5 also refuses to honor
+  // XHTML-style self-closing on custom elements, so `<doc-component ... />`
+  // would swallow every following sibling as a child. Split into two lines so
+  // each tag is its own type-7 block AND parse5 sees a real closing tag.
   return String(markdown).replace(
-    /<doc-component\b([^>]*)\/>/g,
-    '<doc-component$1></doc-component>'
+    /<doc-component\b([^>]*?)\s*\/>/g,
+    '<doc-component$1>\n</doc-component>'
   );
 }

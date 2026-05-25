@@ -62,10 +62,10 @@ function mergeBookMeta(book, categoryMeta) {
 // the doc tree (search/tag indexing, the NotFound shell, the docs sidebar
 // when on a top-level book, etc.).
 async function buildRootMeta() {
-  const markdownBooks = BOOKS.filter((book) => book.contentKind === 'markdown' && book.metaFile);
+  const booksWithMeta = BOOKS.filter((book) => book.metaFile);
 
   const categories = await Promise.all(
-    markdownBooks.map(async (book) => {
+    booksWithMeta.map(async (book) => {
       const categoryMeta = await fetchJson(resolveMetaUrl(book.metaFile));
       return mergeBookMeta(book, categoryMeta);
     })

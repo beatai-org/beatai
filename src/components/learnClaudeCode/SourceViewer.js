@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { versionsData } from '../../vendor/learn-claude-code/data';
 
 function highlightLine(line) {
   const trimmed = line.trimStart();
@@ -55,8 +56,33 @@ function highlightLine(line) {
   });
 }
 
-function SourceViewer({ source, filename }) {
-  const lines = useMemo(() => source.split('\n'), [source]);
+function SourceViewer({ version, source, filename }) {
+  const resolved = useMemo(() => {
+    if (source) {
+      return { source, filename };
+    }
+
+    if (!version) {
+      return null;
+    }
+
+    const entry = versionsData?.versions?.find((item) => item.id === version);
+
+    if (!entry?.source) {
+      return null;
+    }
+
+    return { source: entry.source, filename: entry.filename };
+  }, [filename, source, version]);
+
+  const lines = useMemo(
+    () => (resolved?.source ? resolved.source.split('\n') : []),
+    [resolved]
+  );
+
+  if (!resolved) {
+    return null;
+  }
 
   return (
     <div className="lcc-source-viewer">
@@ -66,11 +92,11 @@ function SourceViewer({ source, filename }) {
           <span className="yellow"></span>
           <span className="green"></span>
         </div>
-        <span>{filename}</span>
+        <span>{resolved.filename}</span>
       </div>
       <div className="lcc-source-body">
         {lines.map((line, index) => (
-          <div key={`${filename}-${index}`} className="lcc-source-line">
+          <div key={`${resolved.filename}-${index}`} className="lcc-source-line">
             <span className="lcc-line-no">{index + 1}</span>
             <span className="lcc-line-code">{highlightLine(line)}</span>
           </div>

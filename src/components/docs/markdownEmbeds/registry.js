@@ -1,10 +1,23 @@
 import React from 'react';
 import SceneSequenceDocEmbed from './SceneSequenceDocEmbed';
 import RegisteredDocComponentEmbed from './RegisteredDocComponentEmbed';
+import AgentLoopSimulator from '../../learnClaudeCode/AgentLoopSimulator';
+import DeepDive from '../../learnClaudeCode/DeepDive';
+import SourceViewer from '../../learnClaudeCode/SourceViewer';
+import { SessionVisualization } from '../../../vendor/learn-claude-code/visualizations/index.js';
+// LCC visual styles (lcc-tabs / lcc-tab-panel / lcc-card / lcc-sim-* / ...)
+// are still needed by the components registered above. The old import path
+// via <LearnClaudeCode> is dead; pull the stylesheet in alongside the
+// registry so every page that may render these embeds gets the styling.
+import '../../../pages/LearnClaudeCode.css';
 
 export const DOC_COMPONENT_REGISTRY = {
   'scene-sequence': SceneSequenceDocEmbed,
-  component: RegisteredDocComponentEmbed
+  component: RegisteredDocComponentEmbed,
+  'agent-loop-simulator': AgentLoopSimulator,
+  'source-viewer': SourceViewer,
+  'deep-dive': DeepDive,
+  'session-visualization': SessionVisualization
 };
 
 export function getDocComponentByName(name) {

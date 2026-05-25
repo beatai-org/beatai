@@ -93,7 +93,7 @@ test('builds normalized markdown and history records at the domain boundary', ()
     stripTitle: (content, enabled) => enabled ? content.replace(/^# .+\n\n/, '') : content
   });
 
-  expect(markdown).toBe('<doc-component ></doc-component>');
+  expect(markdown).toBe('<doc-component>\n</doc-component>');
   expect(buildDocArticleHistoryRecord({
     articleRoute: route,
     pathname: '/ai-insights/first',

@@ -3,6 +3,7 @@ import { defaultSchema } from 'rehype-sanitize';
 import { getTextContent, resolveMarkdownAssetUrl, slugifyHeading } from '../../utils/markdown';
 import Prism from '../../utils/prism';
 import DocMarkdownComponent from './markdownEmbeds/DocMarkdownComponent';
+import DocTabs, { DocTab } from './DocTabs';
 
 function fallbackCopyText(text) {
   if (typeof document === 'undefined') {
@@ -103,7 +104,9 @@ export const sanitizeSchema = {
   ...defaultSchema,
   tagNames: [
     ...(defaultSchema.tagNames || []),
-    'doc-component'
+    'doc-component',
+    'doc-tabs',
+    'doc-tab'
   ],
   attributes: {
     ...defaultSchema.attributes,
@@ -125,8 +128,13 @@ export const sanitizeSchema = {
       'loop',
       'variant',
       'props',
+      'version',
+      'version-id',
+      'versionid',
       /^data-.*$/
-    ]
+    ],
+    'doc-tabs': [],
+    'doc-tab': ['label']
   }
 };
 
@@ -267,6 +275,8 @@ export function createDocMarkdownComponents({
     },
     'doc-component'({ node, name, ...props }) {
       return <DocMarkdownComponent name={name} markdownUrl={markdownUrl} {...props} />;
-    }
+    },
+    'doc-tabs': DocTabs,
+    'doc-tab': DocTab
   };
 }

@@ -3,7 +3,6 @@ import { defaultSchema } from 'rehype-sanitize';
 import { getTextContent, resolveMarkdownAssetUrl, slugifyHeading } from '../../utils/markdown';
 import Prism from '../../utils/prism';
 import DocMarkdownComponent from './markdownEmbeds/DocMarkdownComponent';
-import DocTabs, { DocTab } from './DocTabs';
 
 function fallbackCopyText(text) {
   if (typeof document === 'undefined') {
@@ -104,9 +103,7 @@ export const sanitizeSchema = {
   ...defaultSchema,
   tagNames: [
     ...(defaultSchema.tagNames || []),
-    'doc-component',
-    'doc-tabs',
-    'doc-tab'
+    'doc-component'
   ],
   attributes: {
     ...defaultSchema.attributes,
@@ -115,6 +112,10 @@ export const sanitizeSchema = {
       'target',
       'rel'
     ],
+    // Everything embeddable in markdown goes through <doc-component name="…">.
+    // The `name` resolves to a registered React component (leaf or container)
+    // via DOC_COMPONENT_REGISTRY in markdownEmbeds/registry.js. Add new prop
+    // names here only when an attribute would otherwise be stripped.
     'doc-component': [
       'name',
       'src',
@@ -131,10 +132,9 @@ export const sanitizeSchema = {
       'version',
       'version-id',
       'versionid',
+      'label',
       /^data-.*$/
-    ],
-    'doc-tabs': [],
-    'doc-tab': ['label']
+    ]
   }
 };
 
@@ -273,10 +273,12 @@ export function createDocMarkdownComponents({
     ol({ node, ...props }) {
       return <ol className="doc-ol" {...props} />;
     },
-    'doc-component'({ node, name, ...props }) {
-      return <DocMarkdownComponent name={name} markdownUrl={markdownUrl} {...props} />;
-    },
-    'doc-tabs': DocTabs,
-    'doc-tab': DocTab
+    'doc-component'({ node, name, children, ...props }) {
+      return (
+        <DocMarkdownComponent name={name} markdownUrl={markdownUrl} {...props}>
+          {children}
+        </DocMarkdownComponent>
+      );
+    }
   };
 }

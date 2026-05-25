@@ -1,10 +1,12 @@
-import {
-  LEGACY_LEARN_CLAUDE_CODE_BASE_PATH
-} from './learnAiPaths';
 import { PAGE_CONFIG, PAGE_IDS } from './pageConfig';
 import { AI_INSIGHTS_PATH, HOME_PATH } from './siteRoutes';
 import { ROUTE_MODULE_LOADERS } from './routeModuleLoaders';
-import { getTutorialHubByPathname } from './tutorialHubs';
+import {
+  getBookByPathname,
+  getCollectionByPathname
+} from '../content';
+
+const LEGACY_LEARN_CLAUDE_CODE_BASE_PATH = '/learn-claude-code';
 
 const routeModulePreloadCache = new Map();
 
@@ -63,16 +65,15 @@ export function getRouteIdForPath(target) {
     return PAGE_IDS.tag;
   }
 
-  const hub = getTutorialHubByPathname(pathname);
-  if (hub) {
-    return pathname === hub.basePath ? PAGE_IDS.tutorialsHubPage : PAGE_IDS.tutorialBook;
+  if (getCollectionByPathname(pathname)) {
+    return PAGE_IDS.collectionPage;
   }
 
-  if (pathname.startsWith(`${LEGACY_LEARN_CLAUDE_CODE_BASE_PATH}/`)) {
-    return PAGE_IDS.tutorialBook;
+  if (getBookByPathname(pathname) || pathname.startsWith(`${LEGACY_LEARN_CLAUDE_CODE_BASE_PATH}/`)) {
+    return PAGE_IDS.bookPage;
   }
 
-  return pathname.startsWith('/') ? PAGE_IDS.docs : null;
+  return pathname.startsWith('/') ? PAGE_IDS.notFound : null;
 }
 
 export function preloadRouteModule(routeId) {

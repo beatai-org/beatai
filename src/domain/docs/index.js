@@ -15,7 +15,6 @@ export {
   buildTagModel,
   findDocCategory,
   findDocTitleByPath,
-  getAiTutorialNavigationSpace,
   getCategoryEntryPath,
   normalizeDocPath
 } from './docsDomain';

@@ -1,101 +1,57 @@
+// Sidebar builder for the Learn Claude Code book (the only book whose sidebar
+// is layered + driven by vendor data). The Markdown book sidebar comes from
+// each book's `_meta.json` and is built by DocsLayout directly.
+
 import { LAYERS, zhMessages } from '../../vendor/learn-claude-code/data';
-import { getLearnAiEntryPath, getLearnAiSpacePath } from '../../utils/learnAiPaths';
-import { getLearnAiSpace, LEARN_AI_SPACES } from '../../utils/learnAiSpaces';
-import { getHubOfSpace, getTutorialHub } from '../../utils/tutorialHubs';
-import { getVersionNavTitle } from './versionUtils';
+import { getBookBasePath } from '../../content';
+import { getLccVersionPath, getVersionNavTitle } from './versionUtils';
 
-function resolveParentTitle(space) {
-  return getHubOfSpace(space)?.title || getTutorialHub('learn-ai')?.title || 'AI 学习教程';
-}
-
-function mapLayerToSidebarItem(layer, space) {
+function mapLayerToSidebarItem(layer, book) {
   const versions = layer.versions || [];
   const firstVersion = versions[0];
   const title = zhMessages.layer_labels?.[layer.id] || layer.label;
+  const fallbackPath = firstVersion ? getLccVersionPath(firstVersion) : getBookBasePath(book);
 
   if (layer.id === 'introduction') {
-    return {
-      title,
-      path: firstVersion ? getLearnAiEntryPath(firstVersion) : getLearnAiSpacePath(space.slug)
-    };
+    return { title, path: fallbackPath };
   }
 
   return {
     title,
-    path: firstVersion ? getLearnAiEntryPath(firstVersion) : getLearnAiSpacePath(space.slug),
+    path: fallbackPath,
     highlightable: false,
     children: versions.map((versionId) => ({
       title: getVersionNavTitle(versionId),
-      path: getLearnAiEntryPath(versionId)
+      path: getLccVersionPath(versionId)
     }))
   };
 }
 
-function mapFlatSpaceItems(space) {
-  return (space.versionIds || []).map((versionId) => ({
-    title: getVersionNavTitle(versionId),
-    path: getLearnAiEntryPath(versionId)
+export function buildLccSidebarMeta(book, collection = null) {
+  const lcc = book?.lcc;
+  const sectionGroups = lcc?.sectionGroups?.length
+    ? lcc.sectionGroups
+    : [{ title: book?.title, layerIds: lcc?.layerIds || [] }];
+
+  const sections = sectionGroups.map((group) => ({
+    title: group.title,
+    items: group.versionIds?.length
+      ? group.versionIds.map((versionId) => ({
+        title: getVersionNavTitle(versionId),
+        path: getLccVersionPath(versionId)
+      }))
+      : (group.layerIds || [])
+        .map((layerId) => LAYERS.find((layer) => layer.id === layerId))
+        .filter(Boolean)
+        .map((layer) => mapLayerToSidebarItem(layer, book))
   }));
-}
-
-export function buildLearnAiSidebarMeta(currentSpace = null) {
-  const resolvedCurrentSpace = currentSpace?.slug
-    ? (getLearnAiSpace(currentSpace.slug) || currentSpace)
-    : LEARN_AI_SPACES.find((space) => (
-      space.id === currentSpace?.id ||
-      space.title === currentSpace?.title ||
-      space.bookTitle === currentSpace?.bookTitle
-    )) || currentSpace;
-
-  if (resolvedCurrentSpace?.contentSource === 'docs') {
-    return {
-      title: resolvedCurrentSpace.bookTitle || resolvedCurrentSpace.title,
-      sections: resolvedCurrentSpace.sections || [],
-      githubRepo: resolvedCurrentSpace.githubRepo,
-      repoTitle: resolvedCurrentSpace.repoTitle,
-      bookPath: {
-        parentTitle: resolveParentTitle(resolvedCurrentSpace),
-        currentTitle: resolvedCurrentSpace.bookTitle || resolvedCurrentSpace.title || resolveParentTitle(resolvedCurrentSpace)
-      }
-    };
-  }
-
-  const targetSpaces = resolvedCurrentSpace
-    ? [resolvedCurrentSpace]
-    : LEARN_AI_SPACES.filter((space) => space.contentSource !== 'docs');
-
-  const sections = targetSpaces.flatMap((space) => {
-    if (space.sidebarKind === 'layered') {
-      const sectionGroups = space.sectionGroups?.length
-        ? space.sectionGroups
-        : [{ title: space.title, layerIds: space.layerIds || [] }];
-
-      return sectionGroups.map((group) => ({
-        title: group.title,
-        items: group.versionIds?.length
-          ? group.versionIds.map((versionId) => ({
-            title: getVersionNavTitle(versionId),
-            path: getLearnAiEntryPath(versionId)
-          }))
-          : (group.layerIds || [])
-            .map((layerId) => LAYERS.find((layer) => layer.id === layerId))
-            .filter(Boolean)
-            .map((layer) => mapLayerToSidebarItem(layer, space))
-      }));
-    }
-
-    return [{
-      title: space.title,
-      items: mapFlatSpaceItems(space)
-    }];
-  });
 
   return {
-    title: resolvedCurrentSpace?.bookTitle || resolvedCurrentSpace?.title || 'Learn Claude Code',
+    title: book?.bookTitle || book?.title || 'Learn Claude Code',
     sections,
     bookPath: {
-      parentTitle: resolveParentTitle(resolvedCurrentSpace),
-      currentTitle: resolvedCurrentSpace?.bookTitle || resolvedCurrentSpace?.title || 'Learn Claude Code'
+      parentTitle: collection?.title || '',
+      currentTitle: book?.bookTitle || book?.title || 'Learn Claude Code'
     }
   };
 }

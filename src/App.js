@@ -7,35 +7,42 @@ import { HistoryProvider } from './contexts/HistoryContext';
 import PageTransitionLoader from './components/PageTransitionLoader';
 import { lazyWithMinLoadTime } from './utils/lazyWithMinLoadTime';
 import { ROUTE_MODULE_LOADERS } from './utils/routeModuleLoaders';
-import {
-  rewriteLegacyLearnClaudeCodePath
-} from './utils/learnAiPaths';
 import { APP_ROUTE_PATHS, PAGE_CONFIG, PAGE_IDS } from './utils/pageConfig';
-import { TUTORIAL_HUBS } from './utils/tutorialHubs';
+import {
+  BOOKS,
+  COLLECTIONS,
+  getBookBasePath,
+  getBookDefaultUrl
+} from './content';
 import { HOME_PATH } from './utils/siteRoutes';
 
 // Lazy-load route components; avoid adding artificial delay to navigation.
 const Home = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.genesisLab]));
-const Docs = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.docs]));
 const TagPage = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.tag]));
 const Square = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.square]));
 const LogoShowcase = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.logoShowcase]));
-const TutorialsHubPage = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.tutorialsHubPage]));
-const TutorialBook = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.tutorialBook]));
+const BookPage = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.bookPage]));
+const CollectionPage = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.collectionPage]));
 const AIContinentDemo = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.aiContinentDemo]));
 const MapTextureShowcase = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.mapTextureShowcase]));
 const AiInsightsArchive = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.aiInsights]));
+const NotFound = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.notFound]));
 
 const ROUTER_FUTURE_FLAGS = Object.freeze({
   v7_startTransition: true,
   v7_relativeSplatPath: true
 });
 
+const LCC_BOOK_ID = 'learn-claude-code';
+
+// Rewrite legacy /learn-claude-code/<version> URLs to the unified LCC URL.
 function LegacyLearnClaudeCodeRedirect() {
   const location = useLocation();
-  const nextPath = rewriteLegacyLearnClaudeCodePath(location.pathname);
-
-  return <Navigate to={`${nextPath}${location.search}${location.hash}`} replace />;
+  const version = location.pathname.replace(/^\/learn-claude-code\/?/, '').split('/')[0];
+  const target = version
+    ? `${getBookBasePath(LCC_BOOK_ID)}/${version}`
+    : getBookDefaultUrl(LCC_BOOK_ID);
+  return <Navigate to={`${target}${location.search}${location.hash}`} replace />;
 }
 
 function App() {
@@ -56,13 +63,23 @@ function App() {
                     <Route path={PAGE_CONFIG[PAGE_IDS.mapTextureShowcase].path} element={<MapTextureShowcase />} />
                     <Route path={PAGE_CONFIG[PAGE_IDS.logoShowcase].path} element={<LogoShowcase />} />
                     <Route path={APP_ROUTE_PATHS.legacyLearnClaudeCode} element={<LegacyLearnClaudeCodeRedirect />} />
-                    {TUTORIAL_HUBS.flatMap((hub) => [
-                      <Route key={`${hub.id}-hub`} path={hub.basePath} element={<TutorialsHubPage hub={hub} />} />,
-                      <Route key={`${hub.id}-book`} path={`${hub.basePath}/:space/*`} element={<TutorialBook />} />
-                    ])}
-                    <Route path={APP_ROUTE_PATHS.tags} element={<TagPage />} />
+                    {/* AI Insights archive: special feed page sits at /ai-insights exactly,
+                        while /ai-insights/<article> falls through to the BOOK route below. */}
                     <Route path={PAGE_CONFIG[PAGE_IDS.aiInsights].path} element={<AiInsightsArchive />} />
-                    <Route path={APP_ROUTE_PATHS.catchAll} element={<Docs />} />
+                    {/* Collection hub pages — one route per collection */}
+                    {COLLECTIONS.map((collection) => (
+                      <Route key={`collection:${collection.id}`}
+                             path={collection.basePath}
+                             element={<CollectionPage collection={collection} />} />
+                    ))}
+                    {/* Book pages — one route per book, URL derived from collection membership */}
+                    {BOOKS.map((book) => (
+                      <Route key={`book:${book.id}`}
+                             path={`${getBookBasePath(book)}/*`}
+                             element={<BookPage book={book} />} />
+                    ))}
+                    <Route path={APP_ROUTE_PATHS.tags} element={<TagPage />} />
+                    <Route path={APP_ROUTE_PATHS.catchAll} element={<NotFound />} />
                   </Routes>
                 </Suspense>
               </div>

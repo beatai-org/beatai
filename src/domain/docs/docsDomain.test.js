@@ -196,7 +196,8 @@ test('builds shared navigation, prefetch, and learn-ai docs models', () => {
   expect(navigationModel.spaces).toEqual(expect.arrayContaining([
     expect.objectContaining({ id: 'ai-insights' }),
     expect.objectContaining({ id: 'rust-course' }),
-    expect.objectContaining({ id: 'ai-tutorials' })
+    expect.objectContaining({ id: 'learn-ai' }),
+    expect.objectContaining({ id: 'mba' })
   ]));
   expect(buildArticlePrefetchModel(meta.categories[0].sections[0].items[0])).toEqual({
     file: '/docs/ai-insights/2026-05/23/first.md',

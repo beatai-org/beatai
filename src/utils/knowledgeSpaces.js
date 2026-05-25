@@ -4,27 +4,25 @@ import {
   getFirstNavigableFileForCategory,
   getFirstNavigablePathForCategory
 } from './docsMetaSelectors';
-import { getLearnAiDefaultPath, LEARN_AI_BASE_PATH } from './learnAiPaths';
-import { getTutorialHub, getTutorialHubByPathname } from './tutorialHubs';
+import {
+  COLLECTIONS,
+  getBookByPathname,
+  getCollectionByPathname,
+  getCollectionOfBook
+} from '../content';
 
-export const AI_TUTORIALS_PATH = LEARN_AI_BASE_PATH;
-
-export function getAiTutorialSpace() {
-  const hub = getTutorialHub('learn-ai');
+// Resolve the active "knowledge space" — the conceptual top-level grouping
+// the user is currently inside. Used by DocsLayout for sidebar/breadcrumb
+// context; the top nav has its own derivation (getActiveTopNavItem).
+function spaceFromCollection(collection) {
+  if (!collection) {
+    return null;
+  }
   return {
-    id: 'ai-tutorials',
-    title: hub?.title || 'AI 学习教程',
-    entryPath: AI_TUTORIALS_PATH,
+    id: collection.id,
+    title: collection.title,
+    entryPath: collection.basePath,
     kind: 'tutorial-hub'
-  };
-}
-
-export function getLearnAiHubSpace() {
-  return {
-    id: 'learn-ai',
-    title: 'Learn Claude Code',
-    entryPath: getLearnAiDefaultPath(),
-    kind: 'learn-ai'
   };
 }
 
@@ -61,25 +59,32 @@ export function buildKnowledgeSpaces(meta) {
     .map((category) => buildDocKnowledgeSpace(category))
     .filter(Boolean);
 
-  return [...docSpaces, getAiTutorialSpace()];
+  const collectionSpaces = COLLECTIONS.map((collection) => spaceFromCollection(collection));
+
+  return [...docSpaces, ...collectionSpaces];
 }
 
 export function findActiveKnowledgeSpace(meta, path) {
+  // Legacy /learn-claude-code/* path still surfaces as the LCC book / its collection.
   if (path.startsWith('/learn-claude-code/')) {
-    return getAiTutorialSpace();
+    return spaceFromCollection(getCollectionOfBook('learn-claude-code'));
   }
 
-  const hub = getTutorialHubByPathname(path);
-  if (hub) {
-    return {
-      id: hub.id,
-      title: hub.title,
-      entryPath: hub.basePath,
-      kind: 'tutorial-hub'
-    };
+  // Hub-index URL (e.g. /learn-ai exactly).
+  const directCollection = getCollectionByPathname(path);
+  if (directCollection) {
+    return spaceFromCollection(directCollection);
+  }
+
+  // Inside a book URL — surface the collection if it has one.
+  const book = getBookByPathname(path);
+  if (book) {
+    const collection = getCollectionOfBook(book.id);
+    if (collection) {
+      return spaceFromCollection(collection);
+    }
   }
 
   const activeCategory = findActiveCategoryByPath(meta, path);
-
   return buildDocKnowledgeSpace(activeCategory);
 }

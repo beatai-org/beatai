@@ -1,10 +1,9 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import {
-  LEARN_AI_BASE_PATH,
-  LEARN_CLAUDE_CODE_BASE_PATH,
-  LEGACY_LEARN_CLAUDE_CODE_BASE_PATH
-} from '../../utils/learnAiPaths';
+import { getBookBasePath } from '../../content';
+
+const LCC_BOOK_ID = 'learn-claude-code';
+const LEGACY_LEARN_CLAUDE_CODE_BASE_PATH = '/learn-claude-code';
 
 export function NotFoundState({ label }) {
   return (
@@ -17,9 +16,9 @@ export function NotFoundState({ label }) {
 
 export function LearnRouteNotFound() {
   const location = useLocation();
+  const lccBase = getBookBasePath(LCC_BOOK_ID);
   const label = location.pathname
-    .replace(`${LEARN_AI_BASE_PATH}/`, '')
-    .replace(`${LEARN_CLAUDE_CODE_BASE_PATH}/`, '')
+    .replace(`${lccBase}/`, '')
     .replace(`${LEGACY_LEARN_CLAUDE_CODE_BASE_PATH}/`, '') || location.pathname;
 
   return <NotFoundState label={label} />;

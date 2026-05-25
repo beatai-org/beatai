@@ -8,24 +8,27 @@ import { useCategoryNavigation } from '../hooks/useCategoryNavigation';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import { useReadingModeSearchParam } from '../hooks/useReadingModeSearchParam';
 import { buildKnowledgeNavigationModel } from '../domain/docs';
+import { getBookDefaultUrl, getBooksOfCollection } from '../content';
 import { preloadRouteForPath } from '../utils/routePrefetch';
 import './AITutorials.css';
 
-function HubContent({ hub, categories, spaces }) {
+function CollectionContent({ collection, categories, spaces }) {
   const handleCategoryClick = useCategoryNavigation();
-  const [hoveredSlug, setHoveredSlug] = useState('');
+  const [hoveredId, setHoveredId] = useState('');
   const readingMode = useReadingModeSearchParam();
   const { isReadingMode } = readingMode;
-  const activeSpace = useMemo(() => ({
-    id: hub.id,
-    title: hub.title,
-    entryPath: hub.basePath,
-    kind: 'tutorial-hub'
-  }), [hub]);
+  const books = useMemo(() => getBooksOfCollection(collection), [collection]);
 
-  const renderCardIcon = (space) => {
-    if (space.slug === 'learn-claude-code') {
-      return <LearnClaudeCodeIcon size={88} animated={hoveredSlug === space.slug} />;
+  const activeSpace = useMemo(() => ({
+    id: collection.id,
+    title: collection.title,
+    entryPath: collection.basePath,
+    kind: 'tutorial-hub'
+  }), [collection]);
+
+  const renderCardIcon = (book) => {
+    if (book.id === 'learn-claude-code') {
+      return <LearnClaudeCodeIcon size={88} animated={hoveredId === book.id} />;
     }
     return (
       <div className="ai-tutorial-card-icon-text" aria-hidden="true">
@@ -34,15 +37,14 @@ function HubContent({ hub, categories, spaces }) {
     );
   };
 
-  const resolveDefaultPath = (space) => hub.getDefaultPath(space.slug);
-  const preloadTutorialRoute = (space) => {
-    preloadRouteForPath(resolveDefaultPath(space));
+  const preloadBookRoute = (book) => {
+    preloadRouteForPath(getBookDefaultUrl(book));
   };
 
   return (
     <ReadingModeProvider value={readingMode}>
       <>
-        <PageSeo title={hub.title} description={hub.description} />
+        <PageSeo title={collection.title} description={collection.description} />
 
         <PageShell
           rootClassName={`ai-tutorials-page ${isReadingMode ? 'reading-mode' : ''}`.trim()}
@@ -56,32 +58,32 @@ function HubContent({ hub, categories, spaces }) {
           showReadingModeToggle
         >
           <div className="ai-tutorials-container">
-            <section className="ai-tutorials-grid" aria-label={`${hub.title} books`}>
-              {hub.spaces.map((space) => (
+            <section className="ai-tutorials-grid" aria-label={`${collection.title} books`}>
+              {books.map((book) => (
                 <Link
-                  key={space.slug}
-                  to={resolveDefaultPath(space)}
+                  key={book.id}
+                  to={getBookDefaultUrl(book)}
                   className="ai-tutorial-card glass-card"
                   onMouseEnter={() => {
-                    setHoveredSlug(space.slug);
-                    preloadTutorialRoute(space);
+                    setHoveredId(book.id);
+                    preloadBookRoute(book);
                   }}
-                  onFocus={() => preloadTutorialRoute(space)}
-                  onTouchStart={() => preloadTutorialRoute(space)}
-                  onMouseLeave={() => setHoveredSlug('')}
+                  onFocus={() => preloadBookRoute(book)}
+                  onTouchStart={() => preloadBookRoute(book)}
+                  onMouseLeave={() => setHoveredId('')}
                 >
                   <div className="ai-tutorial-card-spotlight" aria-hidden="true"></div>
                   <div className="ai-tutorial-card-icon">
-                    {renderCardIcon(space)}
+                    {renderCardIcon(book)}
                   </div>
                   <div className="ai-tutorial-card-body">
-                    <span className="ai-tutorial-card-badge">{space.cardLabel || '已上线'}</span>
-                    <h2>{space.bookTitle}</h2>
-                    <p>{space.description}</p>
+                    <span className="ai-tutorial-card-badge">{book.cardLabel || '已上线'}</span>
+                    <h2>{book.bookTitle}</h2>
+                    <p>{book.description}</p>
                   </div>
                   <div className="ai-tutorial-card-footer">
-                    <span>{space.cardMeta || '进入教程'}</span>
-                    <span className="ai-tutorial-card-arrow">{space.cardCta || '进入阅读'}</span>
+                    <span>{book.cardMeta || '进入教程'}</span>
+                    <span className="ai-tutorial-card-arrow">{book.cardCta || '进入阅读'}</span>
                   </div>
                 </Link>
               ))}
@@ -93,7 +95,7 @@ function HubContent({ hub, categories, spaces }) {
   );
 }
 
-export default function TutorialsHubPage({ hub }) {
+export default function CollectionPage({ collection }) {
   const { meta, loading, error } = useDocsMeta();
 
   if (loading) {
@@ -106,5 +108,5 @@ export default function TutorialsHubPage({ hub }) {
 
   const { categories, spaces } = buildKnowledgeNavigationModel(meta);
 
-  return <HubContent hub={hub} categories={categories} spaces={spaces} />;
+  return <CollectionContent collection={collection} categories={categories} spaces={spaces} />;
 }

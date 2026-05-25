@@ -9,12 +9,12 @@ import { preloadMarkdownFile } from '../../utils/markdownPrefetch';
 import { preloadRouteForPath } from '../../utils/routePrefetch';
 import { SITE_CONFIG } from '../../utils/siteConfig';
 import { HOME_PATH } from '../../utils/siteRoutes';
-import { TOP_NAV_ITEMS, getActiveTopNavItem } from '../../utils/topNav';
+import { getActiveTopNavItem, getTopNavItems } from '../../content';
 
 /**
  * 应用统一 Header 组件
  *
- * 顶部导航来自独立的 TOP_NAV_ITEMS 配置（src/utils/topNav.js），跟 doc-category 注册解耦。
+ * 顶部导航来自独立的 getTopNavItems() 配置（src/utils/topNav.js），跟 doc-category 注册解耦。
  * spaces / activeSpace 仍可传入：当某个 nav 项的 id 在 spaces 里能匹配到，会顺带启用
  * GitHub 图标与资源 preload；匹配不到的条目（例如嵌套在 hub 下的书）则优雅降级。
  *
@@ -44,6 +44,7 @@ const AppHeader = ({
     return map;
   }, [spaces]);
 
+  const navItems = useMemo(() => getTopNavItems(), []);
   const activeNavItem = getActiveTopNavItem(location.pathname);
   const activeSpaceEnrichment = activeNavItem ? spaceById.get(activeNavItem.id) : null;
 
@@ -122,7 +123,7 @@ const AppHeader = ({
             </button>
             {mobileDropdownOpen && (
               <div className="mobile-category-menu" role="menu">
-                {TOP_NAV_ITEMS.map((item) => (
+                {navItems.map((item) => (
                   <Link
                     key={item.id}
                     to={item.href}
@@ -154,7 +155,7 @@ const AppHeader = ({
 
         {/* Desktop Category Navigation */}
         <nav className="category-nav desktop-only">
-          {TOP_NAV_ITEMS.map((item) => {
+          {navItems.map((item) => {
             const enrichment = spaceById.get(item.id);
             const isActive = activeNavItem?.id === item.id;
             return (

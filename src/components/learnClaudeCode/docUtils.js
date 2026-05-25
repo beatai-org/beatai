@@ -1,5 +1,9 @@
-import { getLearnAiEntryPath, LEGACY_LEARN_CLAUDE_CODE_BASE_PATH } from '../../utils/learnAiPaths';
 import { docsData } from '../../vendor/learn-claude-code/data';
+import { getLccVersionPath } from './versionUtils';
+
+// Legacy URL prefix from before LCC moved under /learn-ai/learn-claude-code/.
+// Links in old markdown content still reference this; we rewrite them on render.
+const LEGACY_LEARN_CLAUDE_CODE_BASE_PATH = '/learn-claude-code';
 
 export function getVersionDoc(version, locale = 'zh') {
   return (
@@ -38,7 +42,7 @@ export function renameBookTitle(content) {
 export function rewriteLearnClaudeCodeLinks(content) {
   return String(content || '').replace(
     new RegExp(`\\]\\(${LEGACY_LEARN_CLAUDE_CODE_BASE_PATH}/([^)]+)\\)`, 'g'),
-    (_, slug) => `](${getLearnAiEntryPath(slug)})`
+    (_, slug) => `](${getLccVersionPath(slug)})`
   );
 }
 

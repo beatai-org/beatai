@@ -12,7 +12,7 @@ import {
   findDocCategory,
   getCategoryEntryPath
 } from '../domain/docs';
-import { getLearnAiDefaultPath } from '../utils/learnAiPaths';
+import { getBookDefaultUrl } from '../content';
 import { SITE_CONFIG } from '../utils/siteConfig';
 import {
   buildTagPath,
@@ -42,7 +42,7 @@ const Square = () => {
 
   const getSquareCardPath = (card) => {
     if (card.pathKind === 'learnAiDefault') {
-      return getLearnAiDefaultPath();
+      return getBookDefaultUrl('learn-claude-code');
     }
 
     return getSquareCategoryEntryPath(card.categoryId);

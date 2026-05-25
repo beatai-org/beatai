@@ -8,7 +8,13 @@ import {
   versionsData,
   zhMessages
 } from '../../vendor/learn-claude-code/data';
-import { getLearnAiEntryPath } from '../../utils/learnAiPaths';
+import { getBookBasePath } from '../../content';
+
+const LCC_BOOK_ID = 'learn-claude-code';
+
+export function getLccVersionPath(version) {
+  return `${getBookBasePath(LCC_BOOK_ID)}/${version}`;
+}
 
 export function getVersionData(version) {
   return versionsData.versions.find((item) => item.id === version) || null;
@@ -48,12 +54,12 @@ export function getVersionPagination(version) {
 
   return {
     prev: prevVersion ? {
-      path: getLearnAiEntryPath(prevVersion),
+      path: getLccVersionPath(prevVersion),
       title: getVersionNavTitle(prevVersion),
       section: getLayerLabelForVersion(prevVersion)
     } : null,
     next: nextVersion ? {
-      path: getLearnAiEntryPath(nextVersion),
+      path: getLccVersionPath(nextVersion),
       title: getVersionNavTitle(nextVersion),
       section: getLayerLabelForVersion(nextVersion)
     } : null

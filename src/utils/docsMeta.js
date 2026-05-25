@@ -1,4 +1,5 @@
 import { fetchJson } from './http';
+import { BOOKS } from '../content';
 import { normalizeDocsMeta } from './docsMetaNormalizer';
 
 export {
@@ -26,7 +27,8 @@ export {
 } from './docsMetaSelectors';
 
 const PUBLIC_URL = process.env.PUBLIC_URL || '';
-const DOCS_META_PATH = `${PUBLIC_URL}/docs/_meta.json`;
+// Sentinel key for the "root" meta (categories derived from src/content/books).
+const ROOT_META_KEY = '__root__';
 
 const docsMetaCache = new Map();
 const docsMetaPromises = new Map();
@@ -44,52 +46,37 @@ function resolveMetaUrl(metaPath) {
   return `${PUBLIC_URL}${normalizedPath}`;
 }
 
-function mergeBookMeta(entry, categoryMeta) {
+function mergeBookMeta(book, categoryMeta) {
   return {
     ...categoryMeta,
-    id: categoryMeta?.id || entry.id,
-    title: categoryMeta?.title || entry.title,
-    description: categoryMeta?.description || entry.description || '',
-    githubRepo: categoryMeta?.githubRepo || entry.githubRepo,
-    repoTitle: categoryMeta?.repoTitle || entry.repoTitle
+    id: categoryMeta?.id || book.id,
+    title: categoryMeta?.title || book.title,
+    description: categoryMeta?.description || book.description || '',
+    githubRepo: categoryMeta?.githubRepo || book.githubRepo,
+    repoTitle: categoryMeta?.repoTitle || book.repoTitle
   };
 }
 
-async function resolveDocsMeta(data) {
-  if (Array.isArray(data?.categories)) {
-    return data;
-  }
+// Build the "root" meta — a single { categories } object covering every
+// markdown book in the registry. Used by surfaces that need a global view of
+// the doc tree (search/tag indexing, the NotFound shell, the docs sidebar
+// when on a top-level book, etc.).
+async function buildRootMeta() {
+  const markdownBooks = BOOKS.filter((book) => book.contentKind === 'markdown' && book.metaFile);
 
-  const rootMeta = normalizeDocsMeta(data);
-
-  if (!Array.isArray(rootMeta?.books) || rootMeta.books.length === 0) {
-    return data;
-  }
-
-  const resolvableBooks = rootMeta.books.filter((entry) => entry.metaFile);
   const categories = await Promise.all(
-    resolvableBooks.map(async (entry) => {
-      const categoryMeta = await fetchJson(resolveMetaUrl(entry.metaFile));
-      return mergeBookMeta(entry, categoryMeta);
+    markdownBooks.map(async (book) => {
+      const categoryMeta = await fetchJson(resolveMetaUrl(book.metaFile));
+      return mergeBookMeta(book, categoryMeta);
     })
   );
 
-  return {
-    ...rootMeta,
-    categories
-  };
+  return { categories };
 }
 
-export function getDocsMetaUrl() {
-  return DOCS_META_PATH;
-}
-
-export function getCachedDocsMeta(metaUrl = getDocsMetaUrl()) {
-  if (!metaUrl) {
-    return null;
-  }
-
-  return docsMetaCache.get(metaUrl) || null;
+export function getCachedDocsMeta(metaUrl) {
+  const key = metaUrl || ROOT_META_KEY;
+  return docsMetaCache.get(key) || null;
 }
 
 export function clearDocsMetaCache() {
@@ -97,31 +84,32 @@ export function clearDocsMetaCache() {
   docsMetaPromises.clear();
 }
 
-export async function loadDocsMeta(metaUrl = getDocsMetaUrl()) {
-  if (!metaUrl) {
-    throw new Error('Meta URL is required');
+export async function loadDocsMeta(metaUrl) {
+  const key = metaUrl || ROOT_META_KEY;
+
+  if (docsMetaCache.has(key)) {
+    return docsMetaCache.get(key);
   }
 
-  if (docsMetaCache.has(metaUrl)) {
-    return docsMetaCache.get(metaUrl);
+  if (docsMetaPromises.has(key)) {
+    return docsMetaPromises.get(key);
   }
 
-  if (docsMetaPromises.has(metaUrl)) {
-    return docsMetaPromises.get(metaUrl);
-  }
+  const dataPromise = metaUrl
+    ? fetchJson(metaUrl)
+    : buildRootMeta();
 
-  const request = fetchJson(metaUrl)
-    .then(resolveDocsMeta)
+  const request = dataPromise
     .then((data) => {
       const normalized = normalizeDocsMeta(data);
-      docsMetaCache.set(metaUrl, normalized);
+      docsMetaCache.set(key, normalized);
       return normalized;
     })
     .finally(() => {
-      docsMetaPromises.delete(metaUrl);
+      docsMetaPromises.delete(key);
     });
 
-  docsMetaPromises.set(metaUrl, request);
+  docsMetaPromises.set(key, request);
 
   return request;
 }

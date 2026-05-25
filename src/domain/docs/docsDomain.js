@@ -19,8 +19,7 @@ import {
 } from '../../utils/docsMetaSelectors';
 import {
   buildKnowledgeSpaces,
-  findActiveKnowledgeSpace,
-  getAiTutorialSpace
+  findActiveKnowledgeSpace
 } from '../../utils/knowledgeSpaces';
 import { normalizeDocComponentMarkdown, resolvePublicContentUrl } from '../../utils/markdown';
 import { flattenChapters, getAdjacentChapters } from '../../utils/navigationHelpers';
@@ -65,10 +64,6 @@ export function buildKnowledgeNavigationModel(meta) {
     categories: meta?.categories || [],
     spaces: buildKnowledgeSpaces(meta)
   };
-}
-
-export function getAiTutorialNavigationSpace() {
-  return getAiTutorialSpace();
 }
 
 export function buildArticlePrefetchModel(item) {

@@ -1,21 +1,17 @@
-import {
-  LEARN_AI_BASE_PATH,
-  LEGACY_LEARN_CLAUDE_CODE_BASE_PATH
-} from './learnAiPaths';
 import { SITE_CONFIG } from './siteConfig';
 
-// Tutorial hubs (/learn-ai, /mba, etc.) are registered in src/utils/tutorialHubs.js
-// — their routes/titles/paths come from that registry, not from PAGE_CONFIG.
-// PAGE_IDS.tutorialsHubPage / tutorialBook are *chunk* identifiers for the
-// shared React components those hubs render through.
+// Books and tutorial collections are registered in src/content/* — their
+// routes, titles, and URLs come from that registry. PAGE_IDS here is the
+// shorter list of:
+//   - Misc top-level pages (Square, Home, etc.)
+//   - Lazy-loaded chunk identifiers (bookPage, collectionPage, notFound)
 export const PAGE_IDS = Object.freeze({
   docs: 'docs',
   genesisLab: 'genesisLab',
   square: 'square',
   aiInsights: 'aiInsights',
-  tutorialsHubPage: 'tutorialsHubPage',
-  tutorialBook: 'tutorialBook',
-  learnClaudeCode: 'learnClaudeCode',
+  bookPage: 'bookPage',
+  collectionPage: 'collectionPage',
   tag: 'tag',
   aiContinentDemo: 'aiContinentDemo',
   mapTextureShowcase: 'mapTextureShowcase',
@@ -52,13 +48,6 @@ export const PAGE_CONFIG = Object.freeze({
     title: 'AI 前沿学习',
     description: `${SITE_CONFIG.brandName} AI 前沿学习档案，集中浏览 AI 领域最新动态、技术分享与深度解析。`
   },
-  [PAGE_IDS.learnClaudeCode]: {
-    id: PAGE_IDS.learnClaudeCode,
-    path: `${LEARN_AI_BASE_PATH}/learn-claude-code`,
-    legacyPath: `${LEGACY_LEARN_CLAUDE_CODE_BASE_PATH}/*`,
-    title: 'Learn Claude Code',
-    description: `Learn Claude Code 学习路径已接入 ${SITE_CONFIG.brandName}，包含学习路径、版本详情、文档讲解、模拟器与源码浏览。`
-  },
   [PAGE_IDS.tag]: {
     id: PAGE_IDS.tag,
     path: '/tags/:tagName',
@@ -89,10 +78,14 @@ export const PAGE_CONFIG = Object.freeze({
   }
 });
 
+// Legacy URL prefix from before LCC moved under /learn-ai/learn-claude-code/.
+// App.js still rewrites /learn-claude-code/* to the new URL for incoming links.
+const LEGACY_LEARN_CLAUDE_CODE_BASE_PATH = '/learn-claude-code';
+
 export const APP_ROUTE_PATHS = Object.freeze({
   root: '/',
   tags: PAGE_CONFIG[PAGE_IDS.tag].path,
-  legacyLearnClaudeCode: PAGE_CONFIG[PAGE_IDS.learnClaudeCode].legacyPath,
+  legacyLearnClaudeCode: `${LEGACY_LEARN_CLAUDE_CODE_BASE_PATH}/*`,
   catchAll: '/*'
 });
 
@@ -152,10 +145,10 @@ export const SQUARE_CONTENT_CARDS = Object.freeze([
     description: '学习 AI 时代最安全的语言'
   },
   {
-    id: PAGE_IDS.learnClaudeCode,
+    id: 'learnClaudeCode',
     icon: 'learn-ai',
     pathKind: 'learnAiDefault',
-    title: PAGE_CONFIG[PAGE_IDS.learnClaudeCode].title,
+    title: 'Learn Claude Code',
     description: '欲练此功...'
   }
 ]);

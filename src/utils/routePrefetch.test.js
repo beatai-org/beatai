@@ -1,8 +1,8 @@
 const mockLoaders = {
   aiInsights: jest.fn(),
-  tutorialsHubPage: jest.fn(),
-  docs: jest.fn(),
-  tutorialBook: jest.fn(),
+  collectionPage: jest.fn(),
+  notFound: jest.fn(),
+  bookPage: jest.fn(),
   tag: jest.fn()
 };
 
@@ -28,11 +28,11 @@ test('resolves route ids from internal paths', () => {
   expect(getRouteIdForPath('/')).toBe('aiInsights');
   expect(getRouteIdForPath('/ai-insights')).toBe('aiInsights');
   expect(getRouteIdForPath('/tags/Artificial%20Intelligence')).toBe('tag');
-  expect(getRouteIdForPath('/learn-ai')).toBe('tutorialsHubPage');
-  expect(getRouteIdForPath('/learn-ai/deep-learning/chapter-01/lesson-01')).toBe('tutorialBook');
-  expect(getRouteIdForPath('/mba')).toBe('tutorialsHubPage');
-  expect(getRouteIdForPath('/mba/elon-book/about')).toBe('tutorialBook');
-  expect(getRouteIdForPath('/rust-course/about-book')).toBe('docs');
+  expect(getRouteIdForPath('/learn-ai')).toBe('collectionPage');
+  expect(getRouteIdForPath('/learn-ai/deep-learning/chapter-01/lesson-01')).toBe('bookPage');
+  expect(getRouteIdForPath('/mba')).toBe('collectionPage');
+  expect(getRouteIdForPath('/mba/elon-book/about')).toBe('bookPage');
+  expect(getRouteIdForPath('/rust-course/about-book')).toBe('bookPage');
   expect(getRouteIdForPath('https://example.com/rust-course/about-book')).toBeNull();
 });
 
@@ -42,7 +42,7 @@ test('deduplicates route module preloads by resolved route id', async () => {
     preloadRouteForPath('/rust-course/into-rust')
   ]);
 
-  expect(mockLoaders.docs).toHaveBeenCalledTimes(1);
+  expect(mockLoaders.bookPage).toHaveBeenCalledTimes(1);
 });
 
 test('swallows failed preloads and allows retrying the same route later', async () => {

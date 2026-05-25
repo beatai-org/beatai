@@ -75,9 +75,6 @@ function normalizeComponentProps(props) {
   }
 
   return Object.entries(props).reduce((result, [key, value]) => {
-    // children pass through to the registered component as a real React prop
-    // (see DocMarkdownComponent below) so container widgets like <tabs> can
-    // host nested <doc-component name="tab">…</doc-component> children.
     if (
       key === 'node'
       || key === 'children'
@@ -111,7 +108,7 @@ function MissingComponentState({ name }) {
   );
 }
 
-function DocMarkdownComponent({ name = '', children, ...props }) {
+function DocMarkdownComponent({ name = '', ...props }) {
   const normalizedName = normalizeComponentName(name);
   const Component = getDocComponentByName(normalizedName);
 
@@ -119,13 +116,13 @@ function DocMarkdownComponent({ name = '', children, ...props }) {
     return <MissingComponentState name={name} />;
   }
 
-  // No outer wrapper: each <doc-component> renders as its registered React
-  // component directly, so container widgets (e.g. tabs) can filter children
-  // by component identity (child.type === Tab) without a wrapping div in
-  // between. Leaf widgets that need a visual shell apply it internally.
   const componentProps = normalizeComponentProps(props);
 
-  return <Component {...componentProps}>{children}</Component>;
+  return (
+    <div className="doc-embedded-component" data-doc-component={normalizedName}>
+      <Component {...componentProps} />
+    </div>
+  );
 }
 
 export default DocMarkdownComponent;

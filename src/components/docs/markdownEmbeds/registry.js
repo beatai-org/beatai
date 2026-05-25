@@ -1,7 +1,6 @@
 import React from 'react';
 import SceneSequenceDocEmbed from './SceneSequenceDocEmbed';
 import RegisteredDocComponentEmbed from './RegisteredDocComponentEmbed';
-import DocTabs, { DocTab } from '../DocTabs';
 import AgentLoopSimulator from '../../learnClaudeCode/AgentLoopSimulator';
 import DeepDive from '../../learnClaudeCode/DeepDive';
 import SourceViewer from '../../learnClaudeCode/SourceViewer';
@@ -14,8 +13,6 @@ import '../../learnClaudeCode/lcc-styles.css';
 export const DOC_COMPONENT_REGISTRY = {
   'scene-sequence': SceneSequenceDocEmbed,
   component: RegisteredDocComponentEmbed,
-  tabs: DocTabs,
-  tab: DocTab,
   'agent-loop-simulator': AgentLoopSimulator,
   'source-viewer': SourceViewer,
   'deep-dive': DeepDive,

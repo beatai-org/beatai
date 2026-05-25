@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
-import { cn } from '../../utils/classNames';
+import { cn } from '../../../utils/classNames';
 
-// Generic tab container usable inside any markdown document via
-// `<doc-tabs><doc-tab label="...">...</doc-tab></doc-tabs>`. The renderer is
-// agnostic to what each tab holds — content inside `<doc-tab>` is parsed as
-// markdown by CommonMark's HTML-block rules (blank lines around the tags),
-// and tab metadata is extracted from React children at render time.
-
-export function DocTab({ children }) {
+export function Tab({ children }) {
   return <>{children}</>;
 }
 
-function isDocTab(child) {
-  return React.isValidElement(child) && child.type === DocTab;
+function isTab(child) {
+  return React.isValidElement(child) && child.type === Tab;
 }
 
-function DocTabs({ children }) {
-  const tabs = React.Children.toArray(children).filter(isDocTab);
+function Tabs({ children }) {
+  const tabs = React.Children.toArray(children).filter(isTab);
   const [activeIndex, setActiveIndex] = useState(0);
 
   if (tabs.length === 0) {
@@ -52,4 +46,4 @@ function DocTabs({ children }) {
   );
 }
 
-export default DocTabs;
+export default Tabs;

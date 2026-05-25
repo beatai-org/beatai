@@ -1,5 +1,5 @@
-import zhMessages from './i18n/zh.json';
-import baseVersionsData from './data/generated/versions.json';
+import zhMessages from './data/i18n.json';
+import baseVersionsData from './data/versions.json';
 
 import s01Annotations from './data/annotations/s01.json';
 import s02Annotations from './data/annotations/s02.json';

@@ -9,12 +9,14 @@ const REMARK_PLUGINS = [remarkGfm, remarkCjkFriendly];
 
 export default function MdxRenderer({
   source,
+  book = null,
   markdownUrl = '',
   onImageClick = null,
   enablePlayground = false,
   includeH1 = true
 }) {
-  const components = useMdxComponents({
+  const { components, ready: scopeReady } = useMdxComponents({
+    book,
     enablePlayground,
     includeH1,
     markdownUrl,
@@ -25,7 +27,7 @@ export default function MdxRenderer({
   useEffect(() => {
     let cancelled = false;
 
-    if (!source) {
+    if (!source || !scopeReady) {
       setState({ Content: null, error: null });
       return undefined;
     }
@@ -55,7 +57,7 @@ export default function MdxRenderer({
     return () => {
       cancelled = true;
     };
-  }, [source]);
+  }, [source, scopeReady]);
 
   if (state.error) {
     return (

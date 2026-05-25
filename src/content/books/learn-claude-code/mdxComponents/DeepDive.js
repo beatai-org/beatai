@@ -3,7 +3,7 @@ import {
   ANNOTATIONS,
   EXECUTION_FLOWS,
   zhMessages
-} from '../../vendor/learn-claude-code/data';
+} from '../data';
 import ExecutionFlow from './ExecutionFlow';
 import DesignDecisions from './DesignDecisions';
 

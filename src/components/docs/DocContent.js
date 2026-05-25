@@ -23,7 +23,7 @@ import { buildDocsTitle } from '../../utils/siteConfig';
 
 const DocImageLightbox = React.lazy(() => import('./DocImageLightbox'));
 
-const DocContent = () => {
+const DocContent = ({ book = null }) => {
   const location = useLocation();
   const navigationType = useNavigationType();
   const { setPageTitle, findTitleByPath } = usePageTitle();
@@ -187,6 +187,7 @@ const DocContent = () => {
         ) : docMetaEntry?.item?.file?.endsWith('.mdx') ? (
           <MdxRenderer
             source={markdownContent}
+            book={book}
             markdownUrl={markdownUrl}
             onImageClick={openImageLightbox}
             enablePlayground

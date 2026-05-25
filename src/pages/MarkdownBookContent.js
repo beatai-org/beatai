@@ -62,7 +62,7 @@ function MarkdownBookContent({ book }) {
         <DocsLayout meta={docsMeta}>
           <Routes>
             <Route index element={<Navigate to={getBookDefaultUrl(book)} replace />} />
-            <Route path="*" element={<DocContent />} />
+            <Route path="*" element={<DocContent book={book} />} />
           </Routes>
         </DocsLayout>
       </TagProvider>

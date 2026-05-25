@@ -43,7 +43,8 @@ export const BOOKS = Object.freeze([
     repoTitle: 'shareAI-lab / learn-claude-code',
     cardLabel: '已上线',
     cardMeta: '1 本教程书',
-    cardCta: '进入阅读'
+    cardCta: '进入阅读',
+    mdxComponents: () => import('./books/learn-claude-code/mdxComponents')
   },
   {
     id: 'deep-learning',

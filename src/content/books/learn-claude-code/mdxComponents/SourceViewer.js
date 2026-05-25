@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { versionsData } from '../../vendor/learn-claude-code/data';
+import { versionsData } from '../data';
 
 function highlightLine(line) {
   const trimmed = line.trimStart();

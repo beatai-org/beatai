@@ -891,6 +891,76 @@
           ],
           "summary": "我让 AI agent 给我们的产品头脑风暴一些新功能。不到一分钟它就甩回一份整齐的清单：通知中心、动态流、带分析 widget 的 dashboard、新手引导向导。功能本身都挺合理，但没有一个对得上我们的产品。",
           "cover": "./images/your-ai-agent-can-read-your-codebase-it-doesnt-know-your-product/01.thumb.webp"
+        },
+        {
+          "title": "用 250 行 Python 造一个本地的浏览网页 LLM agent",
+          "path": "/ai-insights/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python",
+          "file": "/docs/ai-insights/2026-05/26/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python.md",
+          "publishedAt": "2026-05-26",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Jes Fink-Jensen"
+            }
+          ],
+          "summary": "这篇文章里，我会演示如何给本地的 LLM agent 装上一个真正的网页浏览器。读完之后，agent 就能拿到一个问题、上网搜一篇相关页面、在隐身浏览器里打开它、读它的内容，并基于它真正看到的东西作答。",
+          "cover": "./images/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python/01.thumb.webp"
+        },
+        {
+          "title": "DS-STAR：Google 是怎么造出一个真正能用的数据科学 agent 的",
+          "path": "/ai-insights/ds-star-how-google-built-a-data-science-agent-that-actually-works",
+          "file": "/docs/ai-insights/2026-05/26/ds-star-how-google-built-a-data-science-agent-that-actually-works.md",
+          "publishedAt": "2026-05-26",
+          "tags": [
+            "Machine Learning",
+            "Artificial Intelligence",
+            "AI Agent",
+            "LLM"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Jose Parreño"
+            }
+          ],
+          "summary": "agentic coding 工具我已经用了大约两年（Claude Code 已经认真且持续地用了一年）。在通用工程任务上确实让人眼前一亮。但每当我把它推向真正的数据科学场景时，就总能撞上同一个摩擦点：Claude 的分析基本停留在算几个平均值——这些数字本身有用，但缺少一个数据科学家应有的纵深（分布对比、p 值、置信区间、数据质量等等）。",
+          "cover": "./images/ds-star-how-google-built-a-data-science-agent-that-actually-works/01.thumb.webp"
+        },
+        {
+          "title": "假如 2026 年从头学机器学习，我会怎么做",
+          "path": "/ai-insights/how-id-learn-machine-learning-in-2026",
+          "file": "/docs/ai-insights/2026-05/26/how-id-learn-machine-learning-in-2026.md",
+          "publishedAt": "2026-05-26",
+          "tags": [
+            "Machine Learning"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Marina Wyss"
+            }
+          ],
+          "summary": "我现在是 Twitch 的资深 Applied Scientist，已经做了七年的生产级 ML 系统部署。如果让我在 2026 年的今天从零重来一次，我几乎不会按当初的任何方式去走。",
+          "cover": "./images/how-id-learn-machine-learning-in-2026/01.thumb.webp"
+        },
+        {
+          "title": "Prompt Engineering 的现代进展",
+          "path": "/ai-insights/modern-advances-in-prompt-engineering",
+          "file": "/docs/ai-insights/2026-05/26/modern-advances-in-prompt-engineering.md",
+          "publishedAt": "2026-05-26",
+          "tags": [
+            "Artificial Intelligence",
+            "AI Agent"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Cameron R. Wolfe, Ph.D."
+            }
+          ],
+          "summary": "由于使用门槛极低，LLM 迎来了爆炸式的流行。哪怕完全不懂深度学习的人，只要写一段文本 prompt，就能调动起庞大的神经网络去快速解决各种复杂问题。随着指令跟随能力的改进和对齐技术的进步，这些模型变得越来越好用。然而，给 LLM 写出有效的 prompt，既是一门艺术，也是一门科学——仅仅是对 prompt 的实现方式或策略做一些细微调整，就能带来显著的性能提升。…",
+          "cover": "./images/modern-advances-in-prompt-engineering/01.thumb.webp"
         }
       ]
     }

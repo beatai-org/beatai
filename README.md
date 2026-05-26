@@ -2,14 +2,25 @@
 
 > 最近 30 天发布 · 完整列表见 <https://beatai.org/ai-insights>
 
+### 2026-05-26
+
+- [用 250 行 Python 造一个本地的浏览网页 LLM agent](https://beatai.org/ai-insights/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python?mode=read)  
+  这篇文章里，我会演示如何给本地的 LLM agent 装上一个真正的网页浏览器。读完之后，agent 就能拿到一个问题、上网搜一篇相关页面、在隐身浏览器里打开它、读它的内容，并基于它真正看到的东西作答。
+- [DS-STAR：Google 是怎么造出一个真正能用的数据科学 agent 的](https://beatai.org/ai-insights/ds-star-how-google-built-a-data-science-agent-that-actually-works?mode=read)  
+  agentic coding 工具我已经用了大约两年（Claude Code 已经认真且持续地用了一年）。在通用工程任务上确实让人眼前一亮。但每当我把它推向真正的数据科学场景时，就总能撞上同一个摩擦点：Claude 的分析基本停留在算几个平均值——这些数字本身有用，但缺少一个数据科学家应有的纵深（分布对比、p 值、置信区间、数据质量等等）。
+- [假如 2026 年从头学机器学习，我会怎么做](https://beatai.org/ai-insights/how-id-learn-machine-learning-in-2026?mode=read)  
+  我现在是 Twitch 的资深 Applied Scientist，已经做了七年的生产级 ML 系统部署。如果让我在 2026 年的今天从零重来一次，我几乎不会按当初的任何方式去走。
+- [Prompt Engineering 的现代进展](https://beatai.org/ai-insights/modern-advances-in-prompt-engineering?mode=read)  
+  由于使用门槛极低，LLM 迎来了爆炸式的流行。哪怕完全不懂深度学习的人，只要写一段文本 prompt，就能调动起庞大的神经网络去快速解决各种复杂问题。随着指令跟随能力的改进和对齐技术的进步，这些模型变得越来越好用。然而，给 LLM 写出有效的 prompt，既是一门艺术，也是一门科学——仅仅是对 prompt 的实现方式或策略做一些细微调整，就能带来显著的性能提升。…
+
 ### 2026-05-23
 
 - [代码并不便宜：用软件基本功放大 AI 的产出](https://beatai.org/ai-insights/code-is-not-cheap-how-to-multiply-your-ais-output-with-software-fundamentals?mode=read)  
   2025 年 2 月，Andrej Karpathy 造了个词："vibe coding"——说出你想要什么，让 AI 写代码，然后把代码忘掉。这个说法迅速火了。所有人都愿意相信，写代码已经像说话一样轻松。
 - [从鸢尾花到反向图搜：K-Nearest Neighbors 是怎么撑起现代 AI 的](https://beatai.org/ai-insights/knn-distance-metrics-choosing-k-modern-ai-explained?mode=read)  
   For You 页面、Spotify Discover Weekly、你做过的每一次反向图片搜索、ChatGPT 内部的检索——它们背后的算法，比彩色电视还要老。1951 年由 Evelyn Fix 和 Joseph Hodges 在一份美国空军技术报告里提出，从未被真正取代过。
-- [AI PM 的菜单：成本-质量权衡实战手册](https://beatai.org/ai-insights/the-ai-pms-menu-a-field-guide-to-cost-quality-tradeoffs?mode=read)  
-  我经营一家创业公司。打造 NomNow——一款已经上线 App Store 的多模态 AI 营养师——教会了我很多事，但如果只能挑一条让年轻版的自己读到，我会挑这条：对一家基于 LLM 的创业公司来说，成本纪律不是优化，是生死。
+- [AI PM 的菜单：成本与质量权衡的实战指南](https://beatai.org/ai-insights/the-ai-pms-menu-a-field-guide-to-cost-quality-tradeoffs?mode=read)  
+  我在创业。NomNow 是一款多模态 AI 营养师，现已上架 App Store。一路做下来，要说最想塞给年轻一点的自己读的那条经验，就是：对一家基于 LLM 的初创公司而言，成本纪律不是优化，是生存。
 - [你的 AI agent 能读懂代码库，却不懂你的产品](https://beatai.org/ai-insights/your-ai-agent-can-read-your-codebase-it-doesnt-know-your-product?mode=read)  
   我让 AI agent 给我们的产品头脑风暴一些新功能。不到一分钟它就甩回一份整齐的清单：通知中心、动态流、带分析 widget 的 dashboard、新手引导向导。功能本身都挺合理，但没有一个对得上我们的产品。
 

@@ -961,6 +961,21 @@
           ],
           "summary": "由于使用门槛极低，LLM 迎来了爆炸式的流行。哪怕完全不懂深度学习的人，只要写一段文本 prompt，就能调动起庞大的神经网络去快速解决各种复杂问题。随着指令跟随能力的改进和对齐技术的进步，这些模型变得越来越好用。然而，给 LLM 写出有效的 prompt，既是一门艺术，也是一门科学——仅仅是对 prompt 的实现方式或策略做一些细微调整，就能带来显著的性能提升。…",
           "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@d636560ddb58a0d75173d1977cf7a323f1319997/ai-insights/2026-05/26/images/modern-advances-in-prompt-engineering/01.thumb.webp"
+        },
+        {
+          "title": "Agent Harness 剖析",
+          "path": "/ai-insights/the-anatomy-of-an-agent-harness",
+          "file": "/docs/ai-insights/2026-05/27/the-anatomy-of-an-agent-harness.md",
+          "publishedAt": "2026-05-27",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Avi Chawla"
+            }
+          ],
+          "summary": "一个 ReAct loop、几个工具、一段写得不错的 system prompt——demo 阶段往往能撑得出奇地远。",
+          "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@e558c3134ee7187d876ad177289c91da6685ae56/ai-insights/2026-05/27/images/the-anatomy-of-an-agent-harness/01.thumb.webp"
         }
       ]
     }

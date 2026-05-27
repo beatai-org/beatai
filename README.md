@@ -4,8 +4,8 @@
 
 ### 2026-05-27
 
-- [如果让我在 2026 年重新学机器学习](https://beatai.org/ai-insights/how-id-learn-machine-learning-in-2026?mode=read)  
-  我在 Twitch 做 Senior Applied Scientist，过去七年一直在把 ML 系统部署到生产环境。如果让我今天，在 2026 年从零开始重新学一遍，我几乎不会再按当年那条路走。
+- [Agent Harness 剖析](https://beatai.org/ai-insights/the-anatomy-of-an-agent-harness?mode=read)  
+  一个 ReAct loop、几个工具、一段写得不错的 system prompt——demo 阶段往往能撑得出奇地远。
 
 ### 2026-05-26
 

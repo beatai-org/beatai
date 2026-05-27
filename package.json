@@ -51,11 +51,6 @@
     "update-changelog": "node scripts/update-changelog.mjs",
     "sync-rust-course": "node scripts/sync-rust-course.mjs",
     "sync-beat-ai": "node scripts/sync-beat-ai.mjs",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -r https://github.com/beatai-org/beatai.git",
-    "deploy:gh": "bash scripts/deploy-gh-pages.sh",
-    "deploy:gh:skip-build": "bash scripts/deploy-gh-pages.sh -s",
-    "deploy:gh:test": "bash scripts/deploy-gh-pages.sh -t",
     "serve:prod": "serve -s build -l 3000"
   },
   "eslintConfig": {
@@ -79,7 +74,6 @@
   "devDependencies": {
     "axios": "^1.13.6",
     "chalk": "^5.6.2",
-    "gh-pages": "^6.3.0",
     "ora": "^8.2.0",
     "serve": "^14.2.6"
   }

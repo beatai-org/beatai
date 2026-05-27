@@ -222,7 +222,6 @@ export function createDocMarkdownComponents({
           {...props}
           src={resolvedSrc}
           alt={alt || ''}
-          loading="lazy"
           onClick={handleClick}
         />
       );

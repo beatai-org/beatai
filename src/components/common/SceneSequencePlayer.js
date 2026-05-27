@@ -56,7 +56,6 @@ function renderSceneStage({
           src={currentScene.media.src}
           alt={currentScene.media.alt || currentScene.title}
           className="scene-sequence-player__media-image"
-          loading="lazy"
         />
         {currentScene.media.caption ? (
           <div className="scene-sequence-player__media-caption">{currentScene.media.caption}</div>

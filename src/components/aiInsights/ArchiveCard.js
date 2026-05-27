@@ -30,7 +30,7 @@ const ArchiveCard = ({ article, onArticleNavigate = null }) => {
     >
       {cover && (
         <div className="archive-card-thumb">
-          <img src={cover} alt="" loading="lazy" />
+          <img src={cover} alt="" />
         </div>
       )}
       <div className="archive-card-body">

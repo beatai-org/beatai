@@ -112,11 +112,8 @@ npm run sync-ai
 git add .
 git commit -m "Sync AI articles"
 
-# 3. 发布版本
+# 3. 发布版本（push 到 main 后 GitHub Actions 自动部署到 gh-pages）
 npm run release v0.6.5
-
-# 4. 部署到 gh-pages
-npm run deploy:gh
 ```
 
 ### 场景 3: CI/CD 集成
@@ -194,7 +191,6 @@ npm run deploy:gh
 | sync-ai-article.mjs | 同步 AI 文章 | `npm run sync-ai` |
 | sync-docs.mjs | 同步 Rust 文档 | `npm run sync-docs` |
 | release.sh | 发布版本 | `npm run release` |
-| deploy-gh-pages.sh | 部署到 gh-pages | `npm run deploy:gh` |
 
 ## 开发
 

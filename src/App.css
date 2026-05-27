@@ -14,8 +14,8 @@
      --font-size is derived from it so mobile can scale it up proportionally. */
   --user-font-size: 16px;
   --font-size: var(--user-font-size);
-  --site-shell-bg-light: linear-gradient(180deg, #eef2f7 0%, #e7ecf3 100%);
-  --site-shell-bg-dark: linear-gradient(180deg, #080b12 0%, #0c1018 100%);
+  --site-shell-bg-light: #eaeff5;
+  --site-shell-bg-dark: #0a0d15;
   --site-shell-overlay-opacity-light: 0.58;
   --site-shell-overlay-opacity-dark: 0.44;
   --bg-primary: #0a0a0a;
@@ -168,7 +168,7 @@ body {
 }
 
 [data-theme-mode="dark"] body {
-  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+  background: #121212;
 }
 
 :root[data-theme="ink-paper"]:not([data-theme-mode="dark"]) body,
@@ -182,11 +182,11 @@ body {
 
 :root[data-theme="kindle-paper"]:not([data-theme-mode="dark"]) body,
 :root[data-theme="kindle-paper"][data-theme-mode="light"] body {
-  background: linear-gradient(180deg, #e7e6e2 0%, #dfded8 100%);
+  background: #e3e2dd;
 }
 
 :root[data-theme="kindle-paper"][data-theme-mode="dark"] body {
-  background: linear-gradient(180deg, #141413 0%, #1b1b19 100%);
+  background: #171716;
 }
 
 /* App 容器使用通用动态背景 */

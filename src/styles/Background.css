@@ -6,13 +6,13 @@
 :root {
   /* 默认主题：Sailor Moon - 粉金色系 */
   --accent-start: #ff69b4;
-  --accent-end: #ff1493;
-  --accent-gradient: linear-gradient(135deg, #ff69b4 0%, #ffd700 50%, #ff1493 100%);
+  --accent-end: #ffd700;
+  --accent-gradient: linear-gradient(135deg, #ff69b4 0%, #ffd700 100%);
   --glow-color: rgba(255, 105, 180, 0.6);
   --particle-color: #ffd700;
   --bg-radial-1: rgba(255, 105, 180, 0.15);
   --bg-radial-2: rgba(255, 215, 0, 0.12);
-  --bg-radial-3: rgba(255, 20, 147, 0.10);
+  --bg-radial-3: rgba(255, 215, 0, 0.08);
 }
 
 /* ==================== Classic Blue Theme (Solid Color) ==================== */
@@ -119,30 +119,30 @@
   --bg-radial-3: rgba(255, 255, 255, 0.008);
 }
 
-/* ==================== Blue-Green Theme ==================== */
+/* ==================== Classic Green Theme (Solid Color) ==================== */
 /* Light Mode (default) */
-[data-theme="blue-green"]:not([data-theme-mode="dark"]),
-[data-theme="blue-green"][data-theme-mode="light"] {
-  --accent-start: #3b82f6;
-  --accent-end: #10b981;
-  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
-  --glow-color: rgba(59, 130, 246, 0.5);
-  --particle-color: #10b981;
-  --bg-radial-1: rgba(59, 130, 246, 0.15);
-  --bg-radial-2: rgba(16, 185, 129, 0.12);
-  --bg-radial-3: rgba(6, 182, 212, 0.1);
+[data-theme="classic-green"]:not([data-theme-mode="dark"]),
+[data-theme="classic-green"][data-theme-mode="light"] {
+  --accent-start: #16a34a;
+  --accent-end: #16a34a;
+  --accent-gradient: #16a34a;
+  --glow-color: rgba(22, 163, 74, 0.5);
+  --particle-color: #16a34a;
+  --bg-radial-1: rgba(22, 163, 74, 0.12);
+  --bg-radial-2: rgba(22, 163, 74, 0.08);
+  --bg-radial-3: rgba(22, 163, 74, 0.05);
 }
 
 /* Dark Mode */
-[data-theme="blue-green"][data-theme-mode="dark"] {
-  --accent-start: #60a5fa;
-  --accent-end: #34d399;
-  --accent-gradient: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
-  --glow-color: rgba(96, 165, 250, 0.6);
-  --particle-color: #34d399;
-  --bg-radial-1: rgba(59, 130, 246, 0.25);
-  --bg-radial-2: rgba(16, 185, 129, 0.2);
-  --bg-radial-3: rgba(6, 182, 212, 0.15);
+[data-theme="classic-green"][data-theme-mode="dark"] {
+  --accent-start: #22c55e;
+  --accent-end: #22c55e;
+  --accent-gradient: #22c55e;
+  --glow-color: rgba(34, 197, 94, 0.6);
+  --particle-color: #22c55e;
+  --bg-radial-1: rgba(22, 163, 74, 0.2);
+  --bg-radial-2: rgba(22, 163, 74, 0.15);
+  --bg-radial-3: rgba(22, 163, 74, 0.1);
 }
 
 /* ==================== Orange-Red Theme ==================== */
@@ -175,28 +175,26 @@
 /* Light Mode (default) */
 [data-theme="aurora"]:not([data-theme-mode="dark"]),
 [data-theme="aurora"][data-theme-mode="light"] {
-  --accent-start: #8b5cf6;
-  --accent-mid: #06b6d4;
+  --accent-start: #06b6d4;
   --accent-end: #10b981;
-  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 50%, #10b981 100%);
-  --glow-color: rgba(139, 92, 246, 0.5);
-  --particle-color: #06b6d4;
-  --bg-radial-1: rgba(139, 92, 246, 0.15);
-  --bg-radial-2: rgba(6, 182, 212, 0.12);
-  --bg-radial-3: rgba(16, 185, 129, 0.1);
+  --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+  --glow-color: rgba(6, 182, 212, 0.5);
+  --particle-color: #10b981;
+  --bg-radial-1: rgba(6, 182, 212, 0.12);
+  --bg-radial-2: rgba(16, 185, 129, 0.08);
+  --bg-radial-3: rgba(16, 185, 129, 0.05);
 }
 
 /* Dark Mode */
 [data-theme="aurora"][data-theme-mode="dark"] {
-  --accent-start: #a78bfa;
-  --accent-mid: #22d3ee;
+  --accent-start: #22d3ee;
   --accent-end: #34d399;
-  --accent-gradient: linear-gradient(135deg, #a78bfa 0%, #22d3ee 50%, #34d399 100%);
-  --glow-color: rgba(167, 139, 250, 0.6);
-  --particle-color: #22d3ee;
-  --bg-radial-1: rgba(139, 92, 246, 0.25);
-  --bg-radial-2: rgba(6, 182, 212, 0.2);
-  --bg-radial-3: rgba(16, 185, 129, 0.15);
+  --accent-gradient: linear-gradient(135deg, #22d3ee 0%, #34d399 100%);
+  --glow-color: rgba(34, 211, 238, 0.6);
+  --particle-color: #34d399;
+  --bg-radial-1: rgba(6, 182, 212, 0.2);
+  --bg-radial-2: rgba(16, 185, 129, 0.15);
+  --bg-radial-3: rgba(16, 185, 129, 0.1);
 }
 
 /* ==================== Sailor Moon Theme ==================== */
@@ -205,14 +203,13 @@
 [data-theme="sailor-moon"][data-theme-mode="light"],
 [data-theme="sailor-moon"][data-theme-mode="dark"] {
   --accent-start: #ff69b4;
-  --accent-mid: #ffd700;
-  --accent-end: #ff1493;
-  --accent-gradient: linear-gradient(135deg, #ff69b4 0%, #ffd700 50%, #ff1493 100%);
+  --accent-end: #ffd700;
+  --accent-gradient: linear-gradient(135deg, #ff69b4 0%, #ffd700 100%);
   --glow-color: rgba(255, 105, 180, 0.6);
   --particle-color: #ffd700;
   --bg-radial-1: rgba(255, 105, 180, 0.15);
   --bg-radial-2: rgba(255, 215, 0, 0.12);
-  --bg-radial-3: rgba(255, 20, 147, 0.10);
+  --bg-radial-3: rgba(255, 215, 0, 0.08);
 }
 
 /* Sailor Moon 背景层 - 使用实际 DOM 元素 */
@@ -271,57 +268,43 @@
 
 [data-theme="kindle-paper"]:not([data-theme-mode="dark"]) .dynamic-background,
 [data-theme="kindle-paper"][data-theme-mode="light"] .dynamic-background {
-  background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.14), transparent 42%),
-    linear-gradient(180deg, #e7e6e2 0%, #dfded8 100%);
+  background: #e3e2dd;
 }
 
 [data-theme="kindle-paper"][data-theme-mode="dark"] .dynamic-background {
-  background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.01), transparent 42%),
-    linear-gradient(180deg, #141413 0%, #1b1b19 100%);
+  background: #171716;
 }
 
-/* 动态渐变背景层 - 使用 CSS 变量 */
-.dynamic-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:
-    radial-gradient(circle at 20% 30%, var(--bg-radial-1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 60%, var(--bg-radial-2) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, var(--bg-radial-3) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-  /* Animation removed for better performance */
-  opacity: var(--site-shell-overlay-opacity-light);
-  transition: background 0.5s ease;
+[data-theme="classic-green"]:not([data-theme-mode="dark"]) .dynamic-background,
+[data-theme="classic-green"][data-theme-mode="light"] .dynamic-background {
+  background: #ecf2ee;
 }
 
-/* 深色模式 - 增强渐变效果 */
-[data-theme-mode="dark"] .dynamic-background::before {
-  background:
-    radial-gradient(circle at 20% 30%, var(--bg-radial-1) 0%, transparent 45%),
-    radial-gradient(circle at 80% 60%, var(--bg-radial-2) 0%, transparent 45%),
-    radial-gradient(circle at 50% 80%, var(--bg-radial-3) 0%, transparent 45%);
-  opacity: var(--site-shell-overlay-opacity-dark);
+[data-theme="classic-green"][data-theme-mode="dark"] .dynamic-background {
+  background: #152019;
 }
 
-[data-theme="ink-paper"] .dynamic-background::before {
-  background:
-    radial-gradient(circle at 18% 24%, var(--bg-radial-1) 0%, transparent 42%),
-    radial-gradient(circle at 78% 20%, var(--bg-radial-2) 0%, transparent 36%),
-    radial-gradient(circle at 52% 76%, var(--bg-radial-3) 0%, transparent 40%);
+[data-theme="orange-red"]:not([data-theme-mode="dark"]) .dynamic-background,
+[data-theme="orange-red"][data-theme-mode="light"] .dynamic-background {
+  background: #f5efea;
 }
 
-[data-theme="kindle-paper"] .dynamic-background::before {
-  background:
-    radial-gradient(circle at 16% 18%, var(--bg-radial-1) 0%, transparent 26%),
-    radial-gradient(circle at 76% 24%, var(--bg-radial-2) 0%, transparent 24%),
-    radial-gradient(circle at 52% 78%, var(--bg-radial-3) 0%, transparent 26%);
+[data-theme="orange-red"][data-theme-mode="dark"] .dynamic-background {
+  background: #221c16;
+}
+
+[data-theme="aurora"]:not([data-theme-mode="dark"]) .dynamic-background,
+[data-theme="aurora"][data-theme-mode="light"] .dynamic-background {
+  background: #ecf3f2;
+}
+
+[data-theme="aurora"][data-theme-mode="dark"] .dynamic-background {
+  background: #162120;
+}
+
+/* Sailor Moon 主题让 .dynamic-background 透明，露出底层 .sailor-moon-bg-layer 的 SVG */
+[data-theme="sailor-moon"] .dynamic-background {
+  background: transparent;
 }
 
 /* 网格背景层 - 已移除 */

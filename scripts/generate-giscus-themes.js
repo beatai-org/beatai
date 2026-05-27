@@ -9,10 +9,10 @@ const outputDir = path.join(repoRoot, 'public/giscus-themes');
 const THEMES = [
   { id: 'classic-mono', light: ['#1a1a1a', '#1a1a1a'], dark: ['#d4d4d4', '#d4d4d4'] },
   { id: 'classic-blue', light: ['#3b82f6', '#3b82f6'], dark: ['#60a5fa', '#60a5fa'] },
-  { id: 'blue-green', light: ['#3b82f6', '#10b981'], dark: ['#60a5fa', '#34d399'] },
+  { id: 'classic-green', light: ['#16a34a', '#16a34a'], dark: ['#22c55e', '#22c55e'] },
   { id: 'orange-red', light: ['#f97316', '#ef4444'], dark: ['#fb923c', '#f87171'] },
-  { id: 'aurora', light: ['#8b5cf6', '#10b981'], dark: ['#a78bfa', '#34d399'] },
-  { id: 'sailor-moon', light: ['#ff69b4', '#ff1493'], dark: ['#ff69b4', '#ff1493'] }
+  { id: 'aurora', light: ['#06b6d4', '#10b981'], dark: ['#22d3ee', '#34d399'] },
+  { id: 'sailor-moon', light: ['#ff69b4', '#ffd700'], dark: ['#ff69b4', '#ffd700'] }
 ];
 
 function loadThemeBuilder() {

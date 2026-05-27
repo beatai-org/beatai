@@ -10,6 +10,14 @@ const TableOfContents = ({ headings }) => {
     // Return early if no headings
     if (!headings || headings.length === 0) return;
 
+    // 初始高亮：URL 带 hash 优先用 hash 对应 heading，否则默认第一项
+    // 防止首屏第一个 H2 落在 IntersectionObserver 顶部 -100px 死区导致无人高亮
+    const initialHash = window.location.hash.slice(1);
+    const initialId = initialHash && headings.some((h) => h.id === initialHash)
+      ? initialHash
+      : headings[0].id;
+    setActiveId(initialId);
+
     // Create IntersectionObserver to track which heading is currently visible
     observer.current = new IntersectionObserver(
       (entries) => {

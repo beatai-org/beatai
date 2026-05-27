@@ -10,7 +10,7 @@ import { SITE_CONFIG } from '../../utils/siteConfig';
 import { HOME_PATH } from '../../utils/siteRoutes';
 import {
   getActiveTopNavItem,
-  getBookById,
+  getBookByPathname,
   getTopNavItems
 } from '../../content';
 
@@ -30,7 +30,8 @@ const AppHeader = ({
 
   const navItems = useMemo(() => getTopNavItems(), []);
   const activeNavItem = getActiveTopNavItem(location.pathname);
-  const activeGithubRepo = activeNavItem ? getBookById(activeNavItem.id)?.githubRepo : null;
+  const activeBook = getBookByPathname(location.pathname);
+  const activeGithubRepo = activeBook?.githubRepo || null;
 
   useEffect(() => {
     setMobileDropdownOpen(false);
@@ -125,7 +126,7 @@ const AppHeader = ({
               target="_blank"
               rel="noopener noreferrer"
               className="github-link-mobile"
-              title={`访问 ${activeNavItem.label} 的 GitHub 仓库`}
+              title={`访问 ${activeBook.title} 的 GitHub 仓库`}
             >
               <FaGithub />
             </a>
@@ -146,18 +147,6 @@ const AppHeader = ({
                 onTouchStart={() => preloadNavItem(item)}
               >
                 <span className="category-title">{item.label}</span>
-                {isActive && activeGithubRepo && (
-                  <a
-                    href={activeGithubRepo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="github-link-inline"
-                    title={`访问 ${item.label} 的 GitHub 仓库`}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <FaGithub />
-                  </a>
-                )}
               </Link>
             );
           })}
@@ -166,6 +155,18 @@ const AppHeader = ({
         {/* Actions */}
         <div className="app-header-actions">
           <AuthStatus />
+          {activeGithubRepo && (
+            <a
+              href={activeGithubRepo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="app-header-github-btn"
+              aria-label={`访问 ${activeBook.title} 的 GitHub 仓库`}
+              title={`访问 ${activeBook.title} 的 GitHub 仓库`}
+            >
+              <FaGithub />
+            </a>
+          )}
           {showReadingModeToggle && <ReadingModeToggleButton />}
           <ThemeSelector />
           {onMenuToggle && (

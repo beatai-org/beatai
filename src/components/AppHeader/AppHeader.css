@@ -99,7 +99,7 @@
   padding: 6px 16px;
   font-size: 15px;
   font-family: var(--font-family);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-secondary);
   background: transparent;
   border: none;
@@ -125,9 +125,7 @@
 
 .category-tab.active {
   color: var(--text-primary);
-  background: color-mix(in srgb, var(--card-bg) 90%, var(--bg-tertiary));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border-primary) 88%, transparent);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .category-title {
@@ -135,42 +133,44 @@
   align-items: center;
 }
 
-/* GitHub Link Inline with Category Title */
-.github-link-inline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 16px;
-  transition: all 0.25s ease;
-  margin-left: 2px;
-}
-
-.github-link-inline:hover {
-  color: var(--accent-start);
-  transform: scale(1.15);
-}
-
-.category-tab.active .github-link-inline {
-  color: var(--text-primary);
-}
-
-.category-tab.active .github-link-inline:hover {
-  color: var(--accent-start);
-  transform: scale(1.2) rotate(5deg);
-}
-
-[data-theme-mode="dark"] .category-tab.active .github-link-inline:hover {
-  filter: drop-shadow(0 0 6px var(--glow-color));
-}
-
 .app-header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
+}
+
+.app-header-github-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border-primary) 78%, transparent);
+  background: color-mix(in srgb, var(--card-bg) 76%, transparent);
+  color: color-mix(in srgb, var(--text-secondary) 88%, var(--text-tertiary));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  opacity: 0.82;
+}
+
+.app-header-github-btn:hover {
+  background: color-mix(in srgb, var(--card-bg-hover) 82%, transparent);
+  border-color: color-mix(in srgb, var(--accent-start) 28%, var(--border-primary));
+  color: var(--text-secondary);
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+.app-header-github-btn:active {
+  transform: translateY(0);
+}
+
+.app-header-github-btn svg {
+  font-size: 18px;
 }
 
 .mobile-menu-toggle {
@@ -448,13 +448,6 @@
   -webkit-text-fill-color: currentColor;
   color: var(--text-primary);
   text-shadow: none;
-}
-
-:root[data-theme="kindle-paper"] .github-link-inline:hover,
-:root[data-theme="kindle-paper"] .category-tab.active .github-link-inline:hover {
-  color: var(--text-primary);
-  transform: none;
-  filter: none;
 }
 
 :root[data-theme="kindle-paper"] .mobile-menu-toggle,

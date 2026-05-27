@@ -275,6 +275,15 @@
   background: #171716;
 }
 
+[data-theme="classic-blue"]:not([data-theme-mode="dark"]) .dynamic-background,
+[data-theme="classic-blue"][data-theme-mode="light"] .dynamic-background {
+  background: #e2eaf5;
+}
+
+[data-theme="classic-blue"][data-theme-mode="dark"] .dynamic-background {
+  background: #1d2530;
+}
+
 [data-theme="classic-green"]:not([data-theme-mode="dark"]) .dynamic-background,
 [data-theme="classic-green"][data-theme-mode="light"] .dynamic-background {
   background: #ecf2ee;

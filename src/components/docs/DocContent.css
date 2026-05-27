@@ -316,8 +316,8 @@
   position: relative;
   margin: 12px 0;
   padding: 22px 24px 22px 28px;
-  border: 1px solid color-mix(in srgb, var(--accent-primary) 20%, transparent);
-  border-left: 4px solid var(--accent-primary);
+  /* border: 1px solid color-mix(in srgb, var(--accent-primary) 20%, transparent); */
+  /* border-left: 4px solid var(--accent-primary); */
   border-radius: 0 16px 16px 0;
   background: color-mix(in srgb, var(--accent-primary) 8%, var(--card-bg));
   box-shadow: var(--shadow-sm);

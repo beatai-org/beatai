@@ -14,12 +14,12 @@
 
 .docs-sidebar::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .docs-sidebar::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  border-radius: 8px;
   transition: background 0.3s ease;
 }
 
@@ -132,7 +132,7 @@
   font-weight: 400;
   color: var(--text-secondary);
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: all 0.3s ease;
   position: relative;
   overflow: visible;

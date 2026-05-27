@@ -4,7 +4,7 @@
   height: 40px;
   background: var(--card-bg);
   border: 1px solid var(--border-primary);
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   padding: 0;
   outline: none;

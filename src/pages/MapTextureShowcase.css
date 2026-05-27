@@ -17,7 +17,7 @@
   margin-bottom: 1.2rem;
   padding: 1.3rem 1.4rem;
   border: 1px solid rgba(217, 194, 147, 0.18);
-  border-radius: 24px;
+  border-radius: 16px;
   background:
     linear-gradient(180deg, rgba(30, 39, 44, 0.9), rgba(16, 23, 27, 0.96));
   box-shadow: 0 24px 48px rgba(3, 7, 10, 0.32);
@@ -61,7 +61,7 @@
 .map-texture-detail,
 .texture-card {
   border: 1px solid rgba(217, 194, 147, 0.16);
-  border-radius: 24px;
+  border-radius: 16px;
   background:
     linear-gradient(180deg, rgba(29, 38, 43, 0.92), rgba(15, 21, 25, 0.96));
   box-shadow: 0 20px 42px rgba(4, 8, 12, 0.34);
@@ -132,7 +132,7 @@
   justify-content: center;
   min-height: 44px;
   padding: 0.65rem 0.95rem;
-  border-radius: 14px;
+  border-radius: 8px;
   border: 1px solid rgba(221, 198, 151, 0.3);
   background: linear-gradient(180deg, rgba(121, 88, 42, 0.82), rgba(90, 63, 28, 0.84));
   color: #fff8e6;

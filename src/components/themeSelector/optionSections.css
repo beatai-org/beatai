@@ -9,7 +9,7 @@
 .font-size-option {
   background: rgba(0, 0, 0, 0.03);
   border: 2px solid transparent;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
   color: #1f2937;

@@ -2,7 +2,7 @@
   width: 40px;
   height: 40px;
   padding: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid color-mix(in srgb, var(--border-primary) 78%, transparent);
   background: color-mix(in srgb, var(--card-bg) 76%, transparent);
   color: color-mix(in srgb, var(--text-secondary) 88%, var(--text-tertiary));
@@ -63,7 +63,7 @@
   flex-direction: column;
   overflow: hidden;
   padding: 12px 14px;
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid color-mix(in srgb, var(--border-primary) 78%, transparent);
   background: color-mix(in srgb, var(--card-bg) 94%, transparent);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);

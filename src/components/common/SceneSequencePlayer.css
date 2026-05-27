@@ -69,7 +69,7 @@
   right: 1rem;
   bottom: 1rem;
   padding: 0.75rem 0.95rem;
-  border-radius: 14px;
+  border-radius: 8px;
   background: var(--scene-media-caption-bg);
   color: var(--scene-media-caption-text);
   font-size: 0.95rem;

@@ -49,7 +49,7 @@
   display: inline-block;
   padding: 0.75rem 2rem;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  border-radius: 8px;
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   font-weight: 500;
@@ -74,7 +74,7 @@
 .tag-category-section {
   position: relative;
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 2rem;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -136,7 +136,7 @@
   gap: 0.75rem;
   padding: 1rem 1.25rem;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   text-decoration: none;
   color: rgba(255, 255, 255, 0.85);

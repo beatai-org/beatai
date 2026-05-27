@@ -165,7 +165,7 @@
   width: 80px;
   height: 60px;
   background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
-  border-radius: 20px;
+  border-radius: 16px;
   box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
 }
 
@@ -207,7 +207,7 @@
   width: 15px;
   height: 50px;
   background: linear-gradient(180deg, #8b5cf6 0%, #a78bfa 100%);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .arm-left {

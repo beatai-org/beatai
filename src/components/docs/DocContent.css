@@ -171,7 +171,7 @@
   width: 60px;
   height: 3px;
   background: var(--accent-primary);
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .doc-h3 {
@@ -218,7 +218,7 @@
   background: color-mix(in srgb, var(--accent-primary) 8%, transparent);
   color: color-mix(in srgb, var(--accent-primary) 72%, var(--text-primary));
   padding: 2px 8px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   font-family: 'Fira Code', 'SF Mono', 'Monaco', monospace;
   border: none;

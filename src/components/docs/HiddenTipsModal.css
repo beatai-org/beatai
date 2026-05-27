@@ -14,7 +14,7 @@
   width: min(720px, 100%);
   max-height: calc(100vh - 48px);
   overflow-y: auto;
-  border-radius: 24px;
+  border-radius: 16px;
   border: 1px solid color-mix(in srgb, var(--accent-start) 20%, var(--border-primary));
   background:
     radial-gradient(circle at top right,
@@ -81,7 +81,7 @@
 
 .hidden-tips-section {
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 16px;
   border: 1px solid color-mix(in srgb, var(--accent-start) 14%, var(--border-primary));
   background: color-mix(in srgb, var(--card-bg) 92%, transparent);
 }
@@ -126,7 +126,7 @@
 .hidden-tips-shortcut kbd {
   min-width: 52px;
   padding: 6px 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid color-mix(in srgb, var(--accent-start) 18%, var(--border-primary));
   background: color-mix(in srgb, var(--card-bg) 96%, transparent);
   color: var(--text-primary);

@@ -22,7 +22,7 @@
 
 .rm-toc-list::-webkit-scrollbar-thumb {
   background: color-mix(in srgb, var(--text-tertiary) 35%, transparent);
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .rm-toc-item {
@@ -32,7 +32,7 @@
 .rm-toc-link {
   display: block;
   padding: 6px 10px;
-  border-radius: 6px;
+  border-radius: 8px;
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 13px;

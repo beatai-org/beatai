@@ -133,7 +133,7 @@
   height: 2px;
   background: var(--text-primary);
   transition: all 0.3s ease;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 @media (max-width: 768px) {

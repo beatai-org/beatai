@@ -25,7 +25,7 @@
   gap: 10px;
   padding: 20px 24px;
   border: 1px solid color-mix(in srgb, var(--border-primary) 78%, transparent);
-  border-radius: 28px;
+  border-radius: 16px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
@@ -86,6 +86,6 @@
 
   .ai-tutorial-card {
     padding: 22px;
-    border-radius: 22px;
+    border-radius: 16px;
   }
 }

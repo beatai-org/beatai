@@ -48,7 +48,7 @@
   background: var(--card-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-primary);
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   z-index: 1000;
@@ -152,7 +152,7 @@
   background: var(--accent-start);
   color: white;
   padding: 2px 8px;
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 12px;
   font-weight: 600;
 }
@@ -163,7 +163,7 @@
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;

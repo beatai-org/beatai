@@ -125,7 +125,7 @@
   background: var(--card-bg);
   color: var(--text-primary);
   padding: 0.6rem 1.5rem;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 0.95rem;
   transition: background 0.2s ease, transform 0.2s ease;
@@ -181,7 +181,7 @@
   padding: 1.25rem 1.4rem;
   height: 200px;
   border: 1px solid var(--border-primary);
-  border-radius: 14px;
+  border-radius: 8px;
   background: var(--card-bg);
   text-decoration: none;
   color: inherit;
@@ -233,7 +233,7 @@
   flex: 0 0 auto;
   width: 160px;
   align-self: stretch;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   background: var(--card-bg-hover);
 }

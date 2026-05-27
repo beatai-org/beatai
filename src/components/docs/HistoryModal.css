@@ -15,7 +15,7 @@
   max-height: calc(100vh - 48px);
   display: flex;
   flex-direction: column;
-  border-radius: 24px;
+  border-radius: 16px;
   border: 1px solid color-mix(in srgb, var(--accent-start) 20%, var(--border-primary));
   background:
     radial-gradient(circle at top right,
@@ -119,7 +119,7 @@
   width: 100%;
   padding: 12px 14px;
   border: 1px solid transparent;
-  border-radius: 14px;
+  border-radius: 8px;
   background: color-mix(in srgb, var(--card-bg) 92%, transparent);
   text-align: left;
   cursor: pointer;

@@ -21,7 +21,7 @@
   gap: 1.25rem;
   margin-bottom: 1.1rem;
   padding: 1.18rem 1.25rem;
-  border-radius: 22px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 218, 141, 0.24);
   background:
     radial-gradient(circle at 15% 25%, rgba(255, 190, 89, 0.08), transparent 34%),
@@ -69,7 +69,7 @@
   background: rgba(18, 30, 46, 0.82);
   color: rgba(255, 245, 220, 0.88);
   padding: 0.58rem 0.92rem;
-  border-radius: 12px;
+  border-radius: 8px;
   font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
@@ -133,7 +133,7 @@
 }
 
 .ai-map-wrap {
-  border-radius: 24px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 214, 140, 0.22);
   background:
     radial-gradient(circle at 16% 24%, rgba(255, 178, 95, 0.1), transparent 34%),
@@ -167,7 +167,7 @@
   position: relative;
   isolation: isolate;
   height: 620px;
-  border-radius: 18px;
+  border-radius: 16px;
   border: 1px solid rgba(145, 206, 218, 0.2);
   overflow: hidden;
   background: linear-gradient(180deg, rgba(10, 18, 29, 0.94), rgba(6, 10, 16, 0.96));
@@ -654,7 +654,7 @@
 }
 
 .ai-quest-panel {
-  border-radius: 22px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 213, 137, 0.22);
   padding: 1rem 1rem 1.05rem;
   color: #f3ebd3;
@@ -724,7 +724,7 @@
 .quest-btn {
   width: 100%;
   border: 1px solid rgba(255, 211, 132, 0.62);
-  border-radius: 11px;
+  border-radius: 8px;
   background: linear-gradient(180deg, rgba(136, 70, 28, 0.92), rgba(94, 44, 19, 0.92));
   color: #fff7df;
   font-size: 0.87rem;

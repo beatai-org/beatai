@@ -82,7 +82,7 @@ pre[class*="language-"]:not(.doc-pre) {
 /* ── Inline code carrying a language- class (pill) ── */
 :not(pre) > code[class*="language-"] {
   padding: 0.2em 0.4em;
-  border-radius: 6px;
+  border-radius: 8px;
   white-space: normal;
   background: var(--code-inline-bg);
   border: 1px solid var(--code-inline-border);

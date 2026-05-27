@@ -145,7 +145,7 @@
   width: 100%;
   padding: 12px 16px 12px 44px;
   border: 2px solid rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  border-radius: 8px;
   font-size: 15px;
   background: white;
   color: #1f2937;
@@ -181,7 +181,7 @@
 .ai-suggestion-chip {
   padding: 12px 16px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: 8px;
   background: white;
   color: #1f2937;
   font-size: 14px;
@@ -218,7 +218,7 @@
 .ai-result-card {
   padding: 16px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  border-radius: 8px;
   background: white;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -280,7 +280,7 @@
   background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
   color: #92400e;
   padding: 2px 4px;
-  border-radius: 2px;
+  border-radius: 4px;
   font-weight: 600;
 }
 
@@ -367,7 +367,7 @@
 
 .ai-content::-webkit-scrollbar-thumb {
   background: #d1d5db;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .ai-content::-webkit-scrollbar-thumb:hover {

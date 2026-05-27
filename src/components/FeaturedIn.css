@@ -39,7 +39,7 @@
 .testimonial-card {
   background: var(--card-bg);
   border: 1px solid var(--border-primary);
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 48px 40px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -50,7 +50,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 2px;
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), transparent);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);

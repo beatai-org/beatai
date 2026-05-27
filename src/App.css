@@ -223,7 +223,7 @@ body {
 .btn {
   position: relative;
   padding: 12px 28px;
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -281,7 +281,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 1px;
   background: var(--accent-gradient);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);

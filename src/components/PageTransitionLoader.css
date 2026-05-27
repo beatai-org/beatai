@@ -158,7 +158,7 @@
   width: 200px;
   height: 4px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
+  border-radius: 4px;
   overflow: hidden;
   position: relative;
 }
@@ -166,7 +166,7 @@
 .loader-progress-fill {
   height: 100%;
   background: var(--accent-gradient);
-  border-radius: 2px;
+  border-radius: 4px;
   animation: progressFill 1.5s ease-in-out infinite;
   box-shadow: 0 0 10px var(--glow-color);
 }
@@ -311,7 +311,7 @@
 
 :root[data-theme="ink-paper"] .loader-logo-wrapper {
   padding: 1.75rem 1.9rem;
-  border-radius: 28px;
+  border-radius: 16px;
   animation: logoFloat 3.4s ease-in-out infinite;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -410,7 +410,7 @@
 
 :root[data-theme="kindle-paper"] .loader-logo-wrapper {
   padding: 1.6rem 1.75rem;
-  border-radius: 24px;
+  border-radius: 16px;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   animation: logoFloat 3.4s ease-in-out infinite;

@@ -143,7 +143,7 @@
   width: 40px;
   height: 40px;
   padding: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid color-mix(in srgb, var(--border-primary) 78%, transparent);
   background: color-mix(in srgb, var(--card-bg) 76%, transparent);
   color: color-mix(in srgb, var(--text-secondary) 88%, var(--text-tertiary));
@@ -180,7 +180,7 @@
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+  border-radius: 8px;
   color: var(--text-primary);
   font-size: 20px;
   cursor: pointer;
@@ -232,7 +232,7 @@
   backdrop-filter: blur(20px);
   border: 2px solid transparent;
   background-clip: padding-box;
-  border-radius: 12px;
+  border-radius: 8px;
   color: var(--text-primary);
   font-size: 15px;
   font-weight: 600;
@@ -254,7 +254,7 @@
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 20px;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -276,7 +276,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 2px;
   background: linear-gradient(135deg, rgba(103, 80, 164, 0.3), rgba(103, 58, 183, 0.3));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);

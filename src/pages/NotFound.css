@@ -80,7 +80,7 @@
   font-size: 0.8125rem;
   font-weight: 600;
   padding: 10px 20px;
-  border-radius: 6px;
+  border-radius: 8px;
   text-decoration: none;
   transition: transform 0.18s ease, border-color 0.18s ease;
 }

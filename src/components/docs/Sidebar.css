@@ -1,6 +1,6 @@
 .docs-sidebar {
   position: sticky;
-  top: 70px;
+  top: 80px;
   height: calc(100vh - 90px);
   overflow-y: auto;
   overflow-x: visible;
@@ -51,7 +51,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 4px;
   padding-left: 8px;
 }
 

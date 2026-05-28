@@ -71,6 +71,10 @@
   -webkit-backdrop-filter: blur(20px);
 }
 
+.reading-mode-toc-popover.is-hidden {
+  display: none;
+}
+
 
 @media (max-width: 968px) {
   .reading-mode-toggle-btn,

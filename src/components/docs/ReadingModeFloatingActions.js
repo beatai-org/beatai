@@ -66,16 +66,16 @@ function ReadingModeFloatingActions() {
         </button>
         {!isReadonlyMode && <ReadingModeToggleButton />}
       </div>
-      {showToc && (
-        <div
-          className="reading-mode-toc-popover"
-          ref={tocPopoverRef}
-          role="dialog"
-          aria-label="文章目录"
-        >
-          <ReadingModeToc />
-        </div>
-      )}
+      {/* 始终挂载，仅用 CSS 隐藏 —— 让 TOC 的 IntersectionObserver 在 popover 关闭时也持续追踪滚动 */}
+      <div
+        className={`reading-mode-toc-popover${showToc ? '' : ' is-hidden'}`}
+        ref={tocPopoverRef}
+        role="dialog"
+        aria-label="文章目录"
+        aria-hidden={!showToc}
+      >
+        <ReadingModeToc isOpen={showToc} />
+      </div>
       <HiddenTipsModal
         isOpen={showTipsModal}
         onClose={() => setShowTipsModal(false)}

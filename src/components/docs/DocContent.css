@@ -5,7 +5,7 @@
  * comments — so children don't each compute their own right-margin math.
  * Reading mode hides the TOC, so the offset collapses to 0 via :has(). */
 .doc-wrapper {
-  --doc-rail-offset: 247px;
+  --doc-rail-offset: 230px;
   display: block;
   width: 100%;
   padding-right: var(--doc-rail-offset);

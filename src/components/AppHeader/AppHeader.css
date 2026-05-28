@@ -120,7 +120,7 @@
 
 .category-tab.active {
   color: var(--text-primary);
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .category-title {
@@ -399,7 +399,7 @@
 .mobile-category-item.active {
   background: linear-gradient(90deg, rgba(103, 58, 183, 0.15), transparent);
   color: var(--accent-primary);
-  font-weight: 700;
+  font-weight: 900;
   padding-left: 24px;
 }
 

@@ -28,11 +28,66 @@
 }
 
 .theme-section {
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 
 .theme-section:last-child {
   margin-bottom: 0;
+}
+
+.theme-shortcuts-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid color-mix(in srgb, var(--border-primary) 60%, transparent);
+}
+
+.theme-shortcuts-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-shortcuts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.theme-shortcut {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.theme-shortcut-keys {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.theme-shortcut-keys kbd {
+  min-width: 38px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--accent-start) 18%, var(--border-primary));
+  background: color-mix(in srgb, var(--card-bg) 96%, transparent);
+  color: var(--text-primary);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.theme-shortcut-desc {
+  flex: 1;
+  line-height: 1.5;
 }
 
 @media (max-width: 480px) {

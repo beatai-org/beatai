@@ -41,10 +41,6 @@
   gap: 8px;
 }
 
-.reading-mode-tips-btn {
-  color: color-mix(in srgb, var(--accent-primary) 52%, var(--text-secondary));
-}
-
 .reading-mode-directory-toggle {
   position: fixed;
   top: 8px;

@@ -1,34 +1,16 @@
-import React, { useState } from 'react';
-import { HiSparkles } from 'react-icons/hi';
-import HiddenTipsModal from './HiddenTipsModal';
+import React from 'react';
 import ReadingModeToggleButton from './ReadingModeToggleButton';
 import ThemeSelector from '../ThemeSelector';
 import { useReadingMode } from '../../contexts/ReadingModeContext';
 
 function ReadingModeFloatingActions() {
-  const [showTipsModal, setShowTipsModal] = useState(false);
   const { isReadonlyMode } = useReadingMode();
 
   return (
-    <>
-      <div className="reading-mode-floating-actions">
-        <ThemeSelector />
-        <button
-          type="button"
-          className="reading-mode-toggle-btn reading-mode-tips-btn"
-          onClick={() => setShowTipsModal(true)}
-          aria-label="打开阅读技巧"
-          title="阅读技巧"
-        >
-          <HiSparkles />
-        </button>
-        {!isReadonlyMode && <ReadingModeToggleButton />}
-      </div>
-      <HiddenTipsModal
-        isOpen={showTipsModal}
-        onClose={() => setShowTipsModal(false)}
-      />
-    </>
+    <div className="reading-mode-floating-actions">
+      <ThemeSelector />
+      {!isReadonlyMode && <ReadingModeToggleButton />}
+    </div>
   );
 }
 

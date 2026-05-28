@@ -99,8 +99,8 @@
   .pagination-nav {
     flex-direction: column;
     gap: 16px;
-    margin-top: 48px;
-    padding-top: 32px;
+    /* margin-top: 48px; */
+    /* padding-top: 32px; */
   }
 
   .pagination-link {

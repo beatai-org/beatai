@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useIsSmallScreen } from '../../hooks/useIsSmallScreen';
 import { resolveMarkdownAssetUrl, resolvePublicContentUrl } from '../../utils/markdown';
 import { preloadMarkdownFile } from '../../utils/markdownPrefetch';
 import { preloadRouteForPath } from '../../utils/routePrefetch';
@@ -11,6 +12,7 @@ import { preloadRouteForPath } from '../../utils/routePrefetch';
 // publish/sync 把它同步进 _meta.json；cover 指向 publish 衍生的小尺寸
 // 缩略图（卡片只占 160px，不必下正文大图）。
 const ArchiveCard = ({ article, onArticleNavigate = null }) => {
+  const isSmallScreen = useIsSmallScreen();
   const cover = article.cover
     ? resolveMarkdownAssetUrl(article.cover, resolvePublicContentUrl(article.file))
     : '';
@@ -21,7 +23,7 @@ const ArchiveCard = ({ article, onArticleNavigate = null }) => {
 
   return (
     <Link
-      to={{ pathname: article.path, search: '?mode=read' }}
+      to={isSmallScreen ? article.path : { pathname: article.path, search: '?mode=read' }}
       className="archive-card"
       data-ai-insights-article-path={article.path}
       onMouseEnter={preloadArticleAssets}

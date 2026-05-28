@@ -537,10 +537,15 @@
   }
 
   /* 缩小按钮尺寸 */
-  .mobile-menu-toggle {
+  .mobile-menu-toggle,
+  .app-header-github-btn {
     width: 36px;
     height: 36px;
     font-size: 18px;
+  }
+
+  .app-header-github-btn svg {
+    font-size: 16px;
   }
 
   /* GitHub 按钮在移动端 */
@@ -555,7 +560,7 @@
 
 @media (max-width: 640px) {
   .app-header-content {
-    padding: 8px 10px;
+    padding: 4px 10px;
     gap: 6px;
   }
 
@@ -577,12 +582,23 @@
   }
 
   /* 进一步缩小按钮 */
-  .mobile-menu-toggle {
+  .mobile-menu-toggle,
+  .app-header-github-btn {
     width: 34px;
     height: 34px;
     font-size: 16px;
     border-radius: 8px;
     padding: 0;
+  }
+
+  /* github 是浅色描边按钮，相邻 theme 是深色实心块，间距感被深色块放大。
+     用负 margin 把后面的按钮拉近，视觉上与右侧那对间距一致。 */
+  .app-header-github-btn {
+    margin-right: -4px;
+  }
+
+  .app-header-github-btn svg {
+    font-size: 14px;
   }
 
   /* GitHub 按钮在小屏幕 */

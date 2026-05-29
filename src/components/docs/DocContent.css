@@ -52,26 +52,19 @@
   margin: 0 -19px 0 auto;
 }
 
-/* Reading mode: center the (article 750 + TOC 230) group horizontally
- * once the viewport has enough room (~1028px). The wrapper drops its
- * 230px right-reservation since the TOC is now pulled inward by the same
- * 50%-based offset (see TableOfContents.css). */
-@media (min-width: 1024px) {
+/* Reading mode: center the article horizontally and let the TOC sit flush
+ * against its right edge. Needs viewport ≥ 1210px (article 750 + 2×TOC 230)
+ * to fit without overlap; below that the default right-aligned layout
+ * still applies. The wrapper drops its 230px TOC reservation since the TOC
+ * is positioned via a 50%-based offset (see TableOfContents.css) rather
+ * than living inside the wrapper's reserved gutter. */
+@media (min-width: 1210px) {
   .docs-main.reading-mode .doc-wrapper {
-    max-width: 980px;
-    margin: 0 auto;
     --doc-rail-offset: 0px;
   }
 
   .docs-main.reading-mode .doc-content.reading-mode,
   .docs-main.reading-mode .doc-article-after.reading-mode {
-    margin: 0 auto 0 0;
-  }
-
-  /* No TOC (article has no headings) → center article inside the wrapper
-   * so it doesn't drift left of the viewport center. */
-  .docs-main.reading-mode:not(:has(.toc)) .doc-content.reading-mode,
-  .docs-main.reading-mode:not(:has(.toc)) .doc-article-after.reading-mode {
     margin: 0 auto;
   }
 }
@@ -261,20 +254,20 @@
    every theme, matching the dark code surface. */
 .doc-code-copy-btn {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 8px;
+  right: 8px;
   z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 68px;
-  height: 30px;
-  padding: 0 10px;
+  min-width: 50px;
+  height: 22px;
+  padding: 0 8px;
   border: 1px solid color-mix(in srgb, var(--accent-primary) 22%, rgba(255, 255, 255, 0.12));
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   color: #dbe6f3;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.02em;
   cursor: pointer;
@@ -389,14 +382,14 @@
 .doc-pre:has(code[class*="language-"])::before {
   content: attr(data-language);
   position: absolute;
-  top: 12px;
-  right: 92px;
-  font-size: 11px;
+  top: 8px;
+  right: 66px;
+  font-size: 9px;
   color: var(--code-label);
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.05em;
-  line-height: 30px;
+  line-height: 22px;
 }
 
 /* Mobile */

@@ -24,6 +24,13 @@
   line-height: 1.8;
   position: relative;
   padding: 24px 24px 30px 22px;
+  /* Catch-all wrap for headings / paragraphs / blockquote / list items so
+   * long unbreakable tokens (bare URLs, identifiers like
+   * `self.source.chars().nth(...).unwrap()`) don't overflow the article
+   * column on narrow viewports. `overflow-wrap` is inherited, but <pre>'s
+   * `white-space: pre` still wins for code blocks — they keep their
+   * existing horizontal scroll, untouched. */
+  overflow-wrap: anywhere;
 }
 
 /* Article reading panel — fills .doc-content exactly. The 24px gap between
@@ -172,6 +179,10 @@
   text-underline-offset: 0.18em;
   position: relative;
   transition: all 0.3s ease;
+  /* Long URLs (or any unbreakable token) wrap at the container edge instead
+   * of overflowing the article. `anywhere` keeps min-content sizing sane so
+   * the grid column never gets stretched by a single long link. */
+  overflow-wrap: anywhere;
 }
 
 .doc-link:hover {
@@ -188,6 +199,10 @@
   font-family: 'Fira Code', 'SF Mono', 'Monaco', monospace;
   border: none;
   font-weight: 500;
+  /* Long expressions like `self.source.chars().nth(...).unwrap()` have no
+   * natural break points; let them wrap at the container edge on narrow
+   * viewports instead of overflowing the article column. */
+  overflow-wrap: anywhere;
 }
 
 [data-theme-mode="dark"] .doc-code-inline {

@@ -6,7 +6,6 @@ function PageShell({
   sidebarOpen = false,
   onMenuToggle = null,
   hideHeader = false,
-  showReadingModeToggle = false,
   children
 }) {
   const classes = [rootClassName, 'dynamic-background'].filter(Boolean).join(' ');
@@ -19,7 +18,6 @@ function PageShell({
         <AppHeader
           sidebarOpen={sidebarOpen}
           onMenuToggle={onMenuToggle}
-          showReadingModeToggle={showReadingModeToggle}
         />
       )}
 

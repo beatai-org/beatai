@@ -1,5 +1,5 @@
-/* Floating actions for book chapter pages (regular reading mode).
- * Replaces the global AppHeader on /<book>/<chapter> routes. */
+/* Floating actions for book chapter pages — replaces the global AppHeader
+ * on /<book>/<chapter> routes. */
 .book-floating-actions {
   position: fixed;
   top: 8px;
@@ -10,9 +10,10 @@
   gap: 6px;
 }
 
-/* Shared icon-button look (40x40), aligned with .reading-mode-toggle-btn. */
+/* Shared 40x40 icon-button look across hamburger / home / github. */
 .book-fa-menu-toggle,
-.book-category-compact-toggle {
+.book-fa-home,
+.book-fa-github {
   width: 40px;
   height: 40px;
   display: inline-flex;
@@ -24,13 +25,15 @@
   background: color-mix(in srgb, var(--card-bg) 76%, transparent);
   color: color-mix(in srgb, var(--text-secondary) 88%, var(--text-tertiary));
   cursor: pointer;
+  text-decoration: none;
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
   opacity: 0.82;
 }
 
 .book-fa-menu-toggle:hover,
-.book-category-compact-toggle:hover {
+.book-fa-home:hover,
+.book-fa-github:hover {
   background: color-mix(in srgb, var(--card-bg-hover) 82%, transparent);
   border-color: color-mix(in srgb, var(--accent-start) 28%, var(--border-primary));
   color: var(--text-secondary);
@@ -39,41 +42,19 @@
 }
 
 .book-fa-menu-toggle:active,
-.book-category-compact-toggle:active {
+.book-fa-home:active,
+.book-fa-github:active {
   transform: translateY(0);
 }
 
 .book-fa-menu-toggle svg,
-.book-category-compact-toggle svg {
+.book-fa-home svg,
+.book-fa-github svg {
   font-size: 18px;
 }
 
 .book-fa-menu-toggle {
   display: none;
-}
-
-/* Book picker — compact icon-button variant. */
-.book-category-compact {
-  position: relative;
-  display: inline-flex;
-}
-
-.book-category-compact-toggle[aria-expanded="true"] {
-  background: color-mix(in srgb, var(--card-bg-hover) 82%, transparent);
-  border-color: color-mix(in srgb, var(--accent-start) 32%, var(--border-primary));
-  color: var(--text-secondary);
-  opacity: 1;
-}
-
-/* Menu pops directly under the icon button, aligned to its right edge so
- * it stays inside the viewport on small screens. */
-.book-category-compact .mobile-category-menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  left: auto;
-  min-width: 220px;
-  max-width: min(280px, calc(100vw - 24px));
 }
 
 /* AuthStatus renders its own pill/avatar; force it into 40x40 to match
@@ -94,16 +75,7 @@
   height: 40px;
 }
 
-.book-fa-github {
-  text-decoration: none;
-}
-
-.book-fa-github svg {
-  font-size: 18px;
-}
-
-/* Mobile: show hamburger, hide AuthStatus + GitHub to save horizontal room.
- * The compact book picker stays so users can switch books. */
+/* Mobile: show hamburger, hide AuthStatus + GitHub to save horizontal room. */
 @media (max-width: 968px) {
   .book-floating-actions {
     top: 6px;
@@ -112,7 +84,8 @@
   }
 
   .book-fa-menu-toggle,
-  .book-category-compact-toggle {
+  .book-fa-home,
+  .book-fa-github {
     width: 36px;
     height: 36px;
   }
@@ -122,7 +95,8 @@
   }
 
   .book-fa-menu-toggle svg,
-  .book-category-compact-toggle svg {
+  .book-fa-home svg,
+  .book-fa-github svg {
     font-size: 16px;
   }
 
@@ -145,7 +119,8 @@
   }
 
   .book-fa-menu-toggle,
-  .book-category-compact-toggle {
+  .book-fa-home,
+  .book-fa-github {
     width: 34px;
     height: 34px;
   }

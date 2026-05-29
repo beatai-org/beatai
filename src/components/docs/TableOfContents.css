@@ -235,17 +235,6 @@
   }
 }
 
-/* Reading mode: pull TOC inward so its left edge meets the centered
- * article's right edge. With article 750 centered, article-right sits at
- * 50% + 375; with TOC 230, its right edge then lands at 50% + 605, so the
- * right offset is 50% - 605px. max() keeps it at right:0 on narrow
- * viewports where the calc would go negative. */
-@media (min-width: 1210px) {
-  .docs-main.reading-mode .toc {
-    right: max(0px, calc(50% - 605px)) !important;
-  }
-}
-
 /* 减少动画 - 无障碍支持 */
 @media (prefers-reduced-motion: reduce) {
 

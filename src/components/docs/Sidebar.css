@@ -259,33 +259,6 @@
   background: color-mix(in srgb, var(--card-bg) 94%, var(--bg-tertiary));
 }
 
-.docs-sidebar.reading-mode-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: min(320px, calc(100vw - 32px));
-  height: 100vh;
-  background: var(--bg-primary);
-  border-right: 1px solid var(--border-primary);
-  padding: 72px 20px 20px;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-  z-index: 150;
-  box-shadow: 12px 0 40px rgba(0, 0, 0, 0.18);
-}
-
-.docs-sidebar.reading-mode-overlay.open {
-  transform: translateX(0);
-}
-
-.sidebar-overlay.reading-mode-overlay {
-  display: block;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.42);
-  z-index: 145;
-}
-
 @media (max-width: 968px) {
   .docs-sidebar {
     position: fixed;

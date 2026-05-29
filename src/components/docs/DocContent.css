@@ -26,12 +26,6 @@
   padding: 24px 24px 30px 22px;
 }
 
-.doc-content.reading-mode {
-  max-width: 750px;
-  margin: 0 -19px 0 auto;
-  padding-right: 22px;
-}
-
 /* Article reading panel — fills .doc-content exactly. The 24px gap between
  * text and panel-right comes from .doc-content's own right-padding, not from
  * an inset hack on this pseudo-element. */
@@ -45,28 +39,6 @@
   box-shadow: var(--shadow-lg);
   pointer-events: none;
   z-index: 0;
-}
-
-.doc-article-after.reading-mode {
-  max-width: 750px;
-  margin: 0 -19px 0 auto;
-}
-
-/* Reading mode: center the article horizontally and let the TOC sit flush
- * against its right edge. Needs viewport ≥ 1210px (article 750 + 2×TOC 230)
- * to fit without overlap; below that the default right-aligned layout
- * still applies. The wrapper drops its 230px TOC reservation since the TOC
- * is positioned via a 50%-based offset (see TableOfContents.css) rather
- * than living inside the wrapper's reserved gutter. */
-@media (min-width: 1210px) {
-  .docs-main.reading-mode .doc-wrapper {
-    --doc-rail-offset: 0px;
-  }
-
-  .docs-main.reading-mode .doc-content.reading-mode,
-  .docs-main.reading-mode .doc-article-after.reading-mode {
-    margin: 0 auto;
-  }
 }
 
 .doc-content>* {
@@ -87,10 +59,6 @@
   .doc-content {
     padding: 20px 16px 26px;
     max-width: 100%;
-  }
-
-  .doc-content.reading-mode {
-    padding-right: 16px;
   }
 }
 

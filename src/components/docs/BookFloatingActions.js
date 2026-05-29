@@ -1,18 +1,16 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { HiMenu, HiX } from 'react-icons/hi';
+import { Link, useLocation } from 'react-router-dom';
+import { HiMenu, HiX, HiHome } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 import ThemeSelector from '../ThemeSelector';
-import ReadingModeToggleButton from './ReadingModeToggleButton';
 import AuthStatus from './AuthStatus';
-import BookCategoryDropdown from '../AppHeader/BookCategoryDropdown';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { getBookByPathname } from '../../content';
+import { HOME_PATH } from '../../utils/siteRoutes';
 
 function BookFloatingActions({
   sidebarOpen = false,
-  onMenuToggle = null,
-  showReadingModeToggle = true
+  onMenuToggle = null
 }) {
   const location = useLocation();
   const { isAuthenticated } = useAuthContext();
@@ -32,11 +30,14 @@ function BookFloatingActions({
         </button>
       )}
 
-      <BookCategoryDropdown
-        compact
-        className="book-fa-category"
-        showInlineGithub={false}
-      />
+      <Link
+        to={HOME_PATH}
+        className="book-fa-home"
+        aria-label="返回首页"
+        title="返回首页"
+      >
+        <HiHome />
+      </Link>
 
       {isAuthenticated && (
         <div className="book-fa-auth">
@@ -49,7 +50,7 @@ function BookFloatingActions({
           href={activeGithubRepo}
           target="_blank"
           rel="noopener noreferrer"
-          className="book-fa-github reading-mode-toggle-btn"
+          className="book-fa-github"
           aria-label={`访问 ${activeBook.title} 的 GitHub 仓库`}
           title={`访问 ${activeBook.title} 的 GitHub 仓库`}
         >
@@ -57,7 +58,6 @@ function BookFloatingActions({
         </a>
       )}
 
-      {showReadingModeToggle && <ReadingModeToggleButton />}
       <ThemeSelector />
     </div>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import TableOfContents from './TableOfContents';
-import { useReadingMode } from '../../contexts/ReadingModeContext';
 
 function DocArticleLayout({
   articleRef,
@@ -10,17 +9,14 @@ function DocArticleLayout({
   afterArticle = null,
   children
 }) {
-  const { isReadingMode } = useReadingMode();
-  const resolvedArticleClassName = [articleClassName, isReadingMode ? 'reading-mode' : ''].filter(Boolean).join(' ');
-
   return (
     <>
       <div className="doc-wrapper">
-        <article ref={articleRef} className={resolvedArticleClassName} key={articleKey}>
+        <article ref={articleRef} className={articleClassName} key={articleKey}>
           {children}
         </article>
         {afterArticle ? (
-          <div className={`doc-article-after ${isReadingMode ? 'reading-mode' : ''}`}>
+          <div className="doc-article-after">
             {afterArticle}
           </div>
         ) : null}

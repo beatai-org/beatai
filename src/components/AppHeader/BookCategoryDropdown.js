@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { HiChevronDown, HiBookOpen } from 'react-icons/hi';
+import { HiChevronDown } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 import { preloadRouteForPath } from '../../utils/routePrefetch';
 import { SITE_CONFIG } from '../../utils/siteConfig';
@@ -10,11 +10,7 @@ import {
   getTopNavItems
 } from '../../content';
 
-function BookCategoryDropdown({
-  showInlineGithub = true,
-  className = '',
-  compact = false
-}) {
+function BookCategoryDropdown({ showInlineGithub = true, className = '' }) {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -64,47 +60,6 @@ function BookCategoryDropdown({
     preloadRouteForPath(item.href);
   };
 
-  const menu = open && (
-    <div className="mobile-category-menu" role="menu">
-      {navItems.map((item) => (
-        <Link
-          key={item.id}
-          to={item.href}
-          role="menuitem"
-          className={`mobile-category-item ${activeNavItem?.id === item.id ? 'active' : ''}`}
-          onMouseEnter={() => preloadNavItem(item)}
-          onFocus={() => preloadNavItem(item)}
-          onTouchStart={() => preloadNavItem(item)}
-        >
-          {item.label}
-        </Link>
-      ))}
-    </div>
-  );
-
-  if (compact) {
-    const label = activeNavItem?.label || SITE_CONFIG.labels.selectBook;
-    return (
-      <div
-        ref={dropdownRef}
-        className={`book-category-compact ${open ? 'open' : ''} ${className}`.trim()}
-      >
-        <button
-          type="button"
-          className="book-category-compact-toggle"
-          aria-expanded={open}
-          aria-haspopup="menu"
-          aria-label={`切换书籍 — 当前:${label}`}
-          title={label}
-          onClick={() => setOpen(!open)}
-        >
-          <HiBookOpen />
-        </button>
-        {menu}
-      </div>
-    );
-  }
-
   return (
     <div className={`mobile-category-wrapper ${className}`.trim()}>
       <div
@@ -121,7 +76,23 @@ function BookCategoryDropdown({
           <span>{activeNavItem?.label || SITE_CONFIG.labels.selectBook}</span>
           <HiChevronDown className={`dropdown-icon ${open ? 'open' : ''}`} />
         </button>
-        {menu}
+        {open && (
+          <div className="mobile-category-menu" role="menu">
+            {navItems.map((item) => (
+              <Link
+                key={item.id}
+                to={item.href}
+                role="menuitem"
+                className={`mobile-category-item ${activeNavItem?.id === item.id ? 'active' : ''}`}
+                onMouseEnter={() => preloadNavItem(item)}
+                onFocus={() => preloadNavItem(item)}
+                onTouchStart={() => preloadNavItem(item)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
       {showInlineGithub && activeGithubRepo && (
         <a

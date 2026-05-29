@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useIsSmallScreen } from '../../hooks/useIsSmallScreen';
 import { preloadMarkdownFile } from '../../utils/markdownPrefetch';
 import { preloadRouteForPath } from '../../utils/routePrefetch';
 
 const ArchiveList = ({ groups, onArticleNavigate = null }) => {
-  const isSmallScreen = useIsSmallScreen();
   const preloadArticleAssets = (article) => {
     preloadMarkdownFile(article.file);
     preloadRouteForPath(article.path);
@@ -24,7 +22,7 @@ const ArchiveList = ({ groups, onArticleNavigate = null }) => {
               <li key={article.path} className="archive-list-item">
                 <span className="archive-list-bullet">-</span>
                 <Link
-                  to={isSmallScreen ? article.path : { pathname: article.path, search: '?mode=read' }}
+                  to={article.path}
                   className="archive-list-link"
                   data-ai-insights-article-path={article.path}
                   onMouseEnter={() => preloadArticleAssets(article)}

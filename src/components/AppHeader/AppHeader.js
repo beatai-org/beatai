@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 import ThemeSelector from '../ThemeSelector';
-import ReadingModeToggleButton from '../docs/ReadingModeToggleButton';
 import AuthStatus from '../docs/AuthStatus';
 import BookCategoryDropdown from './BookCategoryDropdown';
 import { preloadRouteForPath } from '../../utils/routePrefetch';
@@ -22,8 +21,7 @@ import {
  */
 const AppHeader = ({
   sidebarOpen = false,
-  onMenuToggle = null,
-  showReadingModeToggle = false
+  onMenuToggle = null
 }) => {
   const location = useLocation();
 
@@ -83,7 +81,6 @@ const AppHeader = ({
               <FaGithub />
             </a>
           )}
-          {showReadingModeToggle && <ReadingModeToggleButton />}
           <ThemeSelector />
           {onMenuToggle && (
             <button

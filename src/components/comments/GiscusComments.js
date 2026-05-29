@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import {
@@ -7,6 +7,24 @@ import {
 } from '../../utils/siteConfig';
 
 const { giscus: GISCUS_CONFIG, links: SITE_LINKS, labels: SITE_LABELS } = SITE_CONFIG;
+
+const MOBILE_QUERY = '(max-width: 768px)';
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia(MOBILE_QUERY).matches;
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_QUERY);
+    const handler = (event) => setIsMobile(event.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+
+  return isMobile;
+}
 
 function buildGiscusTheme(mode) {
   return mode === 'dark' ? 'noborder_dark' : 'noborder_light';
@@ -43,6 +61,7 @@ function GiscusComments({ className = '', pageTitle = '', containerRef: sectionR
   const containerRef = useRef(null);
   const location = useLocation();
   const { theme } = useTheme();
+  const isMobile = useIsMobile();
   const giscusTheme = useMemo(() => buildGiscusTheme(theme), [theme]);
 
   const pathname = location.pathname || '/';
@@ -59,7 +78,7 @@ function GiscusComments({ className = '', pageTitle = '', containerRef: sectionR
   );
 
   useEffect(() => {
-    if (!isEmbeddedMode || !containerRef.current) {
+    if (isMobile || !isEmbeddedMode || !containerRef.current) {
       return undefined;
     }
 
@@ -88,10 +107,10 @@ function GiscusComments({ className = '', pageTitle = '', containerRef: sectionR
     return () => {
       container.innerHTML = '';
     };
-  }, [giscusConfig, giscusTheme, isEmbeddedMode, pathname]);
+  }, [giscusConfig, giscusTheme, isEmbeddedMode, isMobile, pathname]);
 
   useEffect(() => {
-    if (!isEmbeddedMode) {
+    if (isMobile || !isEmbeddedMode) {
       return;
     }
 
@@ -110,7 +129,11 @@ function GiscusComments({ className = '', pageTitle = '', containerRef: sectionR
       },
       SITE_LINKS.giscusOrigin
     );
-  }, [giscusTheme, isEmbeddedMode]);
+  }, [giscusTheme, isEmbeddedMode, isMobile]);
+
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <section

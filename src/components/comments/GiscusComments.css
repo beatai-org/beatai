@@ -44,8 +44,6 @@
 
 .doc-comments-embed {
   min-height: 140px;
-  max-height: 600px;
-  overflow-y: auto;
 }
 
 .doc-comments-fallback {

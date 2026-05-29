@@ -74,15 +74,12 @@ const AppHeader = ({
   };
 
   return (
-    <header className="app-header glass-morphism">
+    <header className="app-header">
       <div className="app-header-content">
-        {/* Desktop brand text */}
+        {/* Desktop brand text — hidden on mobile via .desktop-only.
+            (Mobile-specific brand was removed so the book selector sits
+            flush against the left edge of the header on small screens.) */}
         <Link to={HOME_PATH} className="app-logo desktop-only">
-          <span className="logo-text">{SITE_CONFIG.brandName}</span>
-        </Link>
-
-        {/* Mobile brand text */}
-        <Link to={HOME_PATH} className="app-logo-mobile mobile-only">
           <span className="logo-text">{SITE_CONFIG.brandName}</span>
         </Link>
 

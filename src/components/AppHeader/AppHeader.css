@@ -1,8 +1,10 @@
-/* 应用统一 Header 样式 */
+/* 应用统一 Header 样式 — 实心背景，无磨砂玻璃模糊。 */
 .app-header {
   position: sticky;
   top: 0;
   z-index: 100;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-primary);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
 }
 
@@ -518,13 +520,22 @@
     display: flex;
   }
 
-  /* 显示移动端 Logo */
+  /* 隐藏移动端 Logo，让书籍选择直接靠左排列 */
   .app-logo-mobile {
-    display: flex;
+    display: none;
   }
 
   .mobile-category-wrapper {
     display: flex;
+    flex: 0 1 auto;
+    margin-right: auto;
+  }
+
+  /* Dropdown 默认是 flex: 1，会在不拉伸的 wrapper 里塌成 0。
+     这里改成 auto + min-width，让按钮按内容自然撑开但不至于太窄。 */
+  .mobile-category-dropdown {
+    flex: 0 1 auto;
+    min-width: 160px;
   }
 
   .app-header-content {
@@ -610,11 +621,12 @@
     display: none; /* 隐藏移动端的 GitHub 按钮 */
   }
 
-  /* 书籍选择框占据最大空间 */
+  /* 书籍选择靠左，按内容宽度展示 */
   .mobile-category-wrapper {
     gap: 6px;
-    flex: 1;
+    flex: 0 1 auto;
     min-width: 0;
+    margin-right: auto;
   }
 
   .mobile-category-toggle {

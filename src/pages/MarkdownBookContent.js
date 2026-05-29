@@ -9,7 +9,8 @@ import { TagProvider } from '../contexts/TagContext';
 import { useDocsMeta } from '../hooks/useDocsMeta';
 import {
   buildBookCategoryMeta,
-  buildBookRouteValidationModel
+  buildBookRouteValidationModel,
+  buildSidebarMeta
 } from '../domain/docs';
 import { getBookBasePath, getBookDefaultUrl, getCollectionOfBook } from '../content';
 
@@ -39,6 +40,21 @@ function MarkdownBookContent({ book }) {
     basePath
   ), [basePath, docsMeta, location.pathname]);
 
+  // Where the bare /:book/ URL should redirect. Books with an explicit
+  // `defaultEntry` use it; the rest (e.g. ai-insights, where the entries are
+  // dynamic articles) fall through to the first sidebar item — same data the
+  // actual sidebar will render, so the destination always matches what users
+  // see highlighted.
+  const indexTarget = useMemo(() => {
+    if (book.defaultEntry) {
+      return getBookDefaultUrl(book);
+    }
+    const category = docsMeta?.categories?.[0];
+    if (!category) return basePath;
+    const sidebarMeta = buildSidebarMeta(category);
+    return sidebarMeta?.sections?.[0]?.items?.[0]?.path || basePath;
+  }, [book, basePath, docsMeta]);
+
   if (bookLoading) {
     return <PageTransitionLoader />;
   }
@@ -61,7 +77,7 @@ function MarkdownBookContent({ book }) {
       <TagProvider meta={docsMeta}>
         <DocsLayout meta={docsMeta}>
           <Routes>
-            <Route index element={<Navigate to={getBookDefaultUrl(book)} replace />} />
+            <Route index element={<Navigate to={indexTarget} replace />} />
             <Route path="*" element={<DocContent book={book} />} />
           </Routes>
         </DocsLayout>

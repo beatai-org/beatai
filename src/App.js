@@ -23,7 +23,6 @@ const Square = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.squa
 const LogoShowcase = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.logoShowcase]));
 const BookPage = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.bookPage]));
 const CollectionPage = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.collectionPage]));
-const AiInsightsArchive = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.aiInsights]));
 const NotFound = lazy(() => lazyWithMinLoadTime(ROUTE_MODULE_LOADERS[PAGE_IDS.notFound]));
 
 const ROUTER_FUTURE_FLAGS = Object.freeze({
@@ -59,9 +58,12 @@ function App() {
                     <Route path={PAGE_CONFIG[PAGE_IDS.square].path} element={<Square />} />
                     <Route path={PAGE_CONFIG[PAGE_IDS.logoShowcase].path} element={<LogoShowcase />} />
                     <Route path={APP_ROUTE_PATHS.legacyLearnClaudeCode} element={<LegacyLearnClaudeCodeRedirect />} />
-                    {/* AI Insights archive: special feed page sits at /ai-insights exactly,
-                        while /ai-insights/<article> falls through to the BOOK route below. */}
-                    <Route path={PAGE_CONFIG[PAGE_IDS.aiInsights].path} element={<AiInsightsArchive />} />
+                    {/* /ai-insights is handled by the BOOK route below (the
+                        ai-insights book matches /ai-insights/*); its
+                        MarkdownBookContent auto-redirects the bare URL to the
+                        first sidebar article. Keeping the redirect inside the
+                        BookPage subtree avoids a second loader flash from a
+                        route-level handoff. */}
                     {/* Collection hub pages — one route per collection */}
                     {COLLECTIONS.map((collection) => (
                       <Route key={`collection:${collection.id}`}

@@ -37,8 +37,10 @@ export function getRouteIdForPath(target) {
     return null;
   }
 
+  // / and /ai-insights both end up rendering the ai-insights BookPage now,
+  // so prefetch the bookPage chunk instead of the (deleted) archive chunk.
   if (pathname === '/' || pathname === HOME_PATH || pathname === AI_INSIGHTS_PATH) {
-    return PAGE_IDS.aiInsights;
+    return PAGE_IDS.bookPage;
   }
 
   if (pathname === PAGE_CONFIG[PAGE_IDS.genesisLab].path) {

@@ -8,6 +8,7 @@ function PageShell({
   onMenuToggle = null,
   hideHeader = false,
   showReadingModeToggle = false,
+  onReadingModeDirectoryOpen = null,
   children
 }) {
   const classes = [rootClassName, 'dynamic-background'].filter(Boolean).join(' ');
@@ -24,7 +25,9 @@ function PageShell({
         />
       )}
 
-      {hideHeader && showReadingModeToggle && <ReadingModeFloatingActions />}
+      {hideHeader && showReadingModeToggle && (
+        <ReadingModeFloatingActions onDirectoryOpen={onReadingModeDirectoryOpen} />
+      )}
 
       {children}
     </div>

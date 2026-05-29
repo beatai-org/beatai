@@ -38,20 +38,37 @@
   z-index: 140;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
-.reading-mode-directory-toggle {
-  position: fixed;
-  top: 8px;
-  left: max(24px, calc((100vw - 1400px) / 2 + 24px));
-  z-index: 140;
+/* Shrink all three buttons to 30×30 only inside the reading-mode floating
+ * actions. The base classes (.reading-mode-toggle-btn, .theme-button) keep
+ * their 40×40 size for use in AppHeader (normal mode). */
+.reading-mode-floating-actions .reading-mode-toggle-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+}
+
+.reading-mode-floating-actions .reading-mode-toggle-btn svg {
+  font-size: 15px;
+}
+
+.reading-mode-floating-actions .theme-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+.reading-mode-floating-actions .theme-button::before {
+  width: 14px;
+  height: 14px;
 }
 
 @media (max-width: 968px) {
   .reading-mode-toggle-btn,
-  .reading-mode-floating-actions,
-  .reading-mode-directory-toggle {
+  .reading-mode-floating-actions {
     display: none;
   }
 }

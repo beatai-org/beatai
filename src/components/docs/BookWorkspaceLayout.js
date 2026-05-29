@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Sidebar from './Sidebar';
-import ReadingModeDirectoryButton from './ReadingModeDirectoryButton';
 import PageShell from '../layout/PageShell';
 import { cn } from '../../utils/classNames';
 import { ReadingModeProvider } from '../../contexts/ReadingModeContext';
@@ -85,19 +84,21 @@ function BookWorkspaceLayout({
         onMenuToggle={onMenuToggle}
         hideHeader={isReadingMode}
         showReadingModeToggle
+        onReadingModeDirectoryOpen={
+          isReadingMode && sidebarMeta && !isReadonlyMode
+            ? () => setIsReadingModeDirectoryOpen(true)
+            : null
+        }
       >
         {isReadingMode && sidebarMeta && !isReadonlyMode ? (
-          <>
-            <ReadingModeDirectoryButton onClick={() => setIsReadingModeDirectoryOpen(true)} />
-            <Sidebar
-              meta={sidebarMeta}
-              isOpen={isReadingModeDirectoryOpen}
-              onClose={() => setIsReadingModeDirectoryOpen(false)}
-              className="reading-mode-overlay"
-              overlayClassName="reading-mode-overlay"
-              linkSearch={modeSearch}
-            />
-          </>
+          <Sidebar
+            meta={sidebarMeta}
+            isOpen={isReadingModeDirectoryOpen}
+            onClose={() => setIsReadingModeDirectoryOpen(false)}
+            className="reading-mode-overlay"
+            overlayClassName="reading-mode-overlay"
+            linkSearch={modeSearch}
+          />
         ) : null}
 
         <div className={cn('docs-container', isReadingMode && 'reading-mode', containerClassName)}>

@@ -1,11 +1,20 @@
-/* 应用统一 Header 样式 — 实心背景，无磨砂玻璃模糊。 */
+/* 应用统一 Header 样式 — 磨砂玻璃背景。 */
 .app-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--bg-primary);
+  background: color-mix(in srgb, var(--bg-primary) 70%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--border-primary);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Fallback for browsers without backdrop-filter support. */
+@supports not (backdrop-filter: blur(20px)) {
+  .app-header {
+    background: var(--bg-primary);
+  }
 }
 
 .app-header-content {

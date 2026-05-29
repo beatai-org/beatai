@@ -1,7 +1,7 @@
 <h1 align="center">Rusty Book( 锈书 )</h1>
 
 <div align="center">
-    <img width="100%" src="https://cdn.jsdelivr.net/gh/studyrs/rusty-book@main/assets/banner.gif" />
+    <img width="100%" src="https://github.com/studyrs/rusty-book/blob/main/assets/banner.gif?raw=true" />
 </div>
    
 <div align="center">

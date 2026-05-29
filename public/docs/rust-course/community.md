@@ -1,6 +1,6 @@
-## Rust语言中文网
+# Rust语言中文网
 
-<img src="https://cdn.jsdelivr.net/gh/rustlang-cn/.github@main/assets/cover.jpg" />
+<img src="https://github.com/rustlang-cn/.github/blob/main/assets/cover.jpg?raw=true" />
 
 <h4 align="center">跟我来吧，学完 Rust，你的前面就是星辰大海！</h4>
 
@@ -13,13 +13,13 @@
 
 - 公众号: `Rust语言中文网`
 
-<img src="https://cdn.jsdelivr.net/gh/sunface/rust-course@main/assets/studyrust公众号.png" />
+<img src="https://github.com/sunface/rust-course/blob/main/assets/studyrust公众号.png?raw=true" />
 
 
 <h1 align="center">Rusty Book( 锈书 )</h1>
 
 <div align="center">
-    <img width="100%" src="https://cdn.jsdelivr.net/gh/studyrs/rusty-book@main/assets/banner.gif" />
+    <img width="100%" src="https://github.com/studyrs/rusty-book/blob/main/assets/banner.gif?raw=true" />
 </div>
    
 <div align="center">

@@ -2,6 +2,19 @@
 
 > 最近 30 天发布 · 完整列表见 <https://beatai.org/ai-insights>
 
+### 2026-05-29
+
+- [AI 把一个荒唐点子夸成"真有意思"，一位记者现在正在推广它](https://beatai.org/ai-insights/ai-called-an-absurd-idea-genuinely-interesting-a-reporter-is-now-promoting-it?mode=read)  
+  词语的魔法是怎么生效的——哪怕这些词压根没意义。
+- [Claude Opus 4.8 实战指南：四个让你重新规划工作流的新特性](https://beatai.org/ai-insights/claude-opus-4-8-4-features-that-change-our-daily-work-with-claude?mode=read)  
+  模型本身只是温和升级，但 effort control、动态工作流、Messages API 可在运行中改指令，加上一个肯承认"我没把握"的 Claude——这次发布真正的份量在外围。
+- [写给普通人的上下文窗口：AI 是怎么跟丢思路的](https://beatai.org/ai-insights/context-windows-for-humans-how-ai-loses-the-thread?mode=read)  
+  以及，为什么每一次 AI 对话都存在一个边界
+- [Distill：一位前同事的故事](https://beatai.org/ai-insights/distill-the-story-of-an-ex-colleague?mode=read)  
+  公司想在你离职前把你"萃取"下来。看看他们真正能拿到什么。
+- [怎样写出 coding agent 真正能落地的功能规格](https://beatai.org/ai-insights/how-to-write-feature-specs-that-coding-agents-can-actually-implement?mode=read)  
+  为什么 agentic coding 靠的是确定性契约，而不是模糊需求加 prompt 撞大运
+
 ### 2026-05-28
 
 - [Demo 跑得通 ≠ 生产跑得通：构建 AI agent 时如何驾驭 LLM 的不确定性](https://beatai.org/ai-insights/demo-works-production-works-how-to-harness-llm-uncertainty-when-building-ai-agents?mode=read)  

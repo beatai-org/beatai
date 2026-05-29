@@ -1030,6 +1030,93 @@
           ],
           "excerpt": "低成本训练 AI 的新路子？",
           "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@8bf0e99ec6bb07f7da4c3ee3831d0a2803f2754b/ai-insights/2026-05/28/images/training-ais-for-a-millionth-of-the-cost/01.webp"
+        },
+        {
+          "title": "AI 把一个荒唐点子夸成\"真有意思\"，一位记者现在正在推广它",
+          "path": "/ai-insights/ai-called-an-absurd-idea-genuinely-interesting-a-reporter-is-now-promoting-it",
+          "file": "/docs/ai-insights/2026-05/29/ai-called-an-absurd-idea-genuinely-interesting-a-reporter-is-now-promoting-it.md",
+          "publishedAt": "2026-05-29",
+          "tags": [
+            "LLM",
+            "Technology",
+            "Artificial Intelligence"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "srgg6701"
+            }
+          ],
+          "excerpt": "词语的魔法是怎么生效的——哪怕这些词压根没意义。",
+          "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4100bc21289f6c418a4c0/ai-insights/2026-05/29/images/ai-called-an-absurd-idea-genuinely-interesting-a-reporter-is-now-promoting-it/01.thumb.webp"
+        },
+        {
+          "title": "写给普通人的上下文窗口：AI 是怎么跟丢思路的",
+          "path": "/ai-insights/context-windows-for-humans-how-ai-loses-the-thread",
+          "file": "/docs/ai-insights/2026-05/29/context-windows-for-humans-how-ai-loses-the-thread.md",
+          "publishedAt": "2026-05-29",
+          "tags": [
+            "Machine Learning",
+            "LLM"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Kalle Georgiev"
+            }
+          ],
+          "excerpt": "以及，为什么每一次 AI 对话都存在一个边界",
+          "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4100bc21289f6c418a4c0/ai-insights/2026-05/29/images/context-windows-for-humans-how-ai-loses-the-thread/01.thumb.webp"
+        },
+        {
+          "title": "Distill：一位前同事的故事",
+          "path": "/ai-insights/distill-the-story-of-an-ex-colleague",
+          "file": "/docs/ai-insights/2026-05/29/distill-the-story-of-an-ex-colleague.md",
+          "publishedAt": "2026-05-29",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Jing Hu"
+            }
+          ],
+          "excerpt": "公司想在你离职前把你\"萃取\"下来。看看他们真正能拿到什么。",
+          "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4100bc21289f6c418a4c0/ai-insights/2026-05/29/images/distill-the-story-of-an-ex-colleague/01.thumb.webp"
+        },
+        {
+          "title": "怎样写出 coding agent 真正能落地的功能规格",
+          "path": "/ai-insights/how-to-write-feature-specs-that-coding-agents-can-actually-implement",
+          "file": "/docs/ai-insights/2026-05/29/how-to-write-feature-specs-that-coding-agents-can-actually-implement.md",
+          "publishedAt": "2026-05-29",
+          "tags": [
+            "Programming",
+            "Artificial Intelligence"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Rico Fritzsche"
+            }
+          ],
+          "excerpt": "为什么 agentic coding 靠的是确定性契约，而不是模糊需求加 prompt 撞大运",
+          "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4100bc21289f6c418a4c0/ai-insights/2026-05/29/images/how-to-write-feature-specs-that-coding-agents-can-actually-implement/01.thumb.webp"
+        },
+        {
+          "title": "Claude Opus 4.8 实战指南：四个让你重新规划工作流的新特性",
+          "path": "/ai-insights/claude-opus-4-8-4-features-that-change-our-daily-work-with-claude",
+          "file": "/docs/ai-insights/2026-05/29/claude-opus-4-8-4-features-that-change-our-daily-work-with-claude.md",
+          "publishedAt": "2026-05-29",
+          "tags": [
+            "Artificial Intelligence"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Reza Rezvani"
+            }
+          ],
+          "excerpt": "模型本身只是温和升级，但 effort control、动态工作流、Messages API 可在运行中改指令，加上一个肯承认\"我没把握\"的 Claude——这次发布真正的份量在外围。",
+          "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@8b96623ef655f55358a6e3ce156806654757ca4c/ai-insights/2026-05/29/images/claude-opus-4-8-4-features-that-change-our-daily-work-with-claude/01.thumb.webp"
         }
       ]
     }

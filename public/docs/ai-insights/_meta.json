@@ -1134,6 +1134,80 @@
           "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@2b0287f3025c3c62def5404efcf80455c4bd6621/ai-insights/2026-05/29/images/riba2534-2060102236676792711/01.thumb.webp"
         }
       ]
+    },
+    {
+      "title": "2026 年 6 月",
+      "path": "/ai-insights/2026-06",
+      "items": [
+        {
+          "title": "上下文工程，才是新的护城河",
+          "path": "/ai-insights/context-engineering-is-the-new-moat",
+          "file": "/docs/ai-insights/2026-06/02/context-engineering-is-the-new-moat.md",
+          "publishedAt": "2026-06-02",
+          "tags": [
+            "AI Agent"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Scarlett Zhao"
+            }
+          ],
+          "excerpt": "几个月前我有了一个想分享的领悟。打造 NomNow（一款支持多模态记录的对话式 AI 卡路里追踪应用）以来，这是我撞见过的最有用的一套思考框架。",
+          "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@357d7cafd61c0736b8a7a3c12e81ba1e04e73a3b/ai-insights/2026-06/02/images/context-engineering-is-the-new-moat/01.thumb.webp"
+        },
+        {
+          "title": "我如何把相册变成一个自主 AI Agent——完整指南",
+          "path": "/ai-insights/how-i-turned-my-photo-gallery-into-an-autonomous-ai-agent-the-complete-guide",
+          "file": "/docs/ai-insights/2026-06/02/how-i-turned-my-photo-gallery-into-an-autonomous-ai-agent-the-complete-guide.md",
+          "publishedAt": "2026-06-02",
+          "tags": [
+            "Artificial Intelligence",
+            "Programming"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Vatsala Singh"
+            }
+          ],
+          "excerpt": "读完这篇指南，你会拥有一个完全跑在自己机器上的端到端 agent。你可以丢给它一句话，比如\"那张暖暖的黄金时刻照片，就是旅途中我们在路边小饭馆停下来那次拍的\"，它能在 100 毫秒内从相册里把图找出来——整个过程内存占用不到 1 GB，花费精确地是零美元。",
+          "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@357d7cafd61c0736b8a7a3c12e81ba1e04e73a3b/ai-insights/2026-06/02/images/how-i-turned-my-photo-gallery-into-an-autonomous-ai-agent-the-complete-guide/01.thumb.webp"
+        },
+        {
+          "title": "通往 Multi-Head Latent Attention 之路",
+          "path": "/ai-insights/the-journey-to-multi-head-latent-attention",
+          "file": "/docs/ai-insights/2026-06/02/the-journey-to-multi-head-latent-attention.md",
+          "publishedAt": "2026-06-02",
+          "tags": [],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Anuva Sharma"
+            }
+          ],
+          "excerpt": "人人都在谈 transformer 怎么扩展（scale），谈它怎么记忆的人却少得多。但实话说，对今天任何一个跑在生产里的 LLM 来说，KV cache 才是说了算的那个——它决定你的上下文长度、吞吐量、GPU 账单，以及你能部署在什么样的硬件上。Multi-Head Latent Attention（MLA）出自 DeepSeek-V2，是我见过对这个瓶颈最优雅的一次进攻。",
+          "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@357d7cafd61c0736b8a7a3c12e81ba1e04e73a3b/ai-insights/2026-06/02/images/the-journey-to-multi-head-latent-attention/01.thumb.webp"
+        },
+        {
+          "title": "LLM-as-a-Judge：用大模型来做评估",
+          "path": "/ai-insights/llm-as-a-judge-using-llms-for-evaluation",
+          "file": "/docs/ai-insights/2026-06/02/llm-as-a-judge-using-llms-for-evaluation.md",
+          "publishedAt": "2026-06-02",
+          "tags": [
+            "Artificial Intelligence",
+            "LLM"
+          ],
+          "contributors": [
+            {
+              "role": "author",
+              "name": "Cameron R. Wolfe, Ph.D."
+            }
+          ],
+          "excerpt": "LLM-as-a-Judge，以及在人工质量评分之外其他可扩展的补充手段……",
+          "cover": "https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@6b36a69e5ede876fcf0b9cfca95ef345ad4c43ba/ai-insights/2026-06/02/images/llm-as-a-judge-using-llms-for-evaluation/01.thumb.webp"
+        }
+      ]
     }
   ]
 }

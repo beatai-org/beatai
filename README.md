@@ -2,6 +2,17 @@
 
 > 最近 30 天发布 · 完整列表见 <https://beatai.org/ai-insights>
 
+### 2026-06-02
+
+- [上下文工程，才是新的护城河](https://beatai.org/ai-insights/context-engineering-is-the-new-moat?mode=read)  
+  几个月前我有了一个想分享的领悟。打造 NomNow（一款支持多模态记录的对话式 AI 卡路里追踪应用）以来，这是我撞见过的最有用的一套思考框架。
+- [我如何把相册变成一个自主 AI Agent——完整指南](https://beatai.org/ai-insights/how-i-turned-my-photo-gallery-into-an-autonomous-ai-agent-the-complete-guide?mode=read)  
+  读完这篇指南，你会拥有一个完全跑在自己机器上的端到端 agent。你可以丢给它一句话，比如"那张暖暖的黄金时刻照片，就是旅途中我们在路边小饭馆停下来那次拍的"，它能在 100 毫秒内从相册里把图找出来——整个过程内存占用不到 1 GB，花费精确地是零美元。
+- [LLM-as-a-Judge：用大模型来做评估](https://beatai.org/ai-insights/llm-as-a-judge-using-llms-for-evaluation?mode=read)  
+  LLM-as-a-Judge，以及在人工质量评分之外其他可扩展的补充手段……
+- [通往 Multi-Head Latent Attention 之路](https://beatai.org/ai-insights/the-journey-to-multi-head-latent-attention?mode=read)  
+  人人都在谈 transformer 怎么扩展（scale），谈它怎么记忆的人却少得多。但实话说，对今天任何一个跑在生产里的 LLM 来说，KV cache 才是说了算的那个——它决定你的上下文长度、吞吐量、GPU 账单，以及你能部署在什么样的硬件上。Multi-Head Latent Attention（MLA）出自 DeepSeek-V2，是我见过对这个瓶颈最优雅的一次进攻。
+
 ### 2026-05-29
 
 - [AI 把一个荒唐点子夸成"真有意思"，一位记者现在正在推广它](https://beatai.org/ai-insights/ai-called-an-absurd-idea-genuinely-interesting-a-reporter-is-now-promoting-it?mode=read)  

@@ -2,6 +2,23 @@
 
 > 最近 30 天发布 · 完整列表见 <https://beatai.org/ai-insights>
 
+### 2026-06-03
+
+- [AI token 稀缺与街机经济学](https://beatai.org/ai-insights/ai-token-scarcity-and-arcade-economics?mode=read)  
+  算力成本节节攀升，逼着设计师重新掂量自己的预期。
+- [用强化学习控制机械臂为人体按摩](https://beatai.org/ai-insights/controlling-a-robotic-arm-for-massaging-human-body-with-rl?mode=read)  
+  用交互式强化学习实现最优行为
+- [游戏 AI 的关键不在于智能](https://beatai.org/ai-insights/game-ai-is-not-about-intelligence?mode=read)  
+  有那么一类反复出现的内容——游戏开发者大会的演讲、博客文章、Twitter 长帖——总有人哀叹游戏 AI 相比现代机器学习"落后了"。叙事方式几乎一模一样：AlphaGo 击败了世界冠军，GPT-4 能写代码，可我们的 NPC 还在往墙上撞、在空地上找掩体。为什么这道鸿沟一直没填上？游戏 AI 怎么会这么原始？
+- [体面地使用 AI 的若干准则](https://beatai.org/ai-insights/guidelines-for-respectful-use-of-ai?mode=read)  
+  随着公司纷纷采用 AI 工具，大量时间被花在从安全、合规乃至成本角度去思考 AI 政策上。但很多管理者都忽略了一件事：在团队这个整体的语境里，自己的成员到底应该如何与 AI 协作。这留下了许多悬而未决的张力，是时候让管理者站出来定一些准则了——不只是规定怎样使用 AI 才算"获批"，还要规定怎样使用 AI 才算体面。
+- [AI 螺旋：找到你与 AI 共同进化的阶段](https://beatai.org/ai-insights/the-ai-helix-identify-your-stage-of-ai-co-evolution?mode=read)  
+  如果你大量时间都花在写 prompt、检查每一条 AI 输出、修正错误上——那你是在对 AI 做微观管理。绝大多数人都是从这里起步的。
+- [科技行业自找的清算。又一次。](https://beatai.org/ai-insights/the-reckoning-the-tech-industry-had-coming-again?mode=read)  
+  2007 年，我在澳大利亚墨尔本做 IT 咨询。那段时间经手的项目很多，其中一次，是替一家美国大型金融公司替换他们的汽车金融应用，尤其是我跟他们那位支持工程师打交道的经历，给了我一个至今难忘的行业视角。
+- [你家的猫比 ChatGPT 更懂这个世界——一位 AI 教父刚刚为此离开了 Meta](https://beatai.org/ai-insights/your-cat-understands-the-world-better-than-chatgpt-and-one-of-ais-godfathers-just-quit-meta-over?mode=read)  
+  我叫 Deepak Kumar，是个软件工程师，老是在技术的各个角落里反复爱上又厌倦。我之所以写东西，是因为只有把一件事讲给陌生人听，才能真正搞清楚自己到底有没有弄懂。所以别把这篇当成讲座，就当是你坐到我对面，问了一句"等等，现在 AI 圈到底在吵什么？"，我们随便聊聊。
+
 ### 2026-06-02
 
 - [上下文工程，才是新的护城河](https://beatai.org/ai-insights/context-engineering-is-the-new-moat?mode=read)  

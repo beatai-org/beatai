@@ -12,7 +12,7 @@ cover: https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@5c58ae79cd94bcca8c6b
 
 # 用强化学习控制机械臂为人体按摩
 
-## 用交互式强化学习实现最优行为
+用交互式强化学习实现最优行为
 
 ![](https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@5c58ae79cd94bcca8c6b9858f61f9652fa606578/ai-insights/2026-06/03/images/controlling-a-robotic-arm-for-massaging-human-body-with-rl/01.jpg)
 *图1：示意图（作者用 AI 生成）*

@@ -11,7 +11,7 @@ cover: https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@5c58ae79cd94bcca8c6b
 
 # AI token 稀缺与街机经济学
 
-## 算力成本节节攀升，逼着设计师重新掂量自己的预期。
+算力成本节节攀升，逼着设计师重新掂量自己的预期。
 
 ![新规则下玩着 UX 设计这场游戏。一台带设计图案的街机机柜插画。](https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@5c58ae79cd94bcca8c6b9858f61f9652fa606578/ai-insights/2026-06/03/images/ai-token-scarcity-and-arcade-economics/01.webp)
 *在街机经济里，用新规则玩 UX 设计这场游戏。*

@@ -9,7 +9,7 @@ cover: https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4
 
 # Distill：一位前同事的故事
 
-## 公司想在你离职前把你"萃取"下来。看看他们真正能拿到什么。
+公司想在你离职前把你"萃取"下来。看看他们真正能拿到什么。
 
 上周有个叫 "[*Colleague.skill*](https://github.com/titanwings/colleague-skill)" 的东西火了。
 

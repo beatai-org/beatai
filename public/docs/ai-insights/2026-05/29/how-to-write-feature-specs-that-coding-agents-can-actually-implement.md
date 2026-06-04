@@ -12,7 +12,7 @@ cover: https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4
 
 # 怎样写出 coding agent 真正能落地的功能规格
 
-## 为什么 agentic coding 靠的是确定性契约，而不是模糊需求加 prompt 撞大运
+为什么 agentic coding 靠的是确定性契约，而不是模糊需求加 prompt 撞大运
 
 ![](https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4100bc21289f6c418a4c0/ai-insights/2026-05/29/images/how-to-write-feature-specs-that-coding-agents-can-actually-implement/01.jpg)
 *图片来源：Compagnons on Unsplash*

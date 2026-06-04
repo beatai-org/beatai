@@ -12,7 +12,7 @@ cover: https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@6b36a69e5ede876fcf0b
 
 # LLM-as-a-Judge：用大模型来做评估
 
-## LLM-as-a-Judge，以及在人工质量评分之外其他可扩展的补充手段……
+LLM-as-a-Judge，以及在人工质量评分之外其他可扩展的补充手段……
 
 ![](https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@6b36a69e5ede876fcf0b9cfca95ef345ad4c43ba/ai-insights/2026-06/02/images/llm-as-a-judge-using-llms-for-evaluation/01.webp)
 *（来自 [13, 16, 17]）*

@@ -13,7 +13,7 @@ cover: https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4
 
 # AI 把一个荒唐点子夸成"真有意思"，一位记者现在正在推广它
 
-## 词语的魔法是怎么生效的——哪怕这些词压根没意义。
+词语的魔法是怎么生效的——哪怕这些词压根没意义。
 
 ![a small dog with glasses and a yellow striped tie around its neck](https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4100bc21289f6c418a4c0/ai-insights/2026-05/29/images/ai-called-an-absurd-idea-genuinely-interesting-a-reporter-is-now-promoting-it/01.webp)
 *图片来源：Sam Lion，https://www.pexels.com/ru-ru/photo/5732456/*

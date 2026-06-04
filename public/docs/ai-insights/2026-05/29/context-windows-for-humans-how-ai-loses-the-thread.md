@@ -12,7 +12,7 @@ cover: https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4
 
 # 写给普通人的上下文窗口：AI 是怎么跟丢思路的
 
-## 以及，为什么每一次 AI 对话都存在一个边界
+以及，为什么每一次 AI 对话都存在一个边界
 
 ![](https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@50756e864d1372dfaaa4100bc21289f6c418a4c0/ai-insights/2026-05/29/images/context-windows-for-humans-how-ai-loses-the-thread/01.jpg)
 *图片来源：Waldemar Brandt, Unsplash*

@@ -9,7 +9,7 @@ cover: https://cdn.jsdelivr.net/gh/beatai-org/beatai-assets@d862590ea9216ae63f9c
 
 # Agentic AI 落地工业物联网：破解数据碎片化与 LLM 推理难题
 
-## 给工业物联网系统配上 AI Agent
+给工业物联网系统配上 AI Agent
 
 ## 1. 引言
 

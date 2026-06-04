@@ -26,6 +26,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# material-pipeline working area: only sub-list/ is durable (cross-day dedup
+# source). raw/<slug>/ and output/<date>/ are temporary intermediates that
+# publish cleans up — never commit them.
+.claude/skills/material-pipeline/materials/raw/
+.claude/skills/material-pipeline/materials/output/
+
 temp-article
 /out
 /public/docs/materials/output/.obsidian/

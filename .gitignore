@@ -5,9 +5,8 @@
 /.pnp
 .pnp.js
 
-# nested node_modules in per-skill scripts/ (each skill carries its own
-# package.json + lock; node_modules is installed locally, never committed)
-.claude/skills/**/node_modules/
+# local Claude Code config & skills — not tracked in this repo
+.claude/
 
 # testing
 /coverage
@@ -25,12 +24,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# material-pipeline working area: only sub-list/ is durable (cross-day dedup
-# source). raw/<slug>/ and output/<date>/ are temporary intermediates that
-# publish cleans up — never commit them.
-.claude/skills/material-pipeline/materials/raw/
-.claude/skills/material-pipeline/materials/output/
 
 temp-article
 /out

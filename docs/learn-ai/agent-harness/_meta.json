@@ -1,0 +1,19 @@
+{
+  "id": "learn-ai/agent-harness",
+  "title": "Agent Harness",
+  "description": "Agent Harness 实战手册：从代理外壳的视角拆解工具调用、上下文管理与权限模型。",
+  "sections": [
+    {
+      "title": "Harness 内部解剖",
+      "path": "/learn-ai/agent-harness/chapter-01/lesson-01",
+      "file": "/docs/learn-ai/agent-harness/chapter-01/lesson-01.md",
+      "items": [
+        {
+          "title": "Agent Harness 剖析",
+          "path": "/learn-ai/agent-harness/chapter-01/lesson-01",
+          "file": "/docs/learn-ai/agent-harness/chapter-01/lesson-01.md"
+        }
+      ]
+    }
+  ]
+}
